@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ME135_Project\BalancingCube\Source Files\main.c">
+<ExpandedNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\TopDesign</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Pins</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Analog</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Clocks</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Interrupts</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\DMA</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\System</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Directives</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Flash Security</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\EEPROM</v>
+<v>ME135_Project\BalancingCube\Header Files</v>
+<v>ME135_Project\BalancingCube\Header Files\cyapicallbacks.h</v>
+<v>ME135_Project\BalancingCube\Source Files</v>
+<v>ME135_Project\BalancingCube\Source Files\main.c</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\TopDesign</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Pins</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Analog</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Clocks</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Interrupts</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\DMA</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\System</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Directives</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\Flash Security</v>
+<v>ME135_Project\BalancingCube\BalancingCube.cydwr\EEPROM</v>
+<v>ME135_Project\BalancingCube\Header Files</v>
+<v>ME135_Project\BalancingCube\Header Files\cyapicallbacks.h</v>
+<v>ME135_Project\BalancingCube\Source Files</v>
+<v>ME135_Project\BalancingCube\Source Files\main.c</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\TopDesign</v>
+<v>ME135_Project\BalancingCube\TopDesign\TopDesign.cysch</v>
+<v>ME135_Project\BalancingCube\TopDesign\TopDesign.cysym</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\TopDesign</v>
+<v>ME135_Project\BalancingCube\TopDesign\TopDesign.cysch</v>
+<v>ME135_Project\BalancingCube\TopDesign\TopDesign.cysym</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\BalancingCube.gpdsc</v>
+<v>ME135_Project\BalancingCube\BalancingCube.rpt</v>
+<v>ME135_Project\BalancingCube\BalancingCube_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\BalancingCube.gpdsc</v>
+<v>ME135_Project\BalancingCube\BalancingCube.rpt</v>
+<v>ME135_Project\BalancingCube\BalancingCube_timing.html</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\PSoC 5LP Architecture TRM</v>
+<v>ME135_Project\BalancingCube\CY8C58LP Family Datasheet</v>
+<v>ME135_Project\BalancingCube\System Reference Guides</v>
+<v>ME135_Project\BalancingCube\System Reference Guides\cy_boot_v5_50</v>
+<v>ME135_Project\BalancingCube\cy_isr_v1_70</v>
+<v>ME135_Project\BalancingCube\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>ME135_Project\BalancingCube\cy_pins_v2_20</v>
+<v>ME135_Project\BalancingCube\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>ME135_Project\BalancingCube\Gnd_v1_0.pdf</v>
+<v>ME135_Project\BalancingCube\I2C_v3_50.pdf</v>
+<v>ME135_Project\BalancingCube\SwitchSPST_v1_0.pdf</v>
+<v>ME135_Project\BalancingCube\UART_v2_50.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>ME135_Project</v>
+<v>ME135_Project\BalancingCube</v>
+<v>ME135_Project\BalancingCube\PSoC 5LP Architecture TRM</v>
+<v>ME135_Project\BalancingCube\CY8C58LP Family Datasheet</v>
+<v>ME135_Project\BalancingCube\System Reference Guides</v>
+<v>ME135_Project\BalancingCube\System Reference Guides\cy_boot_v5_50</v>
+<v>ME135_Project\BalancingCube\cy_isr_v1_70</v>
+<v>ME135_Project\BalancingCube\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>ME135_Project\BalancingCube\cy_pins_v2_20</v>
+<v>ME135_Project\BalancingCube\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>ME135_Project\BalancingCube\Gnd_v1_0.pdf</v>
+<v>ME135_Project\BalancingCube\I2C_v3_50.pdf</v>
+<v>ME135_Project\BalancingCube\SwitchSPST_v1_0.pdf</v>
+<v>ME135_Project\BalancingCube\UART_v2_50.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\BalancingCube.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\BalancingCube.cydsn\main.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="2063, 1068" SelectedTabbedMdiWindow="be35848a-8284-42c0-a60b-52fd341f4eb1"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="c65fa0f1-dea7-4847-8faf-4d1869ac2e1b" /><DocumentWindow Key="103d729e-bd2e-4488-94b9-487d33fee221" Guid="be35848a-8284-42c0-a60b-52fd341f4eb1" /><DocumentWindow Key="983a75b7-7d17-41e9-9c59-76df9a31922b" Guid="990dc7a7-bd41-4b36-8682-4b8f13c6c19b" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

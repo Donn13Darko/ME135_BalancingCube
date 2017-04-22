@@ -1,0 +1,10 @@
+all: main
+
+icons: icons.rc
+	windres icons.rc -o icons.o
+
+main: icons main.c
+	gcc icons.o main.c -o main.exe -lgdi32 -lcomdlg32
+
+clean:
+	rm -f icons.o main.exe

@@ -7,15 +7,58 @@ ID_NOSLEEP_MENU MENU DISCARDABLE
 BEGIN
   POPUP "&File"
   BEGIN
-    MENUITEM "&New",                        ID_FILE_NEW
-    MENUITEM "&Open...",                    ID_FILE_OPEN
-    MENUITEM "Save &As...",                 ID_FILE_SAVEAS
-    MENUITEM SEPARATOR
     MENUITEM "E&xit",                       ID_FILE_EXIT
+  END
+
+  POPUP "Config"
+  BEGIN
+    MENUITEM "Edit Configs...",             ID_CONFIG_EDIT
+    MENUITEM "Save Configs...",             ID_CONFIG_SAVEAS
+    MENUITEM "Load Configs...",             ID_CONFIG_LOAD
   END
 
   POPUP "Help"
   BEGIN
-    MENUITEM "Documentation",               ID_HELP_ABOUT
+    MENUITEM "About",                       ID_HELP_ABOUT
   END
+END
+
+ID_NOSLEEP_ABOUT DIALOG DISCARDABLE  25, 25, 250, 100
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About #NoSleep: Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+  DEFPUSHBUTTON   "&OK",                    IDOK,         100, 65, 50, 14
+  GROUPBOX        "About this program...",  IDC_STATIC,   7, 7, 225, 80
+  CTEXT           "ME135 Project Group in Spring 2017. This is a control program for our self balancing cube. Each configuration must be suplied a valid bluetooth address for an instance of the cube running the balancing software.",    IDC_STATIC,   16, 18, 200, 45
+END
+
+ID_NOSLEEP_LIST DIALOG DISCARDABLE  0, 0, 207, 156
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configurations"
+FONT 8, "MS Sans Serif"
+BEGIN
+  LISTBOX         ID_CONFIG_LIST,   7, 10, 138, 120,
+                  LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+  PUSHBUTTON      "Update",               ID_CONFIG_UPDATE,   150, 15, 50, 14
+  PUSHBUTTON      "Create",               ID_CONFIG_CREATE,   150, 30, 50, 14
+  PUSHBUTTON      "Delete",               ID_CONFIG_DELETE,   150, 45, 50, 14
+  PUSHBUTTON      "Clear",                ID_CONFIG_CLEAR,    150, 60, 50, 14
+  PUSHBUTTON      "Connect",              ID_CONFIG_CONNECT,  150, 110, 50, 14
+  CTEXT           "-",                    ID_CONFIG_TEXT,     5, 140, 115, 8
+END
+
+ID_NOSLEEP_CREATE DIALOG DISCARDABLE  25, 25, 250, 100
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Cube..."
+FONT 8, "MS Sans Serif"
+BEGIN
+  LTEXT           "Device Name:",           IDC_STATIC,   7, 10, 60, 8
+  EDITTEXT        ID_CREATE_NAME,   80, 7, 120, 14,   ES_AUTOHSCROLL
+  LTEXT           "Bluetooth Address:",     IDC_STATIC,   7, 25, 60, 8
+  EDITTEXT        ID_CREATE_ADDR,   80, 25, 120, 14,   ES_AUTOHSCROLL
+  LTEXT           "Cube Faces:",          IDC_STATIC,   7, 45, 60, 8
+  RADIOBUTTON     "Six",                  ID_CREATE_FULL,     80, 45, 30, 10
+  RADIOBUTTON     "One",                  ID_CREATE_SINGLE,   110, 45, 40, 10
+  PUSHBUTTON      "Create",               ID_CREATE_ADD,  100, 70, 50, 14
 END

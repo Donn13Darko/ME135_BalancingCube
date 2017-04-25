@@ -73,6 +73,6 @@ BEGIN
   CTEXT           "-",                ID_CONNECT_NAME,    80, 10, 60, 8
   LTEXT           "At:",              IDC_STATIC,         45, 25, 25, 8
   CTEXT           "-",                ID_CONNECT_ADDR,    75, 25, 70, 8
-  CTEXT           "",                 ID_CONNECT_STATUS,  60, 45, 50, 14
+  CTEXT           "",                 ID_CONNECT_STATUS,  60, 45, 50, 18
   PUSHBUTTON      "Connect?",         ID_CONNECT_START,   60, 45, 50, 14
 END

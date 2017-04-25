@@ -1,8 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
+#include <initguid.h>
 #include <winsock2.h>
-#include <ws2bth.h>
-#include <BluetoothAPIs.h>
+#include "ws2bth.h"
+#include "BluetoothAPIs.h"
 #include "resource.h"
 
 /* Definitions. */
@@ -14,8 +15,8 @@
 /* Structures. */
 struct blue_config
 {
-  char BD_NAME[MAX_NAME_LEN];
-  char BD_ADDR[BLUE_ADDR_LEN];
+  char BD_NAME[MAX_NAME_LEN + 1];
+  char BD_ADDR[BLUE_ADDR_LEN + 1];
   BOOL FULL;
 };
 
@@ -46,7 +47,8 @@ BOOL CALLBACK ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 BOOL CALLBACK ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-BOOL bluetooth_connect (struct blue_config *blue);
+BOOL bluetooth_connect (HWND hwnd, struct blue_config *blue);
+BOOL bluetooth_disconnect (HWND hwnd, struct blue_config *blue);
 
 int WINAPI
 WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -60,8 +62,8 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   /* Create default bluetooth device. */
   struct blue_config *blue;
   blue = (struct blue_config*) GlobalAlloc (GPTR, sizeof (struct blue_config));
-  memcpy(blue->BD_NAME, "DEFAULT", MAX_NAME_LEN);
-  memcpy(blue->BD_ADDR, "B8:27:EB:A1:D8:3F", BLUE_ADDR_LEN);
+  memcpy(blue->BD_NAME, "DEFAULT\0", MAX_NAME_LEN);
+  memcpy(blue->BD_ADDR, "B8:27:EB:A1:D8:3F\0", BLUE_ADDR_LEN);
   blue->FULL = TRUE;
 
   bluetooth_configs[cur_device] = blue;
@@ -181,26 +183,49 @@ WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 BOOL
-bluetooth_connect (struct blue_config *blue)
+bluetooth_disconnect (HWND hwnd, struct blue_config *blue)
 {
-  ULONG ulRetCode
-  ulRetCode = WSAStartup(MAKEWORD(2, 2), &WSAData);
-  if (CXN_SUCCESS != ulRetCode) {
-      printf(L"-FATAL- | Unable to initialize Winsock version 2.2\n");
-  }
-  // blue_sock = socket (AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
-  int addrLen = sizeof (SOCKADDR_BTH);
-  ulRetCode = WSAStringToAddressW (blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_client, &addrLen);
-  if (CXN_SUCCESS != ulRetCode) {
-      printf(L"-FATAL- | Unable to get address of the remote radio having formated address-string %s\n", blue->BD_ADDR);
-  }
+  if (blue == NULL)
+    return TRUE;
 
-  blue_serv.addressFamily = AF_BTH;
-  blue_serv.serviceClassId = g_guidServiceClass;
-  blue_serv.port = 0;
-
-  blue_sock = = socket(AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
   Sleep (1000);
+  return TRUE;
+}
+
+BOOL
+bluetooth_connect (HWND hwnd, struct blue_config *blue)
+{
+  if (blue == NULL)
+    return FALSE;
+
+  ULONG ulRetCode;
+  WSADATA wsd;
+  ULONG CXN_SUCCESS = 0;
+  ulRetCode = WSAStartup(MAKEWORD(2, 2), &wsd);
+  if (CXN_SUCCESS != ulRetCode)
+  {
+    MessageBox (hwnd, "Unable to initialize Winsock version 2.2", "Error", MB_OK);
+    return FALSE;
+  }
+
+  blue_sock = socket (AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
+  int addrLen = sizeof (SOCKADDR_BTH);
+  ZeroMemory (&blue_conn, addrLen);
+
+  ulRetCode = WSAStringToAddressW ((LPWSTR) blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_conn.btAddr, &addrLen);
+  blue_conn.addressFamily = AF_BTH;
+  blue_conn.serviceClassId = RFCOMM_PROTOCOL_UUID;
+  blue_conn.port = 0x00;
+
+  if (CXN_SUCCESS != ulRetCode)
+  {
+    printf ("Last error: %d\n", WSAGetLastError ());
+    MessageBox (hwnd, "Unable to get address of Bluetooth!", "Error", MB_OK);
+    return FALSE;
+  }
+
+  Sleep (1000);
+  return TRUE;
 }
 
 BOOL CALLBACK
@@ -227,17 +252,38 @@ ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       {
         case ID_CONNECT_START:
         {
-          if (connected_device != -1 && connected_device != update_device)
-          {
-            // Remove connection
-          }
+          if (connected_device == update_device)
+            return TRUE;
 
-          if (update_device != -1 && connected_device != update_device)
+          BOOL status;
+
+          SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Disconnecting Old...");
+          Sleep (100);
+          status = bluetooth_disconnect (hwnd, bluetooth_configs[connected_device]);
+
+          if (!status)
           {
-            struct blue_config *blue = bluetooth_configs[update_device];
-            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connecting...");
-            bluetooth_connect (blue);
+            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Failed Disconnecting Old!");
+            Sleep (100);
+            return FALSE;
+          } else
+            connected_device = -1;
+
+          SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connecting New...");
+          Sleep (100);
+          status = bluetooth_connect (hwnd, bluetooth_configs[update_device]);
+
+          if (status)
+          {
             connected_device = update_device;
+            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Success!");
+            Sleep (100);
+          } else
+          {
+            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Failed Connecting New!");
+            Sleep (100);
+            SendMessage (hwnd, WM_CLOSE, 0, 0);
+            return FALSE;
           }
 
           SendMessage (hwnd, WM_CLOSE, 0, 0);

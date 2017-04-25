@@ -1,11 +1,14 @@
 #include <windows.h>
 #include <stdio.h>
+#include <winsock2.h>
+#include <ws2bth.h>
 #include "resource.h"
 
 /* Definitions. */
 #define MAX_DEVICES     25
 #define MAX_NAME_LEN    50
 #define BLUE_ADDR_LEN   17
+#define DEFAULT_BUFLEN  512
 
 /* Structures. */
 struct blue_config
@@ -21,20 +24,28 @@ struct blue_config *bluetooth_configs[MAX_DEVICES];
 int cur_device = 0;
 int update_device = -1;
 int connected_device = -1;
+SOCKET blue_sock;
+SOCKADDR_BTH blue_conn = {0};
 
 /* Function Prototypes. */
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   LPSTR lpCmdLine, int nCmdShow);
 LRESULT CALLBACK WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 void DoFileCreate (HWND hwnd);
 void DoFileOpen (HWND hwnd);
 void DoFileSave (HWND hwnd);
 void DoHelpAbout (HWND hwnd);
+
 BOOL SaveConfig (HWND hEdit, LPCTSTR pszFileName);
 BOOL LoadConfig (HWND hEdit, LPCTSTR pszFileName);
+
 BOOL CALLBACK AboutDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-BOOL CALLBACK ConfigEditDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam);
-BOOL CALLBACK ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam);
+BOOL CALLBACK ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+BOOL CALLBACK ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+BOOL CALLBACK ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+BOOL bluetooth_connect (struct blue_config *blue);
 
 int WINAPI
 WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -168,8 +179,83 @@ WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
   return 0;
 }
 
+BOOL
+bluetooth_connect (struct blue_config *blue)
+{
+  ULONG ulRetCode
+  ulRetCode = WSAStartup(MAKEWORD(2, 2), &WSAData);
+  if (CXN_SUCCESS != ulRetCode) {
+      printf(L"-FATAL- | Unable to initialize Winsock version 2.2\n");
+  }
+  // blue_sock = socket (AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
+  int addrLen = sizeof (SOCKADDR_BTH);
+  ulRetCode = WSAStringToAddressW (blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_client, &addrLen);
+  if (CXN_SUCCESS != ulRetCode) {
+      printf(L"-FATAL- | Unable to get address of the remote radio having formated address-string %s\n", blue->BD_ADDR);
+  }
+
+  blue_serv.addressFamily = AF_BTH;
+  blue_serv.serviceClassId = g_guidServiceClass;
+  blue_serv.port = 0;
+
+  blue_sock = = socket(AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
+  Sleep (1000);
+}
+
 BOOL CALLBACK
-ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
+ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+  switch (msg)
+  {
+    case WM_INITDIALOG:
+    {
+      if (update_device != -1)
+      {
+        struct blue_config *blue = bluetooth_configs[update_device];
+        SetDlgItemText (hwnd, ID_CONNECT_NAME, blue->BD_NAME);
+        SetDlgItemText (hwnd, ID_CONNECT_ADDR, blue->BD_ADDR);
+      }
+
+      SendMessage (hwnd, ID_CONNECT_START, 0, 0);
+      return TRUE;
+    }
+    break;
+    case WM_COMMAND:
+    {
+      switch (LOWORD (wParam))
+      {
+        case ID_CONNECT_START:
+        {
+          if (connected_device != -1 && connected_device != update_device)
+          {
+            // Remove connection
+          }
+
+          if (update_device != -1 && connected_device != update_device)
+          {
+            struct blue_config *blue = bluetooth_configs[update_device];
+            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connecting...");
+            bluetooth_connect (blue);
+            connected_device = update_device;
+          }
+
+          SendMessage (hwnd, WM_CLOSE, 0, 0);
+        }
+        break;
+      }
+    }
+    break;
+    case WM_CLOSE:
+      EndDialog (hwnd, 0);
+    break;
+    default:
+      return FALSE;
+  }
+  return TRUE;
+}
+
+BOOL CALLBACK
+ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
   switch (msg)
   {
@@ -188,17 +274,18 @@ ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
         SetDlgItemText (hwnd, ID_CREATE_ADDR, (LPCTSTR) b->BD_ADDR);
         if (b->FULL)
         {
-          SendDlgItemMessage(hwnd, ID_CREATE_FULL, BM_SETCHECK, 1, 0);
-          SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 0, 0);
+          SendDlgItemMessage (hwnd, ID_CREATE_FULL, BM_SETCHECK, 1, 0);
+          SendDlgItemMessage (hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 0, 0);
         } else
         {
-          SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 1, 0);
-          SendDlgItemMessage(hwnd, ID_CREATE_FULL, BM_SETCHECK, 0, 0);
+          SendDlgItemMessage (hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 1, 0);
+          SendDlgItemMessage (hwnd, ID_CREATE_FULL, BM_SETCHECK, 0, 0);
         }
       }
     }
     break;
     case WM_COMMAND:
+    {
       switch (LOWORD (wParam))
       {
         case ID_CREATE_ADD:
@@ -229,6 +316,7 @@ ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
 
               HWND parent = GetParent (hwnd);
               SendDlgItemMessage (parent, ID_CONFIG_LIST, LB_INSERTSTRING, update_device, (LPARAM) blue->BD_NAME);
+              SetDlgItemText (parent, ID_CONFIG_TEXT, (LPCSTR) blue->BD_NAME);
 
               if (update_device == -1)
               {
@@ -243,34 +331,34 @@ ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
               EndDialog (hwnd, 0);
             }
           } 
-          else if (len_name == 0)
-            MessageBox (hwnd, "You didn't enter a name!", "Error", MB_OK);
-          else if (len_addr == 0)
-            MessageBox (hwnd, "You didn't enter and address!", "Error", MB_OK);
-          else
-            MessageBox (hwnd, "You didn't enter anything!", "Error", MB_OK);
-
+        else if (len_name == 0)
+          MessageBox (hwnd, "You didn't enter a name!", "Error", MB_OK);
+        else if (len_addr == 0)
+          MessageBox (hwnd, "You didn't enter and address!", "Error", MB_OK);
+        else
+          MessageBox (hwnd, "You didn't enter anything!", "Error", MB_OK);
         }
         break;
         case ID_CREATE_FULL:
         {
-          if (SendDlgItemMessage(hwnd, ID_CREATE_FULL, BM_GETCHECK, 0, 0) == 0)
+          if (SendDlgItemMessage (hwnd, ID_CREATE_FULL, BM_GETCHECK, 0, 0) == 0)
           {
-            SendDlgItemMessage(hwnd, ID_CREATE_FULL, BM_SETCHECK, 1, 0);
-            SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 0, 0);
+            SendDlgItemMessage (hwnd, ID_CREATE_FULL, BM_SETCHECK, 1, 0);
+            SendDlgItemMessage (hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 0, 0);
           }
         }
         break;
         case ID_CREATE_SINGLE:
         {
-          if (SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_GETCHECK, 0, 0) == 0)
+          if (SendDlgItemMessage (hwnd, ID_CREATE_SINGLE, BM_GETCHECK, 0, 0) == 0)
           {
-            SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 1, 0);
-            SendDlgItemMessage(hwnd, ID_CREATE_FULL, BM_SETCHECK, 0, 0);
+            SendDlgItemMessage (hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 1, 0);
+            SendDlgItemMessage (hwnd, ID_CREATE_FULL, BM_SETCHECK, 0, 0);
           }
         }
         break;
       }
+    }
     break;
     case WM_CLOSE:
       EndDialog (hwnd, 0);
@@ -278,11 +366,11 @@ ConfigCreateDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
     default:
       return FALSE;
   }
-  return FALSE;
+  return TRUE;
 }
 
 BOOL CALLBACK
-ConfigEditDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
+ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
   switch (msg)
   {
@@ -377,6 +465,38 @@ ConfigEditDlgProc (HWND hwnd, UINT  msg, WPARAM wParam, LPARAM lParam)
             GlobalFree ((HANDLE) bluetooth_configs[i]);
           cur_device = 0;
         }
+        break;
+        case ID_CONFIG_CONNECT:
+        {
+          HWND hList = GetDlgItem (hwnd, ID_CONFIG_LIST);
+          int count = SendMessage(hList, LB_GETSELCOUNT, 0, 0);
+          if (count != LB_ERR)
+          {
+            if (count != 0)
+            {
+              if (count == 1)
+              {
+                int *buf = (int*) GlobalAlloc (GPTR, sizeof (int) * count);
+                SendMessage (hList, LB_GETSELITEMS, (WPARAM) count, (LPARAM) buf);
+                update_device = buf[0];
+
+                int ret = DialogBox (GetModuleHandle (NULL),
+                  MAKEINTRESOURCE (ID_NOSLEEP_CONNECT), hwnd, ConfigConnectDlgProc);
+
+                if (ret == -1)
+                  MessageBox (hwnd, "Dialog failed!", "Error",
+                    MB_OK | MB_ICONINFORMATION);
+
+                update_device = -1;
+                GlobalFree (buf);
+              } else
+                MessageBox (hwnd, "Select only one item for update.", "Error", MB_OK);
+            } else 
+              MessageBox (hwnd, "No items selected.", "Warning", MB_OK);
+          } else
+            MessageBox (hwnd, "Error counting items :(", "Error", MB_OK);
+        }
+        break;
         break;
         case ID_NOSLEEP_LIST:
           switch (HIWORD (wParam))

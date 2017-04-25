@@ -45,7 +45,8 @@ BEGIN
   PUSHBUTTON      "Delete",               ID_CONFIG_DELETE,   150, 45, 50, 14
   PUSHBUTTON      "Clear",                ID_CONFIG_CLEAR,    150, 60, 50, 14
   PUSHBUTTON      "Connect",              ID_CONFIG_CONNECT,  150, 110, 50, 14
-  CTEXT           "-",                    ID_CONFIG_TEXT,     5, 140, 115, 8
+  LTEXT           "Added:",               IDC_STATIC,         15, 140, 25, 8
+  CTEXT           "-",                    ID_CONFIG_TEXT,     45, 140, 40, 8
 END
 
 ID_NOSLEEP_CREATE DIALOG DISCARDABLE  25, 25, 250, 100
@@ -53,7 +54,7 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Add Cube..."
 FONT 8, "MS Sans Serif"
 BEGIN
-  LTEXT           "Device Name:",           IDC_STATIC,   7, 10, 60, 8
+  LTEXT           "Device Name:",           IDC_STATIC,   7, 7, 60, 8
   EDITTEXT        ID_CREATE_NAME,   80, 7, 120, 14,   ES_AUTOHSCROLL
   LTEXT           "Bluetooth Address:",     IDC_STATIC,   7, 25, 60, 8
   EDITTEXT        ID_CREATE_ADDR,   80, 25, 120, 14,   ES_AUTOHSCROLL
@@ -61,4 +62,17 @@ BEGIN
   RADIOBUTTON     "Six",                  ID_CREATE_FULL,     80, 45, 30, 10
   RADIOBUTTON     "One",                  ID_CREATE_SINGLE,   110, 45, 40, 10
   PUSHBUTTON      "Create",               ID_CREATE_ADD,  100, 70, 50, 14
+END
+
+ID_NOSLEEP_CONNECT DIALOG DISCARDABLE  25, 25, 175, 75
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connecting to..."
+FONT 8, "MS Sans Serif"
+BEGIN
+  LTEXT           "Connecting to:",   IDC_STATIC,         25, 10, 60, 8
+  CTEXT           "-",                ID_CONNECT_NAME,    80, 10, 60, 8
+  LTEXT           "At:",              IDC_STATIC,         45, 25, 25, 8
+  CTEXT           "-",                ID_CONNECT_ADDR,    75, 25, 70, 8
+  CTEXT           "",                 ID_CONNECT_STATUS,  60, 45, 50, 14
+  PUSHBUTTON      "Connect?",         ID_CONNECT_START,   60, 45, 50, 14
 END

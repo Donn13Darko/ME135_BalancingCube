@@ -9,6 +9,7 @@
 #define ID_NOSLEEP_ABOUT                104
 #define ID_NOSLEEP_LIST                 105
 #define ID_NOSLEEP_CREATE               106
+#define ID_NOSLEEP_CONNECT              107
 
 #define ID_HELP_ABOUT                   901
 #define ID_FILE_EXIT                    902
@@ -27,13 +28,17 @@
 #define ID_CREATE_FULL                  915
 #define ID_CREATE_SINGLE                916
 #define ID_CREATE_ADD                   917
-
+#define ID_CONNECT_NAME                 918
+#define ID_CONNECT_ADDR                 919
+#define ID_CONNECT_STATUS               920
+#define ID_CONNECT_START                921
+#define ID_CONNECT_DONE                 922
 
 /* Next default values for new objects. */
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        107
-#define _APS_NEXT_COMMAND_VALUE         918
+#define _APS_NEXT_RESOURCE_VALUE        108
+#define _APS_NEXT_COMMAND_VALUE         923
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

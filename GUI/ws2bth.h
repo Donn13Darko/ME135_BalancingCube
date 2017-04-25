@@ -18,12 +18,24 @@ Notes:
 
 #ifndef __WS2BTH__H
 #define __WS2BTH__H
+#include "winapifamily.h"
+
+#pragma region Desktop Family
+#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+
+#if _MSC_VER >= 1200
+#pragma warning(push)
+#endif
+#pragma warning(disable:4201) // nameless struct/union
+
+#if (NTDDI_VERSION >= NTDDI_WINXPSP2)
 
 #include "bthdef.h"
 
 #include <pshpack1.h>
 
-#define BT_PORT_ANY        -1
+#define BT_PORT_ANY        ((ULONG)-1)
 #define BT_PORT_MIN        0x1
 #define BT_PORT_MAX        0xffff
 #define BT_PORT_DYN_FIRST  0x1001
@@ -76,7 +88,8 @@ DEFINE_GUID(SVCID_BTH_PROVIDER, 0x6aa63e0, 0x7d60, 0x41ff, 0xaf, 0xb2, 0x3e, 0xe
 //
 // Socket option parameters
 //
-#define RFCOMM_MAX_MTU      0x0000029a  // L2CAP MTU (672) - RFCOMM header size (6)
+// 3-DH5 => payload of 1021 => L2cap payload of 1017 => RFComm payload of 1011
+#define RFCOMM_MAX_MTU      0x000003F3  // L2CAP MTU (1017) - RFCOMM header size (6)
 #define RFCOMM_MIN_MTU      0x00000017  // RFCOMM spec sec 5.3 table 5.1
 
 //
@@ -162,11 +175,11 @@ typedef struct _BTH_QUERY_DEVICE {
 // Passed in BLOB of !LUP_CONTAINERS (service) search
 //
 typedef struct _BTH_QUERY_SERVICE {
-    ULONG                   type;           // one of SDP_SERVICE_*
-    ULONG                   serviceHandle;
-    SdpQueryUuid            uuids[MAX_UUIDS_IN_QUERY];
-    ULONG                   numRange;
-    SdpAttributeRange       pRange[1];
+	ULONG                   type;           // one of SDP_SERVICE_*
+	ULONG                   serviceHandle;
+	SdpQueryUuid            uuids[MAX_UUIDS_IN_QUERY];
+	ULONG                   numRange;
+	SdpAttributeRange       pRange[1];
 } BTH_QUERY_SERVICE, *PBTH_QUERY_SERVICE;
 
 //
@@ -199,6 +212,8 @@ typedef struct _BTH_QUERY_SERVICE {
 #define SIO_RFCOMM_SESSION_FLOW_OFF       _WSAIORW (IOC_VENDOR, 103)
 #define SIO_RFCOMM_TEST                   _WSAIORW (IOC_VENDOR, 104)
 #define SIO_RFCOMM_USECFC                 _WSAIORW (IOC_VENDOR, 105)
+/*      RESERVED                          _WSAIORW (IOC_VENDOR, 106) */
+
 
 //
 // SOCKET IOCTL DEFINITIONS
@@ -313,6 +328,7 @@ typedef struct _RFCOMM_RPN_DATA {
 #define RFCOMM_CMD_RPN              3
 #define RFCOMM_CMD_RPN_REQUEST      4
 #define RFCOMM_CMD_RPN_RESPONSE     5
+/*      RESERVED_CMD                6 */
 
 typedef struct _RFCOMM_COMMAND
 {
@@ -362,5 +378,17 @@ typedef struct _BTH_QUERY_DEVICE BTHNS_INQUIRYBLOB, *PBTHNS_INQUIRYBLOB;
 typedef struct _BTH_QUERY_SERVICE BTHNS_RESTRICTIONBLOB, *PBTHNS_RESTRICTIONBLOB;
 
 #include <poppack.h>
+
+#endif // (NTDDI_VERSION >= NTDDI_WINXPSP2)
+
+#if _MSC_VER >= 1200
+#pragma warning(pop)
+#else
+#pragma warning(default:4201)
+#endif
+
+
+#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+#pragma endregion
 
 #endif // __WS2BTH__H

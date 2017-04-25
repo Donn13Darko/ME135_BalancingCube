@@ -4,15 +4,28 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #pragma once
+#include "winapifamily.h"
+
+#pragma region Desktop Family
+#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+
+#include "bthdef.h"
+
 
 #define BLUETOOTH_MAX_NAME_SIZE             (248)
 #define BLUETOOTH_MAX_PASSKEY_SIZE          (16)
 #define BLUETOOTH_MAX_PASSKEY_BUFFER_SIZE   (BLUETOOTH_MAX_PASSKEY_SIZE + 1)
+#define BLUETOOTH_MAX_SERVICE_NAME_SIZE     (256)
+#define BLUETOOTH_DEVICE_NAME_SIZE          (256)
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#if (NTDDI_VERSION >= NTDDI_WINXPSP2)
+    
 // ***************************************************************************
 //
 //  Bluetooth Address
@@ -32,6 +45,26 @@ typedef struct _BLUETOOTH_ADDRESS {
 #define BLUETOOTH_ADDRESS BLUETOOTH_ADDRESS_STRUCT
 
 #define BLUETOOTH_NULL_ADDRESS ( (ULONGLONG) 0x0 )
+
+
+
+typedef struct _BLUETOOTH_LOCAL_SERVICE_INFO {
+    BOOL                Enabled;                        //  If TRUE, the enable the services
+
+    BLUETOOTH_ADDRESS   btAddr;                         //  If service is to be advertised for a particular remote device
+
+    WCHAR szName[ BLUETOOTH_MAX_SERVICE_NAME_SIZE ];    //  SDP Service Name to be advertised.
+    WCHAR szDeviceString[ BLUETOOTH_DEVICE_NAME_SIZE ]; //  Local device name (if any) like COM4 or LPT1
+
+} BLUETOOTH_LOCAL_SERVICE_INFO_STRUCT;
+
+#define BLUETOOTH_LOCAL_SERVICE_INFO BLUETOOTH_LOCAL_SERVICE_INFO_STRUCT
+
+typedef BLUETOOTH_LOCAL_SERVICE_INFO * PBLUETOOTH_LOCAL_SERVICE_INFO;
+
+
+
+
 
 // ***************************************************************************
 //
@@ -100,11 +133,13 @@ typedef HANDLE      HBLUETOOTH_RADIO_FIND;
 //      any other
 //          Success. The return handle is valid and phRadio points to a valid handle.
 //
+_Must_inspect_result_
+_Success_(return != NULL)
 HBLUETOOTH_RADIO_FIND
 WINAPI
 BluetoothFindFirstRadio(
-    BLUETOOTH_FIND_RADIO_PARAMS * pbtfrp,
-    HANDLE *                      phRadio
+    _In_ const BLUETOOTH_FIND_RADIO_PARAMS * pbtfrp,
+    _Out_ HANDLE * phRadio
     );
 
 //
@@ -137,11 +172,13 @@ BluetoothFindFirstRadio(
 //
 //          other Win32 errors
 //
+_Must_inspect_result_
+_Success_(return)
 BOOL
 WINAPI
 BluetoothFindNextRadio(
-    HBLUETOOTH_RADIO_FIND hFind,
-    HANDLE * phRadio
+    _In_  HBLUETOOTH_RADIO_FIND hFind,
+    _Out_ HANDLE * phRadio
     );
 
 //
@@ -165,7 +202,7 @@ BluetoothFindNextRadio(
 BOOL
 WINAPI
 BluetoothFindRadioClose(
-    HBLUETOOTH_RADIO_FIND hFind
+    _In_ HBLUETOOTH_RADIO_FIND hFind
     );
 
 // ***************************************************************************
@@ -214,11 +251,12 @@ typedef struct _BLUETOOTH_RADIO_INFO {
 //
 //      other Win32 error codes.
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothGetRadioInfo(
-    HANDLE hRadio,
-    PBLUETOOTH_RADIO_INFO pRadioInfo
+    _In_    HANDLE hRadio,
+    _Inout_ PBLUETOOTH_RADIO_INFO pRadioInfo
     );
 
 // ***************************************************************************
@@ -228,6 +266,7 @@ BluetoothGetRadioInfo(
 // ***************************************************************************
 
 typedef struct _BLUETOOTH_DEVICE_INFO {
+    _Field_range_(==, sizeof(BLUETOOTH_DEVICE_INFO_STRUCT))
     DWORD   dwSize;                             //  size, in bytes, of this structure - must be the sizeof(BLUETOOTH_DEVICE_INFO)
 
     BLUETOOTH_ADDRESS Address;                  //  Bluetooth address
@@ -248,6 +287,53 @@ typedef struct _BLUETOOTH_DEVICE_INFO {
 #define BLUETOOTH_DEVICE_INFO BLUETOOTH_DEVICE_INFO_STRUCT
 
 typedef BLUETOOTH_DEVICE_INFO * PBLUETOOTH_DEVICE_INFO;
+
+//
+// Support added after KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+typedef enum _BLUETOOTH_AUTHENTICATION_METHOD {
+    BLUETOOTH_AUTHENTICATION_METHOD_LEGACY     = 0x1,
+    BLUETOOTH_AUTHENTICATION_METHOD_OOB,
+    BLUETOOTH_AUTHENTICATION_METHOD_NUMERIC_COMPARISON,
+    BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY_NOTIFICATION,
+    BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY
+} BLUETOOTH_AUTHENTICATION_METHOD, * PBLUETOOTH_AUTHENTICATION_METHOD;
+
+typedef enum _BLUETOOTH_IO_CAPABILITY {
+    BLUETOOTH_IO_CAPABILITY_DISPLAYONLY    = 0x00,
+    BLUETOOTH_IO_CAPABILITY_DISPLAYYESNO    = 0x01,   
+    BLUETOOTH_IO_CAPABILITY_KEYBOARDONLY    = 0x02,
+    BLUETOOTH_IO_CAPABILITY_NOINPUTNOOUTPUT = 0x03,
+    BLUETOOTH_IO_CAPABILITY_UNDEFINED       = 0xff
+}BLUETOOTH_IO_CAPABILITY;
+
+typedef enum _BLUETOOTH_AUTHENTICATION_REQUIREMENTS{    
+    BLUETOOTH_MITM_ProtectionNotRequired        = 0,
+    BLUETOOTH_MITM_ProtectionRequired            = 0x1,
+    BLUETOOTH_MITM_ProtectionNotRequiredBonding    = 0x2,
+    BLUETOOTH_MITM_ProtectionRequiredBonding    = 0x3,
+    BLUETOOTH_MITM_ProtectionNotRequiredGeneralBonding    = 0x4,
+    BLUETOOTH_MITM_ProtectionRequiredGeneralBonding    = 0x5,
+    BLUETOOTH_MITM_ProtectionNotDefined            = 0xff
+}BLUETOOTH_AUTHENTICATION_REQUIREMENTS;
+
+
+typedef struct _BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS {
+    BLUETOOTH_DEVICE_INFO           deviceInfo;
+    BLUETOOTH_AUTHENTICATION_METHOD authenticationMethod;
+    BLUETOOTH_IO_CAPABILITY         ioCapability;
+    BLUETOOTH_AUTHENTICATION_REQUIREMENTS authenticationRequirements;
+
+    union{
+        ULONG   Numeric_Value;
+        ULONG   Passkey;
+    };
+}BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS, *PBLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS;
+
+#endif // >= SP1+KB942567
 
 // ***************************************************************************
 //
@@ -332,11 +418,13 @@ typedef HANDLE      HBLUETOOTH_DEVICE_FIND;
 //      any other value
 //          Success. The return handle is valid and pbtdi points to valid data.
 //
+_Must_inspect_result_
+_Success_(return != NULL)
 HBLUETOOTH_DEVICE_FIND
 WINAPI
 BluetoothFindFirstDevice(
-    BLUETOOTH_DEVICE_SEARCH_PARAMS * pbtsp,
-    BLUETOOTH_DEVICE_INFO *   pbtdi
+    _In_ const   BLUETOOTH_DEVICE_SEARCH_PARAMS * pbtsp,
+    _Inout_ BLUETOOTH_DEVICE_INFO *   pbtdi
     );
 
 //
@@ -374,11 +462,12 @@ BluetoothFindFirstDevice(
 //
 //          other Win32 errors
 //
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothFindNextDevice(
-    HBLUETOOTH_DEVICE_FIND  hFind,
-    BLUETOOTH_DEVICE_INFO * pbtdi
+    _In_    HBLUETOOTH_DEVICE_FIND  hFind,
+    _Inout_ BLUETOOTH_DEVICE_INFO * pbtdi
     );
 
 //
@@ -402,7 +491,7 @@ BluetoothFindNextDevice(
 BOOL
 WINAPI
 BluetoothFindDeviceClose(
-    HBLUETOOTH_DEVICE_FIND hFind
+    _In_ HBLUETOOTH_DEVICE_FIND hFind
     );
 
 //
@@ -443,11 +532,12 @@ BluetoothFindDeviceClose(
 //
 //      other error codes
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothGetDeviceInfo(
-    HANDLE  hRadio,
-    BLUETOOTH_DEVICE_INFO * pbtdi
+    _In_opt_ HANDLE  hRadio,
+    _Inout_ BLUETOOTH_DEVICE_INFO * pbtdi
     );
 
 //
@@ -477,10 +567,11 @@ BluetoothGetDeviceInfo(
 //
 //      other Win32 error codes.
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothUpdateDeviceRecord(
-    BLUETOOTH_DEVICE_INFO * pbtdi
+    _In_ const BLUETOOTH_DEVICE_INFO * pbtdi
     );
 
 //
@@ -499,9 +590,10 @@ BluetoothUpdateDeviceRecord(
 DWORD
 WINAPI
 BluetoothRemoveDevice(
-    BLUETOOTH_ADDRESS * pAddress
+    _In_ const BLUETOOTH_ADDRESS * pAddress
     );
 
+#if !defined(_ARM_)
 // ***************************************************************************
 //
 //  Device Picker Dialog
@@ -552,7 +644,7 @@ typedef struct _BLUETOOTH_COD_PAIRS {
 
 } BLUETOOTH_COD_PAIRS;
 
-typedef BOOL (WINAPI *PFN_DEVICE_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_INFO pDevice);
+typedef BOOL (WINAPI *PFN_DEVICE_CALLBACK)(LPVOID pvParam, const BLUETOOTH_DEVICE_INFO * pDevice);
 
 typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
     DWORD   dwSize;                             //  IN  sizeof this structure
@@ -580,7 +672,7 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
     DWORD   cNumDevices;                        //  IN  number calles wants - ZERO == no limit.
                                                 //  OUT the number of devices returned.
 
-    PBLUETOOTH_DEVICE_INFO  pDevices;           //  OUT pointer to an array for BLUETOOTH_DEVICE_INFOs.
+    _Field_size_opt_(cNumDevices) PBLUETOOTH_DEVICE_INFO  pDevices;           //  OUT pointer to an array for BLUETOOTH_DEVICE_INFOs.
                                                 //      call BluetoothSelectDevicesFree() to free
 
 } BLUETOOTH_SELECT_DEVICE_PARAMS;
@@ -614,10 +706,11 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
 //
 //          other WIN32 errors
 //
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothSelectDevices(
-    BLUETOOTH_SELECT_DEVICE_PARAMS * pbtsdp
+    _Inout_ BLUETOOTH_SELECT_DEVICE_PARAMS * pbtsdp
     );
 
 //
@@ -637,8 +730,10 @@ BluetoothSelectDevices(
 BOOL
 WINAPI
 BluetoothSelectDevicesFree(
-    BLUETOOTH_SELECT_DEVICE_PARAMS * pbtsdp
+    _Inout_ BLUETOOTH_SELECT_DEVICE_PARAMS * pbtsdp
     );
+
+#endif //!defined(_ARM_)
 
 // ***************************************************************************
 //
@@ -669,8 +764,8 @@ BluetoothSelectDevicesFree(
 BOOL
 WINAPI
 BluetoothDisplayDeviceProperties(
-    HWND hwndParent,
-    BLUETOOTH_DEVICE_INFO * pbtdi
+    _In_opt_ HWND hwndParent,
+    _Inout_ BLUETOOTH_DEVICE_INFO * pbtdi
     );
 
 
@@ -754,15 +849,136 @@ BluetoothDisplayDeviceProperties(
 //          { BTH_ERROR_UNSPECIFIED_ERROR,      ERROR_NOT_READY },
 //          { BTH_ERROR_LOCAL_HOST_TERMINATED_CONNECTION, ERROR_VC_DISCONNECTED },
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothAuthenticateDevice(
-    HWND hwndParent,
-    HANDLE hRadio,
-    BLUETOOTH_DEVICE_INFO * pbtbi,
-    PWCHAR pszPasskey,
-    ULONG ulPasskeyLength
+    _In_opt_ HWND hwndParent,
+    _In_opt_ HANDLE hRadio,
+    _Inout_  BLUETOOTH_DEVICE_INFO * pbtbi,
+    _In_reads_opt_(ulPasskeyLength) PWSTR pszPasskey,
+    _In_ ULONG ulPasskeyLength
     );
+
+
+//
+// Support added after KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+//
+// Replaces previous API
+//
+#pragma deprecated("BluetoothAuthenticateDevice")
+    
+//
+// Common header for all PIN related structures
+//
+typedef struct _BLUETOOTH_PIN_INFO {
+    UCHAR pin[BTH_MAX_PIN_SIZE];
+    UCHAR pinLength;
+} BLUETOOTH_PIN_INFO, *PBLUETOOTH_PIN_INFO;
+
+typedef struct _BLUETOOTH_OOB_DATA_INFO {
+    UCHAR       C[16];
+    UCHAR       R[16];
+}BLUETOOTH_OOB_DATA_INFO, *PBLUETOOTH_OOB_DATA_INFO;
+
+typedef struct _BLUETOOTH_NUMERIC_COMPARISON_INFO {
+    ULONG       NumericValue;
+}BLUETOOTH_NUMERIC_COMPARISON_INFO, *PBLUETOOTH_NUMERIC_COMPARISON_INFO;
+
+typedef struct _BLUETOOTH_PASSKEY_INFO {
+    ULONG       passkey;
+}BLUETOOTH_PASSKEY_INFO, *PBLUETOOTH_PASSKEY_INFO;
+
+//
+//  Description:
+//      Sends an authentication request to a remote device. 
+//
+//      There are two modes of operation. "Wizard mode" and "Blind mode."
+//
+//      "Wizard mode" is invoked when the pbtOobData is NULL. This will cause
+//      the "Bluetooth Connection Wizard" to be invoked. The user will be
+//      prompted to respond to the device authentication during the wizard 
+//      after which the authentication request will be sent. The user will see the success
+//      or failure of the authentication attempt. The user will also be
+//      given the oppurtunity to try to fix a failed authentication.
+//
+//      "Blind mode" is invoked when the pbtOobData is non-NULL. This will
+//      cause the computer to send a authentication request to the remote
+//      device. No UI is ever displayed. The Bluetooth status code will be
+//      mapped to a Win32 Error code.
+//
+//  Parameters:
+//
+//      hwndParent
+//          The window to parent the authentication wizard. If NULL, the 
+//          wizard will be parented off the desktop.
+//
+//      hRadio
+//          A valid local radio handle or NULL. If NULL, then all radios will
+//          be tired. If any of the radios succeed, then the call will
+//          succeed.
+//
+//      pbtdi
+//          BLUETOOTH_DEVICE_INFO record of the device to be authenticated.
+//
+//      pbtOobData
+//          Out of band data to be used to authenticate the device.  If NULL, then UI is
+//          displayed and the user steps through the authentication process.
+//          If not NULL, no UI is shown.
+//
+//      authenticationRequirement
+//          The Authentication Requirement of the caller.  MITMProtection*
+//
+//
+//  Return Values:
+//
+//      ERROR_SUCCESS
+//          Success.
+//
+//      ERROR_CANCELLED
+//          User aborted the operation.
+//
+//      ERROR_INVALID_PARAMETER
+//          The device structure in pbtdi is invalid.
+//
+//      ERROR_NO_MORE_ITEMS
+//          The device in pbtdi is already been marked as authenticated.
+//
+//      other WIN32 error
+//          Failure. Return value is the error code.
+//
+//      For "Blind mode," here is the current mapping of Bluetooth status
+//      code to Win32 error codes:
+//
+//          { BTH_ERROR_SUCCESS,                ERROR_SUCCESS },
+//          { BTH_ERROR_NO_CONNECTION,          ERROR_DEVICE_NOT_CONNECTED },
+//          { BTH_ERROR_PAGE_TIMEOUT,           WAIT_TIMEOUT },
+//          { BTH_ERROR_HARDWARE_FAILURE,       ERROR_GEN_FAILURE },
+//          { BTH_ERROR_AUTHENTICATION_FAILURE, ERROR_NOT_AUTHENTICATED },
+//          { BTH_ERROR_MEMORY_FULL,            ERROR_NOT_ENOUGH_MEMORY },
+//          { BTH_ERROR_CONNECTION_TIMEOUT,     WAIT_TIMEOUT },
+//          { BTH_ERROR_LMP_RESPONSE_TIMEOUT,   WAIT_TIMEOUT },
+//          { BTH_ERROR_MAX_NUMBER_OF_CONNECTIONS, ERROR_REQ_NOT_ACCEP },
+//          { BTH_ERROR_PAIRING_NOT_ALLOWED,    ERROR_ACCESS_DENIED },
+//          { BTH_ERROR_UNSPECIFIED_ERROR,      ERROR_NOT_READY },
+//          { BTH_ERROR_LOCAL_HOST_TERMINATED_CONNECTION, ERROR_VC_DISCONNECTED },
+//
+_Must_inspect_result_
+DWORD
+WINAPI
+BluetoothAuthenticateDeviceEx(
+      _In_opt_ HWND hwndParentIn
+    , _In_opt_ HANDLE hRadioIn
+    , _Inout_ BLUETOOTH_DEVICE_INFO * pbtdiInout
+    , _In_opt_ PBLUETOOTH_OOB_DATA_INFO pbtOobData
+    , _In_ AUTHENTICATION_REQUIREMENTS authenticationRequirement
+    );
+
+#endif // >= SP1+KB942567
 
 //
 //  Description:
@@ -807,14 +1023,26 @@ BluetoothAuthenticateDevice(
 //      other WIN32 error
 //          Failure. Return value is the error code.
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothAuthenticateMultipleDevices(
-    HWND hwndParent,
-    HANDLE hRadio,
-    DWORD cDevices,
-    BLUETOOTH_DEVICE_INFO * pbtdi
+    _In_opt_ HWND hwndParent,
+    _In_opt_ HANDLE hRadio,
+    _In_ DWORD cDevices,
+    _Inout_updates_(cDevices) BLUETOOTH_DEVICE_INFO * rgbtdi
     );
+
+//
+// Deprecated after Vista SP1 and KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+#pragma deprecated("BluetoothAuthenticateMultipleDevices")
+
+#endif // >= SP1+KB942567
+    
 
 // ***************************************************************************
 //
@@ -824,7 +1052,7 @@ BluetoothAuthenticateMultipleDevices(
 
 #define BLUETOOTH_SERVICE_DISABLE   0x00
 #define BLUETOOTH_SERVICE_ENABLE    0x01
-#define BLUETOOTH_SERVICE_MASK      ( BLUETOOTH_ENABLE_SERVICE | BLUETOOTH_DISABLE_SERVICE )
+#define BLUETOOTH_SERVICE_MASK      ( BLUETOOTH_SERVICE_DISABLE | BLUETOOTH_SERVICE_ENABLE )
 
 //
 //  Description:
@@ -864,13 +1092,14 @@ BluetoothAuthenticateMultipleDevices(
 //      other WIN32 error
 //          The call failed.
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothSetServiceState(
-    HANDLE  hRadio,
-    BLUETOOTH_DEVICE_INFO * pbtdi,
-    GUID *  pGuidService,
-    DWORD   dwServiceFlags
+    _In_opt_ HANDLE  hRadio,
+    _In_ const BLUETOOTH_DEVICE_INFO * pbtdi,
+    _In_ const GUID *  pGuidService,
+    _In_ DWORD   dwServiceFlags
     );
 
 //
@@ -905,13 +1134,15 @@ BluetoothSetServiceState(
 //      other WIN32 errors
 //          The call failed.
 //
+_Must_inspect_result_
+_Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 BluetoothEnumerateInstalledServices(
-    HANDLE  hRadio,
-    BLUETOOTH_DEVICE_INFO * pbtdi,
-    DWORD * pcServices,
-    GUID *  pGuidServices
+    _In_opt_ HANDLE  hRadio,
+    _In_ const BLUETOOTH_DEVICE_INFO * pbtdi,
+    _Inout_ DWORD * pcServiceInout,
+    _Out_writes_to_opt_(*pcServiceInout, *pcServiceInout) GUID *  pGuidServices
     );
 
 //
@@ -947,8 +1178,8 @@ BluetoothEnumerateInstalledServices(
 BOOL
 WINAPI
 BluetoothEnableDiscovery(
-    HANDLE hRadio,
-    BOOL fEnabled
+    _In_opt_ HANDLE hRadio,
+    _In_ BOOL fEnabled
     );
 
 //
@@ -969,10 +1200,11 @@ BluetoothEnableDiscovery(
 //      FALSE
 //          No radios are discoverable.
 //
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothIsDiscoverable(
-    HANDLE hRadio
+    _In_opt_ HANDLE hRadio
     );
 
 //
@@ -1004,11 +1236,12 @@ BluetoothIsDiscoverable(
 //          State was not changed. If the caller specified NULL for hRadio, all
 //          of the radios did not accept the state change.
 //
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothEnableIncomingConnections(
-    HANDLE hRadio,
-    BOOL fEnabled
+    _In_opt_ HANDLE hRadio,
+    _In_ BOOL fEnabled
     );
 
 //
@@ -1029,10 +1262,11 @@ BluetoothEnableIncomingConnections(
 //      FALSE
 //          No radios are allowing incoming connections.
 //
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothIsConnectable(
-    HANDLE hRadio
+    _In_opt_ HANDLE hRadio
     );
 
 // ***************************************************************************
@@ -1043,7 +1277,7 @@ BluetoothIsConnectable(
 
 typedef HANDLE HBLUETOOTH_AUTHENTICATION_REGISTRATION;
 
-typedef BOOL (*PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_INFO pDevice);
+typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_INFO pDevice);
 
 //
 //  Description:
@@ -1067,7 +1301,7 @@ typedef BOOL (*PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_IN
 //          prototype.
 //
 //      pvParam
-//          Optional parameter to be past through to the callback function.
+//          Optional parameter to be passed through to the callback function.
 //          This can be anything the application was to define.
 //
 //  Return Values:
@@ -1080,14 +1314,75 @@ typedef BOOL (*PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_IN
 //      other Win32 error.
 //          Failure. The registration handle is invalid.
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothRegisterForAuthentication(
-    BLUETOOTH_DEVICE_INFO * pbtdi,
-    HBLUETOOTH_AUTHENTICATION_REGISTRATION * phRegHandle,
-    PFN_AUTHENTICATION_CALLBACK pfnCallback,
-    PVOID pvParam
+    _In_opt_ const BLUETOOTH_DEVICE_INFO * pbtdi,
+    _Out_ HBLUETOOTH_AUTHENTICATION_REGISTRATION * phRegHandle,
+    _In_opt_ PFN_AUTHENTICATION_CALLBACK pfnCallback,
+    _In_opt_ PVOID pvParam
     );
+
+//
+// Support added in KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+//
+// Replaces previous API
+//
+#pragma deprecated("BluetoothRegisterForAuthentication")
+
+typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK_EX)(_In_opt_ LPVOID pvParam, _In_ PBLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS pAuthCallbackParams);
+
+//
+//  Description:
+//      Registers a callback function to be called when a particular device
+//      requests authentication. The request is sent to the last application
+//      that requested authentication for a particular device.
+//
+//  Parameters:
+//      pbtdi
+//          A pointer to a BLUETOOTH_DEVICE_INFO structure. The Bluetooth
+//          address will be used for comparision.
+//
+//      phRegHandle
+//          A pointer to where the registration HANDLE value will be 
+//          stored. Call BluetoothUnregisterAuthentication() to close
+//          the handle.
+//
+//      pfnCallback
+//          The function that will be called when the authentication event
+//          occurs. This function should match PFN_AUTHENTICATION_CALLBACK_EX's
+//          prototype.
+//
+//      pvParam
+//          Optional parameter to be passed through to the callback function.
+//          This can be anything the application was to define.
+//
+//  Return Values:
+//      ERROR_SUCCESS
+//          Success. A valid registration handle was returned.
+//
+//      ERROR_OUTOFMEMORY
+//          Out of memory.
+//
+//      other Win32 error.
+//          Failure. The registration handle is invalid.
+//
+_Must_inspect_result_
+DWORD
+WINAPI
+BluetoothRegisterForAuthenticationEx(
+      _In_opt_ const BLUETOOTH_DEVICE_INFO * pbtdiIn
+    , _Out_ HBLUETOOTH_AUTHENTICATION_REGISTRATION * phRegHandleOut
+    , _In_opt_ PFN_AUTHENTICATION_CALLBACK_EX pfnCallbackIn
+    , _In_opt_ PVOID pvParam
+    );
+
+#endif // >= SP1+KB942567
 
 //
 //  Description:
@@ -1115,7 +1410,7 @@ BluetoothRegisterForAuthentication(
 BOOL
 WINAPI
 BluetoothUnregisterAuthentication(
-    HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle
+    _In_ HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle
     );
 
 //
@@ -1151,13 +1446,86 @@ BluetoothUnregisterAuthentication(
 //
 //      other Win32 error codes
 //
+_Must_inspect_result_
 DWORD
 WINAPI
 BluetoothSendAuthenticationResponse(
-    HANDLE hRadio,
-    BLUETOOTH_DEVICE_INFO * pbtdi,
-    LPWSTR pszPasskey
+    _In_opt_ HANDLE hRadio,
+    _In_ const BLUETOOTH_DEVICE_INFO * pbtdi,
+    _In_ LPCWSTR pszPasskey
     );
+
+
+//
+// Support added in KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+//
+// Replaces previous API
+//
+#pragma deprecated("BluetoothSendAuthenticationResponse")
+
+//
+// Structure used when responding to BTH_REMOTE_AUTHENTICATE_REQUEST event
+//
+typedef struct _BLUETOOTH_AUTHENTICATE_RESPONSE {
+    BLUETOOTH_ADDRESS bthAddressRemote;
+    BLUETOOTH_AUTHENTICATION_METHOD authMethod;
+
+    union{
+        BLUETOOTH_PIN_INFO pinInfo;
+        BLUETOOTH_OOB_DATA_INFO oobInfo;
+        BLUETOOTH_NUMERIC_COMPARISON_INFO numericCompInfo;
+        BLUETOOTH_PASSKEY_INFO passkeyInfo;
+    };
+    
+    UCHAR negativeResponse;
+} BLUETOOTH_AUTHENTICATE_RESPONSE, *PBLUETOOTH_AUTHENTICATE_RESPONSE;
+
+
+//
+//  Description:
+//      This function should be called after receiving an authentication request
+//      to send the authentication response. (Bluetooth 2.1 and above)
+//
+//  Parameters:
+//
+//      hRadio
+//          Optional handle to the local radio. If NULL, the function will try
+//          each radio until one succeeds.
+//
+//      pbtdi
+//          A pointer to a BLUETOOTH_DEVICE_INFO structure describing the device
+//          being authenticated. This can be the same structure passed to the 
+//          callback function.
+//
+//      pauthResponse
+//          A pointer to a BTH_AUTHENTICATION_RESPONSE structure.
+//
+//  Return Values:
+//      ERROR_SUCESS
+//          The device accepted the passkey response. The device is authenticated.
+//
+//      ERROR_CANCELED
+//          The device denied the passkey reponse. This also will returned if there
+//          is a communications problem with the local radio.
+//
+//      E_FAIL
+//          The device returned a failure code during authentication.
+//
+//      other Win32 error codes
+//
+_Must_inspect_result_
+DWORD
+WINAPI
+BluetoothSendAuthenticationResponseEx(
+      _In_opt_ HANDLE hRadioIn
+    , _In_ PBLUETOOTH_AUTHENTICATE_RESPONSE pauthResponse
+    );
+
+#endif // >= SP1+KB942567
 
 // ***************************************************************************
 //
@@ -1269,12 +1637,14 @@ typedef struct _SDP_ELEMENT_DATA {
 //      ERROR_SUCCESS
 //          the sdp element was parsed correctly
 //
+_Must_inspect_result_
+_Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 BluetoothSdpGetElementData(
-    LPBYTE pSdpStream,
-    ULONG cbSdpStreamLength,
-    PSDP_ELEMENT_DATA pData
+    _In_reads_bytes_(cbSdpStreamLength) LPBYTE pSdpStream,
+    _In_ ULONG cbSdpStreamLength,
+    _Out_ PSDP_ELEMENT_DATA pData
     );
 
 typedef HANDLE HBLUETOOTH_CONTAINER_ELEMENT;
@@ -1338,13 +1708,15 @@ typedef HANDLE HBLUETOOTH_CONTAINER_ELEMENT;
 // }
 //
 //
+_Must_inspect_result_
+_Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 BluetoothSdpGetContainerElementData(
-    LPBYTE pContainerStream,
-    ULONG cbContainerLength,
-    HBLUETOOTH_CONTAINER_ELEMENT* pElement,
-    PSDP_ELEMENT_DATA pData
+    _In_reads_bytes_(cbContainerLength) LPBYTE pContainerStream,
+    _In_ ULONG cbContainerLength,
+    _Inout_ HBLUETOOTH_CONTAINER_ELEMENT* pElement,
+    _Out_ PSDP_ELEMENT_DATA pData
     );
 
 //
@@ -1390,13 +1762,15 @@ BluetoothSdpGetContainerElementData(
 //      printf("record handle is 0x%x\n", data.data.uint32);
 // }
 //
+_Must_inspect_result_
+_Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 BluetoothSdpGetAttributeValue(
-    LPBYTE pRecordStream,
-    ULONG cbRecordLength,
-    USHORT usAttributeId,
-    PSDP_ELEMENT_DATA pAttributeData
+    _In_reads_bytes_(cbRecordLength) LPBYTE pRecordStream,
+    _In_ ULONG cbRecordLength,
+    _In_ USHORT usAttributeId,
+    _Out_ PSDP_ELEMENT_DATA pAttributeData
     );
 
 //
@@ -1475,15 +1849,17 @@ typedef struct _SDP_STRING_TYPE_DATA {
 //
 //      Other HRESULTs returned by COM
 //
+_Must_inspect_result_
+_Success_(return == 0)
 DWORD
 WINAPI
 BluetoothSdpGetString(
-    LPBYTE pRecordStream,
-    ULONG cbRecordLength,
-    PSDP_STRING_TYPE_DATA pStringData,
-    USHORT usStringOffset,
-    PWCHAR pszString,
-    PULONG pcchStringLength
+    _In_reads_bytes_(cbRecordLength) LPBYTE pRecordStream,
+    _In_ ULONG cbRecordLength,
+    _In_opt_ const PSDP_STRING_TYPE_DATA pStringData,
+    _In_ USHORT usStringOffset,
+    _Out_writes_to_(*pcchStringLength, *pcchStringLength) PWSTR pszString,
+    _Inout_ PULONG pcchStringLength
     );
 
 // ***************************************************************************
@@ -1493,10 +1869,10 @@ BluetoothSdpGetString(
 // ***************************************************************************
 
 typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
-    ULONG   uAttribId,
-    LPBYTE  pValueStream,
-    ULONG   cbStreamSize,
-    LPVOID  pvParam
+    _In_ ULONG   uAttribId,
+    _In_reads_bytes_(cbStreamSize) LPBYTE  pValueStream,
+    _In_ ULONG   cbStreamSize,
+    _In_opt_ LPVOID  pvParam
     );
 
 //
@@ -1522,15 +1898,74 @@ typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
 //
 #define BluetoothEnumAttributes BluetoothSdpEnumAttributes
 
+_Must_inspect_result_
 BOOL
 WINAPI
 BluetoothSdpEnumAttributes(
-    LPBYTE  pSDPStream,
-    ULONG   cbStreamSize,
-    PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK pfnCallback,
-    LPVOID  pvParam
+    _In_reads_bytes_(cbStreamSize) LPBYTE  pSDPStream,
+    _In_ ULONG   cbStreamSize,
+    _In_ PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK pfnCallback,
+    _In_ LPVOID  pvParam
     );
+
+#endif // (NTDDI_VERSION >= NTDDI_WINXPSP2)
+
+#if (NTDDI_VERSION >= NTDDI_VISTA)
+
+//
+// The following APIs are only available on Vista or later
+//
+
+_Must_inspect_result_
+DWORD
+WINAPI
+BluetoothSetLocalServiceInfo(
+      _In_opt_ HANDLE  hRadioIn
+    , _In_ const GUID * pClassGuid
+    , _In_ ULONG ulInstance
+    , _In_ const BLUETOOTH_LOCAL_SERVICE_INFO * pServiceInfoIn
+    );
+
+#endif // (NTDDI_VERSION >= NTDDI_VISTA)
+
+
+//
+// Support added in KB942567
+//
+#if (NTDDI_VERSION > NTDDI_VISTASP1 || \
+    (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+
+//
+// IsBluetoothVersionAvailable
+//
+// Description:
+//      Indicate if the installed Bluetooth binary set supports
+//      the requested version
+//
+// Return Values:
+//      TRUE if the installed bluetooth binaries support the given
+//      Major & Minor versions
+//
+// Note this function is only exported in version 2.1 and later.
+//
+_Must_inspect_result_
+BOOL
+WINAPI
+BluetoothIsVersionAvailable(
+        _In_ UCHAR MajorVersion,
+        _In_ UCHAR MinorVersion
+        );
+
+
+#endif // >= SP1+KB942567
 
 #ifdef __cplusplus
 }
+
+
 #endif
+
+#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+#pragma endregion
+
+

@@ -3,7 +3,7 @@
 #include <initguid.h>
 #include <winsock2.h>
 #include "ws2bth.h"
-#include "BluetoothAPIs.h"
+#include "bluetoothapis.h"
 #include "resource.h"
 
 /* Definitions. */
@@ -26,8 +26,8 @@ struct blue_config *bluetooth_configs[MAX_DEVICES];
 int cur_device = 0;
 int update_device = -1;
 int connected_device = -1;
-SOCKET blue_sock;
-SOCKADDR_BTH blue_conn = {0};
+struct SOCKET blue_sock;
+struct SOCKADDR_BTH blue_conn;
 
 /* Function Prototypes. */
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,

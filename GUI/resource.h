@@ -33,12 +33,19 @@
 #define ID_CONNECT_STATUS               920
 #define ID_CONNECT_START                921
 #define ID_CONNECT_DONE                 922
+#define ID_MAIN_RTOP                    923
+#define ID_MAIN_RRIGHT                  924
+#define ID_MAIN_RBOTTOM                 925
+#define ID_MAIN_RLEFT                   926
+#define ID_MAIN_FLIP                    927
+#define ID_MAIN_45                      928
+#define ID_MAIN_90                      929
 
 /* Next default values for new objects. */
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        108
-#define _APS_NEXT_COMMAND_VALUE         923
+#define _APS_NEXT_COMMAND_VALUE         930
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

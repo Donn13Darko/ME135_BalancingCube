@@ -1,9 +1,12 @@
+#define WINVER 0x0A00  
+#define _WIN32_WINNT 0x0A00
+
 #include <windows.h>
 #include <stdio.h>
 #include <initguid.h>
 #include <winsock2.h>
 #include "ws2bth.h"
-#include "bluetoothapis.h"
+#include "BluetoothAPIs.h"
 #include "resource.h"
 
 /* Definitions. */
@@ -13,31 +16,40 @@
 #define DEFAULT_BUFLEN  512
 
 /* Structures. */
-struct blue_config
+typedef struct BlueConfig
 {
   char BD_NAME[MAX_NAME_LEN + 1];
   char BD_ADDR[BLUE_ADDR_LEN + 1];
   BOOL FULL;
-};
+} BLUECONFIG, *PBLUECONFIG;
+
+typedef struct FlipCube
+{
+  BOOL rbT;
+  BOOL rbR;
+  BOOL rbN;
+} FLIPCUBE, *PFLIPCUBE;
 
 /* Window constants */
 const char winClassName[] = "controlPanel";
-struct blue_config *bluetooth_configs[MAX_DEVICES];
+PBLUECONFIG bluetooth_configs[MAX_DEVICES];
 int cur_device = 0;
 int update_device = -1;
 int connected_device = -1;
-SOCKET blue_sock;
-SOCKADDR_BTH blue_conn;
+SOCKET blue_sock = INVALID_SOCKET;
+SOCKADDR_BTH blue_conn = {0};
+HANDLE bluetex;
+BOOL saved = TRUE;
 
 /* Function Prototypes. */
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   LPSTR lpCmdLine, int nCmdShow);
 LRESULT CALLBACK WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-void DoFileCreate (HWND hwnd);
 void DoFileOpen (HWND hwnd);
 void DoFileSave (HWND hwnd);
 void DoHelpAbout (HWND hwnd);
+void* DoMainFlip (void *args);
 
 BOOL SaveConfig (HWND hEdit, LPCTSTR pszFileName);
 BOOL LoadConfig (HWND hEdit, LPCTSTR pszFileName);
@@ -47,8 +59,8 @@ BOOL CALLBACK ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 BOOL CALLBACK ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-BOOL bluetooth_connect (HWND hwnd, struct blue_config *blue);
-BOOL bluetooth_disconnect (HWND hwnd, struct blue_config *blue);
+BOOL bluetooth_connect (HWND hwnd, PBLUECONFIG blue);
+BOOL bluetooth_disconnect (HWND hwnd);
 
 int WINAPI
 WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -59,13 +71,31 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   HWND hwnd;
   MSG msg;
 
+  /* Setup winsock 2.2. */
+  WSADATA wsd;
+  ULONG ulRetCode, CXN_SUCCESS = 0;
+  ulRetCode = WSAStartup(MAKEWORD(2, 2), &wsd);
+  if (CXN_SUCCESS != ulRetCode)
+  {
+    MessageBox (hwnd, "Unable to initialize Winsock version 2.2", "Error", MB_OK);
+    return FALSE;
+  }
+
+  /* Setup mutex. */
+  bluetex = CreateMutex (NULL, FALSE, NULL);
+  if (bluetex == NULL)
+  {
+    MessageBox (NULL, "bluetex creation failed!", "Error!",
+      MB_ICONEXCLAMATION | MB_OK);
+    return 1;
+  }
+
   /* Create default bluetooth device. */
-  struct blue_config *blue;
-  blue = (struct blue_config*) GlobalAlloc (GPTR, sizeof (struct blue_config));
+  PBLUECONFIG blue;
+  blue = (PBLUECONFIG) GlobalAlloc (GPTR, sizeof (BLUECONFIG));
   memcpy(blue->BD_NAME, "DEFAULT\0", MAX_NAME_LEN);
   memcpy(blue->BD_ADDR, "B8:27:EB:A1:D8:3F\0", BLUE_ADDR_LEN);
   blue->FULL = TRUE;
-
   bluetooth_configs[cur_device] = blue;
   cur_device++;
 
@@ -90,7 +120,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   {
     MessageBox (NULL, "Window Registration Failed!", "Error!",
       MB_ICONEXCLAMATION | MB_OK);
-    return 0;
+    return 1;
   }
 
   /* Create new Window. */
@@ -99,14 +129,14 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
     winClassName,
     "#NoSleep: Control",
     WS_OVERLAPPEDWINDOW,
-    CW_USEDEFAULT, CW_USEDEFAULT, 640, 480,
+    CW_USEDEFAULT, CW_USEDEFAULT, 320, 260,
     NULL, NULL, hInstance, NULL);
 
   if (hwnd == NULL)
   {
     MessageBox(NULL, "Window Creation Failed!", "Error!",
       MB_ICONEXCLAMATION | MB_OK);
-    return 0;
+    return 1;
   }
 
   /* Display and updated window. */
@@ -134,28 +164,92 @@ WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       HFONT hfDefault;
       hfDefault = (HFONT) GetStockObject (DEFAULT_GUI_FONT);
 
-      HWND hEdit = CreateWindowEx(WS_EX_CLIENTEDGE, "EDIT", "", 
-        WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL, 
-        0, 0, 100, 100, hwnd, (HMENU) ID_NOSLEEP_MAIN, GetModuleHandle (NULL), NULL);
-      if (hEdit == NULL)
-        MessageBox (hwnd, "Could not create edit box.", "Error", MB_OK | MB_ICONERROR);
-      SendMessage (hEdit, WM_SETFONT, (WPARAM) hfDefault, MAKELPARAM (FALSE, 0));
+      HWND radioButton, button, text;
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "TOP", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, 140, 25, 12, 12, hwnd,
+        (HMENU) ID_MAIN_RTOP, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create top radio button.", "Error", MB_OK | MB_ICONERROR);
 
-      HWND but1 = CreateWindow("BUTTON", "OK",
-        WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_DEFPUSHBUTTON,
-        100, 100, 100, 100, hwnd, NULL, GetModuleHandle (NULL), NULL);
-      if (but1 == NULL)
+      text = CreateWindow ("STATIC", "TOP", 
+        WS_VISIBLE | WS_CHILD | SS_CENTER, 133, 10, 30, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create top text.", "Error", MB_OK | MB_ICONERROR);
+
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "RIGHT", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 195, 65, 12, 12, hwnd,
+        (HMENU) ID_MAIN_RRIGHT, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create right radio button.", "Error", MB_OK | MB_ICONERROR);
+
+      text = CreateWindow ("STATIC", "RIGHT", 
+        WS_VISIBLE | WS_CHILD | SS_LEFT, 210, 63, 45, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create right text.", "Error", MB_OK | MB_ICONERROR);
+
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "BOTTOM", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 138, 110, 12, 12, hwnd,
+        (HMENU) ID_MAIN_RBOTTOM, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create bottom radio button.", "Error", MB_OK | MB_ICONERROR);
+
+      text = CreateWindow ("STATIC", "BOTTOM", 
+        WS_VISIBLE | WS_CHILD | SS_CENTER, 116, 130, 60, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create bottom text.", "Error", MB_OK | MB_ICONERROR);
+
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "LEFT", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 80, 65, 12, 12, hwnd,
+        (HMENU) ID_MAIN_RLEFT, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create left radio button.", "Error", MB_OK | MB_ICONERROR);
+
+      text = CreateWindow ("STATIC", "LEFT", 
+        WS_VISIBLE | WS_CHILD | SS_RIGHT, 35, 63, 35, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create left text.", "Error", MB_OK | MB_ICONERROR);
+
+      button = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "FLIP!",
+        WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, 120, 60, 50, 25, hwnd,
+        (HMENU) ID_MAIN_FLIP, GetModuleHandle (NULL), NULL);
+      if (button == NULL)
         MessageBox (hwnd, "Could not create button.", "Error", MB_OK | MB_ICONERROR);
-      SendMessage (but1, WM_SETFONT, (WPARAM) hfDefault, MAKELPARAM (FALSE, 0));
+
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "45", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, 100, 160, 12, 12, hwnd,
+        (HMENU) ID_MAIN_45, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create 45 radio button.", "Error", MB_OK | MB_ICONERROR);
+
+      text = CreateWindow ("STATIC", "45", 
+        WS_VISIBLE | WS_CHILD | SS_LEFT, 120, 160, 20, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create 45 text.", "Error", MB_OK | MB_ICONERROR);
+
+      radioButton = CreateWindowEx (WS_EX_WINDOWEDGE, "BUTTON", "90", 
+        WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 150, 160, 12, 12, hwnd,
+        (HMENU) ID_MAIN_90, GetModuleHandle (NULL), NULL);
+      if (radioButton == NULL)
+        MessageBox (hwnd, "Could not create 90 radio button.", "Error", MB_OK | MB_ICONERROR);
+
+      text = CreateWindow ("STATIC", "90", 
+        WS_VISIBLE | WS_CHILD | SS_LEFT, 170, 160, 20, 14, hwnd,
+        NULL, GetModuleHandle (NULL), NULL);
+      if (text == NULL)
+        MessageBox (hwnd, "Could not create 90 text.", "Error", MB_OK | MB_ICONERROR);
+
+      SendMessage (button, WM_SETFONT, (WPARAM) hfDefault, MAKELPARAM (FALSE, 0));
+      SendDlgItemMessage (hwnd, ID_MAIN_RTOP, BM_SETCHECK, 1, 0);
+      SendDlgItemMessage (hwnd, ID_MAIN_45, BM_SETCHECK, 1, 0);
     }
     break;
-    case WM_CLOSE:
-      DestroyWindow (hwnd);
-    break;
-    case WM_DESTROY:
-      PostQuitMessage (0);
-    break;
     case WM_COMMAND:
+    {
       switch (LOWORD (wParam))
       {
         case ID_FILE_EXIT:
@@ -174,8 +268,39 @@ WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case ID_HELP_ABOUT:
           DoHelpAbout (hwnd);
         break;
+        case ID_MAIN_FLIP:
+        {
+          if (blue_sock == INVALID_SOCKET)
+          {
+            MessageBox (hwnd, "No bluetooth connected! \n Please connect before continuing.", "Warning",
+              MB_OK | MB_ICONWARNING);
+            return 1;
+          }
+          PFLIPCUBE FC = (PFLIPCUBE) HeapAlloc (GetProcessHeap (), HEAP_ZERO_MEMORY, sizeof (FLIPCUBE)); 
+          FC->rbT = SendDlgItemMessage(hwnd, ID_MAIN_RTOP, BM_GETCHECK, 0, 0);
+          FC->rbR = SendDlgItemMessage(hwnd, ID_MAIN_RRIGHT, BM_GETCHECK, 0, 0);
+          FC->rbN = SendDlgItemMessage(hwnd, ID_MAIN_90, BM_GETCHECK, 0, 0);
+          CreateThread (NULL, 0, DoMainFlip, FC, 0, NULL);
+        }
+        break;
       }
-      break;
+    }
+    break;
+    case WM_CLOSE:
+    {
+      int iok = IDOK;
+      if (!saved)
+      {
+        iok = MessageBox (hwnd, "This will overwrite unsaved configurations! \n Are you sure you want to proceed?", "Warning",
+          MB_OKCANCEL | MB_ICONWARNING);
+      }
+      if (iok == IDOK)
+        DestroyWindow (hwnd);
+    }
+    break;
+    case WM_DESTROY:
+      PostQuitMessage (0);
+    break;
     default:
       return DefWindowProc (hwnd, msg, wParam, lParam);
   }
@@ -183,48 +308,78 @@ WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 BOOL
-bluetooth_disconnect (HWND hwnd, struct blue_config *blue)
+bluetooth_disconnect (HWND hwnd)
 {
-  if (blue == NULL)
-    return TRUE;
+  if (WaitForSingleObject (bluetex, INFINITE) == WAIT_ABANDONED)
+  {
+    MessageBox (hwnd, "Failed to acquire bluetooth lock", "Error", MB_OK);
+    return FALSE;
+  }
 
-  Sleep (1000);
+  if (blue_sock == INVALID_SOCKET)
+  {
+    ReleaseMutex (bluetex);
+    return TRUE;
+  }
+
+  if (closesocket (blue_sock) == INVALID_SOCKET)
+  {
+    MessageBox (hwnd, "Unable to close Bluetooth socket!", "Error", MB_OK);
+    ReleaseMutex (bluetex);
+    return FALSE;
+  }
+
+  blue_sock = INVALID_SOCKET;
+  ReleaseMutex (bluetex);
+
   return TRUE;
 }
 
 BOOL
-bluetooth_connect (HWND hwnd, struct blue_config *blue)
+bluetooth_connect (HWND hwnd, PBLUECONFIG blue)
 {
   if (blue == NULL)
     return FALSE;
 
-  ULONG ulRetCode;
-  WSADATA wsd;
-  ULONG CXN_SUCCESS = 0;
-  ulRetCode = WSAStartup(MAKEWORD(2, 2), &wsd);
-  if (CXN_SUCCESS != ulRetCode)
+  if (WaitForSingleObject (bluetex, INFINITE) == WAIT_ABANDONED)
   {
-    MessageBox (hwnd, "Unable to initialize Winsock version 2.2", "Error", MB_OK);
+    MessageBox (hwnd, "Failed to acquire bluetooth lock", "Error", MB_OK);
     return FALSE;
   }
 
-  blue_sock = socket (AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
   int addrLen = sizeof (SOCKADDR_BTH);
   ZeroMemory (&blue_conn, addrLen);
 
-  ulRetCode = WSAStringToAddressW ((LPWSTR) blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_conn.btAddr, &addrLen);
+  ULONG ulRetCode, CXN_SUCCESS = 0;
+  ulRetCode = WSAStringToAddress ((LPSTR) &blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_conn.btAddr, &addrLen);
+  if (CXN_SUCCESS != ulRetCode)
+  {
+    MessageBox (hwnd, "Unable to convert address of Bluetooth!", "Error", MB_OK);
+    ReleaseMutex (bluetex);
+    return FALSE;
+  }
   blue_conn.addressFamily = AF_BTH;
   blue_conn.serviceClassId = RFCOMM_PROTOCOL_UUID;
   blue_conn.port = 0x00;
 
-  if (CXN_SUCCESS != ulRetCode)
+  blue_sock = socket (AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
+  if (blue_sock == INVALID_SOCKET)
   {
-    printf ("Last error: %d\n", WSAGetLastError ());
-    MessageBox (hwnd, "Unable to get address of Bluetooth!", "Error", MB_OK);
+    MessageBox (hwnd, "Unable to create Bluetooth socket!", "Error", MB_OK);
+    ReleaseMutex (bluetex);
     return FALSE;
   }
 
-  Sleep (1000);
+  if (connect (blue_sock, (struct sockaddr*) &blue_conn, addrLen) == SOCKET_ERROR)
+  {
+    MessageBox (hwnd, "Unable to connect Bluetooth socket!", "Error", MB_OK);
+    closesocket (blue_sock);
+    blue_sock = INVALID_SOCKET;
+    ReleaseMutex (bluetex);
+    return FALSE;
+  }
+
+  ReleaseMutex (bluetex);
   return TRUE;
 }
 
@@ -237,7 +392,7 @@ ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
       if (update_device != -1)
       {
-        struct blue_config *blue = bluetooth_configs[update_device];
+        PBLUECONFIG blue = bluetooth_configs[update_device];
         SetDlgItemText (hwnd, ID_CONNECT_NAME, blue->BD_NAME);
         SetDlgItemText (hwnd, ID_CONNECT_ADDR, blue->BD_ADDR);
       }
@@ -258,30 +413,29 @@ ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
           BOOL status;
 
           SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Disconnecting Old...");
-          Sleep (100);
-          status = bluetooth_disconnect (hwnd, bluetooth_configs[connected_device]);
+          status = bluetooth_disconnect (hwnd);
 
           if (!status)
           {
             SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Failed Disconnecting Old!");
-            Sleep (100);
             return FALSE;
           } else
             connected_device = -1;
 
           SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connecting New...");
-          Sleep (100);
           status = bluetooth_connect (hwnd, bluetooth_configs[update_device]);
 
           if (status)
           {
             connected_device = update_device;
-            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Success!");
-            Sleep (100);
+            SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connected!");
+            Sleep (1000);
+            SendMessage (hwnd, WM_CLOSE, 0, 0);
+            return TRUE;
           } else
           {
             SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Failed Connecting New!");
-            Sleep (100);
+            Sleep (1000);
             SendMessage (hwnd, WM_CLOSE, 0, 0);
             return FALSE;
           }
@@ -314,7 +468,7 @@ ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         SendDlgItemMessage(hwnd, ID_CREATE_SINGLE, BM_SETCHECK, 0, 0);
       } else
       {
-        struct blue_config *b = bluetooth_configs[update_device];
+        PBLUECONFIG b = bluetooth_configs[update_device];
         SetWindowText (hwnd, "Update Cube...");
         SetDlgItemText (hwnd, ID_CREATE_ADD, "Update");
         SetDlgItemText (hwnd, ID_CREATE_NAME, (LPCTSTR) b->BD_NAME);
@@ -348,9 +502,9 @@ ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
               MessageBox (hwnd, "Bluetooth address incorrect length!", "Error", MB_OK);
             else
             {
-              struct blue_config *blue;
+              PBLUECONFIG blue;
               if (update_device == -1)
-                blue = (struct blue_config*) GlobalAlloc (GPTR, sizeof (struct blue_config));
+                blue = (PBLUECONFIG) GlobalAlloc (GPTR, sizeof (BLUECONFIG));
               else
                 blue = bluetooth_configs[update_device];
 
@@ -375,6 +529,7 @@ ConfigCreateDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 SendMessage (hList, LB_DELETESTRING, (WPARAM) update_device + 1, 0);
               }
 
+              saved = FALSE;
               EndDialog (hwnd, 0);
             }
           } 
@@ -429,6 +584,7 @@ ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
     break;
     case WM_COMMAND:
+    {
       switch (LOWORD (wParam))
       {
         case ID_CONFIG_UPDATE:
@@ -571,6 +727,7 @@ ConfigEditDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
           }
         break;
       }
+    }
     break;
     case WM_CLOSE:
       EndDialog (hwnd, 0);
@@ -605,6 +762,48 @@ AboutDlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
   return TRUE;
 }
 
+void*
+DoMainFlip (void *args)
+{
+  DWORD res;
+  PFLIPCUBE FC = args;
+
+  res = WaitForSingleObject (bluetex, INFINITE);
+  if (res == WAIT_ABANDONED)
+    goto threadEnd;
+
+  if (blue_sock == INVALID_SOCKET)
+  {
+    res = 1;
+    ReleaseMutex (bluetex);
+    goto threadEnd;
+  }
+
+  char msg[3] = "FFF";
+  if (FC->rbT)
+    msg[0] = 'T';
+  if (FC->rbR)
+    msg[1] = 'T';
+  if (FC->rbN)
+    msg[2] = 'T';
+
+  if (send (blue_sock, msg, 3, 0) == SOCKET_ERROR)
+  {
+    res = 2;
+    ReleaseMutex (bluetex);
+    goto threadEnd;
+  }
+
+  if (!ReleaseMutex (bluetex))
+    res = 3;
+  else
+    res = 0;
+
+  threadEnd:
+  HeapFree (GetProcessHeap (), HEAP_ZERO_MEMORY, FC);
+  ExitThread (res);
+}
+
 void
 DoHelpAbout (HWND hwnd)
 {
@@ -616,17 +815,11 @@ DoHelpAbout (HWND hwnd)
 }
 
 void
-DoFileCreate (HWND hwnd)
-{
-  ;
-}
-
-void
 DoFileOpen (HWND hwnd)
 {
-  if (cur_device != 0)
+  if (!saved)
   {
-    int iok = MessageBox (hwnd, "This will overwrite current configs! \n Would you like to proceed?", "Warning",
+    int iok = MessageBox (hwnd, "This will overwrite unsaved configurations! \n Are you sure you want to proceed?", "Warning",
       MB_OKCANCEL | MB_ICONWARNING);
     if (iok != IDOK)
       return;
@@ -645,10 +838,11 @@ DoFileOpen (HWND hwnd)
   ofn.lpstrDefExt = "ccfg";
   ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
 
-  if ( GetOpenFileName (&ofn))
+  if (GetOpenFileName (&ofn))
   {
     HWND hEdit = GetDlgItem (hwnd, ID_NOSLEEP_MAIN);
     LoadConfig (hEdit, szFileName);
+    saved = TRUE;
   }
 }
 
@@ -671,7 +865,7 @@ DoFileSave (HWND hwnd)
   if (GetSaveFileName (&ofn))
   {
     HWND hEdit = GetDlgItem (hwnd, ID_NOSLEEP_MAIN);
-    SaveConfig (hEdit, szFileName);
+    saved = SaveConfig (hEdit, szFileName);
   }
 }
 

@@ -49,7 +49,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void DoFileOpen (HWND hwnd);
 void DoFileSave (HWND hwnd);
 void DoHelpAbout (HWND hwnd);
-void* DoMainFlip (void *args);
+DWORD WINAPI DoMainFlip (LPVOID args);
 
 BOOL SaveConfig (HWND hEdit, LPCTSTR pszFileName);
 BOOL LoadConfig (HWND hEdit, LPCTSTR pszFileName);
@@ -762,11 +762,12 @@ AboutDlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
   return TRUE;
 }
 
-void*
-DoMainFlip (void *args)
+DWORD WINAPI
+DoMainFlip (LPVOID args)
 {
   DWORD res;
-  PFLIPCUBE FC = args;
+  PFLIPCUBE FC;
+  FC = (PFLIPCUBE) args;
 
   res = WaitForSingleObject (bluetex, INFINITE);
   if (res == WAIT_ABANDONED)

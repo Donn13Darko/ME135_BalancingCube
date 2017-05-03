@@ -1,0 +1,2546 @@
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"cymetadata.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	cy_metadata
+  19              		.global	cy_meta_flashprotect
+  20              		.global	cy_meta_wonvl
+  21              		.global	cy_meta_custnvl
+  22              		.global	cy_meta_configecc
+  23              		.section	.cyconfigecc,"a",%progbits
+  24              		.align	2
+  25              		.type	cy_meta_configecc, %object
+  26              		.size	cy_meta_configecc, 1928
+  27              	cy_meta_configecc:
+  28 0000 04       		.byte	4
+  29 0001 45       		.byte	69
+  30 0002 00       		.byte	0
+  31 0003 40       		.byte	64
+  32 0004 03       		.byte	3
+  33 0005 52       		.byte	82
+  34 0006 00       		.byte	0
+  35 0007 40       		.byte	64
+  36 0008 04       		.byte	4
+  37 0009 64       		.byte	100
+  38 000a 00       		.byte	0
+  39 000b 40       		.byte	64
+  40 000c 03       		.byte	3
+  41 000d 65       		.byte	101
+  42 000e 00       		.byte	0
+  43 000f 40       		.byte	64
+  44 0010 4A       		.byte	74
+  45 0011 02       		.byte	2
+  46 0012 01       		.byte	1
+  47 0013 40       		.byte	64
+  48 0014 2B       		.byte	43
+  49 0015 03       		.byte	3
+  50 0016 01       		.byte	1
+  51 0017 40       		.byte	64
+  52 0018 3B       		.byte	59
+  53 0019 04       		.byte	4
+  54 001a 01       		.byte	1
+  55 001b 40       		.byte	64
+  56 001c 2C       		.byte	44
+  57 001d 05       		.byte	5
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 2
+
+
+  58 001e 01       		.byte	1
+  59 001f 40       		.byte	64
+  60 0020 52       		.byte	82
+  61 0021 06       		.byte	6
+  62 0022 01       		.byte	1
+  63 0023 40       		.byte	64
+  64 0024 3E       		.byte	62
+  65 0025 07       		.byte	7
+  66 0026 01       		.byte	1
+  67 0027 40       		.byte	64
+  68 0028 03       		.byte	3
+  69 0029 09       		.byte	9
+  70 002a 01       		.byte	1
+  71 002b 40       		.byte	64
+  72 002c 07       		.byte	7
+  73 002d 15       		.byte	21
+  74 002e 01       		.byte	1
+  75 002f 40       		.byte	64
+  76 0030 58       		.byte	88
+  77 0031 16       		.byte	22
+  78 0032 01       		.byte	1
+  79 0033 40       		.byte	64
+  80 0034 3B       		.byte	59
+  81 0035 17       		.byte	23
+  82 0036 01       		.byte	1
+  83 0037 40       		.byte	64
+  84 0038 53       		.byte	83
+  85 0039 18       		.byte	24
+  86 003a 01       		.byte	1
+  87 003b 40       		.byte	64
+  88 003c 38       		.byte	56
+  89 003d 19       		.byte	25
+  90 003e 01       		.byte	1
+  91 003f 40       		.byte	64
+  92 0040 3C       		.byte	60
+  93 0041 1A       		.byte	26
+  94 0042 01       		.byte	1
+  95 0043 40       		.byte	64
+  96 0044 3A       		.byte	58
+  97 0045 1B       		.byte	27
+  98 0046 01       		.byte	1
+  99 0047 40       		.byte	64
+ 100 0048 03       		.byte	3
+ 101 0049 40       		.byte	64
+ 102 004a 01       		.byte	1
+ 103 004b 40       		.byte	64
+ 104 004c 0B       		.byte	11
+ 105 004d 41       		.byte	65
+ 106 004e 01       		.byte	1
+ 107 004f 40       		.byte	64
+ 108 0050 08       		.byte	8
+ 109 0051 42       		.byte	66
+ 110 0052 01       		.byte	1
+ 111 0053 40       		.byte	64
+ 112 0054 02       		.byte	2
+ 113 0055 43       		.byte	67
+ 114 0056 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 3
+
+
+ 115 0057 40       		.byte	64
+ 116 0058 0B       		.byte	11
+ 117 0059 48       		.byte	72
+ 118 005a 01       		.byte	1
+ 119 005b 40       		.byte	64
+ 120 005c 12       		.byte	18
+ 121 005d 49       		.byte	73
+ 122 005e 01       		.byte	1
+ 123 005f 40       		.byte	64
+ 124 0060 09       		.byte	9
+ 125 0061 4C       		.byte	76
+ 126 0062 01       		.byte	1
+ 127 0063 40       		.byte	64
+ 128 0064 0D       		.byte	13
+ 129 0065 4D       		.byte	77
+ 130 0066 01       		.byte	1
+ 131 0067 40       		.byte	64
+ 132 0068 08       		.byte	8
+ 133 0069 50       		.byte	80
+ 134 006a 01       		.byte	1
+ 135 006b 40       		.byte	64
+ 136 006c 02       		.byte	2
+ 137 006d 51       		.byte	81
+ 138 006e 01       		.byte	1
+ 139 006f 40       		.byte	64
+ 140 0070 00       		.byte	0
+ 141 0071 01       		.byte	1
+ 142 0072 0A       		.byte	10
+ 143 0073 01       		.byte	1
+ 144 0074 10       		.byte	16
+ 145 0075 01       		.byte	1
+ 146 0076 1C       		.byte	28
+ 147 0077 01       		.byte	1
+ 148 0078 00       		.byte	0
+ 149 0079 80       		.byte	-128
+ 150 007a 01       		.byte	1
+ 151 007b 84       		.byte	-124
+ 152 007c 78       		.byte	120
+ 153 007d 08       		.byte	8
+ 154 007e 82       		.byte	-126
+ 155 007f 0F       		.byte	15
+ 156 0080 83       		.byte	-125
+ 157 0081 0D       		.byte	13
+ 158 0082 84       		.byte	-124
+ 159 0083 0F       		.byte	15
+ 160 0084 86       		.byte	-122
+ 161 0085 0F       		.byte	15
+ 162 0086 86       		.byte	-122
+ 163 0087 0F       		.byte	15
+ 164 0088 89       		.byte	-119
+ 165 0089 38       		.byte	56
+ 166 008a 8B       		.byte	-117
+ 167 008b 72       		.byte	114
+ 168 008c 03       		.byte	3
+ 169 008d 01       		.byte	1
+ 170 008e 17       		.byte	23
+ 171 008f 02       		.byte	2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 4
+
+
+ 172 0090 26       		.byte	38
+ 173 0091 01       		.byte	1
+ 174 0092 2A       		.byte	42
+ 175 0093 01       		.byte	1
+ 176 0094 2F       		.byte	47
+ 177 0095 02       		.byte	2
+ 178 0096 31       		.byte	49
+ 179 0097 02       		.byte	2
+ 180 0098 34       		.byte	52
+ 181 0099 01       		.byte	1
+ 182 009a 35       		.byte	53
+ 183 009b 01       		.byte	1
+ 184 009c 40       		.byte	64
+ 185 009d 54       		.byte	84
+ 186 009e 49       		.byte	73
+ 187 009f FF       		.byte	-1
+ 188 00a0 4A       		.byte	74
+ 189 00a1 FF       		.byte	-1
+ 190 00a2 4B       		.byte	75
+ 191 00a3 FF       		.byte	-1
+ 192 00a4 4F       		.byte	79
+ 193 00a5 01       		.byte	1
+ 194 00a6 50       		.byte	80
+ 195 00a7 18       		.byte	24
+ 196 00a8 52       		.byte	82
+ 197 00a9 80       		.byte	-128
+ 198 00aa 54       		.byte	84
+ 199 00ab 07       		.byte	7
+ 200 00ac 58       		.byte	88
+ 201 00ad 04       		.byte	4
+ 202 00ae 59       		.byte	89
+ 203 00af 04       		.byte	4
+ 204 00b0 5A       		.byte	90
+ 205 00b1 04       		.byte	4
+ 206 00b2 5B       		.byte	91
+ 207 00b3 04       		.byte	4
+ 208 00b4 5D       		.byte	93
+ 209 00b5 09       		.byte	9
+ 210 00b6 5F       		.byte	95
+ 211 00b7 01       		.byte	1
+ 212 00b8 60       		.byte	96
+ 213 00b9 40       		.byte	64
+ 214 00ba 62       		.byte	98
+ 215 00bb 40       		.byte	64
+ 216 00bc 64       		.byte	100
+ 217 00bd 40       		.byte	64
+ 218 00be 65       		.byte	101
+ 219 00bf 40       		.byte	64
+ 220 00c0 66       		.byte	102
+ 221 00c1 80       		.byte	-128
+ 222 00c2 68       		.byte	104
+ 223 00c3 80       		.byte	-128
+ 224 00c4 6A       		.byte	106
+ 225 00c5 80       		.byte	-128
+ 226 00c6 6C       		.byte	108
+ 227 00c7 80       		.byte	-128
+ 228 00c8 6E       		.byte	110
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 5
+
+
+ 229 00c9 80       		.byte	-128
+ 230 00ca 86       		.byte	-122
+ 231 00cb 02       		.byte	2
+ 232 00cc 87       		.byte	-121
+ 233 00cd 01       		.byte	1
+ 234 00ce 8E       		.byte	-114
+ 235 00cf 04       		.byte	4
+ 236 00d0 92       		.byte	-110
+ 237 00d1 01       		.byte	1
+ 238 00d2 98       		.byte	-104
+ 239 00d3 02       		.byte	2
+ 240 00d4 A1       		.byte	-95
+ 241 00d5 02       		.byte	2
+ 242 00d6 AE       		.byte	-82
+ 243 00d7 01       		.byte	1
+ 244 00d8 AF       		.byte	-81
+ 245 00d9 02       		.byte	2
+ 246 00da B0       		.byte	-80
+ 247 00db 04       		.byte	4
+ 248 00dc B1       		.byte	-79
+ 249 00dd 02       		.byte	2
+ 250 00de B4       		.byte	-76
+ 251 00df 02       		.byte	2
+ 252 00e0 B5       		.byte	-75
+ 253 00e1 01       		.byte	1
+ 254 00e2 B6       		.byte	-74
+ 255 00e3 01       		.byte	1
+ 256 00e4 BE       		.byte	-66
+ 257 00e5 40       		.byte	64
+ 258 00e6 C0       		.byte	-64
+ 259 00e7 54       		.byte	84
+ 260 00e8 C5       		.byte	-59
+ 261 00e9 EC       		.byte	-20
+ 262 00ea C7       		.byte	-57
+ 263 00eb 20       		.byte	32
+ 264 00ec C8       		.byte	-56
+ 265 00ed 23       		.byte	35
+ 266 00ee C9       		.byte	-55
+ 267 00ef FF       		.byte	-1
+ 268 00f0 CA       		.byte	-54
+ 269 00f1 FF       		.byte	-1
+ 270 00f2 CB       		.byte	-53
+ 271 00f3 FF       		.byte	-1
+ 272 00f4 CD       		.byte	-51
+ 273 00f5 83       		.byte	-125
+ 274 00f6 CE       		.byte	-50
+ 275 00f7 03       		.byte	3
+ 276 00f8 CF       		.byte	-49
+ 277 00f9 01       		.byte	1
+ 278 00fa D0       		.byte	-48
+ 279 00fb 18       		.byte	24
+ 280 00fc D2       		.byte	-46
+ 281 00fd 80       		.byte	-128
+ 282 00fe D4       		.byte	-44
+ 283 00ff 01       		.byte	1
+ 284 0100 D6       		.byte	-42
+ 285 0101 04       		.byte	4
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 6
+
+
+ 286 0102 D8       		.byte	-40
+ 287 0103 04       		.byte	4
+ 288 0104 D9       		.byte	-39
+ 289 0105 04       		.byte	4
+ 290 0106 DA       		.byte	-38
+ 291 0107 04       		.byte	4
+ 292 0108 DB       		.byte	-37
+ 293 0109 04       		.byte	4
+ 294 010a DD       		.byte	-35
+ 295 010b 99       		.byte	-103
+ 296 010c DF       		.byte	-33
+ 297 010d 01       		.byte	1
+ 298 010e E0       		.byte	-32
+ 299 010f 40       		.byte	64
+ 300 0110 E2       		.byte	-30
+ 301 0111 40       		.byte	64
+ 302 0112 E4       		.byte	-28
+ 303 0113 40       		.byte	64
+ 304 0114 E5       		.byte	-27
+ 305 0115 40       		.byte	64
+ 306 0116 E6       		.byte	-26
+ 307 0117 80       		.byte	-128
+ 308 0118 E8       		.byte	-24
+ 309 0119 80       		.byte	-128
+ 310 011a EA       		.byte	-22
+ 311 011b 80       		.byte	-128
+ 312 011c EC       		.byte	-20
+ 313 011d 80       		.byte	-128
+ 314 011e EE       		.byte	-18
+ 315 011f 80       		.byte	-128
+ 316 0120 01       		.byte	1
+ 317 0121 04       		.byte	4
+ 318 0122 03       		.byte	3
+ 319 0123 12       		.byte	18
+ 320 0124 09       		.byte	9
+ 321 0125 22       		.byte	34
+ 322 0126 13       		.byte	19
+ 323 0127 40       		.byte	64
+ 324 0128 17       		.byte	23
+ 325 0129 14       		.byte	20
+ 326 012a 19       		.byte	25
+ 327 012b 62       		.byte	98
+ 328 012c 1F       		.byte	31
+ 329 012d 20       		.byte	32
+ 330 012e 20       		.byte	32
+ 331 012f 40       		.byte	64
+ 332 0130 21       		.byte	33
+ 333 0131 20       		.byte	32
+ 334 0132 27       		.byte	39
+ 335 0133 44       		.byte	68
+ 336 0134 29       		.byte	41
+ 337 0135 02       		.byte	2
+ 338 0136 2B       		.byte	43
+ 339 0137 03       		.byte	3
+ 340 0138 2F       		.byte	47
+ 341 0139 02       		.byte	2
+ 342 013a 37       		.byte	55
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 7
+
+
+ 343 013b 04       		.byte	4
+ 344 013c 39       		.byte	57
+ 345 013d 04       		.byte	4
+ 346 013e 3C       		.byte	60
+ 347 013f 02       		.byte	2
+ 348 0140 41       		.byte	65
+ 349 0141 02       		.byte	2
+ 350 0142 45       		.byte	69
+ 351 0143 02       		.byte	2
+ 352 0144 49       		.byte	73
+ 353 0145 05       		.byte	5
+ 354 0146 4B       		.byte	75
+ 355 0147 40       		.byte	64
+ 356 0148 4F       		.byte	79
+ 357 0149 40       		.byte	64
+ 358 014a 51       		.byte	81
+ 359 014b 02       		.byte	2
+ 360 014c 59       		.byte	89
+ 361 014d 45       		.byte	69
+ 362 014e 5C       		.byte	92
+ 363 014f 40       		.byte	64
+ 364 0150 5D       		.byte	93
+ 365 0151 20       		.byte	32
+ 366 0152 5E       		.byte	94
+ 367 0153 08       		.byte	8
+ 368 0154 5F       		.byte	95
+ 369 0155 01       		.byte	1
+ 370 0156 62       		.byte	98
+ 371 0157 01       		.byte	1
+ 372 0158 73       		.byte	115
+ 373 0159 40       		.byte	64
+ 374 015a 74       		.byte	116
+ 375 015b 01       		.byte	1
+ 376 015c 82       		.byte	-126
+ 377 015d 01       		.byte	1
+ 378 015e 8F       		.byte	-113
+ 379 015f 60       		.byte	96
+ 380 0160 C0       		.byte	-64
+ 381 0161 05       		.byte	5
+ 382 0162 C2       		.byte	-62
+ 383 0163 0A       		.byte	10
+ 384 0164 C4       		.byte	-60
+ 385 0165 61       		.byte	97
+ 386 0166 CA       		.byte	-54
+ 387 0167 19       		.byte	25
+ 388 0168 CC       		.byte	-52
+ 389 0169 40       		.byte	64
+ 390 016a CE       		.byte	-50
+ 391 016b 82       		.byte	-126
+ 392 016c D0       		.byte	-48
+ 393 016d 81       		.byte	-127
+ 394 016e D2       		.byte	-46
+ 395 016f 18       		.byte	24
+ 396 0170 D6       		.byte	-42
+ 397 0171 FB       		.byte	-5
+ 398 0172 D8       		.byte	-40
+ 399 0173 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 8
+
+
+ 400 0174 E2       		.byte	-30
+ 401 0175 50       		.byte	80
+ 402 0176 08       		.byte	8
+ 403 0177 02       		.byte	2
+ 404 0178 0C       		.byte	12
+ 405 0179 02       		.byte	2
+ 406 017a 12       		.byte	18
+ 407 017b 02       		.byte	2
+ 408 017c 1B       		.byte	27
+ 409 017d 01       		.byte	1
+ 410 017e 1C       		.byte	28
+ 411 017f 01       		.byte	1
+ 412 0180 22       		.byte	34
+ 413 0181 02       		.byte	2
+ 414 0182 26       		.byte	38
+ 415 0183 04       		.byte	4
+ 416 0184 29       		.byte	41
+ 417 0185 01       		.byte	1
+ 418 0186 2A       		.byte	42
+ 419 0187 02       		.byte	2
+ 420 0188 31       		.byte	49
+ 421 0189 01       		.byte	1
+ 422 018a 32       		.byte	50
+ 423 018b 01       		.byte	1
+ 424 018c 34       		.byte	52
+ 425 018d 04       		.byte	4
+ 426 018e 36       		.byte	54
+ 427 018f 02       		.byte	2
+ 428 0190 3E       		.byte	62
+ 429 0191 44       		.byte	68
+ 430 0192 54       		.byte	84
+ 431 0193 01       		.byte	1
+ 432 0194 58       		.byte	88
+ 433 0195 04       		.byte	4
+ 434 0196 59       		.byte	89
+ 435 0197 04       		.byte	4
+ 436 0198 5B       		.byte	91
+ 437 0199 04       		.byte	4
+ 438 019a 5D       		.byte	93
+ 439 019b 10       		.byte	16
+ 440 019c 5F       		.byte	95
+ 441 019d 01       		.byte	1
+ 442 019e 8A       		.byte	-118
+ 443 019f 01       		.byte	1
+ 444 01a0 8B       		.byte	-117
+ 445 01a1 01       		.byte	1
+ 446 01a2 93       		.byte	-109
+ 447 01a3 02       		.byte	2
+ 448 01a4 97       		.byte	-105
+ 449 01a5 01       		.byte	1
+ 450 01a6 9E       		.byte	-98
+ 451 01a7 01       		.byte	1
+ 452 01a8 A2       		.byte	-94
+ 453 01a9 02       		.byte	2
+ 454 01aa A7       		.byte	-89
+ 455 01ab 02       		.byte	2
+ 456 01ac B0       		.byte	-80
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 9
+
+
+ 457 01ad 02       		.byte	2
+ 458 01ae B3       		.byte	-77
+ 459 01af 01       		.byte	1
+ 460 01b0 B4       		.byte	-76
+ 461 01b1 01       		.byte	1
+ 462 01b2 B5       		.byte	-75
+ 463 01b3 02       		.byte	2
+ 464 01b4 BF       		.byte	-65
+ 465 01b5 04       		.byte	4
+ 466 01b6 C0       		.byte	-64
+ 467 01b7 30       		.byte	48
+ 468 01b8 C1       		.byte	-63
+ 469 01b9 06       		.byte	6
+ 470 01ba C5       		.byte	-59
+ 471 01bb D5       		.byte	-43
+ 472 01bc C6       		.byte	-58
+ 473 01bd 20       		.byte	32
+ 474 01be C7       		.byte	-57
+ 475 01bf 10       		.byte	16
+ 476 01c0 C8       		.byte	-56
+ 477 01c1 2B       		.byte	43
+ 478 01c2 C9       		.byte	-55
+ 479 01c3 FF       		.byte	-1
+ 480 01c4 CA       		.byte	-54
+ 481 01c5 FF       		.byte	-1
+ 482 01c6 CB       		.byte	-53
+ 483 01c7 FF       		.byte	-1
+ 484 01c8 CD       		.byte	-51
+ 485 01c9 A0       		.byte	-96
+ 486 01ca CF       		.byte	-49
+ 487 01cb 04       		.byte	4
+ 488 01cc D0       		.byte	-48
+ 489 01cd 18       		.byte	24
+ 490 01ce D2       		.byte	-46
+ 491 01cf 80       		.byte	-128
+ 492 01d0 D8       		.byte	-40
+ 493 01d1 04       		.byte	4
+ 494 01d2 D9       		.byte	-39
+ 495 01d3 04       		.byte	4
+ 496 01d4 DA       		.byte	-38
+ 497 01d5 04       		.byte	4
+ 498 01d6 DB       		.byte	-37
+ 499 01d7 04       		.byte	4
+ 500 01d8 DF       		.byte	-33
+ 501 01d9 01       		.byte	1
+ 502 01da E0       		.byte	-32
+ 503 01db 40       		.byte	64
+ 504 01dc E2       		.byte	-30
+ 505 01dd C0       		.byte	-64
+ 506 01de E4       		.byte	-28
+ 507 01df 40       		.byte	64
+ 508 01e0 E5       		.byte	-27
+ 509 01e1 40       		.byte	64
+ 510 01e2 E6       		.byte	-26
+ 511 01e3 C0       		.byte	-64
+ 512 01e4 E8       		.byte	-24
+ 513 01e5 C0       		.byte	-64
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 10
+
+
+ 514 01e6 EA       		.byte	-22
+ 515 01e7 C0       		.byte	-64
+ 516 01e8 EC       		.byte	-20
+ 517 01e9 C0       		.byte	-64
+ 518 01ea EE       		.byte	-18
+ 519 01eb C0       		.byte	-64
+ 520 01ec 01       		.byte	1
+ 521 01ed 20       		.byte	32
+ 522 01ee 03       		.byte	3
+ 523 01ef 02       		.byte	2
+ 524 01f0 06       		.byte	6
+ 525 01f1 08       		.byte	8
+ 526 01f2 0A       		.byte	10
+ 527 01f3 01       		.byte	1
+ 528 01f4 0B       		.byte	11
+ 529 01f5 82       		.byte	-126
+ 530 01f6 0E       		.byte	14
+ 531 01f7 02       		.byte	2
+ 532 01f8 10       		.byte	16
+ 533 01f9 A8       		.byte	-88
+ 534 01fa 16       		.byte	22
+ 535 01fb 80       		.byte	-128
+ 536 01fc 19       		.byte	25
+ 537 01fd 54       		.byte	84
+ 538 01fe 1E       		.byte	30
+ 539 01ff 40       		.byte	64
+ 540 0200 1F       		.byte	31
+ 541 0201 20       		.byte	32
+ 542 0202 23       		.byte	35
+ 543 0203 40       		.byte	64
+ 544 0204 26       		.byte	38
+ 545 0205 14       		.byte	20
+ 546 0206 29       		.byte	41
+ 547 0207 10       		.byte	16
+ 548 0208 2C       		.byte	44
+ 549 0209 20       		.byte	32
+ 550 020a 30       		.byte	48
+ 551 020b 20       		.byte	32
+ 552 020c 36       		.byte	54
+ 553 020d 03       		.byte	3
+ 554 020e 37       		.byte	55
+ 555 020f 04       		.byte	4
+ 556 0210 3F       		.byte	63
+ 557 0211 20       		.byte	32
+ 558 0212 47       		.byte	71
+ 559 0213 04       		.byte	4
+ 560 0214 4D       		.byte	77
+ 561 0215 04       		.byte	4
+ 562 0216 4F       		.byte	79
+ 563 0217 21       		.byte	33
+ 564 0218 57       		.byte	87
+ 565 0219 11       		.byte	17
+ 566 021a 59       		.byte	89
+ 567 021b 44       		.byte	68
+ 568 021c 5A       		.byte	90
+ 569 021d 01       		.byte	1
+ 570 021e 5B       		.byte	91
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 11
+
+
+ 571 021f 10       		.byte	16
+ 572 0220 76       		.byte	118
+ 573 0221 80       		.byte	-128
+ 574 0222 87       		.byte	-121
+ 575 0223 20       		.byte	32
+ 576 0224 8A       		.byte	-118
+ 577 0225 10       		.byte	16
+ 578 0226 95       		.byte	-107
+ 579 0227 04       		.byte	4
+ 580 0228 97       		.byte	-105
+ 581 0229 01       		.byte	1
+ 582 022a 9B       		.byte	-101
+ 583 022b 04       		.byte	4
+ 584 022c A6       		.byte	-90
+ 585 022d 04       		.byte	4
+ 586 022e A7       		.byte	-89
+ 587 022f 01       		.byte	1
+ 588 0230 C0       		.byte	-64
+ 589 0231 43       		.byte	67
+ 590 0232 C2       		.byte	-62
+ 591 0233 89       		.byte	-119
+ 592 0234 C4       		.byte	-60
+ 593 0235 1E       		.byte	30
+ 594 0236 CA       		.byte	-54
+ 595 0237 44       		.byte	68
+ 596 0238 CC       		.byte	-52
+ 597 0239 C4       		.byte	-60
+ 598 023a CE       		.byte	-50
+ 599 023b 20       		.byte	32
+ 600 023c D0       		.byte	-48
+ 601 023d 40       		.byte	64
+ 602 023e D2       		.byte	-46
+ 603 023f 20       		.byte	32
+ 604 0240 D6       		.byte	-42
+ 605 0241 0F       		.byte	15
+ 606 0242 E2       		.byte	-30
+ 607 0243 80       		.byte	-128
+ 608 0244 07       		.byte	7
+ 609 0245 02       		.byte	2
+ 610 0246 0E       		.byte	14
+ 611 0247 02       		.byte	2
+ 612 0248 12       		.byte	18
+ 613 0249 01       		.byte	1
+ 614 024a 21       		.byte	33
+ 615 024b 02       		.byte	2
+ 616 024c 26       		.byte	38
+ 617 024d 01       		.byte	1
+ 618 024e 2A       		.byte	42
+ 619 024f 04       		.byte	4
+ 620 0250 2E       		.byte	46
+ 621 0251 02       		.byte	2
+ 622 0252 2F       		.byte	47
+ 623 0253 01       		.byte	1
+ 624 0254 30       		.byte	48
+ 625 0255 01       		.byte	1
+ 626 0256 31       		.byte	49
+ 627 0257 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 12
+
+
+ 628 0258 34       		.byte	52
+ 629 0259 02       		.byte	2
+ 630 025a 35       		.byte	53
+ 631 025b 02       		.byte	2
+ 632 025c 36       		.byte	54
+ 633 025d 04       		.byte	4
+ 634 025e 3E       		.byte	62
+ 635 025f 10       		.byte	16
+ 636 0260 40       		.byte	64
+ 637 0261 10       		.byte	16
+ 638 0262 41       		.byte	65
+ 639 0263 04       		.byte	4
+ 640 0264 45       		.byte	69
+ 641 0265 D0       		.byte	-48
+ 642 0266 46       		.byte	70
+ 643 0267 10       		.byte	16
+ 644 0268 47       		.byte	71
+ 645 0269 25       		.byte	37
+ 646 026a 48       		.byte	72
+ 647 026b 3A       		.byte	58
+ 648 026c 49       		.byte	73
+ 649 026d FF       		.byte	-1
+ 650 026e 4A       		.byte	74
+ 651 026f FF       		.byte	-1
+ 652 0270 4B       		.byte	75
+ 653 0271 FF       		.byte	-1
+ 654 0272 4D       		.byte	77
+ 655 0273 A0       		.byte	-96
+ 656 0274 4F       		.byte	79
+ 657 0275 04       		.byte	4
+ 658 0276 50       		.byte	80
+ 659 0277 18       		.byte	24
+ 660 0278 52       		.byte	82
+ 661 0279 80       		.byte	-128
+ 662 027a 54       		.byte	84
+ 663 027b 07       		.byte	7
+ 664 027c 58       		.byte	88
+ 665 027d 04       		.byte	4
+ 666 027e 59       		.byte	89
+ 667 027f 04       		.byte	4
+ 668 0280 5A       		.byte	90
+ 669 0281 04       		.byte	4
+ 670 0282 5B       		.byte	91
+ 671 0283 04       		.byte	4
+ 672 0284 5F       		.byte	95
+ 673 0285 01       		.byte	1
+ 674 0286 60       		.byte	96
+ 675 0287 40       		.byte	64
+ 676 0288 62       		.byte	98
+ 677 0289 C0       		.byte	-64
+ 678 028a 64       		.byte	100
+ 679 028b 40       		.byte	64
+ 680 028c 65       		.byte	101
+ 681 028d 40       		.byte	64
+ 682 028e 66       		.byte	102
+ 683 028f C0       		.byte	-64
+ 684 0290 68       		.byte	104
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 13
+
+
+ 685 0291 C0       		.byte	-64
+ 686 0292 6A       		.byte	106
+ 687 0293 C0       		.byte	-64
+ 688 0294 6C       		.byte	108
+ 689 0295 C0       		.byte	-64
+ 690 0296 6E       		.byte	110
+ 691 0297 C0       		.byte	-64
+ 692 0298 88       		.byte	-120
+ 693 0299 03       		.byte	3
+ 694 029a 8A       		.byte	-118
+ 695 029b 04       		.byte	4
+ 696 029c 8C       		.byte	-116
+ 697 029d 03       		.byte	3
+ 698 029e 8D       		.byte	-115
+ 699 029f 02       		.byte	2
+ 700 02a0 8E       		.byte	-114
+ 701 02a1 0C       		.byte	12
+ 702 02a2 90       		.byte	-112
+ 703 02a3 0A       		.byte	10
+ 704 02a4 92       		.byte	-110
+ 705 02a5 04       		.byte	4
+ 706 02a6 97       		.byte	-105
+ 707 02a7 01       		.byte	1
+ 708 02a8 9E       		.byte	-98
+ 709 02a9 08       		.byte	8
+ 710 02aa A0       		.byte	-96
+ 711 02ab 03       		.byte	3
+ 712 02ac A1       		.byte	-95
+ 713 02ad 03       		.byte	3
+ 714 02ae A2       		.byte	-94
+ 715 02af 04       		.byte	4
+ 716 02b0 A9       		.byte	-87
+ 717 02b1 03       		.byte	3
+ 718 02b2 AA       		.byte	-86
+ 719 02b3 05       		.byte	5
+ 720 02b4 B0       		.byte	-80
+ 721 02b5 0F       		.byte	15
+ 722 02b6 B5       		.byte	-75
+ 723 02b7 03       		.byte	3
+ 724 02b8 B9       		.byte	-71
+ 725 02b9 20       		.byte	32
+ 726 02ba BA       		.byte	-70
+ 727 02bb 02       		.byte	2
+ 728 02bc BF       		.byte	-65
+ 729 02bd 10       		.byte	16
+ 730 02be C0       		.byte	-64
+ 731 02bf 43       		.byte	67
+ 732 02c0 C1       		.byte	-63
+ 733 02c1 06       		.byte	6
+ 734 02c2 C5       		.byte	-59
+ 735 02c3 0B       		.byte	11
+ 736 02c4 C6       		.byte	-58
+ 737 02c5 0C       		.byte	12
+ 738 02c6 C7       		.byte	-57
+ 739 02c7 E0       		.byte	-32
+ 740 02c8 C8       		.byte	-56
+ 741 02c9 25       		.byte	37
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 14
+
+
+ 742 02ca C9       		.byte	-55
+ 743 02cb FF       		.byte	-1
+ 744 02cc CA       		.byte	-54
+ 745 02cd FF       		.byte	-1
+ 746 02ce CB       		.byte	-53
+ 747 02cf FF       		.byte	-1
+ 748 02d0 CE       		.byte	-50
+ 749 02d1 F0       		.byte	-16
+ 750 02d2 CF       		.byte	-49
+ 751 02d3 44       		.byte	68
+ 752 02d4 D0       		.byte	-48
+ 753 02d5 0C       		.byte	12
+ 754 02d6 D8       		.byte	-40
+ 755 02d7 04       		.byte	4
+ 756 02d8 D9       		.byte	-39
+ 757 02d9 04       		.byte	4
+ 758 02da DA       		.byte	-38
+ 759 02db 04       		.byte	4
+ 760 02dc DC       		.byte	-36
+ 761 02dd 01       		.byte	1
+ 762 02de DD       		.byte	-35
+ 763 02df 01       		.byte	1
+ 764 02e0 DF       		.byte	-33
+ 765 02e1 01       		.byte	1
+ 766 02e2 E6       		.byte	-26
+ 767 02e3 C0       		.byte	-64
+ 768 02e4 EA       		.byte	-22
+ 769 02e5 40       		.byte	64
+ 770 02e6 EB       		.byte	-21
+ 771 02e7 02       		.byte	2
+ 772 02e8 01       		.byte	1
+ 773 02e9 20       		.byte	32
+ 774 02ea 03       		.byte	3
+ 775 02eb 02       		.byte	2
+ 776 02ec 06       		.byte	6
+ 777 02ed 02       		.byte	2
+ 778 02ee 08       		.byte	8
+ 779 02ef 40       		.byte	64
+ 780 02f0 0B       		.byte	11
+ 781 02f1 80       		.byte	-128
+ 782 02f2 0E       		.byte	14
+ 783 02f3 40       		.byte	64
+ 784 02f4 10       		.byte	16
+ 785 02f5 88       		.byte	-120
+ 786 02f6 16       		.byte	22
+ 787 02f7 18       		.byte	24
+ 788 02f8 17       		.byte	23
+ 789 02f9 40       		.byte	64
+ 790 02fa 19       		.byte	25
+ 791 02fb 01       		.byte	1
+ 792 02fc 1B       		.byte	27
+ 793 02fd 02       		.byte	2
+ 794 02fe 1C       		.byte	28
+ 795 02ff 80       		.byte	-128
+ 796 0300 1E       		.byte	30
+ 797 0301 08       		.byte	8
+ 798 0302 1F       		.byte	31
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 15
+
+
+ 799 0303 80       		.byte	-128
+ 800 0304 20       		.byte	32
+ 801 0305 08       		.byte	8
+ 802 0306 26       		.byte	38
+ 803 0307 12       		.byte	18
+ 804 0308 27       		.byte	39
+ 805 0309 40       		.byte	64
+ 806 030a 29       		.byte	41
+ 807 030b 21       		.byte	33
+ 808 030c 2E       		.byte	46
+ 809 030d 80       		.byte	-128
+ 810 030e 2F       		.byte	47
+ 811 030f 80       		.byte	-128
+ 812 0310 30       		.byte	48
+ 813 0311 08       		.byte	8
+ 814 0312 33       		.byte	51
+ 815 0313 04       		.byte	4
+ 816 0314 38       		.byte	56
+ 817 0315 40       		.byte	64
+ 818 0316 3B       		.byte	59
+ 819 0317 80       		.byte	-128
+ 820 0318 3E       		.byte	62
+ 821 0319 08       		.byte	8
+ 822 031a 43       		.byte	67
+ 823 031b 06       		.byte	6
+ 824 031c 45       		.byte	69
+ 825 031d 02       		.byte	2
+ 826 031e 47       		.byte	71
+ 827 031f 40       		.byte	64
+ 828 0320 49       		.byte	73
+ 829 0321 20       		.byte	32
+ 830 0322 4B       		.byte	75
+ 831 0323 08       		.byte	8
+ 832 0324 4D       		.byte	77
+ 833 0325 01       		.byte	1
+ 834 0326 50       		.byte	80
+ 835 0327 80       		.byte	-128
+ 836 0328 53       		.byte	83
+ 837 0329 01       		.byte	1
+ 838 032a 54       		.byte	84
+ 839 032b 20       		.byte	32
+ 840 032c 55       		.byte	85
+ 841 032d 02       		.byte	2
+ 842 032e 56       		.byte	86
+ 843 032f 0A       		.byte	10
+ 844 0330 5D       		.byte	93
+ 845 0331 01       		.byte	1
+ 846 0332 5E       		.byte	94
+ 847 0333 28       		.byte	40
+ 848 0334 5F       		.byte	95
+ 849 0335 40       		.byte	64
+ 850 0336 76       		.byte	118
+ 851 0337 80       		.byte	-128
+ 852 0338 87       		.byte	-121
+ 853 0339 04       		.byte	4
+ 854 033a 8D       		.byte	-115
+ 855 033b 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 16
+
+
+ 856 033c 92       		.byte	-110
+ 857 033d 40       		.byte	64
+ 858 033e 93       		.byte	-109
+ 859 033f 40       		.byte	64
+ 860 0340 97       		.byte	-105
+ 861 0341 82       		.byte	-126
+ 862 0342 9D       		.byte	-99
+ 863 0343 20       		.byte	32
+ 864 0344 9E       		.byte	-98
+ 865 0345 08       		.byte	8
+ 866 0346 A4       		.byte	-92
+ 867 0347 A8       		.byte	-88
+ 868 0348 A6       		.byte	-90
+ 869 0349 02       		.byte	2
+ 870 034a A7       		.byte	-89
+ 871 034b 02       		.byte	2
+ 872 034c B4       		.byte	-76
+ 873 034d 80       		.byte	-128
+ 874 034e B7       		.byte	-73
+ 875 034f 10       		.byte	16
+ 876 0350 C0       		.byte	-64
+ 877 0351 83       		.byte	-125
+ 878 0352 C2       		.byte	-62
+ 879 0353 19       		.byte	25
+ 880 0354 C4       		.byte	-60
+ 881 0355 EA       		.byte	-22
+ 882 0356 CA       		.byte	-54
+ 883 0357 95       		.byte	-107
+ 884 0358 CC       		.byte	-52
+ 885 0359 02       		.byte	2
+ 886 035a CE       		.byte	-50
+ 887 035b 48       		.byte	72
+ 888 035c D0       		.byte	-48
+ 889 035d 93       		.byte	-109
+ 890 035e D2       		.byte	-46
+ 891 035f 04       		.byte	4
+ 892 0360 D6       		.byte	-42
+ 893 0361 F0       		.byte	-16
+ 894 0362 E4       		.byte	-28
+ 895 0363 08       		.byte	8
+ 896 0364 85       		.byte	-123
+ 897 0365 02       		.byte	2
+ 898 0366 8F       		.byte	-113
+ 899 0367 08       		.byte	8
+ 900 0368 E4       		.byte	-28
+ 901 0369 40       		.byte	64
+ 902 036a B0       		.byte	-80
+ 903 036b 40       		.byte	64
+ 904 036c B1       		.byte	-79
+ 905 036d 02       		.byte	2
+ 906 036e B7       		.byte	-73
+ 907 036f 10       		.byte	16
+ 908 0370 E0       		.byte	-32
+ 909 0371 08       		.byte	8
+ 910 0372 E4       		.byte	-28
+ 911 0373 01       		.byte	1
+ 912 0374 EA       		.byte	-22
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 17
+
+
+ 913 0375 01       		.byte	1
+ 914 0376 EE       		.byte	-18
+ 915 0377 48       		.byte	72
+ 916 0378 06       		.byte	6
+ 917 0379 01       		.byte	1
+ 918 037a 07       		.byte	7
+ 919 037b 06       		.byte	6
+ 920 037c 12       		.byte	18
+ 921 037d 04       		.byte	4
+ 922 037e 1E       		.byte	30
+ 923 037f 04       		.byte	4
+ 924 0380 21       		.byte	33
+ 925 0381 04       		.byte	4
+ 926 0382 24       		.byte	36
+ 927 0383 01       		.byte	1
+ 928 0384 27       		.byte	39
+ 929 0385 01       		.byte	1
+ 930 0386 2A       		.byte	42
+ 931 0387 02       		.byte	2
+ 932 0388 2F       		.byte	47
+ 933 0389 02       		.byte	2
+ 934 038a 32       		.byte	50
+ 935 038b 01       		.byte	1
+ 936 038c 33       		.byte	51
+ 937 038d 02       		.byte	2
+ 938 038e 34       		.byte	52
+ 939 038f 04       		.byte	4
+ 940 0390 35       		.byte	53
+ 941 0391 01       		.byte	1
+ 942 0392 36       		.byte	54
+ 943 0393 02       		.byte	2
+ 944 0394 37       		.byte	55
+ 945 0395 04       		.byte	4
+ 946 0396 3E       		.byte	62
+ 947 0397 10       		.byte	16
+ 948 0398 40       		.byte	64
+ 949 0399 50       		.byte	80
+ 950 039a 41       		.byte	65
+ 951 039b 04       		.byte	4
+ 952 039c 45       		.byte	69
+ 953 039d D0       		.byte	-48
+ 954 039e 46       		.byte	70
+ 955 039f 50       		.byte	80
+ 956 03a0 47       		.byte	71
+ 957 03a1 21       		.byte	33
+ 958 03a2 48       		.byte	72
+ 959 03a3 3A       		.byte	58
+ 960 03a4 49       		.byte	73
+ 961 03a5 FF       		.byte	-1
+ 962 03a6 4A       		.byte	74
+ 963 03a7 FF       		.byte	-1
+ 964 03a8 4B       		.byte	75
+ 965 03a9 FF       		.byte	-1
+ 966 03aa 4D       		.byte	77
+ 967 03ab A0       		.byte	-96
+ 968 03ac 4F       		.byte	79
+ 969 03ad 04       		.byte	4
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 18
+
+
+ 970 03ae 50       		.byte	80
+ 971 03af 18       		.byte	24
+ 972 03b0 54       		.byte	84
+ 973 03b1 07       		.byte	7
+ 974 03b2 58       		.byte	88
+ 975 03b3 04       		.byte	4
+ 976 03b4 59       		.byte	89
+ 977 03b5 04       		.byte	4
+ 978 03b6 5A       		.byte	90
+ 979 03b7 04       		.byte	4
+ 980 03b8 5B       		.byte	91
+ 981 03b9 04       		.byte	4
+ 982 03ba 5F       		.byte	95
+ 983 03bb 01       		.byte	1
+ 984 03bc 60       		.byte	96
+ 985 03bd 40       		.byte	64
+ 986 03be 62       		.byte	98
+ 987 03bf C0       		.byte	-64
+ 988 03c0 64       		.byte	100
+ 989 03c1 40       		.byte	64
+ 990 03c2 65       		.byte	101
+ 991 03c3 40       		.byte	64
+ 992 03c4 66       		.byte	102
+ 993 03c5 C0       		.byte	-64
+ 994 03c6 68       		.byte	104
+ 995 03c7 C0       		.byte	-64
+ 996 03c8 6A       		.byte	106
+ 997 03c9 C0       		.byte	-64
+ 998 03ca 6C       		.byte	108
+ 999 03cb C0       		.byte	-64
+ 1000 03cc 6E       		.byte	110
+ 1001 03cd C0       		.byte	-64
+ 1002 03ce 82       		.byte	-126
+ 1003 03cf 06       		.byte	6
+ 1004 03d0 84       		.byte	-124
+ 1005 03d1 08       		.byte	8
+ 1006 03d2 86       		.byte	-122
+ 1007 03d3 03       		.byte	3
+ 1008 03d4 8B       		.byte	-117
+ 1009 03d5 08       		.byte	8
+ 1010 03d6 8C       		.byte	-116
+ 1011 03d7 08       		.byte	8
+ 1012 03d8 8D       		.byte	-115
+ 1013 03d9 0C       		.byte	12
+ 1014 03da 8E       		.byte	-114
+ 1015 03db 05       		.byte	5
+ 1016 03dc 8F       		.byte	-113
+ 1017 03dd 03       		.byte	3
+ 1018 03de 90       		.byte	-112
+ 1019 03df 06       		.byte	6
+ 1020 03e0 91       		.byte	-111
+ 1021 03e1 01       		.byte	1
+ 1022 03e2 92       		.byte	-110
+ 1023 03e3 09       		.byte	9
+ 1024 03e4 93       		.byte	-109
+ 1025 03e5 06       		.byte	6
+ 1026 03e6 97       		.byte	-105
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 19
+
+
+ 1027 03e7 03       		.byte	3
+ 1028 03e8 A3       		.byte	-93
+ 1029 03e9 0C       		.byte	12
+ 1030 03ea A6       		.byte	-90
+ 1031 03eb 02       		.byte	2
+ 1032 03ec A8       		.byte	-88
+ 1033 03ed 10       		.byte	16
+ 1034 03ee A9       		.byte	-87
+ 1035 03ef 01       		.byte	1
+ 1036 03f0 AA       		.byte	-86
+ 1037 03f1 01       		.byte	1
+ 1038 03f2 AB       		.byte	-85
+ 1039 03f3 0E       		.byte	14
+ 1040 03f4 B0       		.byte	-80
+ 1041 03f5 18       		.byte	24
+ 1042 03f6 B1       		.byte	-79
+ 1043 03f7 0F       		.byte	15
+ 1044 03f8 B4       		.byte	-76
+ 1045 03f9 07       		.byte	7
+ 1046 03fa B8       		.byte	-72
+ 1047 03fb 02       		.byte	2
+ 1048 03fc BA       		.byte	-70
+ 1049 03fd 20       		.byte	32
+ 1050 03fe BB       		.byte	-69
+ 1051 03ff 02       		.byte	2
+ 1052 0400 C0       		.byte	-64
+ 1053 0401 06       		.byte	6
+ 1054 0402 C6       		.byte	-58
+ 1055 0403 40       		.byte	64
+ 1056 0404 C9       		.byte	-55
+ 1057 0405 FF       		.byte	-1
+ 1058 0406 CA       		.byte	-54
+ 1059 0407 07       		.byte	7
+ 1060 0408 CB       		.byte	-53
+ 1061 0409 FF       		.byte	-1
+ 1062 040a CC       		.byte	-52
+ 1063 040b 40       		.byte	64
+ 1064 040c CD       		.byte	-51
+ 1065 040d 20       		.byte	32
+ 1066 040e CE       		.byte	-50
+ 1067 040f F0       		.byte	-16
+ 1068 0410 CF       		.byte	-49
+ 1069 0411 05       		.byte	5
+ 1070 0412 D0       		.byte	-48
+ 1071 0413 08       		.byte	8
+ 1072 0414 D8       		.byte	-40
+ 1073 0415 04       		.byte	4
+ 1074 0416 D9       		.byte	-39
+ 1075 0417 04       		.byte	4
+ 1076 0418 DA       		.byte	-38
+ 1077 0419 04       		.byte	4
+ 1078 041a DC       		.byte	-36
+ 1079 041b 11       		.byte	17
+ 1080 041c DD       		.byte	-35
+ 1081 041d 01       		.byte	1
+ 1082 041e DF       		.byte	-33
+ 1083 041f 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 20
+
+
+ 1084 0420 E0       		.byte	-32
+ 1085 0421 40       		.byte	64
+ 1086 0422 E1       		.byte	-31
+ 1087 0423 A8       		.byte	-88
+ 1088 0424 E2       		.byte	-30
+ 1089 0425 40       		.byte	64
+ 1090 0426 E3       		.byte	-29
+ 1091 0427 20       		.byte	32
+ 1092 0428 00       		.byte	0
+ 1093 0429 04       		.byte	4
+ 1094 042a 01       		.byte	1
+ 1095 042b 02       		.byte	2
+ 1096 042c 03       		.byte	3
+ 1097 042d 02       		.byte	2
+ 1098 042e 06       		.byte	6
+ 1099 042f 10       		.byte	16
+ 1100 0430 09       		.byte	9
+ 1101 0431 02       		.byte	2
+ 1102 0432 0E       		.byte	14
+ 1103 0433 40       		.byte	64
+ 1104 0434 0F       		.byte	15
+ 1105 0435 42       		.byte	66
+ 1106 0436 10       		.byte	16
+ 1107 0437 28       		.byte	40
+ 1108 0438 16       		.byte	22
+ 1109 0439 08       		.byte	8
+ 1110 043a 17       		.byte	23
+ 1111 043b 08       		.byte	8
+ 1112 043c 18       		.byte	24
+ 1113 043d 04       		.byte	4
+ 1114 043e 19       		.byte	25
+ 1115 043f 22       		.byte	34
+ 1116 0440 1E       		.byte	30
+ 1117 0441 28       		.byte	40
+ 1118 0442 1F       		.byte	31
+ 1119 0443 80       		.byte	-128
+ 1120 0444 20       		.byte	32
+ 1121 0445 40       		.byte	64
+ 1122 0446 21       		.byte	33
+ 1123 0447 02       		.byte	2
+ 1124 0448 26       		.byte	38
+ 1125 0449 40       		.byte	64
+ 1126 044a 27       		.byte	39
+ 1127 044b 18       		.byte	24
+ 1128 044c 29       		.byte	41
+ 1129 044d 22       		.byte	34
+ 1130 044e 2E       		.byte	46
+ 1131 044f 40       		.byte	64
+ 1132 0450 2F       		.byte	47
+ 1133 0451 A0       		.byte	-96
+ 1134 0452 30       		.byte	48
+ 1135 0453 08       		.byte	8
+ 1136 0454 33       		.byte	51
+ 1137 0455 02       		.byte	2
+ 1138 0456 38       		.byte	56
+ 1139 0457 60       		.byte	96
+ 1140 0458 3E       		.byte	62
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 21
+
+
+ 1141 0459 08       		.byte	8
+ 1142 045a 45       		.byte	69
+ 1143 045b 01       		.byte	1
+ 1144 045c 48       		.byte	72
+ 1145 045d 04       		.byte	4
+ 1146 045e 4F       		.byte	79
+ 1147 045f 41       		.byte	65
+ 1148 0460 50       		.byte	80
+ 1149 0461 38       		.byte	56
+ 1150 0462 55       		.byte	85
+ 1151 0463 01       		.byte	1
+ 1152 0464 56       		.byte	86
+ 1153 0465 18       		.byte	24
+ 1154 0466 57       		.byte	87
+ 1155 0467 21       		.byte	33
+ 1156 0468 5E       		.byte	94
+ 1157 0469 A8       		.byte	-88
+ 1158 046a 5F       		.byte	95
+ 1159 046b 01       		.byte	1
+ 1160 046c 80       		.byte	-128
+ 1161 046d 40       		.byte	64
+ 1162 046e 89       		.byte	-119
+ 1163 046f 20       		.byte	32
+ 1164 0470 8C       		.byte	-116
+ 1165 0471 10       		.byte	16
+ 1166 0472 92       		.byte	-110
+ 1167 0473 40       		.byte	64
+ 1168 0474 94       		.byte	-108
+ 1169 0475 40       		.byte	64
+ 1170 0476 9C       		.byte	-100
+ 1171 0477 40       		.byte	64
+ 1172 0478 9D       		.byte	-99
+ 1173 0479 20       		.byte	32
+ 1174 047a 9E       		.byte	-98
+ 1175 047b 10       		.byte	16
+ 1176 047c A0       		.byte	-96
+ 1177 047d 04       		.byte	4
+ 1178 047e A3       		.byte	-93
+ 1179 047f 02       		.byte	2
+ 1180 0480 A4       		.byte	-92
+ 1181 0481 08       		.byte	8
+ 1182 0482 B0       		.byte	-80
+ 1183 0483 40       		.byte	64
+ 1184 0484 C0       		.byte	-64
+ 1185 0485 2D       		.byte	45
+ 1186 0486 C2       		.byte	-62
+ 1187 0487 98       		.byte	-104
+ 1188 0488 C4       		.byte	-60
+ 1189 0489 66       		.byte	102
+ 1190 048a CA       		.byte	-54
+ 1191 048b D5       		.byte	-43
+ 1192 048c CC       		.byte	-52
+ 1193 048d 03       		.byte	3
+ 1194 048e CE       		.byte	-50
+ 1195 048f 4C       		.byte	76
+ 1196 0490 D0       		.byte	-48
+ 1197 0491 80       		.byte	-128
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 22
+
+
+ 1198 0492 D2       		.byte	-46
+ 1199 0493 14       		.byte	20
+ 1200 0494 D6       		.byte	-42
+ 1201 0495 F0       		.byte	-16
+ 1202 0496 E2       		.byte	-30
+ 1203 0497 04       		.byte	4
+ 1204 0498 E4       		.byte	-28
+ 1205 0499 04       		.byte	4
+ 1206 049a E6       		.byte	-26
+ 1207 049b 01       		.byte	1
+ 1208 049c EE       		.byte	-18
+ 1209 049d 20       		.byte	32
+ 1210 049e 04       		.byte	4
+ 1211 049f 05       		.byte	5
+ 1212 04a0 05       		.byte	5
+ 1213 04a1 1C       		.byte	28
+ 1214 04a2 06       		.byte	6
+ 1215 04a3 68       		.byte	104
+ 1216 04a4 07       		.byte	7
+ 1217 04a5 02       		.byte	2
+ 1218 04a6 08       		.byte	8
+ 1219 04a7 03       		.byte	3
+ 1220 04a8 0D       		.byte	13
+ 1221 04a9 0C       		.byte	12
+ 1222 04aa 0F       		.byte	15
+ 1223 04ab 11       		.byte	17
+ 1224 04ac 10       		.byte	16
+ 1225 04ad 03       		.byte	3
+ 1226 04ae 11       		.byte	17
+ 1227 04af 14       		.byte	20
+ 1228 04b0 14       		.byte	20
+ 1229 04b1 03       		.byte	3
+ 1230 04b2 15       		.byte	21
+ 1231 04b3 10       		.byte	16
+ 1232 04b4 16       		.byte	22
+ 1233 04b5 10       		.byte	16
+ 1234 04b6 17       		.byte	23
+ 1235 04b7 0C       		.byte	12
+ 1236 04b8 18       		.byte	24
+ 1237 04b9 0A       		.byte	10
+ 1238 04ba 19       		.byte	25
+ 1239 04bb 10       		.byte	16
+ 1240 04bc 1A       		.byte	26
+ 1241 04bd 24       		.byte	36
+ 1242 04be 1E       		.byte	30
+ 1243 04bf 03       		.byte	3
+ 1244 04c0 1F       		.byte	31
+ 1245 04c1 03       		.byte	3
+ 1246 04c2 22       		.byte	34
+ 1247 04c3 03       		.byte	3
+ 1248 04c4 24       		.byte	36
+ 1249 04c5 0C       		.byte	12
+ 1250 04c6 29       		.byte	41
+ 1251 04c7 09       		.byte	9
+ 1252 04c8 2A       		.byte	42
+ 1253 04c9 03       		.byte	3
+ 1254 04ca 2B       		.byte	43
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 23
+
+
+ 1255 04cb 10       		.byte	16
+ 1256 04cc 2C       		.byte	44
+ 1257 04cd 0C       		.byte	12
+ 1258 04ce 30       		.byte	48
+ 1259 04cf 30       		.byte	48
+ 1260 04d0 31       		.byte	49
+ 1261 04d1 1F       		.byte	31
+ 1262 04d2 32       		.byte	50
+ 1263 04d3 40       		.byte	64
+ 1264 04d4 34       		.byte	52
+ 1265 04d5 0C       		.byte	12
+ 1266 04d6 36       		.byte	54
+ 1267 04d7 03       		.byte	3
+ 1268 04d8 37       		.byte	55
+ 1269 04d9 1F       		.byte	31
+ 1270 04da 3E       		.byte	62
+ 1271 04db 01       		.byte	1
+ 1272 04dc 58       		.byte	88
+ 1273 04dd 04       		.byte	4
+ 1274 04de 59       		.byte	89
+ 1275 04df 04       		.byte	4
+ 1276 04e0 5C       		.byte	92
+ 1277 04e1 11       		.byte	17
+ 1278 04e2 5F       		.byte	95
+ 1279 04e3 01       		.byte	1
+ 1280 04e4 83       		.byte	-125
+ 1281 04e5 01       		.byte	1
+ 1282 04e6 85       		.byte	-123
+ 1283 04e7 02       		.byte	2
+ 1284 04e8 92       		.byte	-110
+ 1285 04e9 02       		.byte	2
+ 1286 04ea 95       		.byte	-107
+ 1287 04eb 02       		.byte	2
+ 1288 04ec 9B       		.byte	-101
+ 1289 04ed 01       		.byte	1
+ 1290 04ee 9C       		.byte	-100
+ 1291 04ef 01       		.byte	1
+ 1292 04f0 AA       		.byte	-86
+ 1293 04f1 02       		.byte	2
+ 1294 04f2 AB       		.byte	-85
+ 1295 04f3 02       		.byte	2
+ 1296 04f4 AF       		.byte	-81
+ 1297 04f5 02       		.byte	2
+ 1298 04f6 B0       		.byte	-80
+ 1299 04f7 02       		.byte	2
+ 1300 04f8 B4       		.byte	-76
+ 1301 04f9 01       		.byte	1
+ 1302 04fa B5       		.byte	-75
+ 1303 04fb 01       		.byte	1
+ 1304 04fc B7       		.byte	-73
+ 1305 04fd 02       		.byte	2
+ 1306 04fe B9       		.byte	-71
+ 1307 04ff 80       		.byte	-128
+ 1308 0500 BE       		.byte	-66
+ 1309 0501 11       		.byte	17
+ 1310 0502 BF       		.byte	-65
+ 1311 0503 10       		.byte	16
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 24
+
+
+ 1312 0504 C0       		.byte	-64
+ 1313 0505 25       		.byte	37
+ 1314 0506 C1       		.byte	-63
+ 1315 0507 06       		.byte	6
+ 1316 0508 C2       		.byte	-62
+ 1317 0509 01       		.byte	1
+ 1318 050a C4       		.byte	-60
+ 1319 050b 04       		.byte	4
+ 1320 050c C6       		.byte	-58
+ 1321 050d E0       		.byte	-32
+ 1322 050e C7       		.byte	-57
+ 1323 050f 0C       		.byte	12
+ 1324 0510 C8       		.byte	-56
+ 1325 0511 18       		.byte	24
+ 1326 0512 C9       		.byte	-55
+ 1327 0513 FF       		.byte	-1
+ 1328 0514 CA       		.byte	-54
+ 1329 0515 FF       		.byte	-1
+ 1330 0516 CB       		.byte	-53
+ 1331 0517 FF       		.byte	-1
+ 1332 0518 CC       		.byte	-52
+ 1333 0519 62       		.byte	98
+ 1334 051a CD       		.byte	-51
+ 1335 051b A0       		.byte	-96
+ 1336 051c CE       		.byte	-50
+ 1337 051d F0       		.byte	-16
+ 1338 051e CF       		.byte	-49
+ 1339 051f 41       		.byte	65
+ 1340 0520 D0       		.byte	-48
+ 1341 0521 0C       		.byte	12
+ 1342 0522 D4       		.byte	-44
+ 1343 0523 18       		.byte	24
+ 1344 0524 D6       		.byte	-42
+ 1345 0525 04       		.byte	4
+ 1346 0526 D8       		.byte	-40
+ 1347 0527 04       		.byte	4
+ 1348 0528 D9       		.byte	-39
+ 1349 0529 04       		.byte	4
+ 1350 052a DA       		.byte	-38
+ 1351 052b 04       		.byte	4
+ 1352 052c DB       		.byte	-37
+ 1353 052d 04       		.byte	4
+ 1354 052e DC       		.byte	-36
+ 1355 052f 10       		.byte	16
+ 1356 0530 DD       		.byte	-35
+ 1357 0531 11       		.byte	17
+ 1358 0532 DF       		.byte	-33
+ 1359 0533 01       		.byte	1
+ 1360 0534 E6       		.byte	-26
+ 1361 0535 40       		.byte	64
+ 1362 0536 E7       		.byte	-25
+ 1363 0537 02       		.byte	2
+ 1364 0538 E9       		.byte	-23
+ 1365 0539 10       		.byte	16
+ 1366 053a EA       		.byte	-22
+ 1367 053b 30       		.byte	48
+ 1368 053c EB       		.byte	-21
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 25
+
+
+ 1369 053d 10       		.byte	16
+ 1370 053e ED       		.byte	-19
+ 1371 053f 10       		.byte	16
+ 1372 0540 EE       		.byte	-18
+ 1373 0541 10       		.byte	16
+ 1374 0542 EF       		.byte	-17
+ 1375 0543 12       		.byte	18
+ 1376 0544 05       		.byte	5
+ 1377 0545 08       		.byte	8
+ 1378 0546 06       		.byte	6
+ 1379 0547 08       		.byte	8
+ 1380 0548 08       		.byte	8
+ 1381 0549 02       		.byte	2
+ 1382 054a 09       		.byte	9
+ 1383 054b 40       		.byte	64
+ 1384 054c 0A       		.byte	10
+ 1385 054d 40       		.byte	64
+ 1386 054e 0C       		.byte	12
+ 1387 054f 10       		.byte	16
+ 1388 0550 0D       		.byte	13
+ 1389 0551 09       		.byte	9
+ 1390 0552 0E       		.byte	14
+ 1391 0553 06       		.byte	6
+ 1392 0554 10       		.byte	16
+ 1393 0555 08       		.byte	8
+ 1394 0556 14       		.byte	20
+ 1395 0557 08       		.byte	8
+ 1396 0558 15       		.byte	21
+ 1397 0559 04       		.byte	4
+ 1398 055a 17       		.byte	23
+ 1399 055b 41       		.byte	65
+ 1400 055c 19       		.byte	25
+ 1401 055d 20       		.byte	32
+ 1402 055e 1B       		.byte	27
+ 1403 055f 01       		.byte	1
+ 1404 0560 1C       		.byte	28
+ 1405 0561 60       		.byte	96
+ 1406 0562 1E       		.byte	30
+ 1407 0563 05       		.byte	5
+ 1408 0564 23       		.byte	35
+ 1409 0565 05       		.byte	5
+ 1410 0566 25       		.byte	37
+ 1411 0567 40       		.byte	64
+ 1412 0568 27       		.byte	39
+ 1413 0569 80       		.byte	-128
+ 1414 056a 28       		.byte	40
+ 1415 056b 08       		.byte	8
+ 1416 056c 29       		.byte	41
+ 1417 056d 90       		.byte	-112
+ 1418 056e 2F       		.byte	47
+ 1419 056f 04       		.byte	4
+ 1420 0570 30       		.byte	48
+ 1421 0571 20       		.byte	32
+ 1422 0572 32       		.byte	50
+ 1423 0573 08       		.byte	8
+ 1424 0574 35       		.byte	53
+ 1425 0575 02       		.byte	2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 26
+
+
+ 1426 0576 37       		.byte	55
+ 1427 0577 98       		.byte	-104
+ 1428 0578 3A       		.byte	58
+ 1429 0579 08       		.byte	8
+ 1430 057a 3B       		.byte	59
+ 1431 057b 01       		.byte	1
+ 1432 057c 3F       		.byte	63
+ 1433 057d 48       		.byte	72
+ 1434 057e 40       		.byte	64
+ 1435 057f 42       		.byte	66
+ 1436 0580 41       		.byte	65
+ 1437 0581 10       		.byte	16
+ 1438 0582 42       		.byte	66
+ 1439 0583 08       		.byte	8
+ 1440 0584 48       		.byte	72
+ 1441 0585 05       		.byte	5
+ 1442 0586 4A       		.byte	74
+ 1443 0587 09       		.byte	9
+ 1444 0588 50       		.byte	80
+ 1445 0589 28       		.byte	40
+ 1446 058a 5A       		.byte	90
+ 1447 058b 01       		.byte	1
+ 1448 058c 63       		.byte	99
+ 1449 058d 86       		.byte	-122
+ 1450 058e 83       		.byte	-125
+ 1451 058f 44       		.byte	68
+ 1452 0590 85       		.byte	-123
+ 1453 0591 20       		.byte	32
+ 1454 0592 8B       		.byte	-117
+ 1455 0593 40       		.byte	64
+ 1456 0594 8F       		.byte	-113
+ 1457 0595 58       		.byte	88
+ 1458 0596 99       		.byte	-103
+ 1459 0597 02       		.byte	2
+ 1460 0598 9B       		.byte	-101
+ 1461 0599 08       		.byte	8
+ 1462 059a C0       		.byte	-64
+ 1463 059b 60       		.byte	96
+ 1464 059c C2       		.byte	-62
+ 1465 059d F9       		.byte	-7
+ 1466 059e C4       		.byte	-60
+ 1467 059f F2       		.byte	-14
+ 1468 05a0 CA       		.byte	-54
+ 1469 05a1 2C       		.byte	44
+ 1470 05a2 CC       		.byte	-52
+ 1471 05a3 F6       		.byte	-10
+ 1472 05a4 CE       		.byte	-50
+ 1473 05a5 53       		.byte	83
+ 1474 05a6 D0       		.byte	-48
+ 1475 05a7 0D       		.byte	13
+ 1476 05a8 D2       		.byte	-46
+ 1477 05a9 0C       		.byte	12
+ 1478 05aa D6       		.byte	-42
+ 1479 05ab 01       		.byte	1
+ 1480 05ac D8       		.byte	-40
+ 1481 05ad 0D       		.byte	13
+ 1482 05ae E0       		.byte	-32
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 27
+
+
+ 1483 05af 20       		.byte	32
+ 1484 05b0 E4       		.byte	-28
+ 1485 05b1 42       		.byte	66
+ 1486 05b2 E6       		.byte	-26
+ 1487 05b3 01       		.byte	1
+ 1488 05b4 02       		.byte	2
+ 1489 05b5 01       		.byte	1
+ 1490 05b6 04       		.byte	4
+ 1491 05b7 07       		.byte	7
+ 1492 05b8 08       		.byte	8
+ 1493 05b9 07       		.byte	7
+ 1494 05ba 0C       		.byte	12
+ 1495 05bb 06       		.byte	6
+ 1496 05bc 0E       		.byte	14
+ 1497 05bd 01       		.byte	1
+ 1498 05be 10       		.byte	16
+ 1499 05bf 01       		.byte	1
+ 1500 05c0 12       		.byte	18
+ 1501 05c1 06       		.byte	6
+ 1502 05c2 20       		.byte	32
+ 1503 05c3 04       		.byte	4
+ 1504 05c4 24       		.byte	36
+ 1505 05c5 02       		.byte	2
+ 1506 05c6 28       		.byte	40
+ 1507 05c7 06       		.byte	6
+ 1508 05c8 30       		.byte	48
+ 1509 05c9 07       		.byte	7
+ 1510 05ca 3B       		.byte	59
+ 1511 05cb 02       		.byte	2
+ 1512 05cc 58       		.byte	88
+ 1513 05cd 04       		.byte	4
+ 1514 05ce 59       		.byte	89
+ 1515 05cf 04       		.byte	4
+ 1516 05d0 5C       		.byte	92
+ 1517 05d1 11       		.byte	17
+ 1518 05d2 5F       		.byte	95
+ 1519 05d3 01       		.byte	1
+ 1520 05d4 80       		.byte	-128
+ 1521 05d5 01       		.byte	1
+ 1522 05d6 83       		.byte	-125
+ 1523 05d7 73       		.byte	115
+ 1524 05d8 84       		.byte	-124
+ 1525 05d9 04       		.byte	4
+ 1526 05da 85       		.byte	-123
+ 1527 05db 04       		.byte	4
+ 1528 05dc 86       		.byte	-122
+ 1529 05dd 02       		.byte	2
+ 1530 05de 88       		.byte	-120
+ 1531 05df 10       		.byte	16
+ 1532 05e0 8B       		.byte	-117
+ 1533 05e1 80       		.byte	-128
+ 1534 05e2 8C       		.byte	-116
+ 1535 05e3 10       		.byte	16
+ 1536 05e4 8D       		.byte	-115
+ 1537 05e5 FF       		.byte	-1
+ 1538 05e6 91       		.byte	-111
+ 1539 05e7 8F       		.byte	-113
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 28
+
+
+ 1540 05e8 93       		.byte	-109
+ 1541 05e9 30       		.byte	48
+ 1542 05ea 94       		.byte	-108
+ 1543 05eb 02       		.byte	2
+ 1544 05ec 95       		.byte	-107
+ 1545 05ed 03       		.byte	3
+ 1546 05ee 96       		.byte	-106
+ 1547 05ef 0C       		.byte	12
+ 1548 05f0 98       		.byte	-104
+ 1549 05f1 0F       		.byte	15
+ 1550 05f2 99       		.byte	-103
+ 1551 05f3 8C       		.byte	-116
+ 1552 05f4 9B       		.byte	-101
+ 1553 05f5 53       		.byte	83
+ 1554 05f6 9C       		.byte	-100
+ 1555 05f7 10       		.byte	16
+ 1556 05f8 9D       		.byte	-99
+ 1557 05f9 81       		.byte	-127
+ 1558 05fa A0       		.byte	-96
+ 1559 05fb 10       		.byte	16
+ 1560 05fc A1       		.byte	-95
+ 1561 05fd 08       		.byte	8
+ 1562 05fe A4       		.byte	-92
+ 1563 05ff 08       		.byte	8
+ 1564 0600 A5       		.byte	-91
+ 1565 0601 02       		.byte	2
+ 1566 0602 A6       		.byte	-90
+ 1567 0603 02       		.byte	2
+ 1568 0604 A8       		.byte	-88
+ 1569 0605 0F       		.byte	15
+ 1570 0606 A9       		.byte	-87
+ 1571 0607 0C       		.byte	12
+ 1572 0608 AD       		.byte	-83
+ 1573 0609 F3       		.byte	-13
+ 1574 060a AF       		.byte	-81
+ 1575 060b 0C       		.byte	12
+ 1576 060c B1       		.byte	-79
+ 1577 060d 0F       		.byte	15
+ 1578 060e B2       		.byte	-78
+ 1579 060f 0E       		.byte	14
+ 1580 0610 B4       		.byte	-76
+ 1581 0611 10       		.byte	16
+ 1582 0612 B5       		.byte	-75
+ 1583 0613 EC       		.byte	-20
+ 1584 0614 B6       		.byte	-74
+ 1585 0615 01       		.byte	1
+ 1586 0616 B7       		.byte	-73
+ 1587 0617 1C       		.byte	28
+ 1588 0618 BB       		.byte	-69
+ 1589 0619 A2       		.byte	-94
+ 1590 061a BE       		.byte	-66
+ 1591 061b 10       		.byte	16
+ 1592 061c D6       		.byte	-42
+ 1593 061d 02       		.byte	2
+ 1594 061e D7       		.byte	-41
+ 1595 061f 12       		.byte	18
+ 1596 0620 D8       		.byte	-40
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 29
+
+
+ 1597 0621 04       		.byte	4
+ 1598 0622 D9       		.byte	-39
+ 1599 0623 04       		.byte	4
+ 1600 0624 DB       		.byte	-37
+ 1601 0625 04       		.byte	4
+ 1602 0626 DC       		.byte	-36
+ 1603 0627 11       		.byte	17
+ 1604 0628 DD       		.byte	-35
+ 1605 0629 10       		.byte	16
+ 1606 062a DF       		.byte	-33
+ 1607 062b 01       		.byte	1
+ 1608 062c 00       		.byte	0
+ 1609 062d 0A       		.byte	10
+ 1610 062e 03       		.byte	3
+ 1611 062f 05       		.byte	5
+ 1612 0630 04       		.byte	4
+ 1613 0631 02       		.byte	2
+ 1614 0632 05       		.byte	5
+ 1615 0633 98       		.byte	-104
+ 1616 0634 07       		.byte	7
+ 1617 0635 05       		.byte	5
+ 1618 0636 09       		.byte	9
+ 1619 0637 02       		.byte	2
+ 1620 0638 0D       		.byte	13
+ 1621 0639 08       		.byte	8
+ 1622 063a 0E       		.byte	14
+ 1623 063b 0A       		.byte	10
+ 1624 063c 10       		.byte	16
+ 1625 063d A8       		.byte	-88
+ 1626 063e 14       		.byte	20
+ 1627 063f 10       		.byte	16
+ 1628 0640 15       		.byte	21
+ 1629 0641 12       		.byte	18
+ 1630 0642 1A       		.byte	26
+ 1631 0643 40       		.byte	64
+ 1632 0644 1C       		.byte	28
+ 1633 0645 06       		.byte	6
+ 1634 0646 1D       		.byte	29
+ 1635 0647 0C       		.byte	12
+ 1636 0648 21       		.byte	33
+ 1637 0649 01       		.byte	1
+ 1638 064a 23       		.byte	35
+ 1639 064b 40       		.byte	64
+ 1640 064c 25       		.byte	37
+ 1641 064d 02       		.byte	2
+ 1642 064e 26       		.byte	38
+ 1643 064f 01       		.byte	1
+ 1644 0650 27       		.byte	39
+ 1645 0651 05       		.byte	5
+ 1646 0652 2C       		.byte	44
+ 1647 0653 98       		.byte	-104
+ 1648 0654 2E       		.byte	46
+ 1649 0655 80       		.byte	-128
+ 1650 0656 35       		.byte	53
+ 1651 0657 54       		.byte	84
+ 1652 0658 37       		.byte	55
+ 1653 0659 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 30
+
+
+ 1654 065a 3C       		.byte	60
+ 1655 065b 22       		.byte	34
+ 1656 065c 3E       		.byte	62
+ 1657 065d 08       		.byte	8
+ 1658 065e 3F       		.byte	63
+ 1659 065f 40       		.byte	64
+ 1660 0660 5C       		.byte	92
+ 1661 0661 04       		.byte	4
+ 1662 0662 6C       		.byte	108
+ 1663 0663 01       		.byte	1
+ 1664 0664 6D       		.byte	109
+ 1665 0665 14       		.byte	20
+ 1666 0666 6E       		.byte	110
+ 1667 0667 08       		.byte	8
+ 1668 0668 6F       		.byte	111
+ 1669 0669 08       		.byte	8
+ 1670 066a 74       		.byte	116
+ 1671 066b A8       		.byte	-88
+ 1672 066c 76       		.byte	118
+ 1673 066d 08       		.byte	8
+ 1674 066e 88       		.byte	-120
+ 1675 066f 04       		.byte	4
+ 1676 0670 89       		.byte	-119
+ 1677 0671 5B       		.byte	91
+ 1678 0672 8A       		.byte	-118
+ 1679 0673 80       		.byte	-128
+ 1680 0674 95       		.byte	-107
+ 1681 0675 26       		.byte	38
+ 1682 0676 96       		.byte	-106
+ 1683 0677 40       		.byte	64
+ 1684 0678 98       		.byte	-104
+ 1685 0679 10       		.byte	16
+ 1686 067a 9D       		.byte	-99
+ 1687 067b 98       		.byte	-104
+ 1688 067c 9F       		.byte	-97
+ 1689 067d 01       		.byte	1
+ 1690 067e A0       		.byte	-96
+ 1691 067f 10       		.byte	16
+ 1692 0680 A4       		.byte	-92
+ 1693 0681 05       		.byte	5
+ 1694 0682 A5       		.byte	-91
+ 1695 0683 08       		.byte	8
+ 1696 0684 A7       		.byte	-89
+ 1697 0685 08       		.byte	8
+ 1698 0686 B3       		.byte	-77
+ 1699 0687 04       		.byte	4
+ 1700 0688 C0       		.byte	-64
+ 1701 0689 FF       		.byte	-1
+ 1702 068a C2       		.byte	-62
+ 1703 068b E8       		.byte	-24
+ 1704 068c C4       		.byte	-60
+ 1705 068d 7E       		.byte	126
+ 1706 068e CA       		.byte	-54
+ 1707 068f F0       		.byte	-16
+ 1708 0690 CC       		.byte	-52
+ 1709 0691 F0       		.byte	-16
+ 1710 0692 CE       		.byte	-50
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 31
+
+
+ 1711 0693 F0       		.byte	-16
+ 1712 0694 D6       		.byte	-42
+ 1713 0695 40       		.byte	64
+ 1714 0696 E0       		.byte	-32
+ 1715 0697 08       		.byte	8
+ 1716 0698 E4       		.byte	-28
+ 1717 0699 01       		.byte	1
+ 1718 069a E8       		.byte	-24
+ 1719 069b 80       		.byte	-128
+ 1720 069c EA       		.byte	-22
+ 1721 069d 01       		.byte	1
+ 1722 069e EE       		.byte	-18
+ 1723 069f 08       		.byte	8
+ 1724 06a0 33       		.byte	51
+ 1725 06a1 10       		.byte	16
+ 1726 06a2 35       		.byte	53
+ 1727 06a3 80       		.byte	-128
+ 1728 06a4 CC       		.byte	-52
+ 1729 06a5 30       		.byte	48
+ 1730 06a6 59       		.byte	89
+ 1731 06a7 48       		.byte	72
+ 1732 06a8 66       		.byte	102
+ 1733 06a9 08       		.byte	8
+ 1734 06aa 83       		.byte	-125
+ 1735 06ab 10       		.byte	16
+ 1736 06ac 8D       		.byte	-115
+ 1737 06ad 08       		.byte	8
+ 1738 06ae 8E       		.byte	-114
+ 1739 06af 08       		.byte	8
+ 1740 06b0 9D       		.byte	-99
+ 1741 06b1 80       		.byte	-128
+ 1742 06b2 9F       		.byte	-97
+ 1743 06b3 10       		.byte	16
+ 1744 06b4 D4       		.byte	-44
+ 1745 06b5 80       		.byte	-128
+ 1746 06b6 D6       		.byte	-42
+ 1747 06b7 40       		.byte	64
+ 1748 06b8 D8       		.byte	-40
+ 1749 06b9 80       		.byte	-128
+ 1750 06ba E2       		.byte	-30
+ 1751 06bb 20       		.byte	32
+ 1752 06bc 3E       		.byte	62
+ 1753 06bd 10       		.byte	16
+ 1754 06be 52       		.byte	82
+ 1755 06bf 80       		.byte	-128
+ 1756 06c0 85       		.byte	-123
+ 1757 06c1 40       		.byte	64
+ 1758 06c2 8A       		.byte	-118
+ 1759 06c3 80       		.byte	-128
+ 1760 06c4 9D       		.byte	-99
+ 1761 06c5 C0       		.byte	-64
+ 1762 06c6 CE       		.byte	-50
+ 1763 06c7 20       		.byte	32
+ 1764 06c8 D4       		.byte	-44
+ 1765 06c9 20       		.byte	32
+ 1766 06ca E6       		.byte	-26
+ 1767 06cb 10       		.byte	16
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 32
+
+
+ 1768 06cc 96       		.byte	-106
+ 1769 06cd 10       		.byte	16
+ 1770 06ce 9D       		.byte	-99
+ 1771 06cf 80       		.byte	-128
+ 1772 06d0 50       		.byte	80
+ 1773 06d1 20       		.byte	32
+ 1774 06d2 56       		.byte	86
+ 1775 06d3 20       		.byte	32
+ 1776 06d4 80       		.byte	-128
+ 1777 06d5 04       		.byte	4
+ 1778 06d6 81       		.byte	-127
+ 1779 06d7 80       		.byte	-128
+ 1780 06d8 96       		.byte	-106
+ 1781 06d9 10       		.byte	16
+ 1782 06da 9D       		.byte	-99
+ 1783 06db 80       		.byte	-128
+ 1784 06dc A0       		.byte	-96
+ 1785 06dd 20       		.byte	32
+ 1786 06de B0       		.byte	-80
+ 1787 06df 20       		.byte	32
+ 1788 06e0 D4       		.byte	-44
+ 1789 06e1 60       		.byte	96
+ 1790 06e2 E2       		.byte	-30
+ 1791 06e3 20       		.byte	32
+ 1792 06e4 E6       		.byte	-26
+ 1793 06e5 80       		.byte	-128
+ 1794 06e6 12       		.byte	18
+ 1795 06e7 20       		.byte	32
+ 1796 06e8 16       		.byte	22
+ 1797 06e9 40       		.byte	64
+ 1798 06ea 70       		.byte	112
+ 1799 06eb 04       		.byte	4
+ 1800 06ec 75       		.byte	117
+ 1801 06ed 02       		.byte	2
+ 1802 06ee 82       		.byte	-126
+ 1803 06ef 20       		.byte	32
+ 1804 06f0 86       		.byte	-122
+ 1805 06f1 40       		.byte	64
+ 1806 06f2 90       		.byte	-112
+ 1807 06f3 08       		.byte	8
+ 1808 06f4 99       		.byte	-103
+ 1809 06f5 02       		.byte	2
+ 1810 06f6 AA       		.byte	-86
+ 1811 06f7 10       		.byte	16
+ 1812 06f8 AD       		.byte	-83
+ 1813 06f9 02       		.byte	2
+ 1814 06fa B6       		.byte	-74
+ 1815 06fb 20       		.byte	32
+ 1816 06fc C4       		.byte	-60
+ 1817 06fd 30       		.byte	48
+ 1818 06fe DC       		.byte	-36
+ 1819 06ff 80       		.byte	-128
+ 1820 0700 DE       		.byte	-34
+ 1821 0701 20       		.byte	32
+ 1822 0702 E0       		.byte	-32
+ 1823 0703 10       		.byte	16
+ 1824 0704 E4       		.byte	-28
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 33
+
+
+ 1825 0705 80       		.byte	-128
+ 1826 0706 EA       		.byte	-22
+ 1827 0707 80       		.byte	-128
+ 1828 0708 EE       		.byte	-18
+ 1829 0709 10       		.byte	16
+ 1830 070a 12       		.byte	18
+ 1831 070b 20       		.byte	32
+ 1832 070c 13       		.byte	19
+ 1833 070d 20       		.byte	32
+ 1834 070e 14       		.byte	20
+ 1835 070f 20       		.byte	32
+ 1836 0710 7B       		.byte	123
+ 1837 0711 10       		.byte	16
+ 1838 0712 7F       		.byte	127
+ 1839 0713 40       		.byte	64
+ 1840 0714 82       		.byte	-126
+ 1841 0715 20       		.byte	32
+ 1842 0716 87       		.byte	-121
+ 1843 0717 40       		.byte	64
+ 1844 0718 C4       		.byte	-60
+ 1845 0719 0E       		.byte	14
+ 1846 071a DE       		.byte	-34
+ 1847 071b 03       		.byte	3
+ 1848 071c 10       		.byte	16
+ 1849 071d 40       		.byte	64
+ 1850 071e 73       		.byte	115
+ 1851 071f 40       		.byte	64
+ 1852 0720 83       		.byte	-125
+ 1853 0721 10       		.byte	16
+ 1854 0722 87       		.byte	-121
+ 1855 0723 40       		.byte	64
+ 1856 0724 88       		.byte	-120
+ 1857 0725 40       		.byte	64
+ 1858 0726 93       		.byte	-109
+ 1859 0727 40       		.byte	64
+ 1860 0728 97       		.byte	-105
+ 1861 0729 80       		.byte	-128
+ 1862 072a A7       		.byte	-89
+ 1863 072b 10       		.byte	16
+ 1864 072c AB       		.byte	-85
+ 1865 072d 20       		.byte	32
+ 1866 072e AC       		.byte	-84
+ 1867 072f 20       		.byte	32
+ 1868 0730 C4       		.byte	-60
+ 1869 0731 08       		.byte	8
+ 1870 0732 DC       		.byte	-36
+ 1871 0733 01       		.byte	1
+ 1872 0734 E2       		.byte	-30
+ 1873 0735 01       		.byte	1
+ 1874 0736 00       		.byte	0
+ 1875 0737 03       		.byte	3
+ 1876 0738 01       		.byte	1
+ 1877 0739 01       		.byte	1
+ 1878 073a 08       		.byte	8
+ 1879 073b 01       		.byte	1
+ 1880 073c 09       		.byte	9
+ 1881 073d 01       		.byte	1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 34
+
+
+ 1882 073e 0A       		.byte	10
+ 1883 073f 03       		.byte	3
+ 1884 0740 10       		.byte	16
+ 1885 0741 03       		.byte	3
+ 1886 0742 1A       		.byte	26
+ 1887 0743 03       		.byte	3
+ 1888 0744 1C       		.byte	28
+ 1889 0745 02       		.byte	2
+ 1890 0746 00       		.byte	0
+ 1891 0747 0F       		.byte	15
+ 1892 0748 03       		.byte	3
+ 1893 0749 C0       		.byte	-64
+ 1894 074a 00       		.byte	0
+ 1895 074b 00       		.byte	0
+ 1896 074c 02       		.byte	2
+ 1897 074d 88       		.byte	-120
+ 1898 074e 00       		.byte	0
+ 1899 074f 00       		.byte	0
+ 1900 0750 43       		.byte	67
+ 1901 0751 00       		.byte	0
+ 1902 0752 00       		.byte	0
+ 1903 0753 00       		.byte	0
+ 1904 0754 01       		.byte	1
+ 1905 0755 A4       		.byte	-92
+ 1906 0756 A4       		.byte	-92
+ 1907 0757 00       		.byte	0
+ 1908 0758 A4       		.byte	-92
+ 1909 0759 00       		.byte	0
+ 1910 075a 00       		.byte	0
+ 1911 075b 00       		.byte	0
+ 1912 075c 80       		.byte	-128
+ 1913 075d 00       		.byte	0
+ 1914 075e 40       		.byte	64
+ 1915 075f 88       		.byte	-120
+ 1916 0760 8B       		.byte	-117
+ 1917 0761 00       		.byte	0
+ 1918 0762 8B       		.byte	-117
+ 1919 0763 00       		.byte	0
+ 1920 0764 00       		.byte	0
+ 1921 0765 00       		.byte	0
+ 1922 0766 00       		.byte	0
+ 1923 0767 00       		.byte	0
+ 1924 0768 00       		.byte	0
+ 1925 0769 09       		.byte	9
+ 1926 076a 09       		.byte	9
+ 1927 076b 00       		.byte	0
+ 1928 076c 09       		.byte	9
+ 1929 076d 00       		.byte	0
+ 1930 076e 00       		.byte	0
+ 1931 076f 00       		.byte	0
+ 1932 0770 04       		.byte	4
+ 1933 0771 0B       		.byte	11
+ 1934 0772 0B       		.byte	11
+ 1935 0773 00       		.byte	0
+ 1936 0774 00       		.byte	0
+ 1937 0775 00       		.byte	0
+ 1938 0776 00       		.byte	0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 35
+
+
+ 1939 0777 00       		.byte	0
+ 1940 0778 01       		.byte	1
+ 1941 0779 00       		.byte	0
+ 1942 077a 00       		.byte	0
+ 1943 077b 00       		.byte	0
+ 1944 077c 00       		.byte	0
+ 1945 077d 00       		.byte	0
+ 1946 077e 00       		.byte	0
+ 1947 077f 00       		.byte	0
+ 1948 0780 10       		.byte	16
+ 1949 0781 00       		.byte	0
+ 1950 0782 00       		.byte	0
+ 1951 0783 00       		.byte	0
+ 1952 0784 00       		.byte	0
+ 1953 0785 00       		.byte	0
+ 1954 0786 00       		.byte	0
+ 1955 0787 00       		.byte	0
+ 1956              		.section	.cywolatch,"a",%progbits
+ 1957              		.align	2
+ 1958              		.type	cy_meta_wonvl, %object
+ 1959              		.size	cy_meta_wonvl, 4
+ 1960              	cy_meta_wonvl:
+ 1961 0000 BC       		.byte	-68
+ 1962 0001 90       		.byte	-112
+ 1963 0002 AC       		.byte	-84
+ 1964 0003 AF       		.byte	-81
+ 1965              		.section	.cycustnvl,"a",%progbits
+ 1966              		.align	2
+ 1967              		.type	cy_meta_custnvl, %object
+ 1968              		.size	cy_meta_custnvl, 4
+ 1969              	cy_meta_custnvl:
+ 1970 0000 00       		.byte	0
+ 1971 0001 00       		.byte	0
+ 1972 0002 40       		.byte	64
+ 1973 0003 05       		.byte	5
+ 1974              		.section	.cymeta,"a",%progbits
+ 1975              		.align	2
+ 1976              		.type	cy_metadata, %object
+ 1977              		.size	cy_metadata, 12
+ 1978              	cy_metadata:
+ 1979 0000 00       		.byte	0
+ 1980 0001 01       		.byte	1
+ 1981 0002 2E       		.byte	46
+ 1982 0003 16       		.byte	22
+ 1983 0004 10       		.byte	16
+ 1984 0005 69       		.byte	105
+ 1985 0006 00       		.byte	0
+ 1986 0007 01       		.byte	1
+ 1987 0008 00       		.byte	0
+ 1988 0009 00       		.byte	0
+ 1989 000a 00       		.byte	0
+ 1990 000b 00       		.byte	0
+ 1991              		.section	.cyflashprotect,"a",%progbits
+ 1992              		.align	2
+ 1993              		.type	cy_meta_flashprotect, %object
+ 1994              		.size	cy_meta_flashprotect, 256
+ 1995              	cy_meta_flashprotect:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 36
+
+
+ 1996 0000 00000000 		.space	256
+ 1996      00000000 
+ 1996      00000000 
+ 1996      00000000 
+ 1996      00000000 
+ 1997              		.text
+ 1998              	.Letext0:
+ 1999              		.file 1 "Generated_Source\\PSoC5\\cymetadata.c"
+ 2000              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 2001              		.section	.debug_info,"",%progbits
+ 2002              	.Ldebug_info0:
+ 2003 0000 3B010000 		.4byte	0x13b
+ 2004 0004 0400     		.2byte	0x4
+ 2005 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 2006 000a 04       		.byte	0x4
+ 2007 000b 01       		.uleb128 0x1
+ 2008 000c 6E000000 		.4byte	.LASF18
+ 2009 0010 01       		.byte	0x1
+ 2010 0011 E6010000 		.4byte	.LASF19
+ 2011 0015 84010000 		.4byte	.LASF20
+ 2012 0019 00000000 		.4byte	.Ldebug_line0
+ 2013 001d 02       		.uleb128 0x2
+ 2014 001e 01       		.byte	0x1
+ 2015 001f 06       		.byte	0x6
+ 2016 0020 78010000 		.4byte	.LASF0
+ 2017 0024 02       		.uleb128 0x2
+ 2018 0025 01       		.byte	0x1
+ 2019 0026 08       		.byte	0x8
+ 2020 0027 12000000 		.4byte	.LASF1
+ 2021 002b 02       		.uleb128 0x2
+ 2022 002c 02       		.byte	0x2
+ 2023 002d 05       		.byte	0x5
+ 2024 002e 5F010000 		.4byte	.LASF2
+ 2025 0032 02       		.uleb128 0x2
+ 2026 0033 02       		.byte	0x2
+ 2027 0034 07       		.byte	0x7
+ 2028 0035 32000000 		.4byte	.LASF3
+ 2029 0039 02       		.uleb128 0x2
+ 2030 003a 04       		.byte	0x4
+ 2031 003b 05       		.byte	0x5
+ 2032 003c 6F010000 		.4byte	.LASF4
+ 2033 0040 02       		.uleb128 0x2
+ 2034 0041 04       		.byte	0x4
+ 2035 0042 07       		.byte	0x7
+ 2036 0043 20000000 		.4byte	.LASF5
+ 2037 0047 02       		.uleb128 0x2
+ 2038 0048 08       		.byte	0x8
+ 2039 0049 05       		.byte	0x5
+ 2040 004a 4C010000 		.4byte	.LASF6
+ 2041 004e 02       		.uleb128 0x2
+ 2042 004f 08       		.byte	0x8
+ 2043 0050 07       		.byte	0x7
+ 2044 0051 09010000 		.4byte	.LASF7
+ 2045 0055 03       		.uleb128 0x3
+ 2046 0056 04       		.byte	0x4
+ 2047 0057 05       		.byte	0x5
+ 2048 0058 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 37
+
+
+ 2049 005c 02       		.uleb128 0x2
+ 2050 005d 04       		.byte	0x4
+ 2051 005e 07       		.byte	0x7
+ 2052 005f FC000000 		.4byte	.LASF8
+ 2053 0063 04       		.uleb128 0x4
+ 2054 0064 69010000 		.4byte	.LASF21
+ 2055 0068 02       		.byte	0x2
+ 2056 0069 9201     		.2byte	0x192
+ 2057 006b 24000000 		.4byte	0x24
+ 2058 006f 02       		.uleb128 0x2
+ 2059 0070 04       		.byte	0x4
+ 2060 0071 04       		.byte	0x4
+ 2061 0072 0C000000 		.4byte	.LASF9
+ 2062 0076 02       		.uleb128 0x2
+ 2063 0077 08       		.byte	0x8
+ 2064 0078 04       		.byte	0x4
+ 2065 0079 45000000 		.4byte	.LASF10
+ 2066 007d 02       		.uleb128 0x2
+ 2067 007e 01       		.byte	0x1
+ 2068 007f 08       		.byte	0x8
+ 2069 0080 5A010000 		.4byte	.LASF11
+ 2070 0084 05       		.uleb128 0x5
+ 2071 0085 63000000 		.4byte	0x63
+ 2072 0089 95000000 		.4byte	0x95
+ 2073 008d 06       		.uleb128 0x6
+ 2074 008e 95000000 		.4byte	0x95
+ 2075 0092 8707     		.2byte	0x787
+ 2076 0094 00       		.byte	0
+ 2077 0095 02       		.uleb128 0x2
+ 2078 0096 04       		.byte	0x4
+ 2079 0097 07       		.byte	0x7
+ 2080 0098 43010000 		.4byte	.LASF12
+ 2081 009c 07       		.uleb128 0x7
+ 2082 009d 5C000000 		.4byte	.LASF13
+ 2083 00a1 01       		.byte	0x1
+ 2084 00a2 1F       		.byte	0x1f
+ 2085 00a3 AD000000 		.4byte	0xad
+ 2086 00a7 05       		.uleb128 0x5
+ 2087 00a8 03       		.byte	0x3
+ 2088 00a9 00000000 		.4byte	cy_meta_configecc
+ 2089 00ad 08       		.uleb128 0x8
+ 2090 00ae 84000000 		.4byte	0x84
+ 2091 00b2 05       		.uleb128 0x5
+ 2092 00b3 63000000 		.4byte	0x63
+ 2093 00b7 C2000000 		.4byte	0xc2
+ 2094 00bb 09       		.uleb128 0x9
+ 2095 00bc 95000000 		.4byte	0x95
+ 2096 00c0 03       		.byte	0x3
+ 2097 00c1 00       		.byte	0
+ 2098 00c2 0A       		.uleb128 0xa
+ 2099 00c3 4C000000 		.4byte	.LASF14
+ 2100 00c7 01       		.byte	0x1
+ 2101 00c8 1D01     		.2byte	0x11d
+ 2102 00ca D4000000 		.4byte	0xd4
+ 2103 00ce 05       		.uleb128 0x5
+ 2104 00cf 03       		.byte	0x3
+ 2105 00d0 00000000 		.4byte	cy_meta_custnvl
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 38
+
+
+ 2106 00d4 08       		.uleb128 0x8
+ 2107 00d5 B2000000 		.4byte	0xb2
+ 2108 00d9 0A       		.uleb128 0xa
+ 2109 00da 35010000 		.4byte	.LASF15
+ 2110 00de 01       		.byte	0x1
+ 2111 00df 2B01     		.2byte	0x12b
+ 2112 00e1 EB000000 		.4byte	0xeb
+ 2113 00e5 05       		.uleb128 0x5
+ 2114 00e6 03       		.byte	0x3
+ 2115 00e7 00000000 		.4byte	cy_meta_wonvl
+ 2116 00eb 08       		.uleb128 0x8
+ 2117 00ec B2000000 		.4byte	0xb2
+ 2118 00f0 05       		.uleb128 0x5
+ 2119 00f1 63000000 		.4byte	0x63
+ 2120 00f5 00010000 		.4byte	0x100
+ 2121 00f9 09       		.uleb128 0x9
+ 2122 00fa 95000000 		.4byte	0x95
+ 2123 00fe FF       		.byte	0xff
+ 2124 00ff 00       		.byte	0
+ 2125 0100 0A       		.uleb128 0xa
+ 2126 0101 20010000 		.4byte	.LASF16
+ 2127 0105 01       		.byte	0x1
+ 2128 0106 3901     		.2byte	0x139
+ 2129 0108 12010000 		.4byte	0x112
+ 2130 010c 05       		.uleb128 0x5
+ 2131 010d 03       		.byte	0x3
+ 2132 010e 00000000 		.4byte	cy_meta_flashprotect
+ 2133 0112 08       		.uleb128 0x8
+ 2134 0113 F0000000 		.4byte	0xf0
+ 2135 0117 05       		.uleb128 0x5
+ 2136 0118 63000000 		.4byte	0x63
+ 2137 011c 27010000 		.4byte	0x127
+ 2138 0120 09       		.uleb128 0x9
+ 2139 0121 95000000 		.4byte	0x95
+ 2140 0125 0B       		.byte	0xb
+ 2141 0126 00       		.byte	0
+ 2142 0127 0A       		.uleb128 0xa
+ 2143 0128 00000000 		.4byte	.LASF17
+ 2144 012c 01       		.byte	0x1
+ 2145 012d 6601     		.2byte	0x166
+ 2146 012f 39010000 		.4byte	0x139
+ 2147 0133 05       		.uleb128 0x5
+ 2148 0134 03       		.byte	0x3
+ 2149 0135 00000000 		.4byte	cy_metadata
+ 2150 0139 08       		.uleb128 0x8
+ 2151 013a 17010000 		.4byte	0x117
+ 2152 013e 00       		.byte	0
+ 2153              		.section	.debug_abbrev,"",%progbits
+ 2154              	.Ldebug_abbrev0:
+ 2155 0000 01       		.uleb128 0x1
+ 2156 0001 11       		.uleb128 0x11
+ 2157 0002 01       		.byte	0x1
+ 2158 0003 25       		.uleb128 0x25
+ 2159 0004 0E       		.uleb128 0xe
+ 2160 0005 13       		.uleb128 0x13
+ 2161 0006 0B       		.uleb128 0xb
+ 2162 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 39
+
+
+ 2163 0008 0E       		.uleb128 0xe
+ 2164 0009 1B       		.uleb128 0x1b
+ 2165 000a 0E       		.uleb128 0xe
+ 2166 000b 10       		.uleb128 0x10
+ 2167 000c 17       		.uleb128 0x17
+ 2168 000d 00       		.byte	0
+ 2169 000e 00       		.byte	0
+ 2170 000f 02       		.uleb128 0x2
+ 2171 0010 24       		.uleb128 0x24
+ 2172 0011 00       		.byte	0
+ 2173 0012 0B       		.uleb128 0xb
+ 2174 0013 0B       		.uleb128 0xb
+ 2175 0014 3E       		.uleb128 0x3e
+ 2176 0015 0B       		.uleb128 0xb
+ 2177 0016 03       		.uleb128 0x3
+ 2178 0017 0E       		.uleb128 0xe
+ 2179 0018 00       		.byte	0
+ 2180 0019 00       		.byte	0
+ 2181 001a 03       		.uleb128 0x3
+ 2182 001b 24       		.uleb128 0x24
+ 2183 001c 00       		.byte	0
+ 2184 001d 0B       		.uleb128 0xb
+ 2185 001e 0B       		.uleb128 0xb
+ 2186 001f 3E       		.uleb128 0x3e
+ 2187 0020 0B       		.uleb128 0xb
+ 2188 0021 03       		.uleb128 0x3
+ 2189 0022 08       		.uleb128 0x8
+ 2190 0023 00       		.byte	0
+ 2191 0024 00       		.byte	0
+ 2192 0025 04       		.uleb128 0x4
+ 2193 0026 16       		.uleb128 0x16
+ 2194 0027 00       		.byte	0
+ 2195 0028 03       		.uleb128 0x3
+ 2196 0029 0E       		.uleb128 0xe
+ 2197 002a 3A       		.uleb128 0x3a
+ 2198 002b 0B       		.uleb128 0xb
+ 2199 002c 3B       		.uleb128 0x3b
+ 2200 002d 05       		.uleb128 0x5
+ 2201 002e 49       		.uleb128 0x49
+ 2202 002f 13       		.uleb128 0x13
+ 2203 0030 00       		.byte	0
+ 2204 0031 00       		.byte	0
+ 2205 0032 05       		.uleb128 0x5
+ 2206 0033 01       		.uleb128 0x1
+ 2207 0034 01       		.byte	0x1
+ 2208 0035 49       		.uleb128 0x49
+ 2209 0036 13       		.uleb128 0x13
+ 2210 0037 01       		.uleb128 0x1
+ 2211 0038 13       		.uleb128 0x13
+ 2212 0039 00       		.byte	0
+ 2213 003a 00       		.byte	0
+ 2214 003b 06       		.uleb128 0x6
+ 2215 003c 21       		.uleb128 0x21
+ 2216 003d 00       		.byte	0
+ 2217 003e 49       		.uleb128 0x49
+ 2218 003f 13       		.uleb128 0x13
+ 2219 0040 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 40
+
+
+ 2220 0041 05       		.uleb128 0x5
+ 2221 0042 00       		.byte	0
+ 2222 0043 00       		.byte	0
+ 2223 0044 07       		.uleb128 0x7
+ 2224 0045 34       		.uleb128 0x34
+ 2225 0046 00       		.byte	0
+ 2226 0047 03       		.uleb128 0x3
+ 2227 0048 0E       		.uleb128 0xe
+ 2228 0049 3A       		.uleb128 0x3a
+ 2229 004a 0B       		.uleb128 0xb
+ 2230 004b 3B       		.uleb128 0x3b
+ 2231 004c 0B       		.uleb128 0xb
+ 2232 004d 49       		.uleb128 0x49
+ 2233 004e 13       		.uleb128 0x13
+ 2234 004f 3F       		.uleb128 0x3f
+ 2235 0050 19       		.uleb128 0x19
+ 2236 0051 02       		.uleb128 0x2
+ 2237 0052 18       		.uleb128 0x18
+ 2238 0053 00       		.byte	0
+ 2239 0054 00       		.byte	0
+ 2240 0055 08       		.uleb128 0x8
+ 2241 0056 26       		.uleb128 0x26
+ 2242 0057 00       		.byte	0
+ 2243 0058 49       		.uleb128 0x49
+ 2244 0059 13       		.uleb128 0x13
+ 2245 005a 00       		.byte	0
+ 2246 005b 00       		.byte	0
+ 2247 005c 09       		.uleb128 0x9
+ 2248 005d 21       		.uleb128 0x21
+ 2249 005e 00       		.byte	0
+ 2250 005f 49       		.uleb128 0x49
+ 2251 0060 13       		.uleb128 0x13
+ 2252 0061 2F       		.uleb128 0x2f
+ 2253 0062 0B       		.uleb128 0xb
+ 2254 0063 00       		.byte	0
+ 2255 0064 00       		.byte	0
+ 2256 0065 0A       		.uleb128 0xa
+ 2257 0066 34       		.uleb128 0x34
+ 2258 0067 00       		.byte	0
+ 2259 0068 03       		.uleb128 0x3
+ 2260 0069 0E       		.uleb128 0xe
+ 2261 006a 3A       		.uleb128 0x3a
+ 2262 006b 0B       		.uleb128 0xb
+ 2263 006c 3B       		.uleb128 0x3b
+ 2264 006d 05       		.uleb128 0x5
+ 2265 006e 49       		.uleb128 0x49
+ 2266 006f 13       		.uleb128 0x13
+ 2267 0070 3F       		.uleb128 0x3f
+ 2268 0071 19       		.uleb128 0x19
+ 2269 0072 02       		.uleb128 0x2
+ 2270 0073 18       		.uleb128 0x18
+ 2271 0074 00       		.byte	0
+ 2272 0075 00       		.byte	0
+ 2273 0076 00       		.byte	0
+ 2274              		.section	.debug_aranges,"",%progbits
+ 2275 0000 14000000 		.4byte	0x14
+ 2276 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 41
+
+
+ 2277 0006 00000000 		.4byte	.Ldebug_info0
+ 2278 000a 04       		.byte	0x4
+ 2279 000b 00       		.byte	0
+ 2280 000c 0000     		.2byte	0
+ 2281 000e 0000     		.2byte	0
+ 2282 0010 00000000 		.4byte	0
+ 2283 0014 00000000 		.4byte	0
+ 2284              		.section	.debug_line,"",%progbits
+ 2285              	.Ldebug_line0:
+ 2286 0000 4D000000 		.section	.debug_str,"MS",%progbits,1
+ 2286      02004700 
+ 2286      00000201 
+ 2286      FB0E0D00 
+ 2286      01010101 
+ 2287              	.LASF17:
+ 2288 0000 63795F6D 		.ascii	"cy_metadata\000"
+ 2288      65746164 
+ 2288      61746100 
+ 2289              	.LASF9:
+ 2290 000c 666C6F61 		.ascii	"float\000"
+ 2290      7400
+ 2291              	.LASF1:
+ 2292 0012 756E7369 		.ascii	"unsigned char\000"
+ 2292      676E6564 
+ 2292      20636861 
+ 2292      7200
+ 2293              	.LASF5:
+ 2294 0020 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2294      20756E73 
+ 2294      69676E65 
+ 2294      6420696E 
+ 2294      7400
+ 2295              	.LASF3:
+ 2296 0032 73686F72 		.ascii	"short unsigned int\000"
+ 2296      7420756E 
+ 2296      7369676E 
+ 2296      65642069 
+ 2296      6E7400
+ 2297              	.LASF10:
+ 2298 0045 646F7562 		.ascii	"double\000"
+ 2298      6C6500
+ 2299              	.LASF14:
+ 2300 004c 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 2300      6574615F 
+ 2300      63757374 
+ 2300      6E766C00 
+ 2301              	.LASF13:
+ 2302 005c 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 2302      6574615F 
+ 2302      636F6E66 
+ 2302      69676563 
+ 2302      6300
+ 2303              	.LASF18:
+ 2304 006e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2304      4320342E 
+ 2304      392E3320 
+ 2304      32303135 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 42
+
+
+ 2304      30333033 
+ 2305 00a1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2305      20726576 
+ 2305      6973696F 
+ 2305      6E203232 
+ 2305      31323230 
+ 2306 00d4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2306      66756E63 
+ 2306      74696F6E 
+ 2306      2D736563 
+ 2306      74696F6E 
+ 2307              	.LASF8:
+ 2308 00fc 756E7369 		.ascii	"unsigned int\000"
+ 2308      676E6564 
+ 2308      20696E74 
+ 2308      00
+ 2309              	.LASF7:
+ 2310 0109 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2310      206C6F6E 
+ 2310      6720756E 
+ 2310      7369676E 
+ 2310      65642069 
+ 2311              	.LASF16:
+ 2312 0120 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 2312      6574615F 
+ 2312      666C6173 
+ 2312      6870726F 
+ 2312      74656374 
+ 2313              	.LASF15:
+ 2314 0135 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 2314      6574615F 
+ 2314      776F6E76 
+ 2314      6C00
+ 2315              	.LASF12:
+ 2316 0143 73697A65 		.ascii	"sizetype\000"
+ 2316      74797065 
+ 2316      00
+ 2317              	.LASF6:
+ 2318 014c 6C6F6E67 		.ascii	"long long int\000"
+ 2318      206C6F6E 
+ 2318      6720696E 
+ 2318      7400
+ 2319              	.LASF11:
+ 2320 015a 63686172 		.ascii	"char\000"
+ 2320      00
+ 2321              	.LASF2:
+ 2322 015f 73686F72 		.ascii	"short int\000"
+ 2322      7420696E 
+ 2322      7400
+ 2323              	.LASF21:
+ 2324 0169 75696E74 		.ascii	"uint8\000"
+ 2324      3800
+ 2325              	.LASF4:
+ 2326 016f 6C6F6E67 		.ascii	"long int\000"
+ 2326      20696E74 
+ 2326      00
+ 2327              	.LASF0:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccn8rRAy.s 			page 43
+
+
+ 2328 0178 7369676E 		.ascii	"signed char\000"
+ 2328      65642063 
+ 2328      68617200 
+ 2329              	.LASF20:
+ 2330 0184 433A5C55 		.ascii	"C:\\Users\\Laptop\\Desktop\\Berkeley_Spring2017\\ME"
+ 2330      73657273 
+ 2330      5C4C6170 
+ 2330      746F705C 
+ 2330      4465736B 
+ 2331 01b2 20313335 		.ascii	" 135\\Project\\github\\CubeControl\\BalancingCube.c"
+ 2331      5C50726F 
+ 2331      6A656374 
+ 2331      5C676974 
+ 2331      6875625C 
+ 2332 01e1 7964736E 		.ascii	"ydsn\000"
+ 2332      00
+ 2333              	.LASF19:
+ 2334 01e6 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 2334      72617465 
+ 2334      645F536F 
+ 2334      75726365 
+ 2334      5C50536F 
+ 2335              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

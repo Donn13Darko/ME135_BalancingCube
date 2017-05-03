@@ -1,0 +1,85 @@
+--------------- Rebuild Started: 05/03/2017 00:27:48 Project: BalancingCube, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\main.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\MPU6050.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2C.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\blue.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\cymetadata.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SCL.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SDA.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\accel_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\accel_ISRPin.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Cm3Start.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\CyDmac.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\CyFlash.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\CyLib.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\cyPm.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\CySpc.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\cyutils.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM_BOOT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM_INT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM_SLAVE.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\I2CM_MASTER.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\flywheel_clock.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\accelUP_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\accel_timer.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\accel_timer_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_PWM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_PWM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_PWM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_PWM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_PWM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_PWM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_pwm_servo.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_pwm_fw.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_pwm_fw.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_pwm_servo.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_pwm_fw.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_pwm_servo.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_INT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_BOOT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_IntClock.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\blueRX_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_RPM_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_RPM_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_RPM_ISR.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw2_RPM_ISRPin.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw3_RPM_ISRPin.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\fw1_RPM_ISRPin.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\BalancingCube.hex"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\BalancingCube.elf"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\BalancingCube.map"
+Deleting file ".\BalancingCube.cycdx"
+Deleting file ".\BalancingCube.svd"
+Deleting file ".\BalancingCube.rpt"
+Deleting file ".\BalancingCube_timing.html"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
+cydsfit.exe -.appdatapath "C:\Users\Laptop\AppData\Local\Cypress Semiconductor\PSoC Creator\4.0" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\BalancingCube.cyprj" -d CY8C5888LTI-LP097 -s "C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\Generated_Source\PSoC5" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+HDL Generation...
+Synthesis...
+Tech Mapping...
+ADD: pft.M0040: information: The following 10 pin(s) will be assigned a location by the fitter: accel_ISRPin(0), fw1_pwm_fw(0), fw1_pwm_servo(0), fw1_RPM_ISRPin(0), fw2_pwm_fw(0), fw2_pwm_servo(0), fw2_RPM_ISRPin(0), fw3_pwm_fw(0), fw3_pwm_servo(0), fw3_RPM_ISRPin(0)
+Analog Placement...
+Analog Routing...
+Analog Code Generation...
+Digital Placement...
+Digital Routing...
+Bitstream Generation...
+Bitstream Verification...
+Static timing analysis...
+API Generation...
+Dependency Generation...
+Cleanup...
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
+main.c:55:6: error: variably modified 'buff' at file scope
+ char buff[buff_len];
+      ^
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+--------------- Rebuild Failed: 05/03/2017 00:27:59 ---------------

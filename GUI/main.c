@@ -429,13 +429,13 @@ ConfigConnectDlgProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
           {
             connected_device = update_device;
             SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Connected!");
-            Sleep (1000);
+            Sleep (250);
             SendMessage (hwnd, WM_CLOSE, 0, 0);
             return TRUE;
           } else
           {
             SetDlgItemText (hwnd, ID_CONNECT_STATUS, "Failed Connecting New!");
-            Sleep (1000);
+            Sleep (250);
             SendMessage (hwnd, WM_CLOSE, 0, 0);
             return FALSE;
           }

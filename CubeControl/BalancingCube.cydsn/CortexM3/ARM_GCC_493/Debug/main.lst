@@ -1,0 +1,2557 @@
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.blueRX_ISR,"ax",%progbits
+  19              		.align	2
+  20              		.global	blueRX_ISR
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	blueRX_ISR, %function
+  24              	blueRX_ISR:
+  25              	.LFB64:
+  26              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdint.h>
+  14:main.c        **** #include "cytypes.h"
+  15:main.c        **** #include "MPU6050.h"
+  16:main.c        **** 
+  17:main.c        **** /* Various definitions defined structures. */
+  18:main.c        **** /* Priority ranges from
+  19:main.c        ****     0-7 on PSOC 5LP
+  20:main.c        ****     0-3 on PSOC 4 */
+  21:main.c        **** #define DEFAULT_PRIORITY     (5u)
+  22:main.c        **** #define LOW_PRIORITY         (7u)
+  23:main.c        **** #define MEDIUM_PRIORITY      (3u)
+  24:main.c        **** #define HIGH_PRIORITY        (1u)
+  25:main.c        **** 
+  26:main.c        **** #define I2C_SLAVE_ADDRESS    0x68
+  27:main.c        **** 
+  28:main.c        **** #define MPU6050_PAUSE        500
+  29:main.c        **** #define BLUE_PAUSE           600
+  30:main.c        **** #define SLEEP_PAUSE          1000
+  31:main.c        **** 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 2
+
+
+  32:main.c        **** #define x_motion_ISR         (1u)
+  33:main.c        **** #define y_motion_ISR         (2u)
+  34:main.c        **** #define z_motion_ISR         (3u)
+  35:main.c        **** 
+  36:main.c        **** /* Function prototypes. */
+  37:main.c        **** CY_ISR_PROTO (blueRX_ISR);
+  38:main.c        **** CY_ISR_PROTO (accelUP_ISR);
+  39:main.c        **** CY_ISR_PROTO (motion_handler);
+  40:main.c        **** CY_ISR_PROTO (rpm_handler);
+  41:main.c        **** 
+  42:main.c        **** void update_motion ();
+  43:main.c        **** 
+  44:main.c        **** /* Global Variables. */
+  45:main.c        **** uint8 errorStatus = (0u);
+  46:main.c        **** 
+  47:main.c        **** int16_t ax, ay, az;
+  48:main.c        **** int16_t gx, gy, gz;
+  49:main.c        **** int16_t rpmx, rpmy, rpmz;
+  50:main.c        **** uint8_t accel_threshholds[6];
+  51:main.c        **** 
+  52:main.c        **** /*** MAIN FUNCTION ***/
+  53:main.c        **** int main(void)
+  54:main.c        **** {   
+  55:main.c        ****     /* Enable the Global interrupt. */
+  56:main.c        ****     CyGlobalIntEnable;
+  57:main.c        ****     
+  58:main.c        ****     /* Start I2C Communication Line. */
+  59:main.c        ****     I2CM_Start ();
+  60:main.c        ****     
+  61:main.c        ****     /* Start UART Communication. */
+  62:main.c        ****     UART_Start ();
+  63:main.c        ****     CyDelay (BLUE_PAUSE);
+  64:main.c        ****     
+  65:main.c        ****     /* Setup & Connect to MPU6050. */
+  66:main.c        ****     MPU6050_init ();
+  67:main.c        **** 	MPU6050_initialize ();
+  68:main.c        ****     while (!MPU6050_testConnection ())
+  69:main.c        ****     {
+  70:main.c        ****         CyDelay (MPU6050_PAUSE);
+  71:main.c        ****     }
+  72:main.c        ****    
+  73:main.c        ****     /* Setup UART (hardware) interrupt. */
+  74:main.c        ****     blueRX_ISR_StartEx (blueRX_ISR);
+  75:main.c        ****     blueRX_ISR_SetPriority (LOW_PRIORITY);
+  76:main.c        ****     
+  77:main.c        ****     /* Setup accel (timer) interrupt. */
+  78:main.c        ****     accelUP_ISR_StartEx (accelUP_ISR);
+  79:main.c        ****     accelUP_ISR_SetPriority (HIGH_PRIORITY);
+  80:main.c        ****     
+  81:main.c        ****     /* Setup x motion (software) interrupt. */
+  82:main.c        ****     CyIntSetVector (x_motion_ISR, motion_handler);
+  83:main.c        ****     CyIntSetPriority (x_motion_ISR, DEFAULT_PRIORITY);
+  84:main.c        ****     CyIntEnable (x_motion_ISR);
+  85:main.c        ****     
+  86:main.c        ****     /* Setup y motion (software) interrupt. */
+  87:main.c        ****     CyIntSetVector (y_motion_ISR, motion_handler);
+  88:main.c        ****     CyIntSetPriority (y_motion_ISR, DEFAULT_PRIORITY);
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 3
+
+
+  89:main.c        ****     CyIntEnable (y_motion_ISR);
+  90:main.c        ****     
+  91:main.c        ****     /* Setup z motion (software) interrupt. */
+  92:main.c        ****     CyIntSetVector (z_motion_ISR, motion_handler);
+  93:main.c        ****     CyIntSetPriority (z_motion_ISR, DEFAULT_PRIORITY);
+  94:main.c        ****     CyIntEnable (z_motion_ISR);
+  95:main.c        ****     
+  96:main.c        ****     /* Setup flywheel RPM ISRs. */
+  97:main.c        ****     fw1_RPM_ISR_StartEx (rpm_handler);
+  98:main.c        ****     fw2_RPM_ISR_StartEx (rpm_handler);
+  99:main.c        ****     fw3_RPM_ISR_StartEx (rpm_handler);
+ 100:main.c        ****     fw1_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 101:main.c        ****     fw2_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 102:main.c        ****     fw3_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 103:main.c        ****     
+ 104:main.c        ****     /* Start accel timer. */
+ 105:main.c        ****     accel_timer_Start ();
+ 106:main.c        **** 
+ 107:main.c        ****     for(;;)
+ 108:main.c        ****     {
+ 109:main.c        ****         CyDelay (SLEEP_PAUSE);
+ 110:main.c        ****     }
+ 111:main.c        **** }
+ 112:main.c        **** 
+ 113:main.c        **** /*** FUNCTION SECTION ***/
+ 114:main.c        **** 
+ 115:main.c        **** 
+ 116:main.c        **** /*** ISR SECTION ***/
+ 117:main.c        **** 
+ 118:main.c        **** CY_ISR (blueRX_ISR)
+ 119:main.c        **** {    
+  27              		.loc 1 119 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  35              	.L4:
+ 120:main.c        ****     uint8 rxStatus, rxData;           
+ 121:main.c        ****     
+ 122:main.c        ****     do
+ 123:main.c        ****     {
+ 124:main.c        ****         /* Read receiver status register */
+ 125:main.c        ****         rxStatus = UART_RXSTATUS_REG;
+  36              		.loc 1 125 0
+  37 0002 0F4B     		ldr	r3, .L6
+  38 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  39 0006 DBB2     		uxtb	r3, r3
+  40              	.LVL0:
+ 126:main.c        **** 
+ 127:main.c        ****         if ((rxStatus & (UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR |
+  41              		.loc 1 127 0
+  42 0008 13F01E0F 		tst	r3, #30
+  43 000c 05D0     		beq	.L2
+ 128:main.c        ****                         UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN)) != 0u)
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 4
+
+
+ 129:main.c        ****         {
+ 130:main.c        ****             /* ERROR handling. */
+ 131:main.c        ****             errorStatus |= rxStatus & ( UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR | 
+  44              		.loc 1 131 0
+  45 000e 0D48     		ldr	r0, .L6+4
+  46 0010 03F01E02 		and	r2, r3, #30
+  47 0014 0178     		ldrb	r1, [r0]	@ zero_extendqisi2
+  48 0016 0A43     		orrs	r2, r2, r1
+  49 0018 0270     		strb	r2, [r0]
+  50              	.L2:
+ 132:main.c        ****                                         UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN);
+ 133:main.c        ****         }
+ 134:main.c        ****         
+ 135:main.c        ****         if ((rxStatus & UART_RX_STS_FIFO_NOTEMPTY) != 0u)
+  51              		.loc 1 135 0
+  52 001a 03F02003 		and	r3, r3, #32
+  53              	.LVL1:
+  54 001e 03F0FF02 		and	r2, r3, #255
+  55 0022 3BB1     		cbz	r3, .L3
+ 136:main.c        ****         {
+ 137:main.c        ****             /* Read data from the RX data register */
+ 138:main.c        ****             rxData = UART_RXDATA_REG;
+  56              		.loc 1 138 0
+  57 0024 084B     		ldr	r3, .L6+8
+  58 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  59 0028 DBB2     		uxtb	r3, r3
+  60              	.LVL2:
+ 139:main.c        ****             if(errorStatus == 0u)
+  61              		.loc 1 139 0
+  62 002a 0649     		ldr	r1, .L6+4
+  63 002c 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+  64 002e 09B9     		cbnz	r1, .L3
+ 140:main.c        ****             {
+ 141:main.c        ****                 /* Send data backward */
+ 142:main.c        ****                 UART_TXDATA_REG = rxData;
+  65              		.loc 1 142 0
+  66 0030 0649     		ldr	r1, .L6+12
+  67 0032 0B70     		strb	r3, [r1]
+  68              	.LVL3:
+  69              	.L3:
+ 143:main.c        ****             }
+ 144:main.c        ****         }
+ 145:main.c        ****     } while ((rxStatus & UART_RX_STS_FIFO_NOTEMPTY) != 0u);
+  70              		.loc 1 145 0
+  71 0034 002A     		cmp	r2, #0
+  72 0036 E4D1     		bne	.L4
+ 146:main.c        ****     
+ 147:main.c        ****     /* Clear blueRX ISR for next interrupt. */
+ 148:main.c        ****     blueRX_ISR_ClearPending ();
+  73              		.loc 1 148 0
+  74 0038 FFF7FEFF 		bl	blueRX_ISR_ClearPending
+  75              	.LVL4:
+  76 003c 08BD     		pop	{r3, pc}
+  77              	.L7:
+  78 003e 00BF     		.align	2
+  79              	.L6:
+  80 0040 69650040 		.word	1073767785
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 5
+
+
+  81 0044 00000000 		.word	.LANCHOR0
+  82 0048 49650040 		.word	1073767753
+  83 004c 47640040 		.word	1073767495
+  84              		.cfi_endproc
+  85              	.LFE64:
+  86              		.size	blueRX_ISR, .-blueRX_ISR
+  87              		.section	.text.accelUP_ISR,"ax",%progbits
+  88              		.align	2
+  89              		.global	accelUP_ISR
+  90              		.thumb
+  91              		.thumb_func
+  92              		.type	accelUP_ISR, %function
+  93              	accelUP_ISR:
+  94              	.LFB65:
+ 149:main.c        **** }
+ 150:main.c        **** 
+ 151:main.c        **** CY_ISR (accelUP_ISR)
+ 152:main.c        **** {    
+  95              		.loc 1 152 0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99 0000 00B5     		push	{lr}
+ 100              		.cfi_def_cfa_offset 4
+ 101              		.cfi_offset 14, -4
+ 102 0002 83B0     		sub	sp, sp, #12
+ 103              		.cfi_def_cfa_offset 16
+ 153:main.c        ****     /* Clear sticky timer TC by reading register. */
+ 154:main.c        ****     accel_timer_STATUS;
+ 104              		.loc 1 154 0
+ 105 0004 0B4B     		ldr	r3, .L10
+ 106 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 155:main.c        ****     
+ 156:main.c        ****     /* Update accel & gyro values. */
+ 157:main.c        ****     MPU6050_getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+ 107              		.loc 1 157 0
+ 108 0008 0B4B     		ldr	r3, .L10+4
+ 109 000a 0093     		str	r3, [sp]
+ 110 000c 0B4B     		ldr	r3, .L10+8
+ 111 000e 0193     		str	r3, [sp, #4]
+ 112 0010 0B48     		ldr	r0, .L10+12
+ 113 0012 0C49     		ldr	r1, .L10+16
+ 114 0014 0C4A     		ldr	r2, .L10+20
+ 115 0016 0D4B     		ldr	r3, .L10+24
+ 116 0018 FFF7FEFF 		bl	MPU6050_getMotion6
+ 117              	.LVL5:
+ 158:main.c        ****     
+ 159:main.c        ****     /* Set interrupts to handle x, y, and z motion. */
+ 160:main.c        ****     CyIntSetPending (x_motion_ISR);
+ 118              		.loc 1 160 0
+ 119 001c 0C4B     		ldr	r3, .L10+28
+ 120 001e 0222     		movs	r2, #2
+ 121 0020 1A60     		str	r2, [r3]
+ 161:main.c        ****     CyIntSetPending (y_motion_ISR);
+ 122              		.loc 1 161 0
+ 123 0022 0422     		movs	r2, #4
+ 124 0024 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 6
+
+
+ 162:main.c        ****     CyIntSetPending (z_motion_ISR);
+ 125              		.loc 1 162 0
+ 126 0026 0822     		movs	r2, #8
+ 127 0028 1A60     		str	r2, [r3]
+ 163:main.c        ****     
+ 164:main.c        ****     /* Clear accel ISR. */
+ 165:main.c        ****     accelUP_ISR_ClearPending ();
+ 128              		.loc 1 165 0
+ 129 002a FFF7FEFF 		bl	accelUP_ISR_ClearPending
+ 130              	.LVL6:
+ 166:main.c        **** }
+ 131              		.loc 1 166 0
+ 132 002e 03B0     		add	sp, sp, #12
+ 133              		.cfi_def_cfa_offset 4
+ 134              		@ sp needed
+ 135 0030 5DF804FB 		ldr	pc, [sp], #4
+ 136              	.L11:
+ 137              		.align	2
+ 138              	.L10:
+ 139 0034 63640040 		.word	1073767523
+ 140 0038 00000000 		.word	gy
+ 141 003c 00000000 		.word	gz
+ 142 0040 00000000 		.word	ax
+ 143 0044 00000000 		.word	ay
+ 144 0048 00000000 		.word	az
+ 145 004c 00000000 		.word	gx
+ 146 0050 00E200E0 		.word	-536813056
+ 147              		.cfi_endproc
+ 148              	.LFE65:
+ 149              		.size	accelUP_ISR, .-accelUP_ISR
+ 150              		.section	.text.motion_handler,"ax",%progbits
+ 151              		.align	2
+ 152              		.global	motion_handler
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.type	motion_handler, %function
+ 156              	motion_handler:
+ 157              	.LFB66:
+ 167:main.c        **** 
+ 168:main.c        **** CY_ISR (motion_handler)
+ 169:main.c        **** {
+ 158              		.loc 1 169 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 0000 08B5     		push	{r3, lr}
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 3, -8
+ 165              		.cfi_offset 14, -4
+ 170:main.c        ****     /* Handle motion cases. */
+ 171:main.c        ****     if (CyIntGetState (x_motion_ISR))
+ 166              		.loc 1 171 0
+ 167 0002 0120     		movs	r0, #1
+ 168 0004 FFF7FEFF 		bl	CyIntGetState
+ 169              	.LVL7:
+ 170 0008 18B1     		cbz	r0, .L13
+ 172:main.c        ****     {
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 7
+
+
+ 173:main.c        ****         /* React to x motion. */
+ 174:main.c        ****         
+ 175:main.c        ****         /* Clear x interrupt. */
+ 176:main.c        ****         CyIntClearPending (x_motion_ISR);
+ 171              		.loc 1 176 0
+ 172 000a 0222     		movs	r2, #2
+ 173 000c 094B     		ldr	r3, .L17
+ 174 000e 1A60     		str	r2, [r3]
+ 175 0010 08BD     		pop	{r3, pc}
+ 176              	.L13:
+ 177:main.c        ****     } else if (CyIntGetState (y_motion_ISR))
+ 177              		.loc 1 177 0
+ 178 0012 0220     		movs	r0, #2
+ 179 0014 FFF7FEFF 		bl	CyIntGetState
+ 180              	.LVL8:
+ 181 0018 18B1     		cbz	r0, .L15
+ 178:main.c        ****     {
+ 179:main.c        ****         /* React to y motion. */
+ 180:main.c        ****         
+ 181:main.c        ****         /* Clear y interrupt. */
+ 182:main.c        ****         CyIntClearPending (y_motion_ISR);
+ 182              		.loc 1 182 0
+ 183 001a 0422     		movs	r2, #4
+ 184 001c 054B     		ldr	r3, .L17
+ 185 001e 1A60     		str	r2, [r3]
+ 186 0020 08BD     		pop	{r3, pc}
+ 187              	.L15:
+ 183:main.c        ****     } else if (CyIntGetState (z_motion_ISR))
+ 188              		.loc 1 183 0
+ 189 0022 0320     		movs	r0, #3
+ 190 0024 FFF7FEFF 		bl	CyIntGetState
+ 191              	.LVL9:
+ 192 0028 10B1     		cbz	r0, .L12
+ 184:main.c        ****     {
+ 185:main.c        ****         /* React to z motion. */
+ 186:main.c        ****         
+ 187:main.c        ****         /* Clear z interrupt. */
+ 188:main.c        ****         CyIntClearPending (z_motion_ISR);
+ 193              		.loc 1 188 0
+ 194 002a 0822     		movs	r2, #8
+ 195 002c 014B     		ldr	r3, .L17
+ 196 002e 1A60     		str	r2, [r3]
+ 197              	.L12:
+ 198 0030 08BD     		pop	{r3, pc}
+ 199              	.L18:
+ 200 0032 00BF     		.align	2
+ 201              	.L17:
+ 202 0034 80E200E0 		.word	-536812928
+ 203              		.cfi_endproc
+ 204              	.LFE66:
+ 205              		.size	motion_handler, .-motion_handler
+ 206              		.section	.text.rpm_handler,"ax",%progbits
+ 207              		.align	2
+ 208              		.global	rpm_handler
+ 209              		.thumb
+ 210              		.thumb_func
+ 211              		.type	rpm_handler, %function
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 8
+
+
+ 212              	rpm_handler:
+ 213              	.LFB67:
+ 189:main.c        ****     } else
+ 190:main.c        ****     {
+ 191:main.c        ****         /* Raise an error. */
+ 192:main.c        ****     }
+ 193:main.c        **** }
+ 194:main.c        **** 
+ 195:main.c        **** CY_ISR (rpm_handler)
+ 196:main.c        **** {
+ 214              		.loc 1 196 0
+ 215              		.cfi_startproc
+ 216              		@ args = 0, pretend = 0, frame = 0
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218 0000 08B5     		push	{r3, lr}
+ 219              		.cfi_def_cfa_offset 8
+ 220              		.cfi_offset 3, -8
+ 221              		.cfi_offset 14, -4
+ 197:main.c        ****     /* Handle increment cases. */
+ 198:main.c        ****     if (fw1_RPM_ISR_GetState())
+ 222              		.loc 1 198 0
+ 223 0002 FFF7FEFF 		bl	fw1_RPM_ISR_GetState
+ 224              	.LVL10:
+ 225 0006 30B1     		cbz	r0, .L20
+ 199:main.c        ****     {
+ 200:main.c        ****         /* Update fw1 RPM. */
+ 201:main.c        ****         rpmx++;
+ 226              		.loc 1 201 0
+ 227 0008 0D4A     		ldr	r2, .L24
+ 228 000a 1388     		ldrh	r3, [r2]
+ 229 000c 0133     		adds	r3, r3, #1
+ 230 000e 1380     		strh	r3, [r2]	@ movhi
+ 202:main.c        ****         
+ 203:main.c        ****         /* Clear fw1 interrupt. */
+ 204:main.c        ****         fw1_RPM_ISR_ClearPending ();
+ 231              		.loc 1 204 0
+ 232 0010 FFF7FEFF 		bl	fw1_RPM_ISR_ClearPending
+ 233              	.LVL11:
+ 234 0014 08BD     		pop	{r3, pc}
+ 235              	.L20:
+ 205:main.c        ****     } else if (fw2_RPM_ISR_GetState ())
+ 236              		.loc 1 205 0
+ 237 0016 FFF7FEFF 		bl	fw2_RPM_ISR_GetState
+ 238              	.LVL12:
+ 239 001a 30B1     		cbz	r0, .L22
+ 206:main.c        ****     {
+ 207:main.c        ****         /* Update fw2 RPM. */
+ 208:main.c        ****         rpmy++;
+ 240              		.loc 1 208 0
+ 241 001c 094A     		ldr	r2, .L24+4
+ 242 001e 1388     		ldrh	r3, [r2]
+ 243 0020 0133     		adds	r3, r3, #1
+ 244 0022 1380     		strh	r3, [r2]	@ movhi
+ 209:main.c        ****         
+ 210:main.c        ****         /* Clear fw2 interrupt. */
+ 211:main.c        ****         fw2_RPM_ISR_ClearPending ();
+ 245              		.loc 1 211 0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 9
+
+
+ 246 0024 FFF7FEFF 		bl	fw2_RPM_ISR_ClearPending
+ 247              	.LVL13:
+ 248 0028 08BD     		pop	{r3, pc}
+ 249              	.L22:
+ 212:main.c        ****     }else if (fw3_RPM_ISR_GetState ())
+ 250              		.loc 1 212 0
+ 251 002a FFF7FEFF 		bl	fw3_RPM_ISR_GetState
+ 252              	.LVL14:
+ 253 002e 28B1     		cbz	r0, .L19
+ 213:main.c        ****     {
+ 214:main.c        ****         /* Update fw3 RPM. */
+ 215:main.c        ****         rpmz++;
+ 254              		.loc 1 215 0
+ 255 0030 054A     		ldr	r2, .L24+8
+ 256 0032 1388     		ldrh	r3, [r2]
+ 257 0034 0133     		adds	r3, r3, #1
+ 258 0036 1380     		strh	r3, [r2]	@ movhi
+ 216:main.c        ****         
+ 217:main.c        ****         /* Clear fw3 interrupt. */
+ 218:main.c        ****         fw3_RPM_ISR_ClearPending ();
+ 259              		.loc 1 218 0
+ 260 0038 FFF7FEFF 		bl	fw3_RPM_ISR_ClearPending
+ 261              	.LVL15:
+ 262              	.L19:
+ 263 003c 08BD     		pop	{r3, pc}
+ 264              	.L25:
+ 265 003e 00BF     		.align	2
+ 266              	.L24:
+ 267 0040 00000000 		.word	rpmx
+ 268 0044 00000000 		.word	rpmy
+ 269 0048 00000000 		.word	rpmz
+ 270              		.cfi_endproc
+ 271              	.LFE67:
+ 272              		.size	rpm_handler, .-rpm_handler
+ 273              		.section	.text.main,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	main
+ 276              		.thumb
+ 277              		.thumb_func
+ 278              		.type	main, %function
+ 279              	main:
+ 280              	.LFB63:
+  54:main.c        ****     /* Enable the Global interrupt. */
+ 281              		.loc 1 54 0
+ 282              		.cfi_startproc
+ 283              		@ Volatile: function does not return.
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286 0000 08B5     		push	{r3, lr}
+ 287              		.cfi_def_cfa_offset 8
+ 288              		.cfi_offset 3, -8
+ 289              		.cfi_offset 14, -4
+  56:main.c        ****     
+ 290              		.loc 1 56 0
+ 291              	@ 56 "main.c" 1
+ 292 0002 62B6     		CPSIE   i
+ 293              	@ 0 "" 2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 10
+
+
+  59:main.c        ****     
+ 294              		.loc 1 59 0
+ 295              		.thumb
+ 296 0004 FFF7FEFF 		bl	I2CM_Start
+ 297              	.LVL16:
+  62:main.c        ****     CyDelay (BLUE_PAUSE);
+ 298              		.loc 1 62 0
+ 299 0008 FFF7FEFF 		bl	UART_Start
+ 300              	.LVL17:
+  63:main.c        ****     
+ 301              		.loc 1 63 0
+ 302 000c 4FF41670 		mov	r0, #600
+ 303 0010 FFF7FEFF 		bl	CyDelay
+ 304              	.LVL18:
+  66:main.c        **** 	MPU6050_initialize ();
+ 305              		.loc 1 66 0
+ 306 0014 FFF7FEFF 		bl	MPU6050_init
+ 307              	.LVL19:
+  67:main.c        ****     while (!MPU6050_testConnection ())
+ 308              		.loc 1 67 0
+ 309 0018 FFF7FEFF 		bl	MPU6050_initialize
+ 310              	.LVL20:
+  68:main.c        ****     {
+ 311              		.loc 1 68 0
+ 312 001c 03E0     		b	.L27
+ 313              	.L28:
+  70:main.c        ****     }
+ 314              		.loc 1 70 0
+ 315 001e 4FF4FA70 		mov	r0, #500
+ 316 0022 FFF7FEFF 		bl	CyDelay
+ 317              	.LVL21:
+ 318              	.L27:
+  68:main.c        ****     {
+ 319              		.loc 1 68 0
+ 320 0026 FFF7FEFF 		bl	MPU6050_testConnection
+ 321              	.LVL22:
+ 322 002a 0028     		cmp	r0, #0
+ 323 002c F7D0     		beq	.L28
+  74:main.c        ****     blueRX_ISR_SetPriority (LOW_PRIORITY);
+ 324              		.loc 1 74 0
+ 325 002e 2348     		ldr	r0, .L31
+ 326 0030 FFF7FEFF 		bl	blueRX_ISR_StartEx
+ 327              	.LVL23:
+  75:main.c        ****     
+ 328              		.loc 1 75 0
+ 329 0034 0720     		movs	r0, #7
+ 330 0036 FFF7FEFF 		bl	blueRX_ISR_SetPriority
+ 331              	.LVL24:
+  78:main.c        ****     accelUP_ISR_SetPriority (HIGH_PRIORITY);
+ 332              		.loc 1 78 0
+ 333 003a 2148     		ldr	r0, .L31+4
+ 334 003c FFF7FEFF 		bl	accelUP_ISR_StartEx
+ 335              	.LVL25:
+  79:main.c        ****     
+ 336              		.loc 1 79 0
+ 337 0040 0120     		movs	r0, #1
+ 338 0042 FFF7FEFF 		bl	accelUP_ISR_SetPriority
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 11
+
+
+ 339              	.LVL26:
+  82:main.c        ****     CyIntSetPriority (x_motion_ISR, DEFAULT_PRIORITY);
+ 340              		.loc 1 82 0
+ 341 0046 1F4D     		ldr	r5, .L31+8
+ 342 0048 0120     		movs	r0, #1
+ 343 004a 2946     		mov	r1, r5
+ 344 004c FFF7FEFF 		bl	CyIntSetVector
+ 345              	.LVL27:
+  83:main.c        ****     CyIntEnable (x_motion_ISR);
+ 346              		.loc 1 83 0
+ 347 0050 0120     		movs	r0, #1
+ 348 0052 0521     		movs	r1, #5
+ 349 0054 FFF7FEFF 		bl	CyIntSetPriority
+ 350              	.LVL28:
+  84:main.c        ****     
+ 351              		.loc 1 84 0
+ 352 0058 1B4C     		ldr	r4, .L31+12
+ 353 005a 0226     		movs	r6, #2
+ 354 005c 2660     		str	r6, [r4]
+  87:main.c        ****     CyIntSetPriority (y_motion_ISR, DEFAULT_PRIORITY);
+ 355              		.loc 1 87 0
+ 356 005e 3046     		mov	r0, r6
+ 357 0060 2946     		mov	r1, r5
+ 358 0062 FFF7FEFF 		bl	CyIntSetVector
+ 359              	.LVL29:
+  88:main.c        ****     CyIntEnable (y_motion_ISR);
+ 360              		.loc 1 88 0
+ 361 0066 3046     		mov	r0, r6
+ 362 0068 0521     		movs	r1, #5
+ 363 006a FFF7FEFF 		bl	CyIntSetPriority
+ 364              	.LVL30:
+  89:main.c        ****     
+ 365              		.loc 1 89 0
+ 366 006e 0423     		movs	r3, #4
+ 367 0070 2360     		str	r3, [r4]
+  92:main.c        ****     CyIntSetPriority (z_motion_ISR, DEFAULT_PRIORITY);
+ 368              		.loc 1 92 0
+ 369 0072 0320     		movs	r0, #3
+ 370 0074 2946     		mov	r1, r5
+ 371 0076 FFF7FEFF 		bl	CyIntSetVector
+ 372              	.LVL31:
+  93:main.c        ****     CyIntEnable (z_motion_ISR);
+ 373              		.loc 1 93 0
+ 374 007a 0320     		movs	r0, #3
+ 375 007c 0521     		movs	r1, #5
+ 376 007e FFF7FEFF 		bl	CyIntSetPriority
+ 377              	.LVL32:
+  94:main.c        ****     
+ 378              		.loc 1 94 0
+ 379 0082 0823     		movs	r3, #8
+ 380 0084 2360     		str	r3, [r4]
+  97:main.c        ****     fw2_RPM_ISR_StartEx (rpm_handler);
+ 381              		.loc 1 97 0
+ 382 0086 114C     		ldr	r4, .L31+16
+ 383 0088 2046     		mov	r0, r4
+ 384 008a FFF7FEFF 		bl	fw1_RPM_ISR_StartEx
+ 385              	.LVL33:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 12
+
+
+  98:main.c        ****     fw3_RPM_ISR_StartEx (rpm_handler);
+ 386              		.loc 1 98 0
+ 387 008e 2046     		mov	r0, r4
+ 388 0090 FFF7FEFF 		bl	fw2_RPM_ISR_StartEx
+ 389              	.LVL34:
+  99:main.c        ****     fw1_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 390              		.loc 1 99 0
+ 391 0094 2046     		mov	r0, r4
+ 392 0096 FFF7FEFF 		bl	fw3_RPM_ISR_StartEx
+ 393              	.LVL35:
+ 100:main.c        ****     fw2_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 394              		.loc 1 100 0
+ 395 009a 0720     		movs	r0, #7
+ 396 009c FFF7FEFF 		bl	fw1_RPM_ISR_SetPriority
+ 397              	.LVL36:
+ 101:main.c        ****     fw3_RPM_ISR_SetPriority (LOW_PRIORITY);
+ 398              		.loc 1 101 0
+ 399 00a0 0720     		movs	r0, #7
+ 400 00a2 FFF7FEFF 		bl	fw2_RPM_ISR_SetPriority
+ 401              	.LVL37:
+ 102:main.c        ****     
+ 402              		.loc 1 102 0
+ 403 00a6 0720     		movs	r0, #7
+ 404 00a8 FFF7FEFF 		bl	fw3_RPM_ISR_SetPriority
+ 405              	.LVL38:
+ 105:main.c        **** 
+ 406              		.loc 1 105 0
+ 407 00ac FFF7FEFF 		bl	accel_timer_Start
+ 408              	.LVL39:
+ 409              	.L29:
+ 109:main.c        ****     }
+ 410              		.loc 1 109 0 discriminator 1
+ 411 00b0 4FF47A70 		mov	r0, #1000
+ 412 00b4 FFF7FEFF 		bl	CyDelay
+ 413              	.LVL40:
+ 110:main.c        **** }
+ 414              		.loc 1 110 0 discriminator 1
+ 415 00b8 FAE7     		b	.L29
+ 416              	.L32:
+ 417 00ba 00BF     		.align	2
+ 418              	.L31:
+ 419 00bc 00000000 		.word	blueRX_ISR
+ 420 00c0 00000000 		.word	accelUP_ISR
+ 421 00c4 00000000 		.word	motion_handler
+ 422 00c8 00E100E0 		.word	-536813312
+ 423 00cc 00000000 		.word	rpm_handler
+ 424              		.cfi_endproc
+ 425              	.LFE63:
+ 426              		.size	main, .-main
+ 427              		.comm	accel_threshholds,6,4
+ 428              		.comm	rpmz,2,2
+ 429              		.comm	rpmy,2,2
+ 430              		.comm	rpmx,2,2
+ 431              		.comm	gz,2,2
+ 432              		.comm	gy,2,2
+ 433              		.comm	gx,2,2
+ 434              		.comm	az,2,2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 13
+
+
+ 435              		.comm	ay,2,2
+ 436              		.comm	ax,2,2
+ 437              		.global	errorStatus
+ 438              		.comm	buffer,22,4
+ 439              		.comm	devAddr,1,1
+ 440              		.bss
+ 441              		.set	.LANCHOR0,. + 0
+ 442              		.type	errorStatus, %object
+ 443              		.size	errorStatus, 1
+ 444              	errorStatus:
+ 445 0000 00       		.space	1
+ 446              		.text
+ 447              	.Letext0:
+ 448              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 449              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 450              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 451              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 452              		.file 6 "MPU6050.h"
+ 453              		.file 7 "Generated_Source\\PSoC5/blueRX_ISR.h"
+ 454              		.file 8 "Generated_Source\\PSoC5/accelUP_ISR.h"
+ 455              		.file 9 "Generated_Source\\PSoC5/fw1_RPM_ISR.h"
+ 456              		.file 10 "Generated_Source\\PSoC5/fw2_RPM_ISR.h"
+ 457              		.file 11 "Generated_Source\\PSoC5/fw3_RPM_ISR.h"
+ 458              		.file 12 "Generated_Source\\PSoC5/I2CM.h"
+ 459              		.file 13 "Generated_Source\\PSoC5/UART.h"
+ 460              		.file 14 "Generated_Source\\PSoC5/CyLib.h"
+ 461              		.file 15 "Generated_Source\\PSoC5/accel_timer.h"
+ 462              		.section	.debug_info,"",%progbits
+ 463              	.Ldebug_info0:
+ 464 0000 FE060000 		.4byte	0x6fe
+ 465 0004 0400     		.2byte	0x4
+ 466 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 467 000a 04       		.byte	0x4
+ 468 000b 01       		.uleb128 0x1
+ 469 000c C9020000 		.4byte	.LASF68
+ 470 0010 01       		.byte	0x1
+ 471 0011 A8030000 		.4byte	.LASF69
+ 472 0015 3E010000 		.4byte	.LASF70
+ 473 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 474 001d 00000000 		.4byte	0
+ 475 0021 00000000 		.4byte	.Ldebug_line0
+ 476 0025 02       		.uleb128 0x2
+ 477 0026 01       		.byte	0x1
+ 478 0027 06       		.byte	0x6
+ 479 0028 D3000000 		.4byte	.LASF0
+ 480 002c 03       		.uleb128 0x3
+ 481 002d 34010000 		.4byte	.LASF2
+ 482 0031 02       		.byte	0x2
+ 483 0032 1D       		.byte	0x1d
+ 484 0033 37000000 		.4byte	0x37
+ 485 0037 02       		.uleb128 0x2
+ 486 0038 01       		.byte	0x1
+ 487 0039 08       		.byte	0x8
+ 488 003a B5010000 		.4byte	.LASF1
+ 489 003e 03       		.uleb128 0x3
+ 490 003f FC030000 		.4byte	.LASF3
+ 491 0043 02       		.byte	0x2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 14
+
+
+ 492 0044 29       		.byte	0x29
+ 493 0045 49000000 		.4byte	0x49
+ 494 0049 02       		.uleb128 0x2
+ 495 004a 02       		.byte	0x2
+ 496 004b 05       		.byte	0x5
+ 497 004c 44000000 		.4byte	.LASF4
+ 498 0050 02       		.uleb128 0x2
+ 499 0051 02       		.byte	0x2
+ 500 0052 07       		.byte	0x7
+ 501 0053 85020000 		.4byte	.LASF5
+ 502 0057 03       		.uleb128 0x3
+ 503 0058 F2030000 		.4byte	.LASF6
+ 504 005c 02       		.byte	0x2
+ 505 005d 3F       		.byte	0x3f
+ 506 005e 62000000 		.4byte	0x62
+ 507 0062 02       		.uleb128 0x2
+ 508 0063 04       		.byte	0x4
+ 509 0064 05       		.byte	0x5
+ 510 0065 14010000 		.4byte	.LASF7
+ 511 0069 02       		.uleb128 0x2
+ 512 006a 04       		.byte	0x4
+ 513 006b 07       		.byte	0x7
+ 514 006c B4030000 		.4byte	.LASF8
+ 515 0070 02       		.uleb128 0x2
+ 516 0071 08       		.byte	0x8
+ 517 0072 05       		.byte	0x5
+ 518 0073 E5000000 		.4byte	.LASF9
+ 519 0077 02       		.uleb128 0x2
+ 520 0078 08       		.byte	0x8
+ 521 0079 07       		.byte	0x7
+ 522 007a 1D020000 		.4byte	.LASF10
+ 523 007e 04       		.uleb128 0x4
+ 524 007f 04       		.byte	0x4
+ 525 0080 05       		.byte	0x5
+ 526 0081 696E7400 		.ascii	"int\000"
+ 527 0085 02       		.uleb128 0x2
+ 528 0086 04       		.byte	0x4
+ 529 0087 07       		.byte	0x7
+ 530 0088 46020000 		.4byte	.LASF11
+ 531 008c 03       		.uleb128 0x3
+ 532 008d 9B000000 		.4byte	.LASF12
+ 533 0091 03       		.byte	0x3
+ 534 0092 15       		.byte	0x15
+ 535 0093 2C000000 		.4byte	0x2c
+ 536 0097 03       		.uleb128 0x3
+ 537 0098 6F030000 		.4byte	.LASF13
+ 538 009c 03       		.byte	0x3
+ 539 009d 20       		.byte	0x20
+ 540 009e 3E000000 		.4byte	0x3e
+ 541 00a2 03       		.uleb128 0x3
+ 542 00a3 67030000 		.4byte	.LASF14
+ 543 00a7 03       		.byte	0x3
+ 544 00a8 2C       		.byte	0x2c
+ 545 00a9 57000000 		.4byte	0x57
+ 546 00ad 05       		.uleb128 0x5
+ 547 00ae 77030000 		.4byte	.LASF15
+ 548 00b2 04       		.byte	0x4
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 15
+
+
+ 549 00b3 9201     		.2byte	0x192
+ 550 00b5 37000000 		.4byte	0x37
+ 551 00b9 05       		.uleb128 0x5
+ 552 00ba A1030000 		.4byte	.LASF16
+ 553 00be 04       		.byte	0x4
+ 554 00bf 9401     		.2byte	0x194
+ 555 00c1 69000000 		.4byte	0x69
+ 556 00c5 02       		.uleb128 0x2
+ 557 00c6 04       		.byte	0x4
+ 558 00c7 04       		.byte	0x4
+ 559 00c8 DF000000 		.4byte	.LASF17
+ 560 00cc 02       		.uleb128 0x2
+ 561 00cd 08       		.byte	0x8
+ 562 00ce 04       		.byte	0x4
+ 563 00cf C6030000 		.4byte	.LASF18
+ 564 00d3 02       		.uleb128 0x2
+ 565 00d4 01       		.byte	0x1
+ 566 00d5 08       		.byte	0x8
+ 567 00d6 C4020000 		.4byte	.LASF19
+ 568 00da 05       		.uleb128 0x5
+ 569 00db AF030000 		.4byte	.LASF20
+ 570 00df 04       		.byte	0x4
+ 571 00e0 3C02     		.2byte	0x23c
+ 572 00e2 E6000000 		.4byte	0xe6
+ 573 00e6 06       		.uleb128 0x6
+ 574 00e7 AD000000 		.4byte	0xad
+ 575 00eb 05       		.uleb128 0x5
+ 576 00ec 7F020000 		.4byte	.LASF21
+ 577 00f0 04       		.byte	0x4
+ 578 00f1 3E02     		.2byte	0x23e
+ 579 00f3 F7000000 		.4byte	0xf7
+ 580 00f7 06       		.uleb128 0x6
+ 581 00f8 B9000000 		.4byte	0xb9
+ 582 00fc 05       		.uleb128 0x5
+ 583 00fd CC010000 		.4byte	.LASF22
+ 584 0101 04       		.byte	0x4
+ 585 0102 4E02     		.2byte	0x24e
+ 586 0104 08010000 		.4byte	0x108
+ 587 0108 07       		.uleb128 0x7
+ 588 0109 04       		.byte	0x4
+ 589 010a 0E010000 		.4byte	0x10e
+ 590 010e 08       		.uleb128 0x8
+ 591 010f 02       		.uleb128 0x2
+ 592 0110 04       		.byte	0x4
+ 593 0111 07       		.byte	0x7
+ 594 0112 4E000000 		.4byte	.LASF23
+ 595 0116 09       		.uleb128 0x9
+ 596 0117 79040000 		.4byte	.LASF26
+ 597 011b 01       		.byte	0x1
+ 598 011c 76       		.byte	0x76
+ 599 011d 00000000 		.4byte	.LFB64
+ 600 0121 50000000 		.4byte	.LFE64-.LFB64
+ 601 0125 01       		.uleb128 0x1
+ 602 0126 9C       		.byte	0x9c
+ 603 0127 53010000 		.4byte	0x153
+ 604 012b 0A       		.uleb128 0xa
+ 605 012c C3010000 		.4byte	.LASF24
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 16
+
+
+ 606 0130 01       		.byte	0x1
+ 607 0131 78       		.byte	0x78
+ 608 0132 AD000000 		.4byte	0xad
+ 609 0136 00000000 		.4byte	.LLST0
+ 610 013a 0A       		.uleb128 0xa
+ 611 013b 15040000 		.4byte	.LASF25
+ 612 013f 01       		.byte	0x1
+ 613 0140 78       		.byte	0x78
+ 614 0141 AD000000 		.4byte	0xad
+ 615 0145 13000000 		.4byte	.LLST1
+ 616 0149 0B       		.uleb128 0xb
+ 617 014a 3C000000 		.4byte	.LVL4
+ 618 014e 42050000 		.4byte	0x542
+ 619 0152 00       		.byte	0
+ 620 0153 09       		.uleb128 0x9
+ 621 0154 11020000 		.4byte	.LASF27
+ 622 0158 01       		.byte	0x1
+ 623 0159 97       		.byte	0x97
+ 624 015a 00000000 		.4byte	.LFB65
+ 625 015e 54000000 		.4byte	.LFE65-.LFB65
+ 626 0162 01       		.uleb128 0x1
+ 627 0163 9C       		.byte	0x9c
+ 628 0164 B8010000 		.4byte	0x1b8
+ 629 0168 0C       		.uleb128 0xc
+ 630 0169 1C000000 		.4byte	.LVL5
+ 631 016d 49050000 		.4byte	0x549
+ 632 0171 AE010000 		.4byte	0x1ae
+ 633 0175 0D       		.uleb128 0xd
+ 634 0176 01       		.uleb128 0x1
+ 635 0177 53       		.byte	0x53
+ 636 0178 05       		.uleb128 0x5
+ 637 0179 03       		.byte	0x3
+ 638 017a 00000000 		.4byte	gx
+ 639 017e 0D       		.uleb128 0xd
+ 640 017f 01       		.uleb128 0x1
+ 641 0180 52       		.byte	0x52
+ 642 0181 05       		.uleb128 0x5
+ 643 0182 03       		.byte	0x3
+ 644 0183 00000000 		.4byte	az
+ 645 0187 0D       		.uleb128 0xd
+ 646 0188 01       		.uleb128 0x1
+ 647 0189 51       		.byte	0x51
+ 648 018a 05       		.uleb128 0x5
+ 649 018b 03       		.byte	0x3
+ 650 018c 00000000 		.4byte	ay
+ 651 0190 0D       		.uleb128 0xd
+ 652 0191 01       		.uleb128 0x1
+ 653 0192 50       		.byte	0x50
+ 654 0193 05       		.uleb128 0x5
+ 655 0194 03       		.byte	0x3
+ 656 0195 00000000 		.4byte	ax
+ 657 0199 0D       		.uleb128 0xd
+ 658 019a 02       		.uleb128 0x2
+ 659 019b 7D       		.byte	0x7d
+ 660 019c 04       		.sleb128 4
+ 661 019d 05       		.uleb128 0x5
+ 662 019e 03       		.byte	0x3
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 17
+
+
+ 663 019f 00000000 		.4byte	gz
+ 664 01a3 0D       		.uleb128 0xd
+ 665 01a4 02       		.uleb128 0x2
+ 666 01a5 7D       		.byte	0x7d
+ 667 01a6 00       		.sleb128 0
+ 668 01a7 05       		.uleb128 0x5
+ 669 01a8 03       		.byte	0x3
+ 670 01a9 00000000 		.4byte	gy
+ 671 01ad 00       		.byte	0
+ 672 01ae 0B       		.uleb128 0xb
+ 673 01af 2E000000 		.4byte	.LVL6
+ 674 01b3 7A050000 		.4byte	0x57a
+ 675 01b7 00       		.byte	0
+ 676 01b8 09       		.uleb128 0x9
+ 677 01b9 EE010000 		.4byte	.LASF28
+ 678 01bd 01       		.byte	0x1
+ 679 01be A8       		.byte	0xa8
+ 680 01bf 00000000 		.4byte	.LFB66
+ 681 01c3 38000000 		.4byte	.LFE66-.LFB66
+ 682 01c7 01       		.uleb128 0x1
+ 683 01c8 9C       		.byte	0x9c
+ 684 01c9 03020000 		.4byte	0x203
+ 685 01cd 0C       		.uleb128 0xc
+ 686 01ce 08000000 		.4byte	.LVL7
+ 687 01d2 81050000 		.4byte	0x581
+ 688 01d6 E0010000 		.4byte	0x1e0
+ 689 01da 0D       		.uleb128 0xd
+ 690 01db 01       		.uleb128 0x1
+ 691 01dc 50       		.byte	0x50
+ 692 01dd 01       		.uleb128 0x1
+ 693 01de 31       		.byte	0x31
+ 694 01df 00       		.byte	0
+ 695 01e0 0C       		.uleb128 0xc
+ 696 01e1 18000000 		.4byte	.LVL8
+ 697 01e5 81050000 		.4byte	0x581
+ 698 01e9 F3010000 		.4byte	0x1f3
+ 699 01ed 0D       		.uleb128 0xd
+ 700 01ee 01       		.uleb128 0x1
+ 701 01ef 50       		.byte	0x50
+ 702 01f0 01       		.uleb128 0x1
+ 703 01f1 32       		.byte	0x32
+ 704 01f2 00       		.byte	0
+ 705 01f3 0E       		.uleb128 0xe
+ 706 01f4 28000000 		.4byte	.LVL9
+ 707 01f8 81050000 		.4byte	0x581
+ 708 01fc 0D       		.uleb128 0xd
+ 709 01fd 01       		.uleb128 0x1
+ 710 01fe 50       		.byte	0x50
+ 711 01ff 01       		.uleb128 0x1
+ 712 0200 33       		.byte	0x33
+ 713 0201 00       		.byte	0
+ 714 0202 00       		.byte	0
+ 715 0203 09       		.uleb128 0x9
+ 716 0204 08010000 		.4byte	.LASF29
+ 717 0208 01       		.byte	0x1
+ 718 0209 C3       		.byte	0xc3
+ 719 020a 00000000 		.4byte	.LFB67
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 18
+
+
+ 720 020e 4C000000 		.4byte	.LFE67-.LFB67
+ 721 0212 01       		.uleb128 0x1
+ 722 0213 9C       		.byte	0x9c
+ 723 0214 4F020000 		.4byte	0x24f
+ 724 0218 0B       		.uleb128 0xb
+ 725 0219 06000000 		.4byte	.LVL10
+ 726 021d 96050000 		.4byte	0x596
+ 727 0221 0B       		.uleb128 0xb
+ 728 0222 14000000 		.4byte	.LVL11
+ 729 0226 A1050000 		.4byte	0x5a1
+ 730 022a 0B       		.uleb128 0xb
+ 731 022b 1A000000 		.4byte	.LVL12
+ 732 022f A8050000 		.4byte	0x5a8
+ 733 0233 0B       		.uleb128 0xb
+ 734 0234 28000000 		.4byte	.LVL13
+ 735 0238 B3050000 		.4byte	0x5b3
+ 736 023c 0B       		.uleb128 0xb
+ 737 023d 2E000000 		.4byte	.LVL14
+ 738 0241 BA050000 		.4byte	0x5ba
+ 739 0245 0B       		.uleb128 0xb
+ 740 0246 3C000000 		.4byte	.LVL15
+ 741 024a C5050000 		.4byte	0x5c5
+ 742 024e 00       		.byte	0
+ 743 024f 0F       		.uleb128 0xf
+ 744 0250 57030000 		.4byte	.LASF71
+ 745 0254 01       		.byte	0x1
+ 746 0255 35       		.byte	0x35
+ 747 0256 7E000000 		.4byte	0x7e
+ 748 025a 00000000 		.4byte	.LFB63
+ 749 025e D0000000 		.4byte	.LFE63-.LFB63
+ 750 0262 01       		.uleb128 0x1
+ 751 0263 9C       		.byte	0x9c
+ 752 0264 38040000 		.4byte	0x438
+ 753 0268 0B       		.uleb128 0xb
+ 754 0269 08000000 		.4byte	.LVL16
+ 755 026d CC050000 		.4byte	0x5cc
+ 756 0271 0B       		.uleb128 0xb
+ 757 0272 0C000000 		.4byte	.LVL17
+ 758 0276 D3050000 		.4byte	0x5d3
+ 759 027a 0C       		.uleb128 0xc
+ 760 027b 14000000 		.4byte	.LVL18
+ 761 027f DA050000 		.4byte	0x5da
+ 762 0283 8F020000 		.4byte	0x28f
+ 763 0287 0D       		.uleb128 0xd
+ 764 0288 01       		.uleb128 0x1
+ 765 0289 50       		.byte	0x50
+ 766 028a 03       		.uleb128 0x3
+ 767 028b 0A       		.byte	0xa
+ 768 028c 5802     		.2byte	0x258
+ 769 028e 00       		.byte	0
+ 770 028f 0B       		.uleb128 0xb
+ 771 0290 18000000 		.4byte	.LVL19
+ 772 0294 EB050000 		.4byte	0x5eb
+ 773 0298 0B       		.uleb128 0xb
+ 774 0299 1C000000 		.4byte	.LVL20
+ 775 029d F9050000 		.4byte	0x5f9
+ 776 02a1 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 19
+
+
+ 777 02a2 26000000 		.4byte	.LVL21
+ 778 02a6 DA050000 		.4byte	0x5da
+ 779 02aa B6020000 		.4byte	0x2b6
+ 780 02ae 0D       		.uleb128 0xd
+ 781 02af 01       		.uleb128 0x1
+ 782 02b0 50       		.byte	0x50
+ 783 02b1 03       		.uleb128 0x3
+ 784 02b2 0A       		.byte	0xa
+ 785 02b3 F401     		.2byte	0x1f4
+ 786 02b5 00       		.byte	0
+ 787 02b6 0B       		.uleb128 0xb
+ 788 02b7 2A000000 		.4byte	.LVL22
+ 789 02bb 07060000 		.4byte	0x607
+ 790 02bf 0C       		.uleb128 0xc
+ 791 02c0 34000000 		.4byte	.LVL23
+ 792 02c4 20060000 		.4byte	0x620
+ 793 02c8 D6020000 		.4byte	0x2d6
+ 794 02cc 0D       		.uleb128 0xd
+ 795 02cd 01       		.uleb128 0x1
+ 796 02ce 50       		.byte	0x50
+ 797 02cf 05       		.uleb128 0x5
+ 798 02d0 03       		.byte	0x3
+ 799 02d1 00000000 		.4byte	blueRX_ISR
+ 800 02d5 00       		.byte	0
+ 801 02d6 0C       		.uleb128 0xc
+ 802 02d7 3A000000 		.4byte	.LVL24
+ 803 02db 31060000 		.4byte	0x631
+ 804 02df E9020000 		.4byte	0x2e9
+ 805 02e3 0D       		.uleb128 0xd
+ 806 02e4 01       		.uleb128 0x1
+ 807 02e5 50       		.byte	0x50
+ 808 02e6 01       		.uleb128 0x1
+ 809 02e7 37       		.byte	0x37
+ 810 02e8 00       		.byte	0
+ 811 02e9 0C       		.uleb128 0xc
+ 812 02ea 40000000 		.4byte	.LVL25
+ 813 02ee 42060000 		.4byte	0x642
+ 814 02f2 00030000 		.4byte	0x300
+ 815 02f6 0D       		.uleb128 0xd
+ 816 02f7 01       		.uleb128 0x1
+ 817 02f8 50       		.byte	0x50
+ 818 02f9 05       		.uleb128 0x5
+ 819 02fa 03       		.byte	0x3
+ 820 02fb 00000000 		.4byte	accelUP_ISR
+ 821 02ff 00       		.byte	0
+ 822 0300 0C       		.uleb128 0xc
+ 823 0301 46000000 		.4byte	.LVL26
+ 824 0305 53060000 		.4byte	0x653
+ 825 0309 13030000 		.4byte	0x313
+ 826 030d 0D       		.uleb128 0xd
+ 827 030e 01       		.uleb128 0x1
+ 828 030f 50       		.byte	0x50
+ 829 0310 01       		.uleb128 0x1
+ 830 0311 31       		.byte	0x31
+ 831 0312 00       		.byte	0
+ 832 0313 0C       		.uleb128 0xc
+ 833 0314 50000000 		.4byte	.LVL27
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 20
+
+
+ 834 0318 64060000 		.4byte	0x664
+ 835 031c 2C030000 		.4byte	0x32c
+ 836 0320 0D       		.uleb128 0xd
+ 837 0321 01       		.uleb128 0x1
+ 838 0322 51       		.byte	0x51
+ 839 0323 02       		.uleb128 0x2
+ 840 0324 75       		.byte	0x75
+ 841 0325 00       		.sleb128 0
+ 842 0326 0D       		.uleb128 0xd
+ 843 0327 01       		.uleb128 0x1
+ 844 0328 50       		.byte	0x50
+ 845 0329 01       		.uleb128 0x1
+ 846 032a 31       		.byte	0x31
+ 847 032b 00       		.byte	0
+ 848 032c 0C       		.uleb128 0xc
+ 849 032d 58000000 		.4byte	.LVL28
+ 850 0331 7E060000 		.4byte	0x67e
+ 851 0335 44030000 		.4byte	0x344
+ 852 0339 0D       		.uleb128 0xd
+ 853 033a 01       		.uleb128 0x1
+ 854 033b 51       		.byte	0x51
+ 855 033c 01       		.uleb128 0x1
+ 856 033d 35       		.byte	0x35
+ 857 033e 0D       		.uleb128 0xd
+ 858 033f 01       		.uleb128 0x1
+ 859 0340 50       		.byte	0x50
+ 860 0341 01       		.uleb128 0x1
+ 861 0342 31       		.byte	0x31
+ 862 0343 00       		.byte	0
+ 863 0344 0C       		.uleb128 0xc
+ 864 0345 66000000 		.4byte	.LVL29
+ 865 0349 64060000 		.4byte	0x664
+ 866 034d 5E030000 		.4byte	0x35e
+ 867 0351 0D       		.uleb128 0xd
+ 868 0352 01       		.uleb128 0x1
+ 869 0353 51       		.byte	0x51
+ 870 0354 02       		.uleb128 0x2
+ 871 0355 75       		.byte	0x75
+ 872 0356 00       		.sleb128 0
+ 873 0357 0D       		.uleb128 0xd
+ 874 0358 01       		.uleb128 0x1
+ 875 0359 50       		.byte	0x50
+ 876 035a 02       		.uleb128 0x2
+ 877 035b 76       		.byte	0x76
+ 878 035c 00       		.sleb128 0
+ 879 035d 00       		.byte	0
+ 880 035e 0C       		.uleb128 0xc
+ 881 035f 6E000000 		.4byte	.LVL30
+ 882 0363 7E060000 		.4byte	0x67e
+ 883 0367 77030000 		.4byte	0x377
+ 884 036b 0D       		.uleb128 0xd
+ 885 036c 01       		.uleb128 0x1
+ 886 036d 51       		.byte	0x51
+ 887 036e 01       		.uleb128 0x1
+ 888 036f 35       		.byte	0x35
+ 889 0370 0D       		.uleb128 0xd
+ 890 0371 01       		.uleb128 0x1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 21
+
+
+ 891 0372 50       		.byte	0x50
+ 892 0373 02       		.uleb128 0x2
+ 893 0374 76       		.byte	0x76
+ 894 0375 00       		.sleb128 0
+ 895 0376 00       		.byte	0
+ 896 0377 0C       		.uleb128 0xc
+ 897 0378 7A000000 		.4byte	.LVL31
+ 898 037c 64060000 		.4byte	0x664
+ 899 0380 90030000 		.4byte	0x390
+ 900 0384 0D       		.uleb128 0xd
+ 901 0385 01       		.uleb128 0x1
+ 902 0386 51       		.byte	0x51
+ 903 0387 02       		.uleb128 0x2
+ 904 0388 75       		.byte	0x75
+ 905 0389 00       		.sleb128 0
+ 906 038a 0D       		.uleb128 0xd
+ 907 038b 01       		.uleb128 0x1
+ 908 038c 50       		.byte	0x50
+ 909 038d 01       		.uleb128 0x1
+ 910 038e 33       		.byte	0x33
+ 911 038f 00       		.byte	0
+ 912 0390 0C       		.uleb128 0xc
+ 913 0391 82000000 		.4byte	.LVL32
+ 914 0395 7E060000 		.4byte	0x67e
+ 915 0399 A8030000 		.4byte	0x3a8
+ 916 039d 0D       		.uleb128 0xd
+ 917 039e 01       		.uleb128 0x1
+ 918 039f 51       		.byte	0x51
+ 919 03a0 01       		.uleb128 0x1
+ 920 03a1 35       		.byte	0x35
+ 921 03a2 0D       		.uleb128 0xd
+ 922 03a3 01       		.uleb128 0x1
+ 923 03a4 50       		.byte	0x50
+ 924 03a5 01       		.uleb128 0x1
+ 925 03a6 33       		.byte	0x33
+ 926 03a7 00       		.byte	0
+ 927 03a8 0C       		.uleb128 0xc
+ 928 03a9 8E000000 		.4byte	.LVL33
+ 929 03ad 94060000 		.4byte	0x694
+ 930 03b1 BC030000 		.4byte	0x3bc
+ 931 03b5 0D       		.uleb128 0xd
+ 932 03b6 01       		.uleb128 0x1
+ 933 03b7 50       		.byte	0x50
+ 934 03b8 02       		.uleb128 0x2
+ 935 03b9 74       		.byte	0x74
+ 936 03ba 00       		.sleb128 0
+ 937 03bb 00       		.byte	0
+ 938 03bc 0C       		.uleb128 0xc
+ 939 03bd 94000000 		.4byte	.LVL34
+ 940 03c1 A5060000 		.4byte	0x6a5
+ 941 03c5 D0030000 		.4byte	0x3d0
+ 942 03c9 0D       		.uleb128 0xd
+ 943 03ca 01       		.uleb128 0x1
+ 944 03cb 50       		.byte	0x50
+ 945 03cc 02       		.uleb128 0x2
+ 946 03cd 74       		.byte	0x74
+ 947 03ce 00       		.sleb128 0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 22
+
+
+ 948 03cf 00       		.byte	0
+ 949 03d0 0C       		.uleb128 0xc
+ 950 03d1 9A000000 		.4byte	.LVL35
+ 951 03d5 B6060000 		.4byte	0x6b6
+ 952 03d9 E4030000 		.4byte	0x3e4
+ 953 03dd 0D       		.uleb128 0xd
+ 954 03de 01       		.uleb128 0x1
+ 955 03df 50       		.byte	0x50
+ 956 03e0 02       		.uleb128 0x2
+ 957 03e1 74       		.byte	0x74
+ 958 03e2 00       		.sleb128 0
+ 959 03e3 00       		.byte	0
+ 960 03e4 0C       		.uleb128 0xc
+ 961 03e5 A0000000 		.4byte	.LVL36
+ 962 03e9 C7060000 		.4byte	0x6c7
+ 963 03ed F7030000 		.4byte	0x3f7
+ 964 03f1 0D       		.uleb128 0xd
+ 965 03f2 01       		.uleb128 0x1
+ 966 03f3 50       		.byte	0x50
+ 967 03f4 01       		.uleb128 0x1
+ 968 03f5 37       		.byte	0x37
+ 969 03f6 00       		.byte	0
+ 970 03f7 0C       		.uleb128 0xc
+ 971 03f8 A6000000 		.4byte	.LVL37
+ 972 03fc D8060000 		.4byte	0x6d8
+ 973 0400 0A040000 		.4byte	0x40a
+ 974 0404 0D       		.uleb128 0xd
+ 975 0405 01       		.uleb128 0x1
+ 976 0406 50       		.byte	0x50
+ 977 0407 01       		.uleb128 0x1
+ 978 0408 37       		.byte	0x37
+ 979 0409 00       		.byte	0
+ 980 040a 0C       		.uleb128 0xc
+ 981 040b AC000000 		.4byte	.LVL38
+ 982 040f E9060000 		.4byte	0x6e9
+ 983 0413 1D040000 		.4byte	0x41d
+ 984 0417 0D       		.uleb128 0xd
+ 985 0418 01       		.uleb128 0x1
+ 986 0419 50       		.byte	0x50
+ 987 041a 01       		.uleb128 0x1
+ 988 041b 37       		.byte	0x37
+ 989 041c 00       		.byte	0
+ 990 041d 0B       		.uleb128 0xb
+ 991 041e B0000000 		.4byte	.LVL39
+ 992 0422 FA060000 		.4byte	0x6fa
+ 993 0426 0E       		.uleb128 0xe
+ 994 0427 B8000000 		.4byte	.LVL40
+ 995 042b DA050000 		.4byte	0x5da
+ 996 042f 0D       		.uleb128 0xd
+ 997 0430 01       		.uleb128 0x1
+ 998 0431 50       		.byte	0x50
+ 999 0432 03       		.uleb128 0x3
+ 1000 0433 0A       		.byte	0xa
+ 1001 0434 E803     		.2byte	0x3e8
+ 1002 0436 00       		.byte	0
+ 1003 0437 00       		.byte	0
+ 1004 0438 10       		.uleb128 0x10
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 23
+
+
+ 1005 0439 CD030000 		.4byte	.LASF30
+ 1006 043d 05       		.byte	0x5
+ 1007 043e 9606     		.2byte	0x696
+ 1008 0440 44040000 		.4byte	0x444
+ 1009 0444 06       		.uleb128 0x6
+ 1010 0445 A2000000 		.4byte	0xa2
+ 1011 0449 11       		.uleb128 0x11
+ 1012 044a 2F040000 		.4byte	.LASF31
+ 1013 044e 06       		.byte	0x6
+ 1014 044f 9401     		.2byte	0x194
+ 1015 0451 8C000000 		.4byte	0x8c
+ 1016 0455 05       		.uleb128 0x5
+ 1017 0456 03       		.byte	0x3
+ 1018 0457 00000000 		.4byte	devAddr
+ 1019 045b 12       		.uleb128 0x12
+ 1020 045c 8C000000 		.4byte	0x8c
+ 1021 0460 6B040000 		.4byte	0x46b
+ 1022 0464 13       		.uleb128 0x13
+ 1023 0465 0F010000 		.4byte	0x10f
+ 1024 0469 15       		.byte	0x15
+ 1025 046a 00       		.byte	0
+ 1026 046b 11       		.uleb128 0x11
+ 1027 046c 9A030000 		.4byte	.LASF32
+ 1028 0470 06       		.byte	0x6
+ 1029 0471 9501     		.2byte	0x195
+ 1030 0473 5B040000 		.4byte	0x45b
+ 1031 0477 05       		.uleb128 0x5
+ 1032 0478 03       		.byte	0x3
+ 1033 0479 00000000 		.4byte	buffer
+ 1034 047d 14       		.uleb128 0x14
+ 1035 047e C7000000 		.4byte	.LASF33
+ 1036 0482 01       		.byte	0x1
+ 1037 0483 2D       		.byte	0x2d
+ 1038 0484 AD000000 		.4byte	0xad
+ 1039 0488 05       		.uleb128 0x5
+ 1040 0489 03       		.byte	0x3
+ 1041 048a 00000000 		.4byte	errorStatus
+ 1042 048e 15       		.uleb128 0x15
+ 1043 048f 617800   		.ascii	"ax\000"
+ 1044 0492 01       		.byte	0x1
+ 1045 0493 2F       		.byte	0x2f
+ 1046 0494 97000000 		.4byte	0x97
+ 1047 0498 05       		.uleb128 0x5
+ 1048 0499 03       		.byte	0x3
+ 1049 049a 00000000 		.4byte	ax
+ 1050 049e 15       		.uleb128 0x15
+ 1051 049f 617900   		.ascii	"ay\000"
+ 1052 04a2 01       		.byte	0x1
+ 1053 04a3 2F       		.byte	0x2f
+ 1054 04a4 97000000 		.4byte	0x97
+ 1055 04a8 05       		.uleb128 0x5
+ 1056 04a9 03       		.byte	0x3
+ 1057 04aa 00000000 		.4byte	ay
+ 1058 04ae 15       		.uleb128 0x15
+ 1059 04af 617A00   		.ascii	"az\000"
+ 1060 04b2 01       		.byte	0x1
+ 1061 04b3 2F       		.byte	0x2f
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 24
+
+
+ 1062 04b4 97000000 		.4byte	0x97
+ 1063 04b8 05       		.uleb128 0x5
+ 1064 04b9 03       		.byte	0x3
+ 1065 04ba 00000000 		.4byte	az
+ 1066 04be 15       		.uleb128 0x15
+ 1067 04bf 677800   		.ascii	"gx\000"
+ 1068 04c2 01       		.byte	0x1
+ 1069 04c3 30       		.byte	0x30
+ 1070 04c4 97000000 		.4byte	0x97
+ 1071 04c8 05       		.uleb128 0x5
+ 1072 04c9 03       		.byte	0x3
+ 1073 04ca 00000000 		.4byte	gx
+ 1074 04ce 15       		.uleb128 0x15
+ 1075 04cf 677900   		.ascii	"gy\000"
+ 1076 04d2 01       		.byte	0x1
+ 1077 04d3 30       		.byte	0x30
+ 1078 04d4 97000000 		.4byte	0x97
+ 1079 04d8 05       		.uleb128 0x5
+ 1080 04d9 03       		.byte	0x3
+ 1081 04da 00000000 		.4byte	gy
+ 1082 04de 15       		.uleb128 0x15
+ 1083 04df 677A00   		.ascii	"gz\000"
+ 1084 04e2 01       		.byte	0x1
+ 1085 04e3 30       		.byte	0x30
+ 1086 04e4 97000000 		.4byte	0x97
+ 1087 04e8 05       		.uleb128 0x5
+ 1088 04e9 03       		.byte	0x3
+ 1089 04ea 00000000 		.4byte	gz
+ 1090 04ee 14       		.uleb128 0x14
+ 1091 04ef 6F000000 		.4byte	.LASF34
+ 1092 04f3 01       		.byte	0x1
+ 1093 04f4 31       		.byte	0x31
+ 1094 04f5 97000000 		.4byte	0x97
+ 1095 04f9 05       		.uleb128 0x5
+ 1096 04fa 03       		.byte	0x3
+ 1097 04fb 00000000 		.4byte	rpmx
+ 1098 04ff 14       		.uleb128 0x14
+ 1099 0500 FE000000 		.4byte	.LASF35
+ 1100 0504 01       		.byte	0x1
+ 1101 0505 31       		.byte	0x31
+ 1102 0506 97000000 		.4byte	0x97
+ 1103 050a 05       		.uleb128 0x5
+ 1104 050b 03       		.byte	0x3
+ 1105 050c 00000000 		.4byte	rpmy
+ 1106 0510 14       		.uleb128 0x14
+ 1107 0511 03010000 		.4byte	.LASF36
+ 1108 0515 01       		.byte	0x1
+ 1109 0516 31       		.byte	0x31
+ 1110 0517 97000000 		.4byte	0x97
+ 1111 051b 05       		.uleb128 0x5
+ 1112 051c 03       		.byte	0x3
+ 1113 051d 00000000 		.4byte	rpmz
+ 1114 0521 12       		.uleb128 0x12
+ 1115 0522 8C000000 		.4byte	0x8c
+ 1116 0526 31050000 		.4byte	0x531
+ 1117 052a 13       		.uleb128 0x13
+ 1118 052b 0F010000 		.4byte	0x10f
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 25
+
+
+ 1119 052f 05       		.byte	0x5
+ 1120 0530 00       		.byte	0
+ 1121 0531 14       		.uleb128 0x14
+ 1122 0532 8C040000 		.4byte	.LASF37
+ 1123 0536 01       		.byte	0x1
+ 1124 0537 32       		.byte	0x32
+ 1125 0538 21050000 		.4byte	0x521
+ 1126 053c 05       		.uleb128 0x5
+ 1127 053d 03       		.byte	0x3
+ 1128 053e 00000000 		.4byte	accel_threshholds
+ 1129 0542 16       		.uleb128 0x16
+ 1130 0543 DA030000 		.4byte	.LASF38
+ 1131 0547 07       		.byte	0x7
+ 1132 0548 28       		.byte	0x28
+ 1133 0549 17       		.uleb128 0x17
+ 1134 054a 00000000 		.4byte	.LASF48
+ 1135 054e 06       		.byte	0x6
+ 1136 054f 5402     		.2byte	0x254
+ 1137 0551 74050000 		.4byte	0x574
+ 1138 0555 18       		.uleb128 0x18
+ 1139 0556 74050000 		.4byte	0x574
+ 1140 055a 18       		.uleb128 0x18
+ 1141 055b 74050000 		.4byte	0x574
+ 1142 055f 18       		.uleb128 0x18
+ 1143 0560 74050000 		.4byte	0x574
+ 1144 0564 18       		.uleb128 0x18
+ 1145 0565 74050000 		.4byte	0x574
+ 1146 0569 18       		.uleb128 0x18
+ 1147 056a 74050000 		.4byte	0x574
+ 1148 056e 18       		.uleb128 0x18
+ 1149 056f 74050000 		.4byte	0x574
+ 1150 0573 00       		.byte	0
+ 1151 0574 07       		.uleb128 0x7
+ 1152 0575 04       		.byte	0x4
+ 1153 0576 97000000 		.4byte	0x97
+ 1154 057a 16       		.uleb128 0x16
+ 1155 057b AB040000 		.4byte	.LASF39
+ 1156 057f 08       		.byte	0x8
+ 1157 0580 28       		.byte	0x28
+ 1158 0581 19       		.uleb128 0x19
+ 1159 0582 8D000000 		.4byte	.LASF58
+ 1160 0586 0E       		.byte	0xe
+ 1161 0587 8E       		.byte	0x8e
+ 1162 0588 AD000000 		.4byte	0xad
+ 1163 058c 96050000 		.4byte	0x596
+ 1164 0590 18       		.uleb128 0x18
+ 1165 0591 AD000000 		.4byte	0xad
+ 1166 0595 00       		.byte	0
+ 1167 0596 1A       		.uleb128 0x1a
+ 1168 0597 D9010000 		.4byte	.LASF41
+ 1169 059b 09       		.byte	0x9
+ 1170 059c 24       		.byte	0x24
+ 1171 059d AD000000 		.4byte	0xad
+ 1172 05a1 16       		.uleb128 0x16
+ 1173 05a2 4C040000 		.4byte	.LASF40
+ 1174 05a6 09       		.byte	0x9
+ 1175 05a7 28       		.byte	0x28
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 26
+
+
+ 1176 05a8 1A       		.uleb128 0x1a
+ 1177 05a9 A0010000 		.4byte	.LASF42
+ 1178 05ad 0A       		.byte	0xa
+ 1179 05ae 24       		.byte	0x24
+ 1180 05af AD000000 		.4byte	0xad
+ 1181 05b3 16       		.uleb128 0x16
+ 1182 05b4 13000000 		.4byte	.LASF43
+ 1183 05b8 0A       		.byte	0xa
+ 1184 05b9 28       		.byte	0x28
+ 1185 05ba 1A       		.uleb128 0x1a
+ 1186 05bb 37040000 		.4byte	.LASF44
+ 1187 05bf 0B       		.byte	0xb
+ 1188 05c0 24       		.byte	0x24
+ 1189 05c1 AD000000 		.4byte	0xad
+ 1190 05c5 16       		.uleb128 0x16
+ 1191 05c6 74000000 		.4byte	.LASF45
+ 1192 05ca 0B       		.byte	0xb
+ 1193 05cb 28       		.byte	0x28
+ 1194 05cc 16       		.uleb128 0x16
+ 1195 05cd F3000000 		.4byte	.LASF46
+ 1196 05d1 0C       		.byte	0xc
+ 1197 05d2 93       		.byte	0x93
+ 1198 05d3 16       		.uleb128 0x16
+ 1199 05d4 5C030000 		.4byte	.LASF47
+ 1200 05d8 0D       		.byte	0xd
+ 1201 05d9 54       		.byte	0x54
+ 1202 05da 1B       		.uleb128 0x1b
+ 1203 05db 84040000 		.4byte	.LASF49
+ 1204 05df 0E       		.byte	0xe
+ 1205 05e0 76       		.byte	0x76
+ 1206 05e1 EB050000 		.4byte	0x5eb
+ 1207 05e5 18       		.uleb128 0x18
+ 1208 05e6 B9000000 		.4byte	0xb9
+ 1209 05ea 00       		.byte	0
+ 1210 05eb 1C       		.uleb128 0x1c
+ 1211 05ec 9E040000 		.4byte	.LASF50
+ 1212 05f0 06       		.byte	0x6
+ 1213 05f1 A201     		.2byte	0x1a2
+ 1214 05f3 F9050000 		.4byte	0x5f9
+ 1215 05f7 1D       		.uleb128 0x1d
+ 1216 05f8 00       		.byte	0
+ 1217 05f9 1C       		.uleb128 0x1c
+ 1218 05fa B4000000 		.4byte	.LASF51
+ 1219 05fe 06       		.byte	0x6
+ 1220 05ff A501     		.2byte	0x1a5
+ 1221 0601 07060000 		.4byte	0x607
+ 1222 0605 1D       		.uleb128 0x1d
+ 1223 0606 00       		.byte	0
+ 1224 0607 1E       		.uleb128 0x1e
+ 1225 0608 83030000 		.4byte	.LASF52
+ 1226 060c 06       		.byte	0x6
+ 1227 060d A601     		.2byte	0x1a6
+ 1228 060f 19060000 		.4byte	0x619
+ 1229 0613 19060000 		.4byte	0x619
+ 1230 0617 1D       		.uleb128 0x1d
+ 1231 0618 00       		.byte	0
+ 1232 0619 02       		.uleb128 0x2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 27
+
+
+ 1233 061a 01       		.byte	0x1
+ 1234 061b 02       		.byte	0x2
+ 1235 061c 7D030000 		.4byte	.LASF53
+ 1236 0620 1B       		.uleb128 0x1b
+ 1237 0621 1C040000 		.4byte	.LASF54
+ 1238 0625 07       		.byte	0x7
+ 1239 0626 18       		.byte	0x18
+ 1240 0627 31060000 		.4byte	0x631
+ 1241 062b 18       		.uleb128 0x18
+ 1242 062c FC000000 		.4byte	0xfc
+ 1243 0630 00       		.byte	0
+ 1244 0631 1B       		.uleb128 0x1b
+ 1245 0632 1D010000 		.4byte	.LASF55
+ 1246 0636 07       		.byte	0x7
+ 1247 0637 20       		.byte	0x20
+ 1248 0638 42060000 		.4byte	0x642
+ 1249 063c 18       		.uleb128 0x18
+ 1250 063d AD000000 		.4byte	0xad
+ 1251 0641 00       		.byte	0
+ 1252 0642 1B       		.uleb128 0x1b
+ 1253 0643 65040000 		.4byte	.LASF56
+ 1254 0647 08       		.byte	0x8
+ 1255 0648 18       		.byte	0x18
+ 1256 0649 53060000 		.4byte	0x653
+ 1257 064d 18       		.uleb128 0x18
+ 1258 064e FC000000 		.4byte	0xfc
+ 1259 0652 00       		.byte	0
+ 1260 0653 1B       		.uleb128 0x1b
+ 1261 0654 AC020000 		.4byte	.LASF57
+ 1262 0658 08       		.byte	0x8
+ 1263 0659 20       		.byte	0x20
+ 1264 065a 64060000 		.4byte	0x664
+ 1265 065e 18       		.uleb128 0x18
+ 1266 065f AD000000 		.4byte	0xad
+ 1267 0663 00       		.byte	0
+ 1268 0664 19       		.uleb128 0x19
+ 1269 0665 06040000 		.4byte	.LASF59
+ 1270 0669 0E       		.byte	0xe
+ 1271 066a 88       		.byte	0x88
+ 1272 066b FC000000 		.4byte	0xfc
+ 1273 066f 7E060000 		.4byte	0x67e
+ 1274 0673 18       		.uleb128 0x18
+ 1275 0674 AD000000 		.4byte	0xad
+ 1276 0678 18       		.uleb128 0x18
+ 1277 0679 FC000000 		.4byte	0xfc
+ 1278 067d 00       		.byte	0
+ 1279 067e 1B       		.uleb128 0x1b
+ 1280 067f A3000000 		.4byte	.LASF60
+ 1281 0683 0E       		.byte	0xe
+ 1282 0684 8B       		.byte	0x8b
+ 1283 0685 94060000 		.4byte	0x694
+ 1284 0689 18       		.uleb128 0x18
+ 1285 068a AD000000 		.4byte	0xad
+ 1286 068e 18       		.uleb128 0x18
+ 1287 068f AD000000 		.4byte	0xad
+ 1288 0693 00       		.byte	0
+ 1289 0694 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 28
+
+
+ 1290 0695 FD010000 		.4byte	.LASF61
+ 1291 0699 09       		.byte	0x9
+ 1292 069a 18       		.byte	0x18
+ 1293 069b A5060000 		.4byte	0x6a5
+ 1294 069f 18       		.uleb128 0x18
+ 1295 06a0 FC000000 		.4byte	0xfc
+ 1296 06a4 00       		.byte	0
+ 1297 06a5 1B       		.uleb128 0x1b
+ 1298 06a6 53020000 		.4byte	.LASF62
+ 1299 06aa 0A       		.byte	0xa
+ 1300 06ab 18       		.byte	0x18
+ 1301 06ac B6060000 		.4byte	0x6b6
+ 1302 06b0 18       		.uleb128 0x18
+ 1303 06b1 FC000000 		.4byte	0xfc
+ 1304 06b5 00       		.byte	0
+ 1305 06b6 1B       		.uleb128 0x1b
+ 1306 06b7 98020000 		.4byte	.LASF63
+ 1307 06bb 0B       		.byte	0xb
+ 1308 06bc 18       		.byte	0x18
+ 1309 06bd C7060000 		.4byte	0x6c7
+ 1310 06c1 18       		.uleb128 0x18
+ 1311 06c2 FC000000 		.4byte	0xfc
+ 1312 06c6 00       		.byte	0
+ 1313 06c7 1B       		.uleb128 0x1b
+ 1314 06c8 57000000 		.4byte	.LASF64
+ 1315 06cc 09       		.byte	0x9
+ 1316 06cd 20       		.byte	0x20
+ 1317 06ce D8060000 		.4byte	0x6d8
+ 1318 06d2 18       		.uleb128 0x18
+ 1319 06d3 AD000000 		.4byte	0xad
+ 1320 06d7 00       		.byte	0
+ 1321 06d8 1B       		.uleb128 0x1b
+ 1322 06d9 67020000 		.4byte	.LASF65
+ 1323 06dd 0A       		.byte	0xa
+ 1324 06de 20       		.byte	0x20
+ 1325 06df E9060000 		.4byte	0x6e9
+ 1326 06e3 18       		.uleb128 0x18
+ 1327 06e4 AD000000 		.4byte	0xad
+ 1328 06e8 00       		.byte	0
+ 1329 06e9 1B       		.uleb128 0x1b
+ 1330 06ea 2C000000 		.4byte	.LASF66
+ 1331 06ee 0B       		.byte	0xb
+ 1332 06ef 20       		.byte	0x20
+ 1333 06f0 FA060000 		.4byte	0x6fa
+ 1334 06f4 18       		.uleb128 0x18
+ 1335 06f5 AD000000 		.4byte	0xad
+ 1336 06f9 00       		.byte	0
+ 1337 06fa 16       		.uleb128 0x16
+ 1338 06fb 34020000 		.4byte	.LASF67
+ 1339 06ff 0F       		.byte	0xf
+ 1340 0700 5A       		.byte	0x5a
+ 1341 0701 00       		.byte	0
+ 1342              		.section	.debug_abbrev,"",%progbits
+ 1343              	.Ldebug_abbrev0:
+ 1344 0000 01       		.uleb128 0x1
+ 1345 0001 11       		.uleb128 0x11
+ 1346 0002 01       		.byte	0x1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 29
+
+
+ 1347 0003 25       		.uleb128 0x25
+ 1348 0004 0E       		.uleb128 0xe
+ 1349 0005 13       		.uleb128 0x13
+ 1350 0006 0B       		.uleb128 0xb
+ 1351 0007 03       		.uleb128 0x3
+ 1352 0008 0E       		.uleb128 0xe
+ 1353 0009 1B       		.uleb128 0x1b
+ 1354 000a 0E       		.uleb128 0xe
+ 1355 000b 55       		.uleb128 0x55
+ 1356 000c 17       		.uleb128 0x17
+ 1357 000d 11       		.uleb128 0x11
+ 1358 000e 01       		.uleb128 0x1
+ 1359 000f 10       		.uleb128 0x10
+ 1360 0010 17       		.uleb128 0x17
+ 1361 0011 00       		.byte	0
+ 1362 0012 00       		.byte	0
+ 1363 0013 02       		.uleb128 0x2
+ 1364 0014 24       		.uleb128 0x24
+ 1365 0015 00       		.byte	0
+ 1366 0016 0B       		.uleb128 0xb
+ 1367 0017 0B       		.uleb128 0xb
+ 1368 0018 3E       		.uleb128 0x3e
+ 1369 0019 0B       		.uleb128 0xb
+ 1370 001a 03       		.uleb128 0x3
+ 1371 001b 0E       		.uleb128 0xe
+ 1372 001c 00       		.byte	0
+ 1373 001d 00       		.byte	0
+ 1374 001e 03       		.uleb128 0x3
+ 1375 001f 16       		.uleb128 0x16
+ 1376 0020 00       		.byte	0
+ 1377 0021 03       		.uleb128 0x3
+ 1378 0022 0E       		.uleb128 0xe
+ 1379 0023 3A       		.uleb128 0x3a
+ 1380 0024 0B       		.uleb128 0xb
+ 1381 0025 3B       		.uleb128 0x3b
+ 1382 0026 0B       		.uleb128 0xb
+ 1383 0027 49       		.uleb128 0x49
+ 1384 0028 13       		.uleb128 0x13
+ 1385 0029 00       		.byte	0
+ 1386 002a 00       		.byte	0
+ 1387 002b 04       		.uleb128 0x4
+ 1388 002c 24       		.uleb128 0x24
+ 1389 002d 00       		.byte	0
+ 1390 002e 0B       		.uleb128 0xb
+ 1391 002f 0B       		.uleb128 0xb
+ 1392 0030 3E       		.uleb128 0x3e
+ 1393 0031 0B       		.uleb128 0xb
+ 1394 0032 03       		.uleb128 0x3
+ 1395 0033 08       		.uleb128 0x8
+ 1396 0034 00       		.byte	0
+ 1397 0035 00       		.byte	0
+ 1398 0036 05       		.uleb128 0x5
+ 1399 0037 16       		.uleb128 0x16
+ 1400 0038 00       		.byte	0
+ 1401 0039 03       		.uleb128 0x3
+ 1402 003a 0E       		.uleb128 0xe
+ 1403 003b 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 30
+
+
+ 1404 003c 0B       		.uleb128 0xb
+ 1405 003d 3B       		.uleb128 0x3b
+ 1406 003e 05       		.uleb128 0x5
+ 1407 003f 49       		.uleb128 0x49
+ 1408 0040 13       		.uleb128 0x13
+ 1409 0041 00       		.byte	0
+ 1410 0042 00       		.byte	0
+ 1411 0043 06       		.uleb128 0x6
+ 1412 0044 35       		.uleb128 0x35
+ 1413 0045 00       		.byte	0
+ 1414 0046 49       		.uleb128 0x49
+ 1415 0047 13       		.uleb128 0x13
+ 1416 0048 00       		.byte	0
+ 1417 0049 00       		.byte	0
+ 1418 004a 07       		.uleb128 0x7
+ 1419 004b 0F       		.uleb128 0xf
+ 1420 004c 00       		.byte	0
+ 1421 004d 0B       		.uleb128 0xb
+ 1422 004e 0B       		.uleb128 0xb
+ 1423 004f 49       		.uleb128 0x49
+ 1424 0050 13       		.uleb128 0x13
+ 1425 0051 00       		.byte	0
+ 1426 0052 00       		.byte	0
+ 1427 0053 08       		.uleb128 0x8
+ 1428 0054 15       		.uleb128 0x15
+ 1429 0055 00       		.byte	0
+ 1430 0056 27       		.uleb128 0x27
+ 1431 0057 19       		.uleb128 0x19
+ 1432 0058 00       		.byte	0
+ 1433 0059 00       		.byte	0
+ 1434 005a 09       		.uleb128 0x9
+ 1435 005b 2E       		.uleb128 0x2e
+ 1436 005c 01       		.byte	0x1
+ 1437 005d 3F       		.uleb128 0x3f
+ 1438 005e 19       		.uleb128 0x19
+ 1439 005f 03       		.uleb128 0x3
+ 1440 0060 0E       		.uleb128 0xe
+ 1441 0061 3A       		.uleb128 0x3a
+ 1442 0062 0B       		.uleb128 0xb
+ 1443 0063 3B       		.uleb128 0x3b
+ 1444 0064 0B       		.uleb128 0xb
+ 1445 0065 27       		.uleb128 0x27
+ 1446 0066 19       		.uleb128 0x19
+ 1447 0067 11       		.uleb128 0x11
+ 1448 0068 01       		.uleb128 0x1
+ 1449 0069 12       		.uleb128 0x12
+ 1450 006a 06       		.uleb128 0x6
+ 1451 006b 40       		.uleb128 0x40
+ 1452 006c 18       		.uleb128 0x18
+ 1453 006d 9742     		.uleb128 0x2117
+ 1454 006f 19       		.uleb128 0x19
+ 1455 0070 01       		.uleb128 0x1
+ 1456 0071 13       		.uleb128 0x13
+ 1457 0072 00       		.byte	0
+ 1458 0073 00       		.byte	0
+ 1459 0074 0A       		.uleb128 0xa
+ 1460 0075 34       		.uleb128 0x34
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 31
+
+
+ 1461 0076 00       		.byte	0
+ 1462 0077 03       		.uleb128 0x3
+ 1463 0078 0E       		.uleb128 0xe
+ 1464 0079 3A       		.uleb128 0x3a
+ 1465 007a 0B       		.uleb128 0xb
+ 1466 007b 3B       		.uleb128 0x3b
+ 1467 007c 0B       		.uleb128 0xb
+ 1468 007d 49       		.uleb128 0x49
+ 1469 007e 13       		.uleb128 0x13
+ 1470 007f 02       		.uleb128 0x2
+ 1471 0080 17       		.uleb128 0x17
+ 1472 0081 00       		.byte	0
+ 1473 0082 00       		.byte	0
+ 1474 0083 0B       		.uleb128 0xb
+ 1475 0084 898201   		.uleb128 0x4109
+ 1476 0087 00       		.byte	0
+ 1477 0088 11       		.uleb128 0x11
+ 1478 0089 01       		.uleb128 0x1
+ 1479 008a 31       		.uleb128 0x31
+ 1480 008b 13       		.uleb128 0x13
+ 1481 008c 00       		.byte	0
+ 1482 008d 00       		.byte	0
+ 1483 008e 0C       		.uleb128 0xc
+ 1484 008f 898201   		.uleb128 0x4109
+ 1485 0092 01       		.byte	0x1
+ 1486 0093 11       		.uleb128 0x11
+ 1487 0094 01       		.uleb128 0x1
+ 1488 0095 31       		.uleb128 0x31
+ 1489 0096 13       		.uleb128 0x13
+ 1490 0097 01       		.uleb128 0x1
+ 1491 0098 13       		.uleb128 0x13
+ 1492 0099 00       		.byte	0
+ 1493 009a 00       		.byte	0
+ 1494 009b 0D       		.uleb128 0xd
+ 1495 009c 8A8201   		.uleb128 0x410a
+ 1496 009f 00       		.byte	0
+ 1497 00a0 02       		.uleb128 0x2
+ 1498 00a1 18       		.uleb128 0x18
+ 1499 00a2 9142     		.uleb128 0x2111
+ 1500 00a4 18       		.uleb128 0x18
+ 1501 00a5 00       		.byte	0
+ 1502 00a6 00       		.byte	0
+ 1503 00a7 0E       		.uleb128 0xe
+ 1504 00a8 898201   		.uleb128 0x4109
+ 1505 00ab 01       		.byte	0x1
+ 1506 00ac 11       		.uleb128 0x11
+ 1507 00ad 01       		.uleb128 0x1
+ 1508 00ae 31       		.uleb128 0x31
+ 1509 00af 13       		.uleb128 0x13
+ 1510 00b0 00       		.byte	0
+ 1511 00b1 00       		.byte	0
+ 1512 00b2 0F       		.uleb128 0xf
+ 1513 00b3 2E       		.uleb128 0x2e
+ 1514 00b4 01       		.byte	0x1
+ 1515 00b5 3F       		.uleb128 0x3f
+ 1516 00b6 19       		.uleb128 0x19
+ 1517 00b7 03       		.uleb128 0x3
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 32
+
+
+ 1518 00b8 0E       		.uleb128 0xe
+ 1519 00b9 3A       		.uleb128 0x3a
+ 1520 00ba 0B       		.uleb128 0xb
+ 1521 00bb 3B       		.uleb128 0x3b
+ 1522 00bc 0B       		.uleb128 0xb
+ 1523 00bd 27       		.uleb128 0x27
+ 1524 00be 19       		.uleb128 0x19
+ 1525 00bf 49       		.uleb128 0x49
+ 1526 00c0 13       		.uleb128 0x13
+ 1527 00c1 11       		.uleb128 0x11
+ 1528 00c2 01       		.uleb128 0x1
+ 1529 00c3 12       		.uleb128 0x12
+ 1530 00c4 06       		.uleb128 0x6
+ 1531 00c5 40       		.uleb128 0x40
+ 1532 00c6 18       		.uleb128 0x18
+ 1533 00c7 9742     		.uleb128 0x2117
+ 1534 00c9 19       		.uleb128 0x19
+ 1535 00ca 01       		.uleb128 0x1
+ 1536 00cb 13       		.uleb128 0x13
+ 1537 00cc 00       		.byte	0
+ 1538 00cd 00       		.byte	0
+ 1539 00ce 10       		.uleb128 0x10
+ 1540 00cf 34       		.uleb128 0x34
+ 1541 00d0 00       		.byte	0
+ 1542 00d1 03       		.uleb128 0x3
+ 1543 00d2 0E       		.uleb128 0xe
+ 1544 00d3 3A       		.uleb128 0x3a
+ 1545 00d4 0B       		.uleb128 0xb
+ 1546 00d5 3B       		.uleb128 0x3b
+ 1547 00d6 05       		.uleb128 0x5
+ 1548 00d7 49       		.uleb128 0x49
+ 1549 00d8 13       		.uleb128 0x13
+ 1550 00d9 3F       		.uleb128 0x3f
+ 1551 00da 19       		.uleb128 0x19
+ 1552 00db 3C       		.uleb128 0x3c
+ 1553 00dc 19       		.uleb128 0x19
+ 1554 00dd 00       		.byte	0
+ 1555 00de 00       		.byte	0
+ 1556 00df 11       		.uleb128 0x11
+ 1557 00e0 34       		.uleb128 0x34
+ 1558 00e1 00       		.byte	0
+ 1559 00e2 03       		.uleb128 0x3
+ 1560 00e3 0E       		.uleb128 0xe
+ 1561 00e4 3A       		.uleb128 0x3a
+ 1562 00e5 0B       		.uleb128 0xb
+ 1563 00e6 3B       		.uleb128 0x3b
+ 1564 00e7 05       		.uleb128 0x5
+ 1565 00e8 49       		.uleb128 0x49
+ 1566 00e9 13       		.uleb128 0x13
+ 1567 00ea 3F       		.uleb128 0x3f
+ 1568 00eb 19       		.uleb128 0x19
+ 1569 00ec 02       		.uleb128 0x2
+ 1570 00ed 18       		.uleb128 0x18
+ 1571 00ee 00       		.byte	0
+ 1572 00ef 00       		.byte	0
+ 1573 00f0 12       		.uleb128 0x12
+ 1574 00f1 01       		.uleb128 0x1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 33
+
+
+ 1575 00f2 01       		.byte	0x1
+ 1576 00f3 49       		.uleb128 0x49
+ 1577 00f4 13       		.uleb128 0x13
+ 1578 00f5 01       		.uleb128 0x1
+ 1579 00f6 13       		.uleb128 0x13
+ 1580 00f7 00       		.byte	0
+ 1581 00f8 00       		.byte	0
+ 1582 00f9 13       		.uleb128 0x13
+ 1583 00fa 21       		.uleb128 0x21
+ 1584 00fb 00       		.byte	0
+ 1585 00fc 49       		.uleb128 0x49
+ 1586 00fd 13       		.uleb128 0x13
+ 1587 00fe 2F       		.uleb128 0x2f
+ 1588 00ff 0B       		.uleb128 0xb
+ 1589 0100 00       		.byte	0
+ 1590 0101 00       		.byte	0
+ 1591 0102 14       		.uleb128 0x14
+ 1592 0103 34       		.uleb128 0x34
+ 1593 0104 00       		.byte	0
+ 1594 0105 03       		.uleb128 0x3
+ 1595 0106 0E       		.uleb128 0xe
+ 1596 0107 3A       		.uleb128 0x3a
+ 1597 0108 0B       		.uleb128 0xb
+ 1598 0109 3B       		.uleb128 0x3b
+ 1599 010a 0B       		.uleb128 0xb
+ 1600 010b 49       		.uleb128 0x49
+ 1601 010c 13       		.uleb128 0x13
+ 1602 010d 3F       		.uleb128 0x3f
+ 1603 010e 19       		.uleb128 0x19
+ 1604 010f 02       		.uleb128 0x2
+ 1605 0110 18       		.uleb128 0x18
+ 1606 0111 00       		.byte	0
+ 1607 0112 00       		.byte	0
+ 1608 0113 15       		.uleb128 0x15
+ 1609 0114 34       		.uleb128 0x34
+ 1610 0115 00       		.byte	0
+ 1611 0116 03       		.uleb128 0x3
+ 1612 0117 08       		.uleb128 0x8
+ 1613 0118 3A       		.uleb128 0x3a
+ 1614 0119 0B       		.uleb128 0xb
+ 1615 011a 3B       		.uleb128 0x3b
+ 1616 011b 0B       		.uleb128 0xb
+ 1617 011c 49       		.uleb128 0x49
+ 1618 011d 13       		.uleb128 0x13
+ 1619 011e 3F       		.uleb128 0x3f
+ 1620 011f 19       		.uleb128 0x19
+ 1621 0120 02       		.uleb128 0x2
+ 1622 0121 18       		.uleb128 0x18
+ 1623 0122 00       		.byte	0
+ 1624 0123 00       		.byte	0
+ 1625 0124 16       		.uleb128 0x16
+ 1626 0125 2E       		.uleb128 0x2e
+ 1627 0126 00       		.byte	0
+ 1628 0127 3F       		.uleb128 0x3f
+ 1629 0128 19       		.uleb128 0x19
+ 1630 0129 03       		.uleb128 0x3
+ 1631 012a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 34
+
+
+ 1632 012b 3A       		.uleb128 0x3a
+ 1633 012c 0B       		.uleb128 0xb
+ 1634 012d 3B       		.uleb128 0x3b
+ 1635 012e 0B       		.uleb128 0xb
+ 1636 012f 27       		.uleb128 0x27
+ 1637 0130 19       		.uleb128 0x19
+ 1638 0131 3C       		.uleb128 0x3c
+ 1639 0132 19       		.uleb128 0x19
+ 1640 0133 00       		.byte	0
+ 1641 0134 00       		.byte	0
+ 1642 0135 17       		.uleb128 0x17
+ 1643 0136 2E       		.uleb128 0x2e
+ 1644 0137 01       		.byte	0x1
+ 1645 0138 3F       		.uleb128 0x3f
+ 1646 0139 19       		.uleb128 0x19
+ 1647 013a 03       		.uleb128 0x3
+ 1648 013b 0E       		.uleb128 0xe
+ 1649 013c 3A       		.uleb128 0x3a
+ 1650 013d 0B       		.uleb128 0xb
+ 1651 013e 3B       		.uleb128 0x3b
+ 1652 013f 05       		.uleb128 0x5
+ 1653 0140 27       		.uleb128 0x27
+ 1654 0141 19       		.uleb128 0x19
+ 1655 0142 3C       		.uleb128 0x3c
+ 1656 0143 19       		.uleb128 0x19
+ 1657 0144 01       		.uleb128 0x1
+ 1658 0145 13       		.uleb128 0x13
+ 1659 0146 00       		.byte	0
+ 1660 0147 00       		.byte	0
+ 1661 0148 18       		.uleb128 0x18
+ 1662 0149 05       		.uleb128 0x5
+ 1663 014a 00       		.byte	0
+ 1664 014b 49       		.uleb128 0x49
+ 1665 014c 13       		.uleb128 0x13
+ 1666 014d 00       		.byte	0
+ 1667 014e 00       		.byte	0
+ 1668 014f 19       		.uleb128 0x19
+ 1669 0150 2E       		.uleb128 0x2e
+ 1670 0151 01       		.byte	0x1
+ 1671 0152 3F       		.uleb128 0x3f
+ 1672 0153 19       		.uleb128 0x19
+ 1673 0154 03       		.uleb128 0x3
+ 1674 0155 0E       		.uleb128 0xe
+ 1675 0156 3A       		.uleb128 0x3a
+ 1676 0157 0B       		.uleb128 0xb
+ 1677 0158 3B       		.uleb128 0x3b
+ 1678 0159 0B       		.uleb128 0xb
+ 1679 015a 27       		.uleb128 0x27
+ 1680 015b 19       		.uleb128 0x19
+ 1681 015c 49       		.uleb128 0x49
+ 1682 015d 13       		.uleb128 0x13
+ 1683 015e 3C       		.uleb128 0x3c
+ 1684 015f 19       		.uleb128 0x19
+ 1685 0160 01       		.uleb128 0x1
+ 1686 0161 13       		.uleb128 0x13
+ 1687 0162 00       		.byte	0
+ 1688 0163 00       		.byte	0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 35
+
+
+ 1689 0164 1A       		.uleb128 0x1a
+ 1690 0165 2E       		.uleb128 0x2e
+ 1691 0166 00       		.byte	0
+ 1692 0167 3F       		.uleb128 0x3f
+ 1693 0168 19       		.uleb128 0x19
+ 1694 0169 03       		.uleb128 0x3
+ 1695 016a 0E       		.uleb128 0xe
+ 1696 016b 3A       		.uleb128 0x3a
+ 1697 016c 0B       		.uleb128 0xb
+ 1698 016d 3B       		.uleb128 0x3b
+ 1699 016e 0B       		.uleb128 0xb
+ 1700 016f 27       		.uleb128 0x27
+ 1701 0170 19       		.uleb128 0x19
+ 1702 0171 49       		.uleb128 0x49
+ 1703 0172 13       		.uleb128 0x13
+ 1704 0173 3C       		.uleb128 0x3c
+ 1705 0174 19       		.uleb128 0x19
+ 1706 0175 00       		.byte	0
+ 1707 0176 00       		.byte	0
+ 1708 0177 1B       		.uleb128 0x1b
+ 1709 0178 2E       		.uleb128 0x2e
+ 1710 0179 01       		.byte	0x1
+ 1711 017a 3F       		.uleb128 0x3f
+ 1712 017b 19       		.uleb128 0x19
+ 1713 017c 03       		.uleb128 0x3
+ 1714 017d 0E       		.uleb128 0xe
+ 1715 017e 3A       		.uleb128 0x3a
+ 1716 017f 0B       		.uleb128 0xb
+ 1717 0180 3B       		.uleb128 0x3b
+ 1718 0181 0B       		.uleb128 0xb
+ 1719 0182 27       		.uleb128 0x27
+ 1720 0183 19       		.uleb128 0x19
+ 1721 0184 3C       		.uleb128 0x3c
+ 1722 0185 19       		.uleb128 0x19
+ 1723 0186 01       		.uleb128 0x1
+ 1724 0187 13       		.uleb128 0x13
+ 1725 0188 00       		.byte	0
+ 1726 0189 00       		.byte	0
+ 1727 018a 1C       		.uleb128 0x1c
+ 1728 018b 2E       		.uleb128 0x2e
+ 1729 018c 01       		.byte	0x1
+ 1730 018d 3F       		.uleb128 0x3f
+ 1731 018e 19       		.uleb128 0x19
+ 1732 018f 03       		.uleb128 0x3
+ 1733 0190 0E       		.uleb128 0xe
+ 1734 0191 3A       		.uleb128 0x3a
+ 1735 0192 0B       		.uleb128 0xb
+ 1736 0193 3B       		.uleb128 0x3b
+ 1737 0194 05       		.uleb128 0x5
+ 1738 0195 3C       		.uleb128 0x3c
+ 1739 0196 19       		.uleb128 0x19
+ 1740 0197 01       		.uleb128 0x1
+ 1741 0198 13       		.uleb128 0x13
+ 1742 0199 00       		.byte	0
+ 1743 019a 00       		.byte	0
+ 1744 019b 1D       		.uleb128 0x1d
+ 1745 019c 18       		.uleb128 0x18
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 36
+
+
+ 1746 019d 00       		.byte	0
+ 1747 019e 00       		.byte	0
+ 1748 019f 00       		.byte	0
+ 1749 01a0 1E       		.uleb128 0x1e
+ 1750 01a1 2E       		.uleb128 0x2e
+ 1751 01a2 01       		.byte	0x1
+ 1752 01a3 3F       		.uleb128 0x3f
+ 1753 01a4 19       		.uleb128 0x19
+ 1754 01a5 03       		.uleb128 0x3
+ 1755 01a6 0E       		.uleb128 0xe
+ 1756 01a7 3A       		.uleb128 0x3a
+ 1757 01a8 0B       		.uleb128 0xb
+ 1758 01a9 3B       		.uleb128 0x3b
+ 1759 01aa 05       		.uleb128 0x5
+ 1760 01ab 49       		.uleb128 0x49
+ 1761 01ac 13       		.uleb128 0x13
+ 1762 01ad 3C       		.uleb128 0x3c
+ 1763 01ae 19       		.uleb128 0x19
+ 1764 01af 01       		.uleb128 0x1
+ 1765 01b0 13       		.uleb128 0x13
+ 1766 01b1 00       		.byte	0
+ 1767 01b2 00       		.byte	0
+ 1768 01b3 00       		.byte	0
+ 1769              		.section	.debug_loc,"",%progbits
+ 1770              	.Ldebug_loc0:
+ 1771              	.LLST0:
+ 1772 0000 08000000 		.4byte	.LVL0
+ 1773 0004 1E000000 		.4byte	.LVL1
+ 1774 0008 0100     		.2byte	0x1
+ 1775 000a 53       		.byte	0x53
+ 1776 000b 00000000 		.4byte	0
+ 1777 000f 00000000 		.4byte	0
+ 1778              	.LLST1:
+ 1779 0013 2A000000 		.4byte	.LVL2
+ 1780 0017 34000000 		.4byte	.LVL3
+ 1781 001b 0100     		.2byte	0x1
+ 1782 001d 53       		.byte	0x53
+ 1783 001e 00000000 		.4byte	0
+ 1784 0022 00000000 		.4byte	0
+ 1785              		.section	.debug_aranges,"",%progbits
+ 1786 0000 3C000000 		.4byte	0x3c
+ 1787 0004 0200     		.2byte	0x2
+ 1788 0006 00000000 		.4byte	.Ldebug_info0
+ 1789 000a 04       		.byte	0x4
+ 1790 000b 00       		.byte	0
+ 1791 000c 0000     		.2byte	0
+ 1792 000e 0000     		.2byte	0
+ 1793 0010 00000000 		.4byte	.LFB64
+ 1794 0014 50000000 		.4byte	.LFE64-.LFB64
+ 1795 0018 00000000 		.4byte	.LFB65
+ 1796 001c 54000000 		.4byte	.LFE65-.LFB65
+ 1797 0020 00000000 		.4byte	.LFB66
+ 1798 0024 38000000 		.4byte	.LFE66-.LFB66
+ 1799 0028 00000000 		.4byte	.LFB67
+ 1800 002c 4C000000 		.4byte	.LFE67-.LFB67
+ 1801 0030 00000000 		.4byte	.LFB63
+ 1802 0034 D0000000 		.4byte	.LFE63-.LFB63
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 37
+
+
+ 1803 0038 00000000 		.4byte	0
+ 1804 003c 00000000 		.4byte	0
+ 1805              		.section	.debug_ranges,"",%progbits
+ 1806              	.Ldebug_ranges0:
+ 1807 0000 00000000 		.4byte	.LFB64
+ 1808 0004 50000000 		.4byte	.LFE64
+ 1809 0008 00000000 		.4byte	.LFB65
+ 1810 000c 54000000 		.4byte	.LFE65
+ 1811 0010 00000000 		.4byte	.LFB66
+ 1812 0014 38000000 		.4byte	.LFE66
+ 1813 0018 00000000 		.4byte	.LFB67
+ 1814 001c 4C000000 		.4byte	.LFE67
+ 1815 0020 00000000 		.4byte	.LFB63
+ 1816 0024 D0000000 		.4byte	.LFE63
+ 1817 0028 00000000 		.4byte	0
+ 1818 002c 00000000 		.4byte	0
+ 1819              		.section	.debug_line,"",%progbits
+ 1820              	.Ldebug_line0:
+ 1821 0000 73020000 		.section	.debug_str,"MS",%progbits,1
+ 1821      0200D801 
+ 1821      00000201 
+ 1821      FB0E0D00 
+ 1821      01010101 
+ 1822              	.LASF48:
+ 1823 0000 4D505536 		.ascii	"MPU6050_getMotion6\000"
+ 1823      3035305F 
+ 1823      6765744D 
+ 1823      6F74696F 
+ 1823      6E3600
+ 1824              	.LASF43:
+ 1825 0013 6677325F 		.ascii	"fw2_RPM_ISR_ClearPending\000"
+ 1825      52504D5F 
+ 1825      4953525F 
+ 1825      436C6561 
+ 1825      7250656E 
+ 1826              	.LASF66:
+ 1827 002c 6677335F 		.ascii	"fw3_RPM_ISR_SetPriority\000"
+ 1827      52504D5F 
+ 1827      4953525F 
+ 1827      53657450 
+ 1827      72696F72 
+ 1828              	.LASF4:
+ 1829 0044 73686F72 		.ascii	"short int\000"
+ 1829      7420696E 
+ 1829      7400
+ 1830              	.LASF23:
+ 1831 004e 73697A65 		.ascii	"sizetype\000"
+ 1831      74797065 
+ 1831      00
+ 1832              	.LASF64:
+ 1833 0057 6677315F 		.ascii	"fw1_RPM_ISR_SetPriority\000"
+ 1833      52504D5F 
+ 1833      4953525F 
+ 1833      53657450 
+ 1833      72696F72 
+ 1834              	.LASF34:
+ 1835 006f 72706D78 		.ascii	"rpmx\000"
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 38
+
+
+ 1835      00
+ 1836              	.LASF45:
+ 1837 0074 6677335F 		.ascii	"fw3_RPM_ISR_ClearPending\000"
+ 1837      52504D5F 
+ 1837      4953525F 
+ 1837      436C6561 
+ 1837      7250656E 
+ 1838              	.LASF58:
+ 1839 008d 4379496E 		.ascii	"CyIntGetState\000"
+ 1839      74476574 
+ 1839      53746174 
+ 1839      6500
+ 1840              	.LASF12:
+ 1841 009b 75696E74 		.ascii	"uint8_t\000"
+ 1841      385F7400 
+ 1842              	.LASF60:
+ 1843 00a3 4379496E 		.ascii	"CyIntSetPriority\000"
+ 1843      74536574 
+ 1843      5072696F 
+ 1843      72697479 
+ 1843      00
+ 1844              	.LASF51:
+ 1845 00b4 4D505536 		.ascii	"MPU6050_initialize\000"
+ 1845      3035305F 
+ 1845      696E6974 
+ 1845      69616C69 
+ 1845      7A6500
+ 1846              	.LASF33:
+ 1847 00c7 6572726F 		.ascii	"errorStatus\000"
+ 1847      72537461 
+ 1847      74757300 
+ 1848              	.LASF0:
+ 1849 00d3 7369676E 		.ascii	"signed char\000"
+ 1849      65642063 
+ 1849      68617200 
+ 1850              	.LASF17:
+ 1851 00df 666C6F61 		.ascii	"float\000"
+ 1851      7400
+ 1852              	.LASF9:
+ 1853 00e5 6C6F6E67 		.ascii	"long long int\000"
+ 1853      206C6F6E 
+ 1853      6720696E 
+ 1853      7400
+ 1854              	.LASF46:
+ 1855 00f3 4932434D 		.ascii	"I2CM_Start\000"
+ 1855      5F537461 
+ 1855      727400
+ 1856              	.LASF35:
+ 1857 00fe 72706D79 		.ascii	"rpmy\000"
+ 1857      00
+ 1858              	.LASF36:
+ 1859 0103 72706D7A 		.ascii	"rpmz\000"
+ 1859      00
+ 1860              	.LASF29:
+ 1861 0108 72706D5F 		.ascii	"rpm_handler\000"
+ 1861      68616E64 
+ 1861      6C657200 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 39
+
+
+ 1862              	.LASF7:
+ 1863 0114 6C6F6E67 		.ascii	"long int\000"
+ 1863      20696E74 
+ 1863      00
+ 1864              	.LASF55:
+ 1865 011d 626C7565 		.ascii	"blueRX_ISR_SetPriority\000"
+ 1865      52585F49 
+ 1865      53525F53 
+ 1865      65745072 
+ 1865      696F7269 
+ 1866              	.LASF2:
+ 1867 0134 5F5F7569 		.ascii	"__uint8_t\000"
+ 1867      6E74385F 
+ 1867      7400
+ 1868              	.LASF70:
+ 1869 013e 433A5C55 		.ascii	"C:\\Users\\Laptop\\Desktop\\Berkeley_Spring2017\\ME"
+ 1869      73657273 
+ 1869      5C4C6170 
+ 1869      746F705C 
+ 1869      4465736B 
+ 1870 016c 20313335 		.ascii	" 135\\Project\\github\\CubeControl\\BalancingCube.c"
+ 1870      5C50726F 
+ 1870      6A656374 
+ 1870      5C676974 
+ 1870      6875625C 
+ 1871 019b 7964736E 		.ascii	"ydsn\000"
+ 1871      00
+ 1872              	.LASF42:
+ 1873 01a0 6677325F 		.ascii	"fw2_RPM_ISR_GetState\000"
+ 1873      52504D5F 
+ 1873      4953525F 
+ 1873      47657453 
+ 1873      74617465 
+ 1874              	.LASF1:
+ 1875 01b5 756E7369 		.ascii	"unsigned char\000"
+ 1875      676E6564 
+ 1875      20636861 
+ 1875      7200
+ 1876              	.LASF24:
+ 1877 01c3 72785374 		.ascii	"rxStatus\000"
+ 1877      61747573 
+ 1877      00
+ 1878              	.LASF22:
+ 1879 01cc 63796973 		.ascii	"cyisraddress\000"
+ 1879      72616464 
+ 1879      72657373 
+ 1879      00
+ 1880              	.LASF41:
+ 1881 01d9 6677315F 		.ascii	"fw1_RPM_ISR_GetState\000"
+ 1881      52504D5F 
+ 1881      4953525F 
+ 1881      47657453 
+ 1881      74617465 
+ 1882              	.LASF28:
+ 1883 01ee 6D6F7469 		.ascii	"motion_handler\000"
+ 1883      6F6E5F68 
+ 1883      616E646C 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 40
+
+
+ 1883      657200
+ 1884              	.LASF61:
+ 1885 01fd 6677315F 		.ascii	"fw1_RPM_ISR_StartEx\000"
+ 1885      52504D5F 
+ 1885      4953525F 
+ 1885      53746172 
+ 1885      74457800 
+ 1886              	.LASF27:
+ 1887 0211 61636365 		.ascii	"accelUP_ISR\000"
+ 1887      6C55505F 
+ 1887      49535200 
+ 1888              	.LASF10:
+ 1889 021d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1889      206C6F6E 
+ 1889      6720756E 
+ 1889      7369676E 
+ 1889      65642069 
+ 1890              	.LASF67:
+ 1891 0234 61636365 		.ascii	"accel_timer_Start\000"
+ 1891      6C5F7469 
+ 1891      6D65725F 
+ 1891      53746172 
+ 1891      7400
+ 1892              	.LASF11:
+ 1893 0246 756E7369 		.ascii	"unsigned int\000"
+ 1893      676E6564 
+ 1893      20696E74 
+ 1893      00
+ 1894              	.LASF62:
+ 1895 0253 6677325F 		.ascii	"fw2_RPM_ISR_StartEx\000"
+ 1895      52504D5F 
+ 1895      4953525F 
+ 1895      53746172 
+ 1895      74457800 
+ 1896              	.LASF65:
+ 1897 0267 6677325F 		.ascii	"fw2_RPM_ISR_SetPriority\000"
+ 1897      52504D5F 
+ 1897      4953525F 
+ 1897      53657450 
+ 1897      72696F72 
+ 1898              	.LASF21:
+ 1899 027f 72656733 		.ascii	"reg32\000"
+ 1899      3200
+ 1900              	.LASF5:
+ 1901 0285 73686F72 		.ascii	"short unsigned int\000"
+ 1901      7420756E 
+ 1901      7369676E 
+ 1901      65642069 
+ 1901      6E7400
+ 1902              	.LASF63:
+ 1903 0298 6677335F 		.ascii	"fw3_RPM_ISR_StartEx\000"
+ 1903      52504D5F 
+ 1903      4953525F 
+ 1903      53746172 
+ 1903      74457800 
+ 1904              	.LASF57:
+ 1905 02ac 61636365 		.ascii	"accelUP_ISR_SetPriority\000"
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 41
+
+
+ 1905      6C55505F 
+ 1905      4953525F 
+ 1905      53657450 
+ 1905      72696F72 
+ 1906              	.LASF19:
+ 1907 02c4 63686172 		.ascii	"char\000"
+ 1907      00
+ 1908              	.LASF68:
+ 1909 02c9 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1909      4320342E 
+ 1909      392E3320 
+ 1909      32303135 
+ 1909      30333033 
+ 1910 02fc 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1910      20726576 
+ 1910      6973696F 
+ 1910      6E203232 
+ 1910      31323230 
+ 1911 032f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1911      66756E63 
+ 1911      74696F6E 
+ 1911      2D736563 
+ 1911      74696F6E 
+ 1912              	.LASF71:
+ 1913 0357 6D61696E 		.ascii	"main\000"
+ 1913      00
+ 1914              	.LASF47:
+ 1915 035c 55415254 		.ascii	"UART_Start\000"
+ 1915      5F537461 
+ 1915      727400
+ 1916              	.LASF14:
+ 1917 0367 696E7433 		.ascii	"int32_t\000"
+ 1917      325F7400 
+ 1918              	.LASF13:
+ 1919 036f 696E7431 		.ascii	"int16_t\000"
+ 1919      365F7400 
+ 1920              	.LASF15:
+ 1921 0377 75696E74 		.ascii	"uint8\000"
+ 1921      3800
+ 1922              	.LASF53:
+ 1923 037d 5F426F6F 		.ascii	"_Bool\000"
+ 1923      6C00
+ 1924              	.LASF52:
+ 1925 0383 4D505536 		.ascii	"MPU6050_testConnection\000"
+ 1925      3035305F 
+ 1925      74657374 
+ 1925      436F6E6E 
+ 1925      65637469 
+ 1926              	.LASF32:
+ 1927 039a 62756666 		.ascii	"buffer\000"
+ 1927      657200
+ 1928              	.LASF16:
+ 1929 03a1 75696E74 		.ascii	"uint32\000"
+ 1929      333200
+ 1930              	.LASF69:
+ 1931 03a8 6D61696E 		.ascii	"main.c\000"
+ 1931      2E6300
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 42
+
+
+ 1932              	.LASF20:
+ 1933 03af 72656738 		.ascii	"reg8\000"
+ 1933      00
+ 1934              	.LASF8:
+ 1935 03b4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1935      20756E73 
+ 1935      69676E65 
+ 1935      6420696E 
+ 1935      7400
+ 1936              	.LASF18:
+ 1937 03c6 646F7562 		.ascii	"double\000"
+ 1937      6C6500
+ 1938              	.LASF30:
+ 1939 03cd 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1939      52784275 
+ 1939      66666572 
+ 1939      00
+ 1940              	.LASF38:
+ 1941 03da 626C7565 		.ascii	"blueRX_ISR_ClearPending\000"
+ 1941      52585F49 
+ 1941      53525F43 
+ 1941      6C656172 
+ 1941      50656E64 
+ 1942              	.LASF6:
+ 1943 03f2 5F5F696E 		.ascii	"__int32_t\000"
+ 1943      7433325F 
+ 1943      7400
+ 1944              	.LASF3:
+ 1945 03fc 5F5F696E 		.ascii	"__int16_t\000"
+ 1945      7431365F 
+ 1945      7400
+ 1946              	.LASF59:
+ 1947 0406 4379496E 		.ascii	"CyIntSetVector\000"
+ 1947      74536574 
+ 1947      56656374 
+ 1947      6F7200
+ 1948              	.LASF25:
+ 1949 0415 72784461 		.ascii	"rxData\000"
+ 1949      746100
+ 1950              	.LASF54:
+ 1951 041c 626C7565 		.ascii	"blueRX_ISR_StartEx\000"
+ 1951      52585F49 
+ 1951      53525F53 
+ 1951      74617274 
+ 1951      457800
+ 1952              	.LASF31:
+ 1953 042f 64657641 		.ascii	"devAddr\000"
+ 1953      64647200 
+ 1954              	.LASF44:
+ 1955 0437 6677335F 		.ascii	"fw3_RPM_ISR_GetState\000"
+ 1955      52504D5F 
+ 1955      4953525F 
+ 1955      47657453 
+ 1955      74617465 
+ 1956              	.LASF40:
+ 1957 044c 6677315F 		.ascii	"fw1_RPM_ISR_ClearPending\000"
+ 1957      52504D5F 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccYfarri.s 			page 43
+
+
+ 1957      4953525F 
+ 1957      436C6561 
+ 1957      7250656E 
+ 1958              	.LASF56:
+ 1959 0465 61636365 		.ascii	"accelUP_ISR_StartEx\000"
+ 1959      6C55505F 
+ 1959      4953525F 
+ 1959      53746172 
+ 1959      74457800 
+ 1960              	.LASF26:
+ 1961 0479 626C7565 		.ascii	"blueRX_ISR\000"
+ 1961      52585F49 
+ 1961      535200
+ 1962              	.LASF49:
+ 1963 0484 43794465 		.ascii	"CyDelay\000"
+ 1963      6C617900 
+ 1964              	.LASF37:
+ 1965 048c 61636365 		.ascii	"accel_threshholds\000"
+ 1965      6C5F7468 
+ 1965      72657368 
+ 1965      686F6C64 
+ 1965      7300
+ 1966              	.LASF50:
+ 1967 049e 4D505536 		.ascii	"MPU6050_init\000"
+ 1967      3035305F 
+ 1967      696E6974 
+ 1967      00
+ 1968              	.LASF39:
+ 1969 04ab 61636365 		.ascii	"accelUP_ISR_ClearPending\000"
+ 1969      6C55505F 
+ 1969      4953525F 
+ 1969      436C6561 
+ 1969      7250656E 
+ 1970              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,41 @@
+--------------- Build Started: 04/29/2017 13:10:59 Project: BalancingCube, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
+main.c: In function 'main':
+main.c:20:5: warning: implicit declaration of function 'UART_Start' [-Wimplicit-function-declaration]
+     UART_Start();
+     ^
+main.c:22:5: warning: implicit declaration of function 'isr_rx_StartEx' [-Wimplicit-function-declaration]
+     isr_rx_StartEx(uartRX_ISR);
+     ^
+main.c: In function 'uartRX_ISR':
+main.c:40:20: error: 'UART_RXSTATUS_REG' undeclared (first use in this function)
+         rxStatus = UART_RXSTATUS_REG;
+                    ^
+main.c:40:20: note: each undeclared identifier is reported only once for each function it appears in
+main.c:42:25: error: 'UART_RX_STS_BREAK' undeclared (first use in this function)
+         if((rxStatus & (UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR |
+                         ^
+main.c:42:50: error: 'UART_RX_STS_PAR_ERROR' undeclared (first use in this function)
+         if((rxStatus & (UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR |
+                                                  ^
+main.c:43:25: error: 'UART_RX_STS_STOP_ERROR' undeclared (first use in this function)
+                         UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN)) != 0u)
+                         ^
+main.c:43:50: error: 'UART_RX_STS_OVERRUN' undeclared (first use in this function)
+                         UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN)) != 0u)
+                                                  ^
+main.c:46:13: error: 'errorStatus' undeclared (first use in this function)
+             errorStatus |= rxStatus & ( UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR | 
+             ^
+main.c:50:24: error: 'UART_RX_STS_FIFO_NOTEMPTY' undeclared (first use in this function)
+         if((rxStatus & UART_RX_STS_FIFO_NOTEMPTY) != 0u)
+                        ^
+main.c:53:22: error: 'UART_RXDATA_REG' undeclared (first use in this function)
+             rxData = UART_RXDATA_REG;
+                      ^
+main.c:57:17: error: 'UART_TXDATA_REG' undeclared (first use in this function)
+                 UART_TXDATA_REG = rxData;
+                 ^
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+--------------- Build Failed: 04/29/2017 13:10:59 ---------------

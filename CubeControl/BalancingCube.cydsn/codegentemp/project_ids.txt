@@ -1,5 +1,5 @@
-C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\BalancingCube.cyprj|6f55b561-8004-4875-8e5a-11ac63724d41
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|bc8c02f6-2b66-4234-8cef-32ba2395f4f0
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|83cc8e95-8ccf-4529-a0be-90ee684d89ab
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|9737f756-4d41-466f-bb14-7ab5dc56cca8
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5686e43d-e98d-43f6-8f27-f2e4bdcc11aa
+C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\BalancingCube.cyprj|1c97f781-586c-43a1-9776-e33690cc8727
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f2415bf2-9cd2-4148-808c-7280b026a9fb
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|bd9ba15e-2cb1-4c97-8c08-004f57cdcd8a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|e856fec5-fc39-4f56-8ec3-60efaa01c339
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|09fb8d7c-3e90-4e38-b46a-5f2388da51ac

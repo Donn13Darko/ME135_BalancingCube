@@ -171,6 +171,11 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\fw1_RPM_ISRPin_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\fw1_RPM_ISRPin.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\fw1_RPM_ISRPin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RPM_LED_PIN_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RPM_LED_PIN.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RPM_LED_PIN.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\accel_clock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\accel_clock.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\Export\ARM_GCC_Generic">

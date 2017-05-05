@@ -11,6 +11,8 @@
 */
 #include "project.h"
 #include <stdint.h>
+#include <stdio.h>
+#include "I2C.h"
 #include "blue.h"
 #include "MPU6050.h"
 
@@ -27,11 +29,16 @@
 
 #define MPU6050_PAUSE        500
 #define BLUE_PAUSE           600
-#define SLEEP_PAUSE          1000
+#define SLEEP_PAUSE          250
+#define SERVO_PAUSE          250
+#define MOTOR_PAUSE          500
 
 #define x_motion_ISR         (1u)
 #define y_motion_ISR         (2u)
 #define z_motion_ISR         (3u)
+
+#define PIN_OFF              (0u)
+#define PIN_ON               (1u)
 
 /* Function prototypes. */
 CY_ISR_PROTO (blueRX_ISR);
@@ -39,21 +46,37 @@ CY_ISR_PROTO (accelUP_ISR);
 CY_ISR_PROTO (motion_handler);
 CY_ISR_PROTO (rpm_handler);
 
-void update_motion ();
-
 /* Global Variables. */
 uint8 errorStatus = (0u);
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
+int16_t dx, dy, dz;
+
+uint16_t PWM_PERIOD = 4800;
+uint16_t PWM_ZERO = 0;
+
+uint16_t m_pwmx, m_pwmy, m_pwmz;
+uint16_t MOTOR_FULL_REVERSE = 125;    
+uint16_t MOTOR_STOP = 290;
+uint16_t MOTOR_FULL_FORWARD = 415;
+
+uint16_t s_pwmx, s_pwmy, s_pwmz;
+
+uint16_t SERVO_N90 = 3870;
+uint16_t SERVO_ZERO = 4320;
+uint16_t SERVO_P90 = 4770;
 
 bool jx, jy, jz;
-int16_t rpmx, rpmy, rpmz;
+uint16_t rpmx, rpmy, rpmz;
 
-uint8_t timeout = 50;
-const uint8_t buff_len = 64;
-char buff[buff_len];
+uint8_t blueBuff_timeout = 50;
+const size_t blueBuff_len = 64;
 uint8_t baud = 2;
+
+/* ax ay az gx gy gz rpmx rpmy rpmz */
+const size_t updateBuff_len = 18;
+const char* updateBlue_STR = "%d %d %d %d %d %d %d %d %d";
 
 /*** MAIN FUNCTION ***/
 int main(void)
@@ -66,19 +89,24 @@ int main(void)
     
     /* Start UART Communication. */
     UART_Start ();
-    CyDelay (BLUE_PAUSE);
 	while (config_blue (baud, BLUE_PAUSE) != baud)
     {
         CyDelay (BLUE_PAUSE);
     }
     
     /* Setup & Connect to MPU6050. */
-    MPU6050_init ();
-	MPU6050_initialize ();
-    while (!MPU6050_testConnection ())
-    {
-        CyDelay (MPU6050_PAUSE);
-    }
+    //MPU6050_init ();
+	//MPU6050_initialize ();
+    //while (!MPU6050_testConnection ())
+    //{
+    //    CyDelay (MPU6050_PAUSE);
+    //}
+    
+    /* Set desired state to current state. */
+    //MPU6050_getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+    dx = gx;
+    dy = gy;
+    dz = gz;
    
     /* Setup UART (hardware) interrupt. */
     blueRX_ISR_StartEx (blueRX_ISR);
@@ -90,39 +118,83 @@ int main(void)
     
     /* Setup x motion (software) interrupt. */
     CyIntSetVector (x_motion_ISR, motion_handler);
-    CyIntSetPriority (x_motion_ISR, DEFAULT_PRIORITY);
+    CyIntSetPriority (x_motion_ISR, MEDIUM_PRIORITY);
     CyIntEnable (x_motion_ISR);
     
     /* Setup y motion (software) interrupt. */
     CyIntSetVector (y_motion_ISR, motion_handler);
-    CyIntSetPriority (y_motion_ISR, DEFAULT_PRIORITY);
+    CyIntSetPriority (y_motion_ISR, MEDIUM_PRIORITY);
     CyIntEnable (y_motion_ISR);
     
     /* Setup z motion (software) interrupt. */
     CyIntSetVector (z_motion_ISR, motion_handler);
-    CyIntSetPriority (z_motion_ISR, DEFAULT_PRIORITY);
+    CyIntSetPriority (z_motion_ISR, MEDIUM_PRIORITY);
     CyIntEnable (z_motion_ISR);
     
-    /* Setup flywheel PWM and clocks. */
+    /* Setup flywheel PWM, clocks, and calibration. */
     flywheel_clock_Enable ();
     fw1_PWM_Start ();
     fw2_PWM_Start ();
     fw3_PWM_Start ();
+    CyDelay (MOTOR_PAUSE);
+    
+    fw1_PWM_WritePeriod (PWM_PERIOD);
+    fw3_PWM_WritePeriod (PWM_PERIOD);
+    fw3_PWM_WritePeriod (PWM_PERIOD);
+    CyDelay (MOTOR_PAUSE);
+    
+    /* Setup Motor PWM Compare Values (Duty Cycle). */
+    fw1_PWM_WriteCompare1 (PWM_ZERO);
+    fw2_PWM_WriteCompare1 (PWM_ZERO);
+    fw3_PWM_WriteCompare1 (PWM_ZERO);
+    CyDelay (MOTOR_PAUSE);
+    fw1_PWM_WriteCompare1 (MOTOR_STOP);
+    fw2_PWM_WriteCompare1 (MOTOR_STOP);
+    fw3_PWM_WriteCompare1 (MOTOR_STOP);
+    CyDelay (MOTOR_PAUSE);
+    
+    /* Setup Servo PWM Compare Values (Duty Cycle). */
+    fw1_PWM_WriteCompare2 (PWM_ZERO);
+    fw2_PWM_WriteCompare2 (PWM_ZERO);
+    fw3_PWM_WriteCompare2 (PWM_ZERO);
+    CyDelay (SERVO_PAUSE);
+    fw1_PWM_WriteCompare2 (SERVO_N90);
+    fw2_PWM_WriteCompare2 (SERVO_ZERO);
+    fw3_PWM_WriteCompare2 (SERVO_N90);
+    CyDelay (SERVO_PAUSE);
     
     /* Setup flywheel RPM ISRs. */
-    fw1_RPM_ISR_StartEx (rpm_handler);
-    fw2_RPM_ISR_StartEx (rpm_handler);
-    fw3_RPM_ISR_StartEx (rpm_handler);
-    fw1_RPM_ISR_SetPriority (LOW_PRIORITY);
-    fw2_RPM_ISR_SetPriority (LOW_PRIORITY);
-    fw3_RPM_ISR_SetPriority (LOW_PRIORITY);
+    //fw1_RPM_ISR_StartEx (rpm_handler);
+    //fw2_RPM_ISR_StartEx (rpm_handler);
+    //fw3_RPM_ISR_StartEx (rpm_handler);
+    //fw1_RPM_ISR_SetPriority (LOW_PRIORITY);
+    //fw2_RPM_ISR_SetPriority (LOW_PRIORITY);
+    //fw3_RPM_ISR_SetPriority (LOW_PRIORITY);
+    
+    /* Turn on flywheel LEDS. */
+    //RPM_LED_PIN_Write (PIN_ON);
     
     /* Start accel timer. */
-    accel_timer_Start ();
+    //accel_timer_Start ();
 
+    char updateBuff[updateBuff_len];
+    uint16_t i = MOTOR_STOP;
     for(;;)
     {
-        CyDelay (SLEEP_PAUSE);
+        //fw2_PWM_WriteCompare1 (i);
+        //i -= 10;
+        fw2_PWM_WriteCompare1 (i);
+        
+        i -= 10;
+        
+        if (i == (MOTOR_STOP - 70))
+        {
+            fw2_PWM_WriteCompare1 (MOTOR_STOP);
+            fw2_PWM_WriteCompare2 (SERVO_N90);
+        }
+        //snprintf (updateBuff, updateBuff_len, updateBlue_STR, 
+        //    ax, ay, az, gx, gy, gz, rpmx, rpmy, rpmz);
+        //WriteTxData (updateBuff, updateBuff_len);
     }
 }
 
@@ -133,32 +205,15 @@ int main(void)
 
 CY_ISR (blueRX_ISR)
 {    
-    uint8 rxStatus, rxData;           
+    /* Read RX Data. */
+    char blueBuff[blueBuff_len];
+    ReadRxData (blueBuff, blueBuff_len, blueBuff_timeout);
     
-    do
-    {
-        /* Read receiver status register */
-        rxStatus = UART_RXSTATUS_REG;
-
-        if ((rxStatus & (UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR |
-                        UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN)) != 0u)
-        {
-            /* ERROR handling. */
-            errorStatus |= rxStatus & ( UART_RX_STS_BREAK      | UART_RX_STS_PAR_ERROR | 
-                                        UART_RX_STS_STOP_ERROR | UART_RX_STS_OVERRUN);
-        }
-        
-        if ((rxStatus & UART_RX_STS_FIFO_NOTEMPTY) != 0u)
-        {
-            /* Read data from the RX data register */
-            rxData = UART_RXDATA_REG;
-            if(errorStatus == 0u)
-            {
-                /* Send data backward */
-                UART_TXDATA_REG = rxData;
-            }
-        }
-    } while ((rxStatus & UART_RX_STS_FIFO_NOTEMPTY) != 0u);
+    /* Act on RX Data. */
+    
+    
+    /* Respond to RX Data. */
+    WriteTxData (blueBuff, blueBuff_len);
     
     /* Clear blueRX ISR for next interrupt. */
     blueRX_ISR_ClearPending ();
@@ -169,6 +224,9 @@ CY_ISR (accelUP_ISR)
     /* Clear sticky timer TC by reading register. */
     accel_timer_STATUS;
     
+    /* Clear accel ISR. */
+    accelUP_ISR_ClearPending ();
+    
     /* Update accel & gyro values. */
     MPU6050_getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
     
@@ -176,9 +234,6 @@ CY_ISR (accelUP_ISR)
     CyIntSetPending (x_motion_ISR);
     CyIntSetPending (y_motion_ISR);
     CyIntSetPending (z_motion_ISR);
-    
-    /* Clear accel ISR. */
-    accelUP_ISR_ClearPending ();
 }
 
 CY_ISR (motion_handler)
@@ -217,6 +272,7 @@ CY_ISR (rpm_handler)
         rpmx++;
         
         /* Clear fw1 interrupt. */
+        fw1_RPM_ISRPin_ClearInterrupt ();
         fw1_RPM_ISR_ClearPending ();
     } else if (fw2_RPM_ISR_GetState ())
     {
@@ -224,6 +280,7 @@ CY_ISR (rpm_handler)
         rpmy++;
         
         /* Clear fw2 interrupt. */
+        fw2_RPM_ISRPin_ClearInterrupt ();
         fw2_RPM_ISR_ClearPending ();
     }else if (fw3_RPM_ISR_GetState ())
     {
@@ -231,6 +288,7 @@ CY_ISR (rpm_handler)
         rpmz++;
         
         /* Clear fw3 interrupt. */
+        fw3_RPM_ISRPin_ClearInterrupt ();
         fw3_RPM_ISR_ClearPending ();
     } else
     {

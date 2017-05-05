@@ -1,5 +1,5 @@
 # BalancingCube
-# 2017-05-03 07:27:53Z
+# 2017-05-04 15:45:36Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -11,3 +11,9 @@ set_io "RX(0)" iocell 12 6
 set_io "TX(0)" iocell 12 7
 set_io "SCL(0)" iocell 12 0
 set_io "SDA(0)" iocell 12 1
+set_io "fw1_pwm_servo(0)" iocell 15 3
+set_io "fw1_pwm_fw(0)" iocell 15 0
+set_io "fw2_pwm_fw(0)" iocell 0 5
+set_io "fw2_pwm_servo(0)" iocell 0 6
+set_io "fw3_pwm_fw(0)" iocell 12 3
+set_io "fw3_pwm_servo(0)" iocell 12 2

@@ -65,6 +65,8 @@
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\flywheel_clock.h" value="HEADER;;;;;flywheel_clock" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\fw1_RPM_ISR.c" value="SOURCE_C;CortexM3;;;;fw1_RPM_ISR" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\fw1_RPM_ISR.h" value="HEADER;;;;;fw1_RPM_ISR" />
+  <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\accel_clock.c" value="SOURCE_C;CortexM3;;;;accel_clock" />
+  <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\accel_clock.h" value="HEADER;;;;;accel_clock" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\accel_timer.c" value="SOURCE_C;CortexM3;;;;accel_timer" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\accel_timer.h" value="HEADER;;;;;accel_timer" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\accel_timer_PM.c" value="SOURCE_C;CortexM3;;;;accel_timer" />
@@ -95,6 +97,9 @@
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\fw3_pwm_servo_aliases.h" value="HEADER;;;;;fw3_pwm_servo" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\fw3_pwm_servo.c" value="SOURCE_C;CortexM3;;;;fw3_pwm_servo" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\fw3_pwm_servo.h" value="HEADER;;;;;fw3_pwm_servo" />
+  <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\RPM_LED_PIN_aliases.h" value="HEADER;;;;;RPM_LED_PIN" />
+  <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\RPM_LED_PIN.c" value="SOURCE_C;CortexM3;;;;RPM_LED_PIN" />
+  <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\RPM_LED_PIN.h" value="HEADER;;;;;RPM_LED_PIN" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
   <file name="C:\Users\Laptop\Desktop\Berkeley_Spring2017\ME 135\Project\github\CubeControl\BalancingCube.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

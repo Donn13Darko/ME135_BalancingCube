@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="CubeControl\BalancingCube\Header Files\blue.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>CubeControl</v>
 <v>CubeControl\BalancingCube</v>
@@ -39,6 +39,10 @@
 <v>CubeControl\BalancingCube\Source Files\main.c</v>
 <v>CubeControl\BalancingCube\Source Files\MPU6050.c</v>
 <v>CubeControl\BalancingCube\Generated_Source</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock\accel_clock.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock\accel_clock.h</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR\accel_ISR.c</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR\accel_ISR.h</v>
@@ -152,6 +156,10 @@
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\I2CM\I2CM_PM.c</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\I2CM\I2CM_PVT.h</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\I2CM\I2CM_SLAVE.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\RPM_LED_PIN</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\RPM_LED_PIN\RPM_LED_PIN.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\RPM_LED_PIN\RPM_LED_PIN.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\RPM_LED_PIN\RPM_LED_PIN_aliases.h</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\SCL</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\SCL\SCL.c</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5\SCL\SCL.h</v>
@@ -216,6 +224,29 @@
 <v>CubeControl\BalancingCube\Source Files\MPU6050.c</v>
 <v>CubeControl\BalancingCube\Generated_Source</v>
 <v>CubeControl\BalancingCube\Generated_Source\PSoC5</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock\accel_clock.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_clock\accel_clock.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR\accel_ISR.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISR\accel_ISR.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISRPin</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISRPin\accel_ISRPin.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISRPin\accel_ISRPin.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_ISRPin\accel_ISRPin_aliases.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_timer</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_timer\accel_timer.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_timer\accel_timer.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accel_timer\accel_timer_PM.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accelUP_ISR</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accelUP_ISR\accelUP_ISR.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\accelUP_ISR\accelUP_ISR.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\blueRX_ISR</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\blueRX_ISR\blueRX_ISR.c</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\blueRX_ISR\blueRX_ISR.h</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\cy_boot</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>CubeControl\BalancingCube\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -242,6 +273,7 @@
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_clock.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_ISR.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_ISRPin.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_timer.lst</v>
@@ -287,6 +319,7 @@
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\I2CM_SLAVE.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\MPU6050.lst</v>
+<v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\RPM_LED_PIN.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\SCL.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\SDA.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\UART.lst</v>
@@ -308,6 +341,7 @@
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_clock.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_ISR.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_ISRPin.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\accel_timer.lst</v>
@@ -349,7 +383,6 @@
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\I2CM_BOOT.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\I2CM_INT.lst</v>
 <v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\I2CM_MASTER.lst</v>
-<v>CubeControl\BalancingCube\CortexM3\ARM_GCC_493\Debug\Listing Files\I2CM_PM.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -416,14 +449,24 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\BalancingCube.cydsn\BalancingCube.cydwr" />
+<name v=".\BalancingCube.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\BalancingCube.cydsn\main.c" />
+<name v=".\BalancingCube.cydsn\blue.c" />
+<name v=".\BalancingCube.cydsn\blue.h" />
+<name v=".\BalancingCube.cydsn\MPU6050.c" />
+<name v=".\BalancingCube.cydsn\MPU6050.h" />
+<name v=".\BalancingCube.cydsn\Generated_Source\PSoC5\I2CM.c" />
+<name v=".\BalancingCube.cydsn\Generated_Source\PSoC5\UART.c" />
+</OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
   Actipro Docking/MDI for WinForms
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal" /><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1357, 711" SelectedTabbedMdiWindow="aa07327d-44ab-47a9-adfc-ee1e564d3062"><DocumentWindow Key="65fb23b5-bdc1-40b9-8684-aaa1a2496e97" Guid="a4a640e8-dcc7-4b08-97a5-48ed4afb2519" /><DocumentWindow Key="f256ee76-71d9-4dcc-b402-1b031b2678be" Guid="5f86b5fb-10b1-40b2-967b-091298cbc3bb" /><DocumentWindow Key="7c3988b7-36f7-4f82-bed9-6cac4ac6446a" Guid="aa07327d-44ab-47a9-adfc-ee1e564d3062" /><DocumentWindow Key="c746759e-abc3-4535-80f7-6110b17fc3d2" Guid="69e6a474-40d5-416f-8d22-d6f7763f55a0" /><DocumentWindow Key="66c21249-5171-422e-a096-f86d69409b8b" Guid="8e89de85-1319-430f-9815-d4869e955259" /><DocumentWindow Key="33f10a06-3e4c-4584-94bd-ef9a501b0753" Guid="f7a445c6-3dfa-429e-8888-5e90cd667b6f" /><DocumentWindow Key="73ee3a38-9ed1-4243-9c40-ceb05cbb243b" Guid="7009adb2-7791-49bf-93e1-276bf60c34aa" /><DocumentWindow Key="80c9ba0d-a8de-467b-8c3b-a9681efab120" Guid="f61e5dff-8963-461b-86c6-84f24e10a21e" /><DocumentWindow Key="ecd56650-df41-4061-9918-027cf27d350d" Guid="c9d19fe7-bc03-4b29-a916-a811e709e5f5" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

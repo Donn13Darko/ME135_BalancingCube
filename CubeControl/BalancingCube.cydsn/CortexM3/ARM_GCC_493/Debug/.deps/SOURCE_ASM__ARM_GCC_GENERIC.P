@@ -1,0 +1,10 @@
+C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/CortexM3/ARM_GCC_493/Debug/CyBootAsmGnu.o : C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+C:/Users/Laptop/Desktop/Berkeley_Spring2017/ME\ 135/Project/github/CubeControl/BalancingCube.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+

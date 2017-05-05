@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
   29:Generated_Source\PSoC5/fw2_PWM.c ****          constant 1 for reset. This will prevent the component from operating.
   30:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* fw2_PWM_PWMUDB_genblk1_ctrlreg__REMOVED */
   31:Generated_Source\PSoC5/fw2_PWM.c **** 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 2
 
 
   32:Generated_Source\PSoC5/fw2_PWM.c **** uint8 fw2_PWM_initVar = 0u;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
   86:Generated_Source\PSoC5/fw2_PWM.c ****     #if (fw2_PWM_UsingFixedFunction || fw2_PWM_UseControl)
   87:Generated_Source\PSoC5/fw2_PWM.c ****         uint8 ctrl;
   88:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (fw2_PWM_UsingFixedFunction || fw2_PWM_UseControl) */
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 3
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 3
 
 
   89:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  143:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UseOneCompareMode) */
  144:Generated_Source\PSoC5/fw2_PWM.c **** 
  145:Generated_Source\PSoC5/fw2_PWM.c ****         #if (fw2_PWM_KillModeMinTime)
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 4
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 4
 
 
  146:Generated_Source\PSoC5/fw2_PWM.c ****             fw2_PWM_WriteKillTime(fw2_PWM_MinimumKillTime);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  200:Generated_Source\PSoC5/fw2_PWM.c **** {
   27              		.loc 1 200 0
   28              		.cfi_startproc
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 5
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 5
 
 
   29              		@ args = 0, pretend = 0, frame = 0
@@ -262,7 +262,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
   38              	.L3:
   39              		.align	2
   40              	.L2:
-  41 000c 72640040 		.word	1073767538
+  41 000c 73640040 		.word	1073767539
   42              		.cfi_endproc
   43              	.LFE2:
   44              		.size	fw2_PWM_Enable, .-fw2_PWM_Enable
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  231:Generated_Source\PSoC5/fw2_PWM.c **** *
  232:Generated_Source\PSoC5/fw2_PWM.c **** *******************************************************************************/
  233:Generated_Source\PSoC5/fw2_PWM.c **** void fw2_PWM_Stop(void) 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 6
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 6
 
 
  234:Generated_Source\PSoC5/fw2_PWM.c **** {
@@ -318,7 +318,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
   64              	.L6:
   65              		.align	2
   66              	.L5:
-  67 000c 72640040 		.word	1073767538
+  67 000c 73640040 		.word	1073767539
   68              		.cfi_endproc
   69              	.LFE3:
   70              		.size	fw2_PWM_Stop, .-fw2_PWM_Stop
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  262:Generated_Source\PSoC5/fw2_PWM.c ****         * Return:
  263:Generated_Source\PSoC5/fw2_PWM.c ****         *  None
  264:Generated_Source\PSoC5/fw2_PWM.c ****         *
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 7
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 7
 
 
  265:Generated_Source\PSoC5/fw2_PWM.c ****         *******************************************************************************/
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  319:Generated_Source\PSoC5/fw2_PWM.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
  320:Generated_Source\PSoC5/fw2_PWM.c ****         *                defined in the H file as input arguments.
  321:Generated_Source\PSoC5/fw2_PWM.c ****         *
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 8
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 8
 
 
  322:Generated_Source\PSoC5/fw2_PWM.c ****         * Return:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  376:Generated_Source\PSoC5/fw2_PWM.c **** 
  377:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* UseOneCompareMode */
  378:Generated_Source\PSoC5/fw2_PWM.c **** 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 9
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 9
 
 
  379:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -505,7 +505,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  400:Generated_Source\PSoC5/fw2_PWM.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
  401:Generated_Source\PSoC5/fw2_PWM.c ****     *
  402:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 403:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCounter(uint8 counter) \
+ 403:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCounter(uint16 counter) \
  404:Generated_Source\PSoC5/fw2_PWM.c ****                                        
  405:Generated_Source\PSoC5/fw2_PWM.c ****     {
   79              		.loc 1 405 0
@@ -514,15 +514,15 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
   82              		@ frame_needed = 0, uses_anonymous_args = 0
   83              		@ link register save eliminated.
   84              	.LVL0:
- 406:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG8(fw2_PWM_COUNTER_LSB_PTR, counter);
+ 406:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG16(fw2_PWM_COUNTER_LSB_PTR, counter);
   85              		.loc 1 406 0
   86 0000 014B     		ldr	r3, .L8
-  87 0002 1870     		strb	r0, [r3]
+  87 0002 1880     		strh	r0, [r3]	@ movhi
   88 0004 7047     		bx	lr
   89              	.L9:
   90 0006 00BF     		.align	2
   91              	.L8:
-  92 0008 05640040 		.word	1073767429
+  92 0008 04680040 		.word	1073768452
   93              		.cfi_endproc
   94              	.LFE4:
   95              		.size	fw2_PWM_WriteCounter, .-fw2_PWM_WriteCounter
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  408:Generated_Source\PSoC5/fw2_PWM.c **** 
  409:Generated_Source\PSoC5/fw2_PWM.c **** 
  410:Generated_Source\PSoC5/fw2_PWM.c ****     /*******************************************************************************
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 10
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 10
 
 
  411:Generated_Source\PSoC5/fw2_PWM.c ****     * Function Name: fw2_PWM_ReadCounter
@@ -555,7 +555,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  422:Generated_Source\PSoC5/fw2_PWM.c ****     *  The current value of the counter.
  423:Generated_Source\PSoC5/fw2_PWM.c ****     *
  424:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 425:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadCounter(void) 
+ 425:Generated_Source\PSoC5/fw2_PWM.c ****     uint16 fw2_PWM_ReadCounter(void) 
  426:Generated_Source\PSoC5/fw2_PWM.c ****     {
  104              		.loc 1 426 0
  105              		.cfi_startproc
@@ -571,36 +571,37 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  111 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  431:Generated_Source\PSoC5/fw2_PWM.c **** 
  432:Generated_Source\PSoC5/fw2_PWM.c ****         /* Read the data from the FIFO */
- 433:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_CAPTURE_LSB_PTR));
+ 433:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG16(fw2_PWM_CAPTURE_LSB_PTR));
  112              		.loc 1 433 0
  113 0004 024B     		ldr	r3, .L11+4
- 114 0006 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 114 0006 1888     		ldrh	r0, [r3]
  434:Generated_Source\PSoC5/fw2_PWM.c ****     }
  115              		.loc 1 434 0
- 116 0008 7047     		bx	lr
- 117              	.L12:
- 118 000a 00BF     		.align	2
- 119              	.L11:
- 120 000c 15640040 		.word	1073767445
- 121 0010 55640040 		.word	1073767509
- 122              		.cfi_endproc
- 123              	.LFE5:
- 124              		.size	fw2_PWM_ReadCounter, .-fw2_PWM_ReadCounter
- 125              		.section	.text.fw2_PWM_WritePeriod,"ax",%progbits
- 126              		.align	2
- 127              		.global	fw2_PWM_WritePeriod
- 128              		.thumb
- 129              		.thumb_func
- 130              		.type	fw2_PWM_WritePeriod, %function
- 131              	fw2_PWM_WritePeriod:
- 132              	.LFB7:
+ 116 0008 80B2     		uxth	r0, r0
+ 117 000a 7047     		bx	lr
+ 118              	.L12:
+ 119              		.align	2
+ 120              	.L11:
+ 121 000c 12640040 		.word	1073767442
+ 122 0010 A4680040 		.word	1073768612
+ 123              		.cfi_endproc
+ 124              	.LFE5:
+ 125              		.size	fw2_PWM_ReadCounter, .-fw2_PWM_ReadCounter
+ 126              		.section	.text.fw2_PWM_WritePeriod,"ax",%progbits
+ 127              		.align	2
+ 128              		.global	fw2_PWM_WritePeriod
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	fw2_PWM_WritePeriod, %function
+ 132              	fw2_PWM_WritePeriod:
+ 133              	.LFB6:
  435:Generated_Source\PSoC5/fw2_PWM.c **** 
  436:Generated_Source\PSoC5/fw2_PWM.c ****     #if (fw2_PWM_UseStatus)
  437:Generated_Source\PSoC5/fw2_PWM.c **** 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 11
+
+
  438:Generated_Source\PSoC5/fw2_PWM.c **** 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 11
-
-
  439:Generated_Source\PSoC5/fw2_PWM.c ****         /*******************************************************************************
  440:Generated_Source\PSoC5/fw2_PWM.c ****         * Function Name: fw2_PWM_ClearFIFO
  441:Generated_Source\PSoC5/fw2_PWM.c ****         ********************************************************************************
@@ -644,40 +645,40 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  479:Generated_Source\PSoC5/fw2_PWM.c **** *  None
  480:Generated_Source\PSoC5/fw2_PWM.c **** *
  481:Generated_Source\PSoC5/fw2_PWM.c **** *******************************************************************************/
- 482:Generated_Source\PSoC5/fw2_PWM.c **** void fw2_PWM_WritePeriod(uint8 period) 
+ 482:Generated_Source\PSoC5/fw2_PWM.c **** void fw2_PWM_WritePeriod(uint16 period) 
  483:Generated_Source\PSoC5/fw2_PWM.c **** {
- 133              		.loc 1 483 0
- 134              		.cfi_startproc
- 135              		@ args = 0, pretend = 0, frame = 0
- 136              		@ frame_needed = 0, uses_anonymous_args = 0
- 137              		@ link register save eliminated.
- 138              	.LVL1:
+ 134              		.loc 1 483 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+ 139              	.LVL1:
  484:Generated_Source\PSoC5/fw2_PWM.c ****     #if(fw2_PWM_UsingFixedFunction)
  485:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG16(fw2_PWM_PERIOD_LSB_PTR, (uint16)period);
  486:Generated_Source\PSoC5/fw2_PWM.c ****     #else
- 487:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG8(fw2_PWM_PERIOD_LSB_PTR, period);
- 139              		.loc 1 487 0
- 140 0000 014B     		ldr	r3, .L14
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 12
+ 487:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG16(fw2_PWM_PERIOD_LSB_PTR, period);
+ 140              		.loc 1 487 0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 12
 
 
- 141 0002 1870     		strb	r0, [r3]
- 142 0004 7047     		bx	lr
- 143              	.L15:
- 144 0006 00BF     		.align	2
- 145              	.L14:
- 146 0008 45640040 		.word	1073767493
- 147              		.cfi_endproc
- 148              	.LFE7:
- 149              		.size	fw2_PWM_WritePeriod, .-fw2_PWM_WritePeriod
- 150              		.section	.text.fw2_PWM_WriteCompare1,"ax",%progbits
- 151              		.align	2
- 152              		.global	fw2_PWM_WriteCompare1
- 153              		.thumb
- 154              		.thumb_func
- 155              		.type	fw2_PWM_WriteCompare1, %function
- 156              	fw2_PWM_WriteCompare1:
- 157              	.LFB8:
+ 141 0000 014B     		ldr	r3, .L14
+ 142 0002 1880     		strh	r0, [r3]	@ movhi
+ 143 0004 7047     		bx	lr
+ 144              	.L15:
+ 145 0006 00BF     		.align	2
+ 146              	.L14:
+ 147 0008 84680040 		.word	1073768580
+ 148              		.cfi_endproc
+ 149              	.LFE6:
+ 150              		.size	fw2_PWM_WritePeriod, .-fw2_PWM_WritePeriod
+ 151              		.section	.text.fw2_PWM_WriteCompare1,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	fw2_PWM_WriteCompare1
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	fw2_PWM_WriteCompare1, %function
+ 157              	fw2_PWM_WriteCompare1:
+ 158              	.LFB7:
  488:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (fw2_PWM_UsingFixedFunction) */
  489:Generated_Source\PSoC5/fw2_PWM.c **** }
  490:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -706,23 +707,23 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  513:Generated_Source\PSoC5/fw2_PWM.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
  514:Generated_Source\PSoC5/fw2_PWM.c ****     *
  515:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 516:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare(uint8 compare) \
+ 516:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare(uint16 compare) \
  517:Generated_Source\PSoC5/fw2_PWM.c ****                                        
  518:Generated_Source\PSoC5/fw2_PWM.c ****     {
  519:Generated_Source\PSoC5/fw2_PWM.c ****         #if(fw2_PWM_UsingFixedFunction)
  520:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE1_LSB_PTR, (uint16)compare);
  521:Generated_Source\PSoC5/fw2_PWM.c ****         #else
- 522:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG8(fw2_PWM_COMPARE1_LSB_PTR, compare);
+ 522:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE1_LSB_PTR, compare);
  523:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UsingFixedFunction) */
  524:Generated_Source\PSoC5/fw2_PWM.c **** 
  525:Generated_Source\PSoC5/fw2_PWM.c ****         #if (fw2_PWM_PWMMode == fw2_PWM__B_PWM__DITHER)
  526:Generated_Source\PSoC5/fw2_PWM.c ****             #if(fw2_PWM_UsingFixedFunction)
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 13
+
+
  527:Generated_Source\PSoC5/fw2_PWM.c ****                 CY_SET_REG16(fw2_PWM_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 13
-
-
  528:Generated_Source\PSoC5/fw2_PWM.c ****             #else
- 529:Generated_Source\PSoC5/fw2_PWM.c ****                 CY_SET_REG8(fw2_PWM_COMPARE2_LSB_PTR, (compare + 1u));
+ 529:Generated_Source\PSoC5/fw2_PWM.c ****                 CY_SET_REG16(fw2_PWM_COMPARE2_LSB_PTR, (compare + 1u));
  530:Generated_Source\PSoC5/fw2_PWM.c ****             #endif /* (fw2_PWM_UsingFixedFunction) */
  531:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_PWMMode == fw2_PWM__B_PWM__DITHER) */
  532:Generated_Source\PSoC5/fw2_PWM.c ****     }
@@ -748,41 +749,41 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  552:Generated_Source\PSoC5/fw2_PWM.c ****     *  None
  553:Generated_Source\PSoC5/fw2_PWM.c ****     *
  554:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 555:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare1(uint8 compare) \
+ 555:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare1(uint16 compare) \
  556:Generated_Source\PSoC5/fw2_PWM.c ****                                         
  557:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 158              		.loc 1 557 0
- 159              		.cfi_startproc
- 160              		@ args = 0, pretend = 0, frame = 0
- 161              		@ frame_needed = 0, uses_anonymous_args = 0
- 162              		@ link register save eliminated.
- 163              	.LVL2:
+ 159              		.loc 1 557 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164              	.LVL2:
  558:Generated_Source\PSoC5/fw2_PWM.c ****         #if(fw2_PWM_UsingFixedFunction)
  559:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE1_LSB_PTR, (uint16)compare);
  560:Generated_Source\PSoC5/fw2_PWM.c ****         #else
- 561:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG8(fw2_PWM_COMPARE1_LSB_PTR, compare);
- 164              		.loc 1 561 0
- 165 0000 014B     		ldr	r3, .L17
- 166 0002 1870     		strb	r0, [r3]
- 167 0004 7047     		bx	lr
- 168              	.L18:
- 169 0006 00BF     		.align	2
- 170              	.L17:
- 171 0008 25640040 		.word	1073767461
- 172              		.cfi_endproc
- 173              	.LFE8:
- 174              		.size	fw2_PWM_WriteCompare1, .-fw2_PWM_WriteCompare1
- 175              		.section	.text.fw2_PWM_WriteCompare2,"ax",%progbits
- 176              		.align	2
- 177              		.global	fw2_PWM_WriteCompare2
- 178              		.thumb
- 179              		.thumb_func
- 180              		.type	fw2_PWM_WriteCompare2, %function
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 14
+ 561:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE1_LSB_PTR, compare);
+ 165              		.loc 1 561 0
+ 166 0000 014B     		ldr	r3, .L17
+ 167 0002 1880     		strh	r0, [r3]	@ movhi
+ 168 0004 7047     		bx	lr
+ 169              	.L18:
+ 170 0006 00BF     		.align	2
+ 171              	.L17:
+ 172 0008 44680040 		.word	1073768516
+ 173              		.cfi_endproc
+ 174              	.LFE7:
+ 175              		.size	fw2_PWM_WriteCompare1, .-fw2_PWM_WriteCompare1
+ 176              		.section	.text.fw2_PWM_WriteCompare2,"ax",%progbits
+ 177              		.align	2
+ 178              		.global	fw2_PWM_WriteCompare2
+ 179              		.thumb
+ 180              		.thumb_func
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 14
 
 
- 181              	fw2_PWM_WriteCompare2:
- 182              	.LFB9:
+ 181              		.type	fw2_PWM_WriteCompare2, %function
+ 182              	fw2_PWM_WriteCompare2:
+ 183              	.LFB8:
  562:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UsingFixedFunction) */
  563:Generated_Source\PSoC5/fw2_PWM.c ****     }
  564:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -805,43 +806,161 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  581:Generated_Source\PSoC5/fw2_PWM.c ****     *  None
  582:Generated_Source\PSoC5/fw2_PWM.c ****     *
  583:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 584:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare2(uint8 compare) \
+ 584:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteCompare2(uint16 compare) \
  585:Generated_Source\PSoC5/fw2_PWM.c ****                                         
  586:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 183              		.loc 1 586 0
- 184              		.cfi_startproc
- 185              		@ args = 0, pretend = 0, frame = 0
- 186              		@ frame_needed = 0, uses_anonymous_args = 0
- 187              		@ link register save eliminated.
- 188              	.LVL3:
+ 184              		.loc 1 586 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 189              	.LVL3:
  587:Generated_Source\PSoC5/fw2_PWM.c ****         #if(fw2_PWM_UsingFixedFunction)
  588:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE2_LSB_PTR, compare);
  589:Generated_Source\PSoC5/fw2_PWM.c ****         #else
- 590:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG8(fw2_PWM_COMPARE2_LSB_PTR, compare);
- 189              		.loc 1 590 0
- 190 0000 014B     		ldr	r3, .L20
- 191 0002 1870     		strb	r0, [r3]
- 192 0004 7047     		bx	lr
- 193              	.L21:
- 194 0006 00BF     		.align	2
- 195              	.L20:
- 196 0008 35640040 		.word	1073767477
- 197              		.cfi_endproc
- 198              	.LFE9:
- 199              		.size	fw2_PWM_WriteCompare2, .-fw2_PWM_WriteCompare2
- 200              		.section	.text.fw2_PWM_SetInterruptMode,"ax",%progbits
- 201              		.align	2
- 202              		.global	fw2_PWM_SetInterruptMode
- 203              		.thumb
- 204              		.thumb_func
- 205              		.type	fw2_PWM_SetInterruptMode, %function
- 206              	fw2_PWM_SetInterruptMode:
- 207              	.LFB10:
+ 590:Generated_Source\PSoC5/fw2_PWM.c ****             CY_SET_REG16(fw2_PWM_COMPARE2_LSB_PTR, compare);
+ 190              		.loc 1 590 0
+ 191 0000 014B     		ldr	r3, .L20
+ 192 0002 1880     		strh	r0, [r3]	@ movhi
+ 193 0004 7047     		bx	lr
+ 194              	.L21:
+ 195 0006 00BF     		.align	2
+ 196              	.L20:
+ 197 0008 64680040 		.word	1073768548
+ 198              		.cfi_endproc
+ 199              	.LFE8:
+ 200              		.size	fw2_PWM_WriteCompare2, .-fw2_PWM_WriteCompare2
+ 201              		.section	.text.fw2_PWM_Init,"ax",%progbits
+ 202              		.align	2
+ 203              		.global	fw2_PWM_Init
+ 204              		.thumb
+ 205              		.thumb_func
+ 206              		.type	fw2_PWM_Init, %function
+ 207              	fw2_PWM_Init:
+ 208              	.LFB1:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 15
+
+
+  85:Generated_Source\PSoC5/fw2_PWM.c ****     #if (fw2_PWM_UsingFixedFunction || fw2_PWM_UseControl)
+ 209              		.loc 1 85 0
+ 210              		.cfi_startproc
+ 211              		@ args = 0, pretend = 0, frame = 0
+ 212              		@ frame_needed = 0, uses_anonymous_args = 0
+ 213 0000 08B5     		push	{r3, lr}
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 3, -8
+ 216              		.cfi_offset 14, -4
+ 117:Generated_Source\PSoC5/fw2_PWM.c ****                 ((uint8)(~fw2_PWM_CTRL_CMPMODE1_MASK));
+ 217              		.loc 1 117 0
+ 218 0002 104A     		ldr	r2, .L24
+ 219 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 220 0006 03F0C003 		and	r3, r3, #192
+ 221              	.LVL4:
+ 119:Generated_Source\PSoC5/fw2_PWM.c ****                                    fw2_PWM_DEFAULT_COMPARE1_MODE;
+ 222              		.loc 1 119 0
+ 223 000a 43F02403 		orr	r3, r3, #36
+ 224              	.LVL5:
+ 225 000e 1370     		strb	r3, [r2]
+ 129:Generated_Source\PSoC5/fw2_PWM.c ****             fw2_PWM_AUX_CONTROLDP1 |= (fw2_PWM_AUX_CTRL_FIFO0_CLR);
+ 226              		.loc 1 129 0
+ 227 0010 1F32     		adds	r2, r2, #31
+ 228 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 229 0014 43F00103 		orr	r3, r3, #1
+ 230 0018 1370     		strb	r3, [r2]
+ 130:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_Resolution == 8) */
+ 231              		.loc 1 130 0
+ 232 001a 0132     		adds	r2, r2, #1
+ 233 001c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 234 001e 43F00103 		orr	r3, r3, #1
+ 235 0022 1370     		strb	r3, [r2]
+ 133:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (!fw2_PWM_UsingFixedFunction) */
+ 236              		.loc 1 133 0
+ 237 0024 4FF49650 		mov	r0, #4800
+ 238 0028 FFF7FEFF 		bl	fw2_PWM_WriteCounter
+ 239              	.LVL6:
+ 136:Generated_Source\PSoC5/fw2_PWM.c **** 
+ 240              		.loc 1 136 0
+ 241 002c 4FF49650 		mov	r0, #4800
+ 242 0030 FFF7FEFF 		bl	fw2_PWM_WritePeriod
+ 243              	.LVL7:
+ 141:Generated_Source\PSoC5/fw2_PWM.c ****             fw2_PWM_WriteCompare2(fw2_PWM_INIT_COMPARE_VALUE2);
+ 244              		.loc 1 141 0
+ 245 0034 0020     		movs	r0, #0
+ 246 0036 FFF7FEFF 		bl	fw2_PWM_WriteCompare1
+ 247              	.LVL8:
+ 142:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UseOneCompareMode) */
+ 248              		.loc 1 142 0
+ 249 003a 0020     		movs	r0, #0
+ 250 003c FFF7FEFF 		bl	fw2_PWM_WriteCompare2
+ 251              	.LVL9:
+ 252 0040 08BD     		pop	{r3, pc}
+ 253              	.L25:
+ 254 0042 00BF     		.align	2
+ 255              	.L24:
+ 256 0044 73640040 		.word	1073767539
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 16
+
+
+ 257              		.cfi_endproc
+ 258              	.LFE1:
+ 259              		.size	fw2_PWM_Init, .-fw2_PWM_Init
+ 260              		.section	.text.fw2_PWM_Start,"ax",%progbits
+ 261              		.align	2
+ 262              		.global	fw2_PWM_Start
+ 263              		.thumb
+ 264              		.thumb_func
+ 265              		.type	fw2_PWM_Start, %function
+ 266              	fw2_PWM_Start:
+ 267              	.LFB0:
+  56:Generated_Source\PSoC5/fw2_PWM.c ****     /* If not Initialized then initialize all required hardware and software */
+ 268              		.loc 1 56 0
+ 269              		.cfi_startproc
+ 270              		@ args = 0, pretend = 0, frame = 0
+ 271              		@ frame_needed = 0, uses_anonymous_args = 0
+ 272 0000 08B5     		push	{r3, lr}
+ 273              		.cfi_def_cfa_offset 8
+ 274              		.cfi_offset 3, -8
+ 275              		.cfi_offset 14, -4
+  58:Generated_Source\PSoC5/fw2_PWM.c ****     {
+ 276              		.loc 1 58 0
+ 277 0002 054B     		ldr	r3, .L29
+ 278 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 279 0006 23B9     		cbnz	r3, .L27
+  60:Generated_Source\PSoC5/fw2_PWM.c ****         fw2_PWM_initVar = 1u;
+ 280              		.loc 1 60 0
+ 281 0008 FFF7FEFF 		bl	fw2_PWM_Init
+ 282              	.LVL10:
+  61:Generated_Source\PSoC5/fw2_PWM.c ****     }
+ 283              		.loc 1 61 0
+ 284 000c 0122     		movs	r2, #1
+ 285 000e 024B     		ldr	r3, .L29
+ 286 0010 1A70     		strb	r2, [r3]
+ 287              	.L27:
+  63:Generated_Source\PSoC5/fw2_PWM.c **** 
+ 288              		.loc 1 63 0
+ 289 0012 FFF7FEFF 		bl	fw2_PWM_Enable
+ 290              	.LVL11:
+ 291 0016 08BD     		pop	{r3, pc}
+ 292              	.L30:
+ 293              		.align	2
+ 294              	.L29:
+ 295 0018 00000000 		.word	.LANCHOR0
+ 296              		.cfi_endproc
+ 297              	.LFE0:
+ 298              		.size	fw2_PWM_Start, .-fw2_PWM_Start
+ 299              		.section	.text.fw2_PWM_ReadControlRegister,"ax",%progbits
+ 300              		.align	2
+ 301              		.global	fw2_PWM_ReadControlRegister
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.type	fw2_PWM_ReadControlRegister, %function
+ 305              	fw2_PWM_ReadControlRegister:
+ 306              	.LFB9:
  591:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UsingFixedFunction) */
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 15
-
-
  592:Generated_Source\PSoC5/fw2_PWM.c ****     }
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 17
+
+
  593:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* UseOneCompareMode */
  594:Generated_Source\PSoC5/fw2_PWM.c **** 
  595:Generated_Source\PSoC5/fw2_PWM.c **** #if (fw2_PWM_DeadBandUsed)
@@ -898,10 +1017,10 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  646:Generated_Source\PSoC5/fw2_PWM.c ****     *
  647:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
  648:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadDeadTime(void) 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 16
-
-
  649:Generated_Source\PSoC5/fw2_PWM.c ****     {
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 18
+
+
  650:Generated_Source\PSoC5/fw2_PWM.c ****         /* If using the Dead Band 1-255 mode then just read the register */
  651:Generated_Source\PSoC5/fw2_PWM.c ****         #if(!fw2_PWM_DeadBand2_4)
  652:Generated_Source\PSoC5/fw2_PWM.c ****             return (CY_GET_REG8(fw2_PWM_DEADBAND_COUNT_PTR));
@@ -938,35 +1057,7 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  683:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
  684:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_SetInterruptMode(uint8 interruptMode) 
  685:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 208              		.loc 1 685 0
- 209              		.cfi_startproc
- 210              		@ args = 0, pretend = 0, frame = 0
- 211              		@ frame_needed = 0, uses_anonymous_args = 0
- 212              		@ link register save eliminated.
- 213              	.LVL4:
  686:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG8(fw2_PWM_STATUS_MASK_PTR, interruptMode);
- 214              		.loc 1 686 0
- 215 0000 014B     		ldr	r3, .L23
- 216 0002 1870     		strb	r0, [r3]
- 217 0004 7047     		bx	lr
- 218              	.L24:
- 219 0006 00BF     		.align	2
- 220              	.L23:
- 221 0008 82640040 		.word	1073767554
- 222              		.cfi_endproc
- 223              	.LFE10:
- 224              		.size	fw2_PWM_SetInterruptMode, .-fw2_PWM_SetInterruptMode
- 225              		.section	.text.fw2_PWM_ReadStatusRegister,"ax",%progbits
- 226              		.align	2
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 17
-
-
- 227              		.global	fw2_PWM_ReadStatusRegister
- 228              		.thumb
- 229              		.thumb_func
- 230              		.type	fw2_PWM_ReadStatusRegister, %function
- 231              	fw2_PWM_ReadStatusRegister:
- 232              	.LFB11:
  687:Generated_Source\PSoC5/fw2_PWM.c ****     }
  688:Generated_Source\PSoC5/fw2_PWM.c **** 
  689:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -987,42 +1078,17 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  704:Generated_Source\PSoC5/fw2_PWM.c ****     *  [4]   : FIFO not empty
  705:Generated_Source\PSoC5/fw2_PWM.c ****     *  [3]   : FIFO full
  706:Generated_Source\PSoC5/fw2_PWM.c ****     *  [2]   : Terminal count
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 19
+
+
  707:Generated_Source\PSoC5/fw2_PWM.c ****     *  [1]   : Compare output 2
  708:Generated_Source\PSoC5/fw2_PWM.c ****     *  [0]   : Compare output 1
  709:Generated_Source\PSoC5/fw2_PWM.c ****     *
  710:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
  711:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadStatusRegister(void) 
  712:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 233              		.loc 1 712 0
- 234              		.cfi_startproc
- 235              		@ args = 0, pretend = 0, frame = 0
- 236              		@ frame_needed = 0, uses_anonymous_args = 0
- 237              		@ link register save eliminated.
  713:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_STATUS_PTR));
- 238              		.loc 1 713 0
- 239 0000 014B     		ldr	r3, .L26
- 240 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  714:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 241              		.loc 1 714 0
- 242 0004 7047     		bx	lr
- 243              	.L27:
- 244 0006 00BF     		.align	2
- 245              	.L26:
- 246 0008 62640040 		.word	1073767522
- 247              		.cfi_endproc
- 248              	.LFE11:
- 249              		.size	fw2_PWM_ReadStatusRegister, .-fw2_PWM_ReadStatusRegister
- 250              		.section	.text.fw2_PWM_ReadControlRegister,"ax",%progbits
- 251              		.align	2
- 252              		.global	fw2_PWM_ReadControlRegister
- 253              		.thumb
- 254              		.thumb_func
- 255              		.type	fw2_PWM_ReadControlRegister, %function
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 18
-
-
- 256              	fw2_PWM_ReadControlRegister:
- 257              	.LFB12:
  715:Generated_Source\PSoC5/fw2_PWM.c **** 
  716:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* (fw2_PWM_UseStatus || fw2_PWM_UsingFixedFunction) */
  717:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -1047,40 +1113,40 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  736:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
  737:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadControlRegister(void) 
  738:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 258              		.loc 1 738 0
- 259              		.cfi_startproc
- 260              		@ args = 0, pretend = 0, frame = 0
- 261              		@ frame_needed = 0, uses_anonymous_args = 0
- 262              		@ link register save eliminated.
+ 307              		.loc 1 738 0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
  739:Generated_Source\PSoC5/fw2_PWM.c ****         uint8 result;
  740:Generated_Source\PSoC5/fw2_PWM.c **** 
  741:Generated_Source\PSoC5/fw2_PWM.c ****         result = CY_GET_REG8(fw2_PWM_CONTROL_PTR);
- 263              		.loc 1 741 0
- 264 0000 014B     		ldr	r3, .L29
- 265 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
- 266              	.LVL5:
+ 312              		.loc 1 741 0
+ 313 0000 014B     		ldr	r3, .L32
+ 314 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 315              	.LVL12:
  742:Generated_Source\PSoC5/fw2_PWM.c ****         return (result);
  743:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 267              		.loc 1 743 0
- 268 0004 7047     		bx	lr
- 269              	.L30:
- 270 0006 00BF     		.align	2
- 271              	.L29:
- 272 0008 72640040 		.word	1073767538
- 273              		.cfi_endproc
- 274              	.LFE12:
- 275              		.size	fw2_PWM_ReadControlRegister, .-fw2_PWM_ReadControlRegister
- 276              		.section	.text.fw2_PWM_WriteControlRegister,"ax",%progbits
- 277              		.align	2
- 278              		.global	fw2_PWM_WriteControlRegister
- 279              		.thumb
- 280              		.thumb_func
- 281              		.type	fw2_PWM_WriteControlRegister, %function
- 282              	fw2_PWM_WriteControlRegister:
- 283              	.LFB13:
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 19
+ 316              		.loc 1 743 0
+ 317 0004 7047     		bx	lr
+ 318              	.L33:
+ 319 0006 00BF     		.align	2
+ 320              	.L32:
+ 321 0008 73640040 		.word	1073767539
+ 322              		.cfi_endproc
+ 323              	.LFE9:
+ 324              		.size	fw2_PWM_ReadControlRegister, .-fw2_PWM_ReadControlRegister
+ 325              		.section	.text.fw2_PWM_WriteControlRegister,"ax",%progbits
+ 326              		.align	2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 20
 
 
+ 327              		.global	fw2_PWM_WriteControlRegister
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.type	fw2_PWM_WriteControlRegister, %function
+ 331              	fw2_PWM_WriteControlRegister:
+ 332              	.LFB10:
  744:Generated_Source\PSoC5/fw2_PWM.c **** 
  745:Generated_Source\PSoC5/fw2_PWM.c **** 
  746:Generated_Source\PSoC5/fw2_PWM.c ****     /*******************************************************************************
@@ -1104,43 +1170,43 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  764:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
  765:Generated_Source\PSoC5/fw2_PWM.c ****     void fw2_PWM_WriteControlRegister(uint8 control) 
  766:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 284              		.loc 1 766 0
- 285              		.cfi_startproc
- 286              		@ args = 0, pretend = 0, frame = 0
- 287              		@ frame_needed = 0, uses_anonymous_args = 0
- 288              		@ link register save eliminated.
- 289              	.LVL6:
+ 333              		.loc 1 766 0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337              		@ link register save eliminated.
+ 338              	.LVL13:
  767:Generated_Source\PSoC5/fw2_PWM.c ****         CY_SET_REG8(fw2_PWM_CONTROL_PTR, control);
- 290              		.loc 1 767 0
- 291 0000 014B     		ldr	r3, .L32
- 292 0002 1870     		strb	r0, [r3]
- 293 0004 7047     		bx	lr
- 294              	.L33:
- 295 0006 00BF     		.align	2
- 296              	.L32:
- 297 0008 72640040 		.word	1073767538
- 298              		.cfi_endproc
- 299              	.LFE13:
- 300              		.size	fw2_PWM_WriteControlRegister, .-fw2_PWM_WriteControlRegister
- 301              		.section	.text.fw2_PWM_ReadCapture,"ax",%progbits
- 302              		.align	2
- 303              		.global	fw2_PWM_ReadCapture
- 304              		.thumb
- 305              		.thumb_func
- 306              		.type	fw2_PWM_ReadCapture, %function
- 307              	fw2_PWM_ReadCapture:
- 308              	.LFB14:
+ 339              		.loc 1 767 0
+ 340 0000 014B     		ldr	r3, .L35
+ 341 0002 1870     		strb	r0, [r3]
+ 342 0004 7047     		bx	lr
+ 343              	.L36:
+ 344 0006 00BF     		.align	2
+ 345              	.L35:
+ 346 0008 73640040 		.word	1073767539
+ 347              		.cfi_endproc
+ 348              	.LFE10:
+ 349              		.size	fw2_PWM_WriteControlRegister, .-fw2_PWM_WriteControlRegister
+ 350              		.section	.text.fw2_PWM_ReadCapture,"ax",%progbits
+ 351              		.align	2
+ 352              		.global	fw2_PWM_ReadCapture
+ 353              		.thumb
+ 354              		.thumb_func
+ 355              		.type	fw2_PWM_ReadCapture, %function
+ 356              	fw2_PWM_ReadCapture:
+ 357              	.LFB11:
  768:Generated_Source\PSoC5/fw2_PWM.c ****     }
  769:Generated_Source\PSoC5/fw2_PWM.c **** 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 21
+
+
  770:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* (fw2_PWM_UseControl) */
  771:Generated_Source\PSoC5/fw2_PWM.c **** 
  772:Generated_Source\PSoC5/fw2_PWM.c **** 
  773:Generated_Source\PSoC5/fw2_PWM.c **** #if (!fw2_PWM_UsingFixedFunction)
  774:Generated_Source\PSoC5/fw2_PWM.c **** 
  775:Generated_Source\PSoC5/fw2_PWM.c **** 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 20
-
-
  776:Generated_Source\PSoC5/fw2_PWM.c ****     /*******************************************************************************
  777:Generated_Source\PSoC5/fw2_PWM.c ****     * Function Name: fw2_PWM_ReadCapture
  778:Generated_Source\PSoC5/fw2_PWM.c ****     ********************************************************************************
@@ -1155,212 +1221,36 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  787:Generated_Source\PSoC5/fw2_PWM.c ****     *  uint8/uint16: The current capture value
  788:Generated_Source\PSoC5/fw2_PWM.c ****     *
  789:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 790:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadCapture(void) 
+ 790:Generated_Source\PSoC5/fw2_PWM.c ****     uint16 fw2_PWM_ReadCapture(void) 
  791:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 309              		.loc 1 791 0
- 310              		.cfi_startproc
- 311              		@ args = 0, pretend = 0, frame = 0
- 312              		@ frame_needed = 0, uses_anonymous_args = 0
- 313              		@ link register save eliminated.
- 792:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_CAPTURE_LSB_PTR));
- 314              		.loc 1 792 0
- 315 0000 014B     		ldr	r3, .L35
- 316 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 358              		.loc 1 791 0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 792:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG16(fw2_PWM_CAPTURE_LSB_PTR));
+ 363              		.loc 1 792 0
+ 364 0000 014B     		ldr	r3, .L38
+ 365 0002 1888     		ldrh	r0, [r3]
  793:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 317              		.loc 1 793 0
- 318 0004 7047     		bx	lr
- 319              	.L36:
- 320 0006 00BF     		.align	2
- 321              	.L35:
- 322 0008 55640040 		.word	1073767509
- 323              		.cfi_endproc
- 324              	.LFE14:
- 325              		.size	fw2_PWM_ReadCapture, .-fw2_PWM_ReadCapture
- 326              		.section	.text.fw2_PWM_ClearFIFO,"ax",%progbits
- 327              		.align	2
- 328              		.global	fw2_PWM_ClearFIFO
- 329              		.thumb
- 330              		.thumb_func
- 331              		.type	fw2_PWM_ClearFIFO, %function
- 332              	fw2_PWM_ClearFIFO:
- 333              	.LFB6:
- 454:Generated_Source\PSoC5/fw2_PWM.c ****             while(0u != (fw2_PWM_ReadStatusRegister() & fw2_PWM_STATUS_FIFONEMPTY))
- 334              		.loc 1 454 0
- 335              		.cfi_startproc
- 336              		@ args = 0, pretend = 0, frame = 0
- 337              		@ frame_needed = 0, uses_anonymous_args = 0
- 338 0000 08B5     		push	{r3, lr}
- 339              		.cfi_def_cfa_offset 8
- 340              		.cfi_offset 3, -8
- 341              		.cfi_offset 14, -4
- 455:Generated_Source\PSoC5/fw2_PWM.c ****             {
- 342              		.loc 1 455 0
- 343 0002 01E0     		b	.L38
- 344              	.L39:
- 457:Generated_Source\PSoC5/fw2_PWM.c ****             }
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 21
-
-
- 345              		.loc 1 457 0
- 346 0004 FFF7FEFF 		bl	fw2_PWM_ReadCapture
- 347              	.LVL7:
- 348              	.L38:
- 455:Generated_Source\PSoC5/fw2_PWM.c ****             {
- 349              		.loc 1 455 0
- 350 0008 FFF7FEFF 		bl	fw2_PWM_ReadStatusRegister
- 351              	.LVL8:
- 352 000c 10F0100F 		tst	r0, #16
- 353 0010 F8D1     		bne	.L39
- 459:Generated_Source\PSoC5/fw2_PWM.c **** 
- 354              		.loc 1 459 0
- 355 0012 08BD     		pop	{r3, pc}
- 356              		.cfi_endproc
- 357              	.LFE6:
- 358              		.size	fw2_PWM_ClearFIFO, .-fw2_PWM_ClearFIFO
- 359              		.section	.text.fw2_PWM_Init,"ax",%progbits
- 360              		.align	2
- 361              		.global	fw2_PWM_Init
- 362              		.thumb
- 363              		.thumb_func
- 364              		.type	fw2_PWM_Init, %function
- 365              	fw2_PWM_Init:
- 366              	.LFB1:
-  85:Generated_Source\PSoC5/fw2_PWM.c ****     #if (fw2_PWM_UsingFixedFunction || fw2_PWM_UseControl)
- 367              		.loc 1 85 0
- 368              		.cfi_startproc
- 369              		@ args = 0, pretend = 0, frame = 0
- 370              		@ frame_needed = 0, uses_anonymous_args = 0
- 371 0000 08B5     		push	{r3, lr}
- 372              		.cfi_def_cfa_offset 8
- 373              		.cfi_offset 3, -8
- 374              		.cfi_offset 14, -4
- 117:Generated_Source\PSoC5/fw2_PWM.c ****                 ((uint8)(~fw2_PWM_CTRL_CMPMODE1_MASK));
- 375              		.loc 1 117 0
- 376 0002 134A     		ldr	r2, .L43
- 377 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 378 0006 03F0C003 		and	r3, r3, #192
- 379              	.LVL9:
- 119:Generated_Source\PSoC5/fw2_PWM.c ****                                    fw2_PWM_DEFAULT_COMPARE1_MODE;
- 380              		.loc 1 119 0
- 381 000a 43F00903 		orr	r3, r3, #9
- 382              	.LVL10:
- 383 000e 1370     		strb	r3, [r2]
- 126:Generated_Source\PSoC5/fw2_PWM.c ****         #else /* (fw2_PWM_Resolution == 16)*/
- 384              		.loc 1 126 0
- 385 0010 2332     		adds	r2, r2, #35
- 386 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 387 0014 43F00103 		orr	r3, r3, #1
- 388 0018 1370     		strb	r3, [r2]
- 133:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (!fw2_PWM_UsingFixedFunction) */
- 389              		.loc 1 133 0
- 390 001a FF20     		movs	r0, #255
- 391 001c FFF7FEFF 		bl	fw2_PWM_WriteCounter
- 392              	.LVL11:
- 136:Generated_Source\PSoC5/fw2_PWM.c **** 
- 393              		.loc 1 136 0
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 22
-
-
- 394 0020 FF20     		movs	r0, #255
- 395 0022 FFF7FEFF 		bl	fw2_PWM_WritePeriod
- 396              	.LVL12:
- 141:Generated_Source\PSoC5/fw2_PWM.c ****             fw2_PWM_WriteCompare2(fw2_PWM_INIT_COMPARE_VALUE2);
- 397              		.loc 1 141 0
- 398 0026 7F20     		movs	r0, #127
- 399 0028 FFF7FEFF 		bl	fw2_PWM_WriteCompare1
- 400              	.LVL13:
- 142:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UseOneCompareMode) */
- 401              		.loc 1 142 0
- 402 002c 3F20     		movs	r0, #63
- 403 002e FFF7FEFF 		bl	fw2_PWM_WriteCompare2
- 404              	.LVL14:
- 154:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (fw2_PWM_UseStatus || fw2_PWM_UsingFixedFunction) */
- 405              		.loc 1 154 0
- 406 0032 0020     		movs	r0, #0
- 407 0034 FFF7FEFF 		bl	fw2_PWM_SetInterruptMode
- 408              	.LVL15:
- 167:Generated_Source\PSoC5/fw2_PWM.c ****             /* Use the interrupt output of the status register for IRQ output */
- 409              		.loc 1 167 0
- 410 0038 FFF7FEFF 		bl	CyEnterCriticalSection
- 411              	.LVL16:
- 169:Generated_Source\PSoC5/fw2_PWM.c **** 
- 412              		.loc 1 169 0
- 413 003c 054A     		ldr	r2, .L43+4
- 414 003e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 415 0040 43F01003 		orr	r3, r3, #16
- 416 0044 1370     		strb	r3, [r2]
- 172:Generated_Source\PSoC5/fw2_PWM.c **** 
- 417              		.loc 1 172 0
- 418 0046 FFF7FEFF 		bl	CyExitCriticalSection
- 419              	.LVL17:
- 176:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UseStatus) */
- 420              		.loc 1 176 0
- 421 004a FFF7FEFF 		bl	fw2_PWM_ClearFIFO
- 422              	.LVL18:
- 423 004e 08BD     		pop	{r3, pc}
- 424              	.L44:
- 425              		.align	2
- 426              	.L43:
- 427 0050 72640040 		.word	1073767538
- 428 0054 92640040 		.word	1073767570
- 429              		.cfi_endproc
- 430              	.LFE1:
- 431              		.size	fw2_PWM_Init, .-fw2_PWM_Init
- 432              		.section	.text.fw2_PWM_Start,"ax",%progbits
- 433              		.align	2
- 434              		.global	fw2_PWM_Start
- 435              		.thumb
- 436              		.thumb_func
- 437              		.type	fw2_PWM_Start, %function
- 438              	fw2_PWM_Start:
- 439              	.LFB0:
-  56:Generated_Source\PSoC5/fw2_PWM.c ****     /* If not Initialized then initialize all required hardware and software */
- 440              		.loc 1 56 0
- 441              		.cfi_startproc
- 442              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 23
-
-
- 443              		@ frame_needed = 0, uses_anonymous_args = 0
- 444 0000 08B5     		push	{r3, lr}
- 445              		.cfi_def_cfa_offset 8
- 446              		.cfi_offset 3, -8
- 447              		.cfi_offset 14, -4
-  58:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 448              		.loc 1 58 0
- 449 0002 054B     		ldr	r3, .L48
- 450 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 451 0006 23B9     		cbnz	r3, .L46
-  60:Generated_Source\PSoC5/fw2_PWM.c ****         fw2_PWM_initVar = 1u;
- 452              		.loc 1 60 0
- 453 0008 FFF7FEFF 		bl	fw2_PWM_Init
- 454              	.LVL19:
-  61:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 455              		.loc 1 61 0
- 456 000c 0122     		movs	r2, #1
- 457 000e 024B     		ldr	r3, .L48
- 458 0010 1A70     		strb	r2, [r3]
- 459              	.L46:
-  63:Generated_Source\PSoC5/fw2_PWM.c **** 
- 460              		.loc 1 63 0
- 461 0012 FFF7FEFF 		bl	fw2_PWM_Enable
- 462              	.LVL20:
- 463 0016 08BD     		pop	{r3, pc}
- 464              	.L49:
- 465              		.align	2
- 466              	.L48:
- 467 0018 00000000 		.word	.LANCHOR0
- 468              		.cfi_endproc
- 469              	.LFE0:
- 470              		.size	fw2_PWM_Start, .-fw2_PWM_Start
- 471              		.section	.text.fw2_PWM_ReadCompare1,"ax",%progbits
- 472              		.align	2
- 473              		.global	fw2_PWM_ReadCompare1
- 474              		.thumb
- 475              		.thumb_func
- 476              		.type	fw2_PWM_ReadCompare1, %function
- 477              	fw2_PWM_ReadCompare1:
- 478              	.LFB15:
+ 366              		.loc 1 793 0
+ 367 0004 80B2     		uxth	r0, r0
+ 368 0006 7047     		bx	lr
+ 369              	.L39:
+ 370              		.align	2
+ 371              	.L38:
+ 372 0008 A4680040 		.word	1073768612
+ 373              		.cfi_endproc
+ 374              	.LFE11:
+ 375              		.size	fw2_PWM_ReadCapture, .-fw2_PWM_ReadCapture
+ 376              		.section	.text.fw2_PWM_ReadCompare1,"ax",%progbits
+ 377              		.align	2
+ 378              		.global	fw2_PWM_ReadCompare1
+ 379              		.thumb
+ 380              		.thumb_func
+ 381              		.type	fw2_PWM_ReadCompare1, %function
+ 382              	fw2_PWM_ReadCompare1:
+ 383              	.LFB12:
  794:Generated_Source\PSoC5/fw2_PWM.c **** 
  795:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* (!fw2_PWM_UsingFixedFunction) */
  796:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -1368,6 +1258,9 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  798:Generated_Source\PSoC5/fw2_PWM.c **** #if (fw2_PWM_UseOneCompareMode)
  799:Generated_Source\PSoC5/fw2_PWM.c **** 
  800:Generated_Source\PSoC5/fw2_PWM.c **** 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 22
+
+
  801:Generated_Source\PSoC5/fw2_PWM.c ****     /*******************************************************************************
  802:Generated_Source\PSoC5/fw2_PWM.c ****     * Function Name: fw2_PWM_ReadCompare
  803:Generated_Source\PSoC5/fw2_PWM.c ****     ********************************************************************************
@@ -1378,20 +1271,17 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  808:Generated_Source\PSoC5/fw2_PWM.c ****     *
  809:Generated_Source\PSoC5/fw2_PWM.c ****     * Parameters:
  810:Generated_Source\PSoC5/fw2_PWM.c ****     *  None
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 24
-
-
  811:Generated_Source\PSoC5/fw2_PWM.c ****     *
  812:Generated_Source\PSoC5/fw2_PWM.c ****     * Return:
  813:Generated_Source\PSoC5/fw2_PWM.c ****     *  uint8/uint16: Current compare value
  814:Generated_Source\PSoC5/fw2_PWM.c ****     *
  815:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 816:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadCompare(void) 
+ 816:Generated_Source\PSoC5/fw2_PWM.c ****     uint16 fw2_PWM_ReadCompare(void) 
  817:Generated_Source\PSoC5/fw2_PWM.c ****     {
  818:Generated_Source\PSoC5/fw2_PWM.c ****         #if(fw2_PWM_UsingFixedFunction)
- 819:Generated_Source\PSoC5/fw2_PWM.c ****             return ((uint8)CY_GET_REG16(fw2_PWM_COMPARE1_LSB_PTR));
+ 819:Generated_Source\PSoC5/fw2_PWM.c ****             return ((uint16)CY_GET_REG16(fw2_PWM_COMPARE1_LSB_PTR));
  820:Generated_Source\PSoC5/fw2_PWM.c ****         #else
- 821:Generated_Source\PSoC5/fw2_PWM.c ****             return (CY_GET_REG8(fw2_PWM_COMPARE1_LSB_PTR));
+ 821:Generated_Source\PSoC5/fw2_PWM.c ****             return (CY_GET_REG16(fw2_PWM_COMPARE1_LSB_PTR));
  822:Generated_Source\PSoC5/fw2_PWM.c ****         #endif /* (fw2_PWM_UsingFixedFunction) */
  823:Generated_Source\PSoC5/fw2_PWM.c ****     }
  824:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -1412,38 +1302,39 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  839:Generated_Source\PSoC5/fw2_PWM.c ****     *  uint8/uint16: Current compare value.
  840:Generated_Source\PSoC5/fw2_PWM.c ****     *
  841:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 842:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadCompare1(void) 
+ 842:Generated_Source\PSoC5/fw2_PWM.c ****     uint16 fw2_PWM_ReadCompare1(void) 
  843:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 479              		.loc 1 843 0
- 480              		.cfi_startproc
- 481              		@ args = 0, pretend = 0, frame = 0
- 482              		@ frame_needed = 0, uses_anonymous_args = 0
- 483              		@ link register save eliminated.
- 844:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_COMPARE1_LSB_PTR));
- 484              		.loc 1 844 0
- 485 0000 014B     		ldr	r3, .L51
- 486 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 384              		.loc 1 843 0
+ 385              		.cfi_startproc
+ 386              		@ args = 0, pretend = 0, frame = 0
+ 387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388              		@ link register save eliminated.
+ 844:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG16(fw2_PWM_COMPARE1_LSB_PTR));
+ 389              		.loc 1 844 0
+ 390 0000 014B     		ldr	r3, .L41
+ 391 0002 1888     		ldrh	r0, [r3]
  845:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 487              		.loc 1 845 0
- 488 0004 7047     		bx	lr
- 489              	.L52:
- 490 0006 00BF     		.align	2
- 491              	.L51:
- 492 0008 25640040 		.word	1073767461
- 493              		.cfi_endproc
- 494              	.LFE15:
- 495              		.size	fw2_PWM_ReadCompare1, .-fw2_PWM_ReadCompare1
- 496              		.section	.text.fw2_PWM_ReadCompare2,"ax",%progbits
- 497              		.align	2
- 498              		.global	fw2_PWM_ReadCompare2
- 499              		.thumb
- 500              		.thumb_func
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 25
+ 392              		.loc 1 845 0
+ 393 0004 80B2     		uxth	r0, r0
+ 394 0006 7047     		bx	lr
+ 395              	.L42:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 23
 
 
- 501              		.type	fw2_PWM_ReadCompare2, %function
- 502              	fw2_PWM_ReadCompare2:
- 503              	.LFB16:
+ 396              		.align	2
+ 397              	.L41:
+ 398 0008 44680040 		.word	1073768516
+ 399              		.cfi_endproc
+ 400              	.LFE12:
+ 401              		.size	fw2_PWM_ReadCompare1, .-fw2_PWM_ReadCompare1
+ 402              		.section	.text.fw2_PWM_ReadCompare2,"ax",%progbits
+ 403              		.align	2
+ 404              		.global	fw2_PWM_ReadCompare2
+ 405              		.thumb
+ 406              		.thumb_func
+ 407              		.type	fw2_PWM_ReadCompare2, %function
+ 408              	fw2_PWM_ReadCompare2:
+ 409              	.LFB13:
  846:Generated_Source\PSoC5/fw2_PWM.c **** 
  847:Generated_Source\PSoC5/fw2_PWM.c **** 
  848:Generated_Source\PSoC5/fw2_PWM.c ****     /*******************************************************************************
@@ -1460,35 +1351,39 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  859:Generated_Source\PSoC5/fw2_PWM.c ****     *  uint8/uint16: Current compare value.
  860:Generated_Source\PSoC5/fw2_PWM.c ****     *
  861:Generated_Source\PSoC5/fw2_PWM.c ****     *******************************************************************************/
- 862:Generated_Source\PSoC5/fw2_PWM.c ****     uint8 fw2_PWM_ReadCompare2(void) 
+ 862:Generated_Source\PSoC5/fw2_PWM.c ****     uint16 fw2_PWM_ReadCompare2(void) 
  863:Generated_Source\PSoC5/fw2_PWM.c ****     {
- 504              		.loc 1 863 0
- 505              		.cfi_startproc
- 506              		@ args = 0, pretend = 0, frame = 0
- 507              		@ frame_needed = 0, uses_anonymous_args = 0
- 508              		@ link register save eliminated.
- 864:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_COMPARE2_LSB_PTR));
- 509              		.loc 1 864 0
- 510 0000 014B     		ldr	r3, .L54
- 511 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 410              		.loc 1 863 0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		@ link register save eliminated.
+ 864:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG16(fw2_PWM_COMPARE2_LSB_PTR));
+ 415              		.loc 1 864 0
+ 416 0000 014B     		ldr	r3, .L44
+ 417 0002 1888     		ldrh	r0, [r3]
  865:Generated_Source\PSoC5/fw2_PWM.c ****     }
- 512              		.loc 1 865 0
- 513 0004 7047     		bx	lr
- 514              	.L55:
- 515 0006 00BF     		.align	2
- 516              	.L54:
- 517 0008 35640040 		.word	1073767477
- 518              		.cfi_endproc
- 519              	.LFE16:
- 520              		.size	fw2_PWM_ReadCompare2, .-fw2_PWM_ReadCompare2
- 521              		.section	.text.fw2_PWM_ReadPeriod,"ax",%progbits
- 522              		.align	2
- 523              		.global	fw2_PWM_ReadPeriod
- 524              		.thumb
- 525              		.thumb_func
- 526              		.type	fw2_PWM_ReadPeriod, %function
- 527              	fw2_PWM_ReadPeriod:
- 528              	.LFB17:
+ 418              		.loc 1 865 0
+ 419 0004 80B2     		uxth	r0, r0
+ 420 0006 7047     		bx	lr
+ 421              	.L45:
+ 422              		.align	2
+ 423              	.L44:
+ 424 0008 64680040 		.word	1073768548
+ 425              		.cfi_endproc
+ 426              	.LFE13:
+ 427              		.size	fw2_PWM_ReadCompare2, .-fw2_PWM_ReadCompare2
+ 428              		.section	.text.fw2_PWM_ReadPeriod,"ax",%progbits
+ 429              		.align	2
+ 430              		.global	fw2_PWM_ReadPeriod
+ 431              		.thumb
+ 432              		.thumb_func
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 24
+
+
+ 433              		.type	fw2_PWM_ReadPeriod, %function
+ 434              	fw2_PWM_ReadPeriod:
+ 435              	.LFB14:
  866:Generated_Source\PSoC5/fw2_PWM.c **** 
  867:Generated_Source\PSoC5/fw2_PWM.c **** #endif /* (fw2_PWM_UseOneCompareMode) */
  868:Generated_Source\PSoC5/fw2_PWM.c **** 
@@ -1498,9 +1393,6 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  872:Generated_Source\PSoC5/fw2_PWM.c **** ********************************************************************************
  873:Generated_Source\PSoC5/fw2_PWM.c **** *
  874:Generated_Source\PSoC5/fw2_PWM.c **** * Summary:
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 26
-
-
  875:Generated_Source\PSoC5/fw2_PWM.c **** *  Reads the period value used by the PWM hardware.
  876:Generated_Source\PSoC5/fw2_PWM.c **** *
  877:Generated_Source\PSoC5/fw2_PWM.c **** * Parameters:
@@ -1510,1188 +1402,1024 @@ ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 1
  881:Generated_Source\PSoC5/fw2_PWM.c **** *  uint8/16: Period value
  882:Generated_Source\PSoC5/fw2_PWM.c **** *
  883:Generated_Source\PSoC5/fw2_PWM.c **** *******************************************************************************/
- 884:Generated_Source\PSoC5/fw2_PWM.c **** uint8 fw2_PWM_ReadPeriod(void) 
+ 884:Generated_Source\PSoC5/fw2_PWM.c **** uint16 fw2_PWM_ReadPeriod(void) 
  885:Generated_Source\PSoC5/fw2_PWM.c **** {
- 529              		.loc 1 885 0
- 530              		.cfi_startproc
- 531              		@ args = 0, pretend = 0, frame = 0
- 532              		@ frame_needed = 0, uses_anonymous_args = 0
- 533              		@ link register save eliminated.
+ 436              		.loc 1 885 0
+ 437              		.cfi_startproc
+ 438              		@ args = 0, pretend = 0, frame = 0
+ 439              		@ frame_needed = 0, uses_anonymous_args = 0
+ 440              		@ link register save eliminated.
  886:Generated_Source\PSoC5/fw2_PWM.c ****     #if(fw2_PWM_UsingFixedFunction)
- 887:Generated_Source\PSoC5/fw2_PWM.c ****         return ((uint8)CY_GET_REG16(fw2_PWM_PERIOD_LSB_PTR));
+ 887:Generated_Source\PSoC5/fw2_PWM.c ****         return ((uint16)CY_GET_REG16(fw2_PWM_PERIOD_LSB_PTR));
  888:Generated_Source\PSoC5/fw2_PWM.c ****     #else
- 889:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG8(fw2_PWM_PERIOD_LSB_PTR));
- 534              		.loc 1 889 0
- 535 0000 014B     		ldr	r3, .L57
- 536 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 889:Generated_Source\PSoC5/fw2_PWM.c ****         return (CY_GET_REG16(fw2_PWM_PERIOD_LSB_PTR));
+ 441              		.loc 1 889 0
+ 442 0000 014B     		ldr	r3, .L47
+ 443 0002 1888     		ldrh	r0, [r3]
  890:Generated_Source\PSoC5/fw2_PWM.c ****     #endif /* (fw2_PWM_UsingFixedFunction) */
  891:Generated_Source\PSoC5/fw2_PWM.c **** }
- 537              		.loc 1 891 0
- 538 0004 7047     		bx	lr
- 539              	.L58:
- 540 0006 00BF     		.align	2
- 541              	.L57:
- 542 0008 45640040 		.word	1073767493
- 543              		.cfi_endproc
- 544              	.LFE17:
- 545              		.size	fw2_PWM_ReadPeriod, .-fw2_PWM_ReadPeriod
- 546              		.global	fw2_PWM_initVar
- 547              		.bss
- 548              		.set	.LANCHOR0,. + 0
- 549              		.type	fw2_PWM_initVar, %object
- 550              		.size	fw2_PWM_initVar, 1
- 551              	fw2_PWM_initVar:
- 552 0000 00       		.space	1
- 553              		.text
- 554              	.Letext0:
- 555              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 556              		.file 3 "Generated_Source\\PSoC5\\CyLib.h"
- 557              		.section	.debug_info,"",%progbits
- 558              	.Ldebug_info0:
- 559 0000 7A030000 		.4byte	0x37a
- 560 0004 0400     		.2byte	0x4
- 561 0006 00000000 		.4byte	.Ldebug_abbrev0
- 562 000a 04       		.byte	0x4
- 563 000b 01       		.uleb128 0x1
- 564 000c 77010000 		.4byte	.LASF40
- 565 0010 01       		.byte	0x1
- 566 0011 FC020000 		.4byte	.LASF41
- 567 0015 23000000 		.4byte	.LASF42
- 568 0019 00000000 		.4byte	.Ldebug_ranges0+0
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 27
+ 444              		.loc 1 891 0
+ 445 0004 80B2     		uxth	r0, r0
+ 446 0006 7047     		bx	lr
+ 447              	.L48:
+ 448              		.align	2
+ 449              	.L47:
+ 450 0008 84680040 		.word	1073768580
+ 451              		.cfi_endproc
+ 452              	.LFE14:
+ 453              		.size	fw2_PWM_ReadPeriod, .-fw2_PWM_ReadPeriod
+ 454              		.global	fw2_PWM_initVar
+ 455              		.bss
+ 456              		.set	.LANCHOR0,. + 0
+ 457              		.type	fw2_PWM_initVar, %object
+ 458              		.size	fw2_PWM_initVar, 1
+ 459              	fw2_PWM_initVar:
+ 460 0000 00       		.space	1
+ 461              		.text
+ 462              	.Letext0:
+ 463              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 25
 
 
- 569 001d 00000000 		.4byte	0
- 570 0021 00000000 		.4byte	.Ldebug_line0
- 571 0025 02       		.uleb128 0x2
- 572 0026 01       		.byte	0x1
- 573 0027 06       		.byte	0x6
- 574 0028 54030000 		.4byte	.LASF0
- 575 002c 02       		.uleb128 0x2
- 576 002d 01       		.byte	0x1
- 577 002e 08       		.byte	0x8
- 578 002f DB000000 		.4byte	.LASF1
- 579 0033 02       		.uleb128 0x2
- 580 0034 02       		.byte	0x2
- 581 0035 05       		.byte	0x5
- 582 0036 E4020000 		.4byte	.LASF2
- 583 003a 02       		.uleb128 0x2
- 584 003b 02       		.byte	0x2
- 585 003c 07       		.byte	0x7
- 586 003d 8C000000 		.4byte	.LASF3
- 587 0041 02       		.uleb128 0x2
- 588 0042 04       		.byte	0x4
- 589 0043 05       		.byte	0x5
- 590 0044 1D030000 		.4byte	.LASF4
- 591 0048 02       		.uleb128 0x2
- 592 0049 04       		.byte	0x4
- 593 004a 07       		.byte	0x7
- 594 004b EE000000 		.4byte	.LASF5
- 595 004f 02       		.uleb128 0x2
- 596 0050 08       		.byte	0x8
- 597 0051 05       		.byte	0x5
- 598 0052 B4020000 		.4byte	.LASF6
- 599 0056 02       		.uleb128 0x2
- 600 0057 08       		.byte	0x8
- 601 0058 07       		.byte	0x7
- 602 0059 C4000000 		.4byte	.LASF7
- 603 005d 03       		.uleb128 0x3
- 604 005e 04       		.byte	0x4
- 605 005f 05       		.byte	0x5
- 606 0060 696E7400 		.ascii	"int\000"
- 607 0064 02       		.uleb128 0x2
- 608 0065 04       		.byte	0x4
- 609 0066 07       		.byte	0x7
- 610 0067 9F000000 		.4byte	.LASF8
- 611 006b 04       		.uleb128 0x4
- 612 006c 00010000 		.4byte	.LASF12
- 613 0070 02       		.byte	0x2
- 614 0071 9201     		.2byte	0x192
- 615 0073 2C000000 		.4byte	0x2c
- 616 0077 02       		.uleb128 0x2
- 617 0078 04       		.byte	0x4
- 618 0079 04       		.byte	0x4
- 619 007a AC000000 		.4byte	.LASF9
- 620 007e 02       		.uleb128 0x2
- 621 007f 08       		.byte	0x8
- 622 0080 04       		.byte	0x4
- 623 0081 37010000 		.4byte	.LASF10
- 624 0085 02       		.uleb128 0x2
- 625 0086 01       		.byte	0x1
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 28
+ 464              		.section	.debug_info,"",%progbits
+ 465              	.Ldebug_info0:
+ 466 0000 DA020000 		.4byte	0x2da
+ 467 0004 0400     		.2byte	0x4
+ 468 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 469 000a 04       		.byte	0x4
+ 470 000b 01       		.uleb128 0x1
+ 471 000c 3B010000 		.4byte	.LASF37
+ 472 0010 01       		.byte	0x1
+ 473 0011 8D020000 		.4byte	.LASF38
+ 474 0015 16000000 		.4byte	.LASF39
+ 475 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 476 001d 00000000 		.4byte	0
+ 477 0021 00000000 		.4byte	.Ldebug_line0
+ 478 0025 02       		.uleb128 0x2
+ 479 0026 01       		.byte	0x1
+ 480 0027 06       		.byte	0x6
+ 481 0028 E0020000 		.4byte	.LASF0
+ 482 002c 02       		.uleb128 0x2
+ 483 002d 01       		.byte	0x1
+ 484 002e 08       		.byte	0x8
+ 485 002f A0000000 		.4byte	.LASF1
+ 486 0033 02       		.uleb128 0x2
+ 487 0034 02       		.byte	0x2
+ 488 0035 05       		.byte	0x5
+ 489 0036 75020000 		.4byte	.LASF2
+ 490 003a 02       		.uleb128 0x2
+ 491 003b 02       		.byte	0x2
+ 492 003c 07       		.byte	0x7
+ 493 003d 7F000000 		.4byte	.LASF3
+ 494 0041 02       		.uleb128 0x2
+ 495 0042 04       		.byte	0x4
+ 496 0043 05       		.byte	0x5
+ 497 0044 AE020000 		.4byte	.LASF4
+ 498 0048 02       		.uleb128 0x2
+ 499 0049 04       		.byte	0x4
+ 500 004a 07       		.byte	0x7
+ 501 004b B3000000 		.4byte	.LASF5
+ 502 004f 02       		.uleb128 0x2
+ 503 0050 08       		.byte	0x8
+ 504 0051 05       		.byte	0x5
+ 505 0052 4E020000 		.4byte	.LASF6
+ 506 0056 02       		.uleb128 0x2
+ 507 0057 08       		.byte	0x8
+ 508 0058 07       		.byte	0x7
+ 509 0059 D6010000 		.4byte	.LASF7
+ 510 005d 03       		.uleb128 0x3
+ 511 005e 04       		.byte	0x4
+ 512 005f 05       		.byte	0x5
+ 513 0060 696E7400 		.ascii	"int\000"
+ 514 0064 02       		.uleb128 0x2
+ 515 0065 04       		.byte	0x4
+ 516 0066 07       		.byte	0x7
+ 517 0067 C9010000 		.4byte	.LASF8
+ 518 006b 04       		.uleb128 0x4
+ 519 006c C5000000 		.4byte	.LASF9
+ 520 0070 02       		.byte	0x2
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 26
 
 
- 626 0087 08       		.byte	0x8
- 627 0088 26030000 		.4byte	.LASF11
- 628 008c 04       		.uleb128 0x4
- 629 008d E9000000 		.4byte	.LASF13
- 630 0091 02       		.byte	0x2
- 631 0092 3C02     		.2byte	0x23c
- 632 0094 98000000 		.4byte	0x98
- 633 0098 05       		.uleb128 0x5
- 634 0099 6B000000 		.4byte	0x6b
- 635 009d 02       		.uleb128 0x2
- 636 009e 04       		.byte	0x4
- 637 009f 07       		.byte	0x7
- 638 00a0 92020000 		.4byte	.LASF14
- 639 00a4 06       		.uleb128 0x6
- 640 00a5 68030000 		.4byte	.LASF15
- 641 00a9 01       		.byte	0x1
- 642 00aa C7       		.byte	0xc7
- 643 00ab 00000000 		.4byte	.LFB2
- 644 00af 10000000 		.4byte	.LFE2-.LFB2
- 645 00b3 01       		.uleb128 0x1
- 646 00b4 9C       		.byte	0x9c
- 647 00b5 06       		.uleb128 0x6
- 648 00b6 22010000 		.4byte	.LASF16
- 649 00ba 01       		.byte	0x1
- 650 00bb E9       		.byte	0xe9
- 651 00bc 00000000 		.4byte	.LFB3
- 652 00c0 10000000 		.4byte	.LFE3-.LFB3
- 653 00c4 01       		.uleb128 0x1
- 654 00c5 9C       		.byte	0x9c
- 655 00c6 07       		.uleb128 0x7
- 656 00c7 2B030000 		.4byte	.LASF17
- 657 00cb 01       		.byte	0x1
- 658 00cc 9301     		.2byte	0x193
- 659 00ce 00000000 		.4byte	.LFB4
- 660 00d2 0C000000 		.4byte	.LFE4-.LFB4
- 661 00d6 01       		.uleb128 0x1
- 662 00d7 9C       		.byte	0x9c
- 663 00d8 EB000000 		.4byte	0xeb
- 664 00dc 08       		.uleb128 0x8
- 665 00dd 2F010000 		.4byte	.LASF19
- 666 00e1 01       		.byte	0x1
- 667 00e2 9301     		.2byte	0x193
- 668 00e4 6B000000 		.4byte	0x6b
- 669 00e8 01       		.uleb128 0x1
- 670 00e9 50       		.byte	0x50
- 671 00ea 00       		.byte	0
- 672 00eb 09       		.uleb128 0x9
- 673 00ec D0020000 		.4byte	.LASF26
- 674 00f0 01       		.byte	0x1
- 675 00f1 A901     		.2byte	0x1a9
- 676 00f3 6B000000 		.4byte	0x6b
- 677 00f7 00000000 		.4byte	.LFB5
- 678 00fb 14000000 		.4byte	.LFE5-.LFB5
- 679 00ff 01       		.uleb128 0x1
- 680 0100 9C       		.byte	0x9c
- 681 0101 07       		.uleb128 0x7
- 682 0102 40030000 		.4byte	.LASF18
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 29
+ 521 0071 9201     		.2byte	0x192
+ 522 0073 2C000000 		.4byte	0x2c
+ 523 0077 04       		.uleb128 0x4
+ 524 0078 34010000 		.4byte	.LASF10
+ 525 007c 02       		.byte	0x2
+ 526 007d 9301     		.2byte	0x193
+ 527 007f 3A000000 		.4byte	0x3a
+ 528 0083 02       		.uleb128 0x2
+ 529 0084 04       		.byte	0x4
+ 530 0085 04       		.byte	0x4
+ 531 0086 92000000 		.4byte	.LASF11
+ 532 008a 02       		.uleb128 0x2
+ 533 008b 08       		.byte	0x8
+ 534 008c 04       		.byte	0x4
+ 535 008d F4000000 		.4byte	.LASF12
+ 536 0091 02       		.uleb128 0x2
+ 537 0092 01       		.byte	0x1
+ 538 0093 08       		.byte	0x8
+ 539 0094 5C020000 		.4byte	.LASF13
+ 540 0098 04       		.uleb128 0x4
+ 541 0099 AE000000 		.4byte	.LASF14
+ 542 009d 02       		.byte	0x2
+ 543 009e 3C02     		.2byte	0x23c
+ 544 00a0 A4000000 		.4byte	0xa4
+ 545 00a4 05       		.uleb128 0x5
+ 546 00a5 6B000000 		.4byte	0x6b
+ 547 00a9 04       		.uleb128 0x4
+ 548 00aa 00000000 		.4byte	.LASF15
+ 549 00ae 02       		.byte	0x2
+ 550 00af 3D02     		.2byte	0x23d
+ 551 00b1 B5000000 		.4byte	0xb5
+ 552 00b5 05       		.uleb128 0x5
+ 553 00b6 77000000 		.4byte	0x77
+ 554 00ba 02       		.uleb128 0x2
+ 555 00bb 04       		.byte	0x4
+ 556 00bc 07       		.byte	0x7
+ 557 00bd 32020000 		.4byte	.LASF16
+ 558 00c1 06       		.uleb128 0x6
+ 559 00c2 F4020000 		.4byte	.LASF17
+ 560 00c6 01       		.byte	0x1
+ 561 00c7 C7       		.byte	0xc7
+ 562 00c8 00000000 		.4byte	.LFB2
+ 563 00cc 10000000 		.4byte	.LFE2-.LFB2
+ 564 00d0 01       		.uleb128 0x1
+ 565 00d1 9C       		.byte	0x9c
+ 566 00d2 06       		.uleb128 0x6
+ 567 00d3 E7000000 		.4byte	.LASF18
+ 568 00d7 01       		.byte	0x1
+ 569 00d8 E9       		.byte	0xe9
+ 570 00d9 00000000 		.4byte	.LFB3
+ 571 00dd 10000000 		.4byte	.LFE3-.LFB3
+ 572 00e1 01       		.uleb128 0x1
+ 573 00e2 9C       		.byte	0x9c
+ 574 00e3 07       		.uleb128 0x7
+ 575 00e4 B7020000 		.4byte	.LASF19
+ 576 00e8 01       		.byte	0x1
+ 577 00e9 9301     		.2byte	0x193
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 27
 
 
- 683 0106 01       		.byte	0x1
- 684 0107 E201     		.2byte	0x1e2
- 685 0109 00000000 		.4byte	.LFB7
- 686 010d 0C000000 		.4byte	.LFE7-.LFB7
- 687 0111 01       		.uleb128 0x1
- 688 0112 9C       		.byte	0x9c
- 689 0113 26010000 		.4byte	0x126
- 690 0117 08       		.uleb128 0x8
- 691 0118 85000000 		.4byte	.LASF20
- 692 011c 01       		.byte	0x1
- 693 011d E201     		.2byte	0x1e2
- 694 011f 6B000000 		.4byte	0x6b
- 695 0123 01       		.uleb128 0x1
- 696 0124 50       		.byte	0x50
- 697 0125 00       		.byte	0
- 698 0126 07       		.uleb128 0x7
- 699 0127 4D020000 		.4byte	.LASF21
- 700 012b 01       		.byte	0x1
- 701 012c 2B02     		.2byte	0x22b
- 702 012e 00000000 		.4byte	.LFB8
- 703 0132 0C000000 		.4byte	.LFE8-.LFB8
- 704 0136 01       		.uleb128 0x1
- 705 0137 9C       		.byte	0x9c
- 706 0138 4B010000 		.4byte	0x14b
- 707 013c 08       		.uleb128 0x8
- 708 013d 60030000 		.4byte	.LASF22
- 709 0141 01       		.byte	0x1
- 710 0142 2B02     		.2byte	0x22b
- 711 0144 6B000000 		.4byte	0x6b
- 712 0148 01       		.uleb128 0x1
- 713 0149 50       		.byte	0x50
- 714 014a 00       		.byte	0
- 715 014b 07       		.uleb128 0x7
- 716 014c 63020000 		.4byte	.LASF23
- 717 0150 01       		.byte	0x1
- 718 0151 4802     		.2byte	0x248
- 719 0153 00000000 		.4byte	.LFB9
- 720 0157 0C000000 		.4byte	.LFE9-.LFB9
- 721 015b 01       		.uleb128 0x1
- 722 015c 9C       		.byte	0x9c
- 723 015d 70010000 		.4byte	0x170
- 724 0161 08       		.uleb128 0x8
- 725 0162 60030000 		.4byte	.LASF22
- 726 0166 01       		.byte	0x1
- 727 0167 4802     		.2byte	0x248
- 728 0169 6B000000 		.4byte	0x6b
- 729 016d 01       		.uleb128 0x1
- 730 016e 50       		.byte	0x50
- 731 016f 00       		.byte	0
- 732 0170 07       		.uleb128 0x7
- 733 0171 9B020000 		.4byte	.LASF24
- 734 0175 01       		.byte	0x1
- 735 0176 AC02     		.2byte	0x2ac
- 736 0178 00000000 		.4byte	.LFB10
- 737 017c 0C000000 		.4byte	.LFE10-.LFB10
- 738 0180 01       		.uleb128 0x1
- 739 0181 9C       		.byte	0x9c
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 30
+ 578 00eb 00000000 		.4byte	.LFB4
+ 579 00ef 0C000000 		.4byte	.LFE4-.LFB4
+ 580 00f3 01       		.uleb128 0x1
+ 581 00f4 9C       		.byte	0x9c
+ 582 00f5 08010000 		.4byte	0x108
+ 583 00f9 08       		.uleb128 0x8
+ 584 00fa 98000000 		.4byte	.LASF21
+ 585 00fe 01       		.byte	0x1
+ 586 00ff 9301     		.2byte	0x193
+ 587 0101 77000000 		.4byte	0x77
+ 588 0105 01       		.uleb128 0x1
+ 589 0106 50       		.byte	0x50
+ 590 0107 00       		.byte	0
+ 591 0108 09       		.uleb128 0x9
+ 592 0109 61020000 		.4byte	.LASF32
+ 593 010d 01       		.byte	0x1
+ 594 010e A901     		.2byte	0x1a9
+ 595 0110 77000000 		.4byte	0x77
+ 596 0114 00000000 		.4byte	.LFB5
+ 597 0118 14000000 		.4byte	.LFE5-.LFB5
+ 598 011c 01       		.uleb128 0x1
+ 599 011d 9C       		.byte	0x9c
+ 600 011e 07       		.uleb128 0x7
+ 601 011f CC020000 		.4byte	.LASF20
+ 602 0123 01       		.byte	0x1
+ 603 0124 E201     		.2byte	0x1e2
+ 604 0126 00000000 		.4byte	.LFB6
+ 605 012a 0C000000 		.4byte	.LFE6-.LFB6
+ 606 012e 01       		.uleb128 0x1
+ 607 012f 9C       		.byte	0x9c
+ 608 0130 43010000 		.4byte	0x143
+ 609 0134 08       		.uleb128 0x8
+ 610 0135 78000000 		.4byte	.LASF22
+ 611 0139 01       		.byte	0x1
+ 612 013a E201     		.2byte	0x1e2
+ 613 013c 77000000 		.4byte	0x77
+ 614 0140 01       		.uleb128 0x1
+ 615 0141 50       		.byte	0x50
+ 616 0142 00       		.byte	0
+ 617 0143 07       		.uleb128 0x7
+ 618 0144 ED010000 		.4byte	.LASF23
+ 619 0148 01       		.byte	0x1
+ 620 0149 2B02     		.2byte	0x22b
+ 621 014b 00000000 		.4byte	.LFB7
+ 622 014f 0C000000 		.4byte	.LFE7-.LFB7
+ 623 0153 01       		.uleb128 0x1
+ 624 0154 9C       		.byte	0x9c
+ 625 0155 68010000 		.4byte	0x168
+ 626 0159 08       		.uleb128 0x8
+ 627 015a EC020000 		.4byte	.LASF24
+ 628 015e 01       		.byte	0x1
+ 629 015f 2B02     		.2byte	0x22b
+ 630 0161 77000000 		.4byte	0x77
+ 631 0165 01       		.uleb128 0x1
+ 632 0166 50       		.byte	0x50
+ 633 0167 00       		.byte	0
+ 634 0168 07       		.uleb128 0x7
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 28
 
 
- 740 0182 95010000 		.4byte	0x195
- 741 0186 08       		.uleb128 0x8
- 742 0187 C2020000 		.4byte	.LASF25
- 743 018b 01       		.byte	0x1
- 744 018c AC02     		.2byte	0x2ac
- 745 018e 6B000000 		.4byte	0x6b
- 746 0192 01       		.uleb128 0x1
- 747 0193 50       		.byte	0x50
- 748 0194 00       		.byte	0
- 749 0195 09       		.uleb128 0x9
- 750 0196 1C020000 		.4byte	.LASF27
- 751 019a 01       		.byte	0x1
- 752 019b C702     		.2byte	0x2c7
- 753 019d 6B000000 		.4byte	0x6b
- 754 01a1 00000000 		.4byte	.LFB11
- 755 01a5 0C000000 		.4byte	.LFE11-.LFB11
- 756 01a9 01       		.uleb128 0x1
- 757 01aa 9C       		.byte	0x9c
- 758 01ab 0A       		.uleb128 0xa
- 759 01ac 3E010000 		.4byte	.LASF43
- 760 01b0 01       		.byte	0x1
- 761 01b1 E102     		.2byte	0x2e1
- 762 01b3 6B000000 		.4byte	0x6b
- 763 01b7 00000000 		.4byte	.LFB12
- 764 01bb 0C000000 		.4byte	.LFE12-.LFB12
- 765 01bf 01       		.uleb128 0x1
- 766 01c0 9C       		.byte	0x9c
- 767 01c1 D4010000 		.4byte	0x1d4
- 768 01c5 0B       		.uleb128 0xb
- 769 01c6 79020000 		.4byte	.LASF33
- 770 01ca 01       		.byte	0x1
- 771 01cb E302     		.2byte	0x2e3
- 772 01cd 6B000000 		.4byte	0x6b
- 773 01d1 01       		.uleb128 0x1
- 774 01d2 50       		.byte	0x50
- 775 01d3 00       		.byte	0
- 776 01d4 07       		.uleb128 0x7
- 777 01d5 5A010000 		.4byte	.LASF28
- 778 01d9 01       		.byte	0x1
- 779 01da FD02     		.2byte	0x2fd
- 780 01dc 00000000 		.4byte	.LFB13
- 781 01e0 0C000000 		.4byte	.LFE13-.LFB13
- 782 01e4 01       		.uleb128 0x1
- 783 01e5 9C       		.byte	0x9c
- 784 01e6 F9010000 		.4byte	0x1f9
- 785 01ea 08       		.uleb128 0x8
- 786 01eb 06010000 		.4byte	.LASF29
- 787 01ef 01       		.byte	0x1
- 788 01f0 FD02     		.2byte	0x2fd
- 789 01f2 6B000000 		.4byte	0x6b
- 790 01f6 01       		.uleb128 0x1
- 791 01f7 50       		.byte	0x50
- 792 01f8 00       		.byte	0
- 793 01f9 09       		.uleb128 0x9
- 794 01fa 0E010000 		.4byte	.LASF30
- 795 01fe 01       		.byte	0x1
- 796 01ff 1603     		.2byte	0x316
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 31
+ 635 0169 03020000 		.4byte	.LASF25
+ 636 016d 01       		.byte	0x1
+ 637 016e 4802     		.2byte	0x248
+ 638 0170 00000000 		.4byte	.LFB8
+ 639 0174 0C000000 		.4byte	.LFE8-.LFB8
+ 640 0178 01       		.uleb128 0x1
+ 641 0179 9C       		.byte	0x9c
+ 642 017a 8D010000 		.4byte	0x18d
+ 643 017e 08       		.uleb128 0x8
+ 644 017f EC020000 		.4byte	.LASF24
+ 645 0183 01       		.byte	0x1
+ 646 0184 4802     		.2byte	0x248
+ 647 0186 77000000 		.4byte	0x77
+ 648 018a 01       		.uleb128 0x1
+ 649 018b 50       		.byte	0x50
+ 650 018c 00       		.byte	0
+ 651 018d 0A       		.uleb128 0xa
+ 652 018e 20020000 		.4byte	.LASF26
+ 653 0192 01       		.byte	0x1
+ 654 0193 54       		.byte	0x54
+ 655 0194 00000000 		.4byte	.LFB1
+ 656 0198 48000000 		.4byte	.LFE1-.LFB1
+ 657 019c 01       		.uleb128 0x1
+ 658 019d 9C       		.byte	0x9c
+ 659 019e FE010000 		.4byte	0x1fe
+ 660 01a2 0B       		.uleb128 0xb
+ 661 01a3 2D020000 		.4byte	.LASF28
+ 662 01a7 01       		.byte	0x1
+ 663 01a8 57       		.byte	0x57
+ 664 01a9 6B000000 		.4byte	0x6b
+ 665 01ad 00000000 		.4byte	.LLST0
+ 666 01b1 0C       		.uleb128 0xc
+ 667 01b2 2C000000 		.4byte	.LVL6
+ 668 01b6 E3000000 		.4byte	0xe3
+ 669 01ba C6010000 		.4byte	0x1c6
+ 670 01be 0D       		.uleb128 0xd
+ 671 01bf 01       		.uleb128 0x1
+ 672 01c0 50       		.byte	0x50
+ 673 01c1 03       		.uleb128 0x3
+ 674 01c2 0A       		.byte	0xa
+ 675 01c3 C012     		.2byte	0x12c0
+ 676 01c5 00       		.byte	0
+ 677 01c6 0C       		.uleb128 0xc
+ 678 01c7 34000000 		.4byte	.LVL7
+ 679 01cb 1E010000 		.4byte	0x11e
+ 680 01cf DB010000 		.4byte	0x1db
+ 681 01d3 0D       		.uleb128 0xd
+ 682 01d4 01       		.uleb128 0x1
+ 683 01d5 50       		.byte	0x50
+ 684 01d6 03       		.uleb128 0x3
+ 685 01d7 0A       		.byte	0xa
+ 686 01d8 C012     		.2byte	0x12c0
+ 687 01da 00       		.byte	0
+ 688 01db 0C       		.uleb128 0xc
+ 689 01dc 3A000000 		.4byte	.LVL8
+ 690 01e0 43010000 		.4byte	0x143
+ 691 01e4 EE010000 		.4byte	0x1ee
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 29
 
 
- 797 0201 6B000000 		.4byte	0x6b
- 798 0205 00000000 		.4byte	.LFB14
- 799 0209 0C000000 		.4byte	.LFE14-.LFB14
- 800 020d 01       		.uleb128 0x1
- 801 020e 9C       		.byte	0x9c
- 802 020f 07       		.uleb128 0x7
- 803 0210 B2000000 		.4byte	.LASF31
- 804 0214 01       		.byte	0x1
- 805 0215 C501     		.2byte	0x1c5
- 806 0217 00000000 		.4byte	.LFB6
- 807 021b 14000000 		.4byte	.LFE6-.LFB6
- 808 021f 01       		.uleb128 0x1
- 809 0220 9C       		.byte	0x9c
- 810 0221 38020000 		.4byte	0x238
- 811 0225 0C       		.uleb128 0xc
- 812 0226 08000000 		.4byte	.LVL7
- 813 022a F9010000 		.4byte	0x1f9
- 814 022e 0C       		.uleb128 0xc
- 815 022f 0C000000 		.4byte	.LVL8
- 816 0233 95010000 		.4byte	0x195
- 817 0237 00       		.byte	0
- 818 0238 0D       		.uleb128 0xd
- 819 0239 80020000 		.4byte	.LASF32
- 820 023d 01       		.byte	0x1
- 821 023e 54       		.byte	0x54
- 822 023f 00000000 		.4byte	.LFB1
- 823 0243 58000000 		.4byte	.LFE1-.LFB1
- 824 0247 01       		.uleb128 0x1
- 825 0248 9C       		.byte	0x9c
- 826 0249 EA020000 		.4byte	0x2ea
- 827 024d 0E       		.uleb128 0xe
- 828 024e 8D020000 		.4byte	.LASF34
- 829 0252 01       		.byte	0x1
- 830 0253 57       		.byte	0x57
- 831 0254 6B000000 		.4byte	0x6b
- 832 0258 00000000 		.4byte	.LLST0
- 833 025c 0E       		.uleb128 0xe
- 834 025d A1030000 		.4byte	.LASF35
- 835 0261 01       		.byte	0x1
- 836 0262 5D       		.byte	0x5d
- 837 0263 6B000000 		.4byte	0x6b
- 838 0267 13000000 		.4byte	.LLST1
- 839 026b 0F       		.uleb128 0xf
- 840 026c 20000000 		.4byte	.LVL11
- 841 0270 C6000000 		.4byte	0xc6
- 842 0274 7F020000 		.4byte	0x27f
- 843 0278 10       		.uleb128 0x10
- 844 0279 01       		.uleb128 0x1
- 845 027a 50       		.byte	0x50
- 846 027b 02       		.uleb128 0x2
- 847 027c 09       		.byte	0x9
- 848 027d FF       		.byte	0xff
- 849 027e 00       		.byte	0
- 850 027f 0F       		.uleb128 0xf
- 851 0280 26000000 		.4byte	.LVL12
- 852 0284 01010000 		.4byte	0x101
- 853 0288 93020000 		.4byte	0x293
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 32
+ 692 01e8 0D       		.uleb128 0xd
+ 693 01e9 01       		.uleb128 0x1
+ 694 01ea 50       		.byte	0x50
+ 695 01eb 01       		.uleb128 0x1
+ 696 01ec 30       		.byte	0x30
+ 697 01ed 00       		.byte	0
+ 698 01ee 0E       		.uleb128 0xe
+ 699 01ef 40000000 		.4byte	.LVL9
+ 700 01f3 68010000 		.4byte	0x168
+ 701 01f7 0D       		.uleb128 0xd
+ 702 01f8 01       		.uleb128 0x1
+ 703 01f9 50       		.byte	0x50
+ 704 01fa 01       		.uleb128 0x1
+ 705 01fb 30       		.byte	0x30
+ 706 01fc 00       		.byte	0
+ 707 01fd 00       		.byte	0
+ 708 01fe 0A       		.uleb128 0xa
+ 709 01ff 7F020000 		.4byte	.LASF27
+ 710 0203 01       		.byte	0x1
+ 711 0204 37       		.byte	0x37
+ 712 0205 00000000 		.4byte	.LFB0
+ 713 0209 1C000000 		.4byte	.LFE0-.LFB0
+ 714 020d 01       		.uleb128 0x1
+ 715 020e 9C       		.byte	0x9c
+ 716 020f 26020000 		.4byte	0x226
+ 717 0213 0F       		.uleb128 0xf
+ 718 0214 0C000000 		.4byte	.LVL10
+ 719 0218 8D010000 		.4byte	0x18d
+ 720 021c 0F       		.uleb128 0xf
+ 721 021d 16000000 		.4byte	.LVL11
+ 722 0221 C1000000 		.4byte	0xc1
+ 723 0225 00       		.byte	0
+ 724 0226 10       		.uleb128 0x10
+ 725 0227 FB000000 		.4byte	.LASF40
+ 726 022b 01       		.byte	0x1
+ 727 022c E102     		.2byte	0x2e1
+ 728 022e 6B000000 		.4byte	0x6b
+ 729 0232 00000000 		.4byte	.LFB9
+ 730 0236 0C000000 		.4byte	.LFE9-.LFB9
+ 731 023a 01       		.uleb128 0x1
+ 732 023b 9C       		.byte	0x9c
+ 733 023c 4F020000 		.4byte	0x24f
+ 734 0240 11       		.uleb128 0x11
+ 735 0241 19020000 		.4byte	.LASF29
+ 736 0245 01       		.byte	0x1
+ 737 0246 E302     		.2byte	0x2e3
+ 738 0248 6B000000 		.4byte	0x6b
+ 739 024c 01       		.uleb128 0x1
+ 740 024d 50       		.byte	0x50
+ 741 024e 00       		.byte	0
+ 742 024f 07       		.uleb128 0x7
+ 743 0250 17010000 		.4byte	.LASF30
+ 744 0254 01       		.byte	0x1
+ 745 0255 FD02     		.2byte	0x2fd
+ 746 0257 00000000 		.4byte	.LFB10
+ 747 025b 0C000000 		.4byte	.LFE10-.LFB10
+ 748 025f 01       		.uleb128 0x1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 30
 
 
- 854 028c 10       		.uleb128 0x10
- 855 028d 01       		.uleb128 0x1
- 856 028e 50       		.byte	0x50
- 857 028f 02       		.uleb128 0x2
- 858 0290 09       		.byte	0x9
- 859 0291 FF       		.byte	0xff
- 860 0292 00       		.byte	0
- 861 0293 0F       		.uleb128 0xf
- 862 0294 2C000000 		.4byte	.LVL13
- 863 0298 26010000 		.4byte	0x126
- 864 029c A7020000 		.4byte	0x2a7
- 865 02a0 10       		.uleb128 0x10
- 866 02a1 01       		.uleb128 0x1
- 867 02a2 50       		.byte	0x50
- 868 02a3 02       		.uleb128 0x2
- 869 02a4 08       		.byte	0x8
- 870 02a5 7F       		.byte	0x7f
- 871 02a6 00       		.byte	0
- 872 02a7 0F       		.uleb128 0xf
- 873 02a8 32000000 		.4byte	.LVL14
- 874 02ac 4B010000 		.4byte	0x14b
- 875 02b0 BB020000 		.4byte	0x2bb
- 876 02b4 10       		.uleb128 0x10
- 877 02b5 01       		.uleb128 0x1
- 878 02b6 50       		.byte	0x50
- 879 02b7 02       		.uleb128 0x2
- 880 02b8 08       		.byte	0x8
- 881 02b9 3F       		.byte	0x3f
- 882 02ba 00       		.byte	0
- 883 02bb 0F       		.uleb128 0xf
- 884 02bc 38000000 		.4byte	.LVL15
- 885 02c0 70010000 		.4byte	0x170
- 886 02c4 CE020000 		.4byte	0x2ce
- 887 02c8 10       		.uleb128 0x10
- 888 02c9 01       		.uleb128 0x1
- 889 02ca 50       		.byte	0x50
- 890 02cb 01       		.uleb128 0x1
- 891 02cc 30       		.byte	0x30
- 892 02cd 00       		.byte	0
- 893 02ce 0C       		.uleb128 0xc
- 894 02cf 3C000000 		.4byte	.LVL16
- 895 02d3 65030000 		.4byte	0x365
- 896 02d7 0C       		.uleb128 0xc
- 897 02d8 4A000000 		.4byte	.LVL17
- 898 02dc 70030000 		.4byte	0x370
- 899 02e0 0C       		.uleb128 0xc
- 900 02e1 4E000000 		.4byte	.LVL18
- 901 02e5 0F020000 		.4byte	0x20f
- 902 02e9 00       		.byte	0
- 903 02ea 0D       		.uleb128 0xd
- 904 02eb EE020000 		.4byte	.LASF36
- 905 02ef 01       		.byte	0x1
- 906 02f0 37       		.byte	0x37
- 907 02f1 00000000 		.4byte	.LFB0
- 908 02f5 1C000000 		.4byte	.LFE0-.LFB0
- 909 02f9 01       		.uleb128 0x1
- 910 02fa 9C       		.byte	0x9c
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 33
+ 749 0260 9C       		.byte	0x9c
+ 750 0261 74020000 		.4byte	0x274
+ 751 0265 08       		.uleb128 0x8
+ 752 0266 CB000000 		.4byte	.LASF31
+ 753 026a 01       		.byte	0x1
+ 754 026b FD02     		.2byte	0x2fd
+ 755 026d 6B000000 		.4byte	0x6b
+ 756 0271 01       		.uleb128 0x1
+ 757 0272 50       		.byte	0x50
+ 758 0273 00       		.byte	0
+ 759 0274 09       		.uleb128 0x9
+ 760 0275 D3000000 		.4byte	.LASF33
+ 761 0279 01       		.byte	0x1
+ 762 027a 1603     		.2byte	0x316
+ 763 027c 77000000 		.4byte	0x77
+ 764 0280 00000000 		.4byte	.LFB11
+ 765 0284 0C000000 		.4byte	.LFE11-.LFB11
+ 766 0288 01       		.uleb128 0x1
+ 767 0289 9C       		.byte	0x9c
+ 768 028a 09       		.uleb128 0x9
+ 769 028b 03030000 		.4byte	.LASF34
+ 770 028f 01       		.byte	0x1
+ 771 0290 4A03     		.2byte	0x34a
+ 772 0292 77000000 		.4byte	0x77
+ 773 0296 00000000 		.4byte	.LFB12
+ 774 029a 0C000000 		.4byte	.LFE12-.LFB12
+ 775 029e 01       		.uleb128 0x1
+ 776 029f 9C       		.byte	0x9c
+ 777 02a0 09       		.uleb128 0x9
+ 778 02a1 18030000 		.4byte	.LASF35
+ 779 02a5 01       		.byte	0x1
+ 780 02a6 5E03     		.2byte	0x35e
+ 781 02a8 77000000 		.4byte	0x77
+ 782 02ac 00000000 		.4byte	.LFB13
+ 783 02b0 0C000000 		.4byte	.LFE13-.LFB13
+ 784 02b4 01       		.uleb128 0x1
+ 785 02b5 9C       		.byte	0x9c
+ 786 02b6 09       		.uleb128 0x9
+ 787 02b7 3B020000 		.4byte	.LASF36
+ 788 02bb 01       		.byte	0x1
+ 789 02bc 7403     		.2byte	0x374
+ 790 02be 77000000 		.4byte	0x77
+ 791 02c2 00000000 		.4byte	.LFB14
+ 792 02c6 0C000000 		.4byte	.LFE14-.LFB14
+ 793 02ca 01       		.uleb128 0x1
+ 794 02cb 9C       		.byte	0x9c
+ 795 02cc 12       		.uleb128 0x12
+ 796 02cd 06000000 		.4byte	.LASF41
+ 797 02d1 01       		.byte	0x1
+ 798 02d2 20       		.byte	0x20
+ 799 02d3 6B000000 		.4byte	0x6b
+ 800 02d7 05       		.uleb128 0x5
+ 801 02d8 03       		.byte	0x3
+ 802 02d9 00000000 		.4byte	fw2_PWM_initVar
+ 803 02dd 00       		.byte	0
+ 804              		.section	.debug_abbrev,"",%progbits
+ 805              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 31
 
 
- 911 02fb 12030000 		.4byte	0x312
- 912 02ff 0C       		.uleb128 0xc
- 913 0300 0C000000 		.4byte	.LVL19
- 914 0304 38020000 		.4byte	0x238
- 915 0308 0C       		.uleb128 0xc
- 916 0309 16000000 		.4byte	.LVL20
- 917 030d A4000000 		.4byte	0xa4
- 918 0311 00       		.byte	0
- 919 0312 09       		.uleb128 0x9
- 920 0313 77030000 		.4byte	.LASF37
- 921 0317 01       		.byte	0x1
- 922 0318 4A03     		.2byte	0x34a
- 923 031a 6B000000 		.4byte	0x6b
- 924 031e 00000000 		.4byte	.LFB15
- 925 0322 0C000000 		.4byte	.LFE15-.LFB15
- 926 0326 01       		.uleb128 0x1
- 927 0327 9C       		.byte	0x9c
- 928 0328 09       		.uleb128 0x9
- 929 0329 8C030000 		.4byte	.LASF38
- 930 032d 01       		.byte	0x1
- 931 032e 5E03     		.2byte	0x35e
- 932 0330 6B000000 		.4byte	0x6b
- 933 0334 00000000 		.4byte	.LFB16
- 934 0338 0C000000 		.4byte	.LFE16-.LFB16
- 935 033c 01       		.uleb128 0x1
- 936 033d 9C       		.byte	0x9c
- 937 033e 09       		.uleb128 0x9
- 938 033f 00000000 		.4byte	.LASF39
- 939 0343 01       		.byte	0x1
- 940 0344 7403     		.2byte	0x374
- 941 0346 6B000000 		.4byte	0x6b
- 942 034a 00000000 		.4byte	.LFB17
- 943 034e 0C000000 		.4byte	.LFE17-.LFB17
- 944 0352 01       		.uleb128 0x1
- 945 0353 9C       		.byte	0x9c
- 946 0354 11       		.uleb128 0x11
- 947 0355 13000000 		.4byte	.LASF44
- 948 0359 01       		.byte	0x1
- 949 035a 20       		.byte	0x20
- 950 035b 6B000000 		.4byte	0x6b
- 951 035f 05       		.uleb128 0x5
- 952 0360 03       		.byte	0x3
- 953 0361 00000000 		.4byte	fw2_PWM_initVar
- 954 0365 12       		.uleb128 0x12
- 955 0366 05020000 		.4byte	.LASF45
- 956 036a 03       		.byte	0x3
- 957 036b 7D       		.byte	0x7d
- 958 036c 6B000000 		.4byte	0x6b
- 959 0370 13       		.uleb128 0x13
- 960 0371 37020000 		.4byte	.LASF46
- 961 0375 03       		.byte	0x3
- 962 0376 7E       		.byte	0x7e
- 963 0377 14       		.uleb128 0x14
- 964 0378 6B000000 		.4byte	0x6b
- 965 037c 00       		.byte	0
- 966 037d 00       		.byte	0
- 967              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 34
+ 806 0000 01       		.uleb128 0x1
+ 807 0001 11       		.uleb128 0x11
+ 808 0002 01       		.byte	0x1
+ 809 0003 25       		.uleb128 0x25
+ 810 0004 0E       		.uleb128 0xe
+ 811 0005 13       		.uleb128 0x13
+ 812 0006 0B       		.uleb128 0xb
+ 813 0007 03       		.uleb128 0x3
+ 814 0008 0E       		.uleb128 0xe
+ 815 0009 1B       		.uleb128 0x1b
+ 816 000a 0E       		.uleb128 0xe
+ 817 000b 55       		.uleb128 0x55
+ 818 000c 17       		.uleb128 0x17
+ 819 000d 11       		.uleb128 0x11
+ 820 000e 01       		.uleb128 0x1
+ 821 000f 10       		.uleb128 0x10
+ 822 0010 17       		.uleb128 0x17
+ 823 0011 00       		.byte	0
+ 824 0012 00       		.byte	0
+ 825 0013 02       		.uleb128 0x2
+ 826 0014 24       		.uleb128 0x24
+ 827 0015 00       		.byte	0
+ 828 0016 0B       		.uleb128 0xb
+ 829 0017 0B       		.uleb128 0xb
+ 830 0018 3E       		.uleb128 0x3e
+ 831 0019 0B       		.uleb128 0xb
+ 832 001a 03       		.uleb128 0x3
+ 833 001b 0E       		.uleb128 0xe
+ 834 001c 00       		.byte	0
+ 835 001d 00       		.byte	0
+ 836 001e 03       		.uleb128 0x3
+ 837 001f 24       		.uleb128 0x24
+ 838 0020 00       		.byte	0
+ 839 0021 0B       		.uleb128 0xb
+ 840 0022 0B       		.uleb128 0xb
+ 841 0023 3E       		.uleb128 0x3e
+ 842 0024 0B       		.uleb128 0xb
+ 843 0025 03       		.uleb128 0x3
+ 844 0026 08       		.uleb128 0x8
+ 845 0027 00       		.byte	0
+ 846 0028 00       		.byte	0
+ 847 0029 04       		.uleb128 0x4
+ 848 002a 16       		.uleb128 0x16
+ 849 002b 00       		.byte	0
+ 850 002c 03       		.uleb128 0x3
+ 851 002d 0E       		.uleb128 0xe
+ 852 002e 3A       		.uleb128 0x3a
+ 853 002f 0B       		.uleb128 0xb
+ 854 0030 3B       		.uleb128 0x3b
+ 855 0031 05       		.uleb128 0x5
+ 856 0032 49       		.uleb128 0x49
+ 857 0033 13       		.uleb128 0x13
+ 858 0034 00       		.byte	0
+ 859 0035 00       		.byte	0
+ 860 0036 05       		.uleb128 0x5
+ 861 0037 35       		.uleb128 0x35
+ 862 0038 00       		.byte	0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 32
 
 
- 968              	.Ldebug_abbrev0:
- 969 0000 01       		.uleb128 0x1
- 970 0001 11       		.uleb128 0x11
- 971 0002 01       		.byte	0x1
- 972 0003 25       		.uleb128 0x25
- 973 0004 0E       		.uleb128 0xe
- 974 0005 13       		.uleb128 0x13
- 975 0006 0B       		.uleb128 0xb
- 976 0007 03       		.uleb128 0x3
- 977 0008 0E       		.uleb128 0xe
- 978 0009 1B       		.uleb128 0x1b
- 979 000a 0E       		.uleb128 0xe
- 980 000b 55       		.uleb128 0x55
- 981 000c 17       		.uleb128 0x17
- 982 000d 11       		.uleb128 0x11
- 983 000e 01       		.uleb128 0x1
- 984 000f 10       		.uleb128 0x10
- 985 0010 17       		.uleb128 0x17
- 986 0011 00       		.byte	0
- 987 0012 00       		.byte	0
- 988 0013 02       		.uleb128 0x2
- 989 0014 24       		.uleb128 0x24
- 990 0015 00       		.byte	0
- 991 0016 0B       		.uleb128 0xb
- 992 0017 0B       		.uleb128 0xb
- 993 0018 3E       		.uleb128 0x3e
- 994 0019 0B       		.uleb128 0xb
- 995 001a 03       		.uleb128 0x3
- 996 001b 0E       		.uleb128 0xe
- 997 001c 00       		.byte	0
- 998 001d 00       		.byte	0
- 999 001e 03       		.uleb128 0x3
- 1000 001f 24       		.uleb128 0x24
- 1001 0020 00       		.byte	0
- 1002 0021 0B       		.uleb128 0xb
- 1003 0022 0B       		.uleb128 0xb
- 1004 0023 3E       		.uleb128 0x3e
- 1005 0024 0B       		.uleb128 0xb
- 1006 0025 03       		.uleb128 0x3
- 1007 0026 08       		.uleb128 0x8
- 1008 0027 00       		.byte	0
- 1009 0028 00       		.byte	0
- 1010 0029 04       		.uleb128 0x4
- 1011 002a 16       		.uleb128 0x16
- 1012 002b 00       		.byte	0
- 1013 002c 03       		.uleb128 0x3
- 1014 002d 0E       		.uleb128 0xe
- 1015 002e 3A       		.uleb128 0x3a
- 1016 002f 0B       		.uleb128 0xb
- 1017 0030 3B       		.uleb128 0x3b
- 1018 0031 05       		.uleb128 0x5
- 1019 0032 49       		.uleb128 0x49
- 1020 0033 13       		.uleb128 0x13
- 1021 0034 00       		.byte	0
- 1022 0035 00       		.byte	0
- 1023 0036 05       		.uleb128 0x5
- 1024 0037 35       		.uleb128 0x35
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 35
+ 863 0039 49       		.uleb128 0x49
+ 864 003a 13       		.uleb128 0x13
+ 865 003b 00       		.byte	0
+ 866 003c 00       		.byte	0
+ 867 003d 06       		.uleb128 0x6
+ 868 003e 2E       		.uleb128 0x2e
+ 869 003f 00       		.byte	0
+ 870 0040 3F       		.uleb128 0x3f
+ 871 0041 19       		.uleb128 0x19
+ 872 0042 03       		.uleb128 0x3
+ 873 0043 0E       		.uleb128 0xe
+ 874 0044 3A       		.uleb128 0x3a
+ 875 0045 0B       		.uleb128 0xb
+ 876 0046 3B       		.uleb128 0x3b
+ 877 0047 0B       		.uleb128 0xb
+ 878 0048 27       		.uleb128 0x27
+ 879 0049 19       		.uleb128 0x19
+ 880 004a 11       		.uleb128 0x11
+ 881 004b 01       		.uleb128 0x1
+ 882 004c 12       		.uleb128 0x12
+ 883 004d 06       		.uleb128 0x6
+ 884 004e 40       		.uleb128 0x40
+ 885 004f 18       		.uleb128 0x18
+ 886 0050 9742     		.uleb128 0x2117
+ 887 0052 19       		.uleb128 0x19
+ 888 0053 00       		.byte	0
+ 889 0054 00       		.byte	0
+ 890 0055 07       		.uleb128 0x7
+ 891 0056 2E       		.uleb128 0x2e
+ 892 0057 01       		.byte	0x1
+ 893 0058 3F       		.uleb128 0x3f
+ 894 0059 19       		.uleb128 0x19
+ 895 005a 03       		.uleb128 0x3
+ 896 005b 0E       		.uleb128 0xe
+ 897 005c 3A       		.uleb128 0x3a
+ 898 005d 0B       		.uleb128 0xb
+ 899 005e 3B       		.uleb128 0x3b
+ 900 005f 05       		.uleb128 0x5
+ 901 0060 27       		.uleb128 0x27
+ 902 0061 19       		.uleb128 0x19
+ 903 0062 11       		.uleb128 0x11
+ 904 0063 01       		.uleb128 0x1
+ 905 0064 12       		.uleb128 0x12
+ 906 0065 06       		.uleb128 0x6
+ 907 0066 40       		.uleb128 0x40
+ 908 0067 18       		.uleb128 0x18
+ 909 0068 9742     		.uleb128 0x2117
+ 910 006a 19       		.uleb128 0x19
+ 911 006b 01       		.uleb128 0x1
+ 912 006c 13       		.uleb128 0x13
+ 913 006d 00       		.byte	0
+ 914 006e 00       		.byte	0
+ 915 006f 08       		.uleb128 0x8
+ 916 0070 05       		.uleb128 0x5
+ 917 0071 00       		.byte	0
+ 918 0072 03       		.uleb128 0x3
+ 919 0073 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 33
 
 
- 1025 0038 00       		.byte	0
- 1026 0039 49       		.uleb128 0x49
- 1027 003a 13       		.uleb128 0x13
- 1028 003b 00       		.byte	0
- 1029 003c 00       		.byte	0
- 1030 003d 06       		.uleb128 0x6
- 1031 003e 2E       		.uleb128 0x2e
- 1032 003f 00       		.byte	0
- 1033 0040 3F       		.uleb128 0x3f
- 1034 0041 19       		.uleb128 0x19
- 1035 0042 03       		.uleb128 0x3
- 1036 0043 0E       		.uleb128 0xe
- 1037 0044 3A       		.uleb128 0x3a
- 1038 0045 0B       		.uleb128 0xb
- 1039 0046 3B       		.uleb128 0x3b
- 1040 0047 0B       		.uleb128 0xb
- 1041 0048 27       		.uleb128 0x27
- 1042 0049 19       		.uleb128 0x19
- 1043 004a 11       		.uleb128 0x11
- 1044 004b 01       		.uleb128 0x1
- 1045 004c 12       		.uleb128 0x12
- 1046 004d 06       		.uleb128 0x6
- 1047 004e 40       		.uleb128 0x40
- 1048 004f 18       		.uleb128 0x18
- 1049 0050 9742     		.uleb128 0x2117
- 1050 0052 19       		.uleb128 0x19
- 1051 0053 00       		.byte	0
- 1052 0054 00       		.byte	0
- 1053 0055 07       		.uleb128 0x7
- 1054 0056 2E       		.uleb128 0x2e
- 1055 0057 01       		.byte	0x1
- 1056 0058 3F       		.uleb128 0x3f
- 1057 0059 19       		.uleb128 0x19
- 1058 005a 03       		.uleb128 0x3
- 1059 005b 0E       		.uleb128 0xe
- 1060 005c 3A       		.uleb128 0x3a
- 1061 005d 0B       		.uleb128 0xb
- 1062 005e 3B       		.uleb128 0x3b
- 1063 005f 05       		.uleb128 0x5
- 1064 0060 27       		.uleb128 0x27
- 1065 0061 19       		.uleb128 0x19
- 1066 0062 11       		.uleb128 0x11
- 1067 0063 01       		.uleb128 0x1
- 1068 0064 12       		.uleb128 0x12
- 1069 0065 06       		.uleb128 0x6
- 1070 0066 40       		.uleb128 0x40
- 1071 0067 18       		.uleb128 0x18
- 1072 0068 9742     		.uleb128 0x2117
- 1073 006a 19       		.uleb128 0x19
- 1074 006b 01       		.uleb128 0x1
- 1075 006c 13       		.uleb128 0x13
- 1076 006d 00       		.byte	0
- 1077 006e 00       		.byte	0
- 1078 006f 08       		.uleb128 0x8
- 1079 0070 05       		.uleb128 0x5
- 1080 0071 00       		.byte	0
- 1081 0072 03       		.uleb128 0x3
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 36
+ 920 0074 3A       		.uleb128 0x3a
+ 921 0075 0B       		.uleb128 0xb
+ 922 0076 3B       		.uleb128 0x3b
+ 923 0077 05       		.uleb128 0x5
+ 924 0078 49       		.uleb128 0x49
+ 925 0079 13       		.uleb128 0x13
+ 926 007a 02       		.uleb128 0x2
+ 927 007b 18       		.uleb128 0x18
+ 928 007c 00       		.byte	0
+ 929 007d 00       		.byte	0
+ 930 007e 09       		.uleb128 0x9
+ 931 007f 2E       		.uleb128 0x2e
+ 932 0080 00       		.byte	0
+ 933 0081 3F       		.uleb128 0x3f
+ 934 0082 19       		.uleb128 0x19
+ 935 0083 03       		.uleb128 0x3
+ 936 0084 0E       		.uleb128 0xe
+ 937 0085 3A       		.uleb128 0x3a
+ 938 0086 0B       		.uleb128 0xb
+ 939 0087 3B       		.uleb128 0x3b
+ 940 0088 05       		.uleb128 0x5
+ 941 0089 27       		.uleb128 0x27
+ 942 008a 19       		.uleb128 0x19
+ 943 008b 49       		.uleb128 0x49
+ 944 008c 13       		.uleb128 0x13
+ 945 008d 11       		.uleb128 0x11
+ 946 008e 01       		.uleb128 0x1
+ 947 008f 12       		.uleb128 0x12
+ 948 0090 06       		.uleb128 0x6
+ 949 0091 40       		.uleb128 0x40
+ 950 0092 18       		.uleb128 0x18
+ 951 0093 9742     		.uleb128 0x2117
+ 952 0095 19       		.uleb128 0x19
+ 953 0096 00       		.byte	0
+ 954 0097 00       		.byte	0
+ 955 0098 0A       		.uleb128 0xa
+ 956 0099 2E       		.uleb128 0x2e
+ 957 009a 01       		.byte	0x1
+ 958 009b 3F       		.uleb128 0x3f
+ 959 009c 19       		.uleb128 0x19
+ 960 009d 03       		.uleb128 0x3
+ 961 009e 0E       		.uleb128 0xe
+ 962 009f 3A       		.uleb128 0x3a
+ 963 00a0 0B       		.uleb128 0xb
+ 964 00a1 3B       		.uleb128 0x3b
+ 965 00a2 0B       		.uleb128 0xb
+ 966 00a3 27       		.uleb128 0x27
+ 967 00a4 19       		.uleb128 0x19
+ 968 00a5 11       		.uleb128 0x11
+ 969 00a6 01       		.uleb128 0x1
+ 970 00a7 12       		.uleb128 0x12
+ 971 00a8 06       		.uleb128 0x6
+ 972 00a9 40       		.uleb128 0x40
+ 973 00aa 18       		.uleb128 0x18
+ 974 00ab 9742     		.uleb128 0x2117
+ 975 00ad 19       		.uleb128 0x19
+ 976 00ae 01       		.uleb128 0x1
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 34
 
 
- 1082 0073 0E       		.uleb128 0xe
- 1083 0074 3A       		.uleb128 0x3a
- 1084 0075 0B       		.uleb128 0xb
- 1085 0076 3B       		.uleb128 0x3b
- 1086 0077 05       		.uleb128 0x5
- 1087 0078 49       		.uleb128 0x49
- 1088 0079 13       		.uleb128 0x13
- 1089 007a 02       		.uleb128 0x2
- 1090 007b 18       		.uleb128 0x18
- 1091 007c 00       		.byte	0
- 1092 007d 00       		.byte	0
- 1093 007e 09       		.uleb128 0x9
- 1094 007f 2E       		.uleb128 0x2e
- 1095 0080 00       		.byte	0
- 1096 0081 3F       		.uleb128 0x3f
- 1097 0082 19       		.uleb128 0x19
- 1098 0083 03       		.uleb128 0x3
- 1099 0084 0E       		.uleb128 0xe
- 1100 0085 3A       		.uleb128 0x3a
- 1101 0086 0B       		.uleb128 0xb
- 1102 0087 3B       		.uleb128 0x3b
- 1103 0088 05       		.uleb128 0x5
- 1104 0089 27       		.uleb128 0x27
- 1105 008a 19       		.uleb128 0x19
- 1106 008b 49       		.uleb128 0x49
- 1107 008c 13       		.uleb128 0x13
- 1108 008d 11       		.uleb128 0x11
- 1109 008e 01       		.uleb128 0x1
- 1110 008f 12       		.uleb128 0x12
- 1111 0090 06       		.uleb128 0x6
- 1112 0091 40       		.uleb128 0x40
- 1113 0092 18       		.uleb128 0x18
- 1114 0093 9742     		.uleb128 0x2117
- 1115 0095 19       		.uleb128 0x19
- 1116 0096 00       		.byte	0
- 1117 0097 00       		.byte	0
- 1118 0098 0A       		.uleb128 0xa
- 1119 0099 2E       		.uleb128 0x2e
- 1120 009a 01       		.byte	0x1
- 1121 009b 3F       		.uleb128 0x3f
- 1122 009c 19       		.uleb128 0x19
- 1123 009d 03       		.uleb128 0x3
- 1124 009e 0E       		.uleb128 0xe
- 1125 009f 3A       		.uleb128 0x3a
- 1126 00a0 0B       		.uleb128 0xb
- 1127 00a1 3B       		.uleb128 0x3b
- 1128 00a2 05       		.uleb128 0x5
- 1129 00a3 27       		.uleb128 0x27
- 1130 00a4 19       		.uleb128 0x19
- 1131 00a5 49       		.uleb128 0x49
- 1132 00a6 13       		.uleb128 0x13
- 1133 00a7 11       		.uleb128 0x11
- 1134 00a8 01       		.uleb128 0x1
- 1135 00a9 12       		.uleb128 0x12
- 1136 00aa 06       		.uleb128 0x6
- 1137 00ab 40       		.uleb128 0x40
- 1138 00ac 18       		.uleb128 0x18
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 37
+ 977 00af 13       		.uleb128 0x13
+ 978 00b0 00       		.byte	0
+ 979 00b1 00       		.byte	0
+ 980 00b2 0B       		.uleb128 0xb
+ 981 00b3 34       		.uleb128 0x34
+ 982 00b4 00       		.byte	0
+ 983 00b5 03       		.uleb128 0x3
+ 984 00b6 0E       		.uleb128 0xe
+ 985 00b7 3A       		.uleb128 0x3a
+ 986 00b8 0B       		.uleb128 0xb
+ 987 00b9 3B       		.uleb128 0x3b
+ 988 00ba 0B       		.uleb128 0xb
+ 989 00bb 49       		.uleb128 0x49
+ 990 00bc 13       		.uleb128 0x13
+ 991 00bd 02       		.uleb128 0x2
+ 992 00be 17       		.uleb128 0x17
+ 993 00bf 00       		.byte	0
+ 994 00c0 00       		.byte	0
+ 995 00c1 0C       		.uleb128 0xc
+ 996 00c2 898201   		.uleb128 0x4109
+ 997 00c5 01       		.byte	0x1
+ 998 00c6 11       		.uleb128 0x11
+ 999 00c7 01       		.uleb128 0x1
+ 1000 00c8 31       		.uleb128 0x31
+ 1001 00c9 13       		.uleb128 0x13
+ 1002 00ca 01       		.uleb128 0x1
+ 1003 00cb 13       		.uleb128 0x13
+ 1004 00cc 00       		.byte	0
+ 1005 00cd 00       		.byte	0
+ 1006 00ce 0D       		.uleb128 0xd
+ 1007 00cf 8A8201   		.uleb128 0x410a
+ 1008 00d2 00       		.byte	0
+ 1009 00d3 02       		.uleb128 0x2
+ 1010 00d4 18       		.uleb128 0x18
+ 1011 00d5 9142     		.uleb128 0x2111
+ 1012 00d7 18       		.uleb128 0x18
+ 1013 00d8 00       		.byte	0
+ 1014 00d9 00       		.byte	0
+ 1015 00da 0E       		.uleb128 0xe
+ 1016 00db 898201   		.uleb128 0x4109
+ 1017 00de 01       		.byte	0x1
+ 1018 00df 11       		.uleb128 0x11
+ 1019 00e0 01       		.uleb128 0x1
+ 1020 00e1 31       		.uleb128 0x31
+ 1021 00e2 13       		.uleb128 0x13
+ 1022 00e3 00       		.byte	0
+ 1023 00e4 00       		.byte	0
+ 1024 00e5 0F       		.uleb128 0xf
+ 1025 00e6 898201   		.uleb128 0x4109
+ 1026 00e9 00       		.byte	0
+ 1027 00ea 11       		.uleb128 0x11
+ 1028 00eb 01       		.uleb128 0x1
+ 1029 00ec 31       		.uleb128 0x31
+ 1030 00ed 13       		.uleb128 0x13
+ 1031 00ee 00       		.byte	0
+ 1032 00ef 00       		.byte	0
+ 1033 00f0 10       		.uleb128 0x10
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 35
 
 
- 1139 00ad 9742     		.uleb128 0x2117
- 1140 00af 19       		.uleb128 0x19
- 1141 00b0 01       		.uleb128 0x1
- 1142 00b1 13       		.uleb128 0x13
- 1143 00b2 00       		.byte	0
- 1144 00b3 00       		.byte	0
- 1145 00b4 0B       		.uleb128 0xb
- 1146 00b5 34       		.uleb128 0x34
- 1147 00b6 00       		.byte	0
- 1148 00b7 03       		.uleb128 0x3
- 1149 00b8 0E       		.uleb128 0xe
- 1150 00b9 3A       		.uleb128 0x3a
- 1151 00ba 0B       		.uleb128 0xb
- 1152 00bb 3B       		.uleb128 0x3b
- 1153 00bc 05       		.uleb128 0x5
- 1154 00bd 49       		.uleb128 0x49
- 1155 00be 13       		.uleb128 0x13
- 1156 00bf 02       		.uleb128 0x2
- 1157 00c0 18       		.uleb128 0x18
- 1158 00c1 00       		.byte	0
- 1159 00c2 00       		.byte	0
- 1160 00c3 0C       		.uleb128 0xc
- 1161 00c4 898201   		.uleb128 0x4109
- 1162 00c7 00       		.byte	0
- 1163 00c8 11       		.uleb128 0x11
- 1164 00c9 01       		.uleb128 0x1
- 1165 00ca 31       		.uleb128 0x31
- 1166 00cb 13       		.uleb128 0x13
- 1167 00cc 00       		.byte	0
- 1168 00cd 00       		.byte	0
- 1169 00ce 0D       		.uleb128 0xd
- 1170 00cf 2E       		.uleb128 0x2e
- 1171 00d0 01       		.byte	0x1
- 1172 00d1 3F       		.uleb128 0x3f
- 1173 00d2 19       		.uleb128 0x19
- 1174 00d3 03       		.uleb128 0x3
- 1175 00d4 0E       		.uleb128 0xe
- 1176 00d5 3A       		.uleb128 0x3a
- 1177 00d6 0B       		.uleb128 0xb
- 1178 00d7 3B       		.uleb128 0x3b
- 1179 00d8 0B       		.uleb128 0xb
- 1180 00d9 27       		.uleb128 0x27
- 1181 00da 19       		.uleb128 0x19
- 1182 00db 11       		.uleb128 0x11
- 1183 00dc 01       		.uleb128 0x1
- 1184 00dd 12       		.uleb128 0x12
- 1185 00de 06       		.uleb128 0x6
- 1186 00df 40       		.uleb128 0x40
- 1187 00e0 18       		.uleb128 0x18
- 1188 00e1 9742     		.uleb128 0x2117
- 1189 00e3 19       		.uleb128 0x19
- 1190 00e4 01       		.uleb128 0x1
- 1191 00e5 13       		.uleb128 0x13
- 1192 00e6 00       		.byte	0
- 1193 00e7 00       		.byte	0
- 1194 00e8 0E       		.uleb128 0xe
- 1195 00e9 34       		.uleb128 0x34
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 38
+ 1034 00f1 2E       		.uleb128 0x2e
+ 1035 00f2 01       		.byte	0x1
+ 1036 00f3 3F       		.uleb128 0x3f
+ 1037 00f4 19       		.uleb128 0x19
+ 1038 00f5 03       		.uleb128 0x3
+ 1039 00f6 0E       		.uleb128 0xe
+ 1040 00f7 3A       		.uleb128 0x3a
+ 1041 00f8 0B       		.uleb128 0xb
+ 1042 00f9 3B       		.uleb128 0x3b
+ 1043 00fa 05       		.uleb128 0x5
+ 1044 00fb 27       		.uleb128 0x27
+ 1045 00fc 19       		.uleb128 0x19
+ 1046 00fd 49       		.uleb128 0x49
+ 1047 00fe 13       		.uleb128 0x13
+ 1048 00ff 11       		.uleb128 0x11
+ 1049 0100 01       		.uleb128 0x1
+ 1050 0101 12       		.uleb128 0x12
+ 1051 0102 06       		.uleb128 0x6
+ 1052 0103 40       		.uleb128 0x40
+ 1053 0104 18       		.uleb128 0x18
+ 1054 0105 9742     		.uleb128 0x2117
+ 1055 0107 19       		.uleb128 0x19
+ 1056 0108 01       		.uleb128 0x1
+ 1057 0109 13       		.uleb128 0x13
+ 1058 010a 00       		.byte	0
+ 1059 010b 00       		.byte	0
+ 1060 010c 11       		.uleb128 0x11
+ 1061 010d 34       		.uleb128 0x34
+ 1062 010e 00       		.byte	0
+ 1063 010f 03       		.uleb128 0x3
+ 1064 0110 0E       		.uleb128 0xe
+ 1065 0111 3A       		.uleb128 0x3a
+ 1066 0112 0B       		.uleb128 0xb
+ 1067 0113 3B       		.uleb128 0x3b
+ 1068 0114 05       		.uleb128 0x5
+ 1069 0115 49       		.uleb128 0x49
+ 1070 0116 13       		.uleb128 0x13
+ 1071 0117 02       		.uleb128 0x2
+ 1072 0118 18       		.uleb128 0x18
+ 1073 0119 00       		.byte	0
+ 1074 011a 00       		.byte	0
+ 1075 011b 12       		.uleb128 0x12
+ 1076 011c 34       		.uleb128 0x34
+ 1077 011d 00       		.byte	0
+ 1078 011e 03       		.uleb128 0x3
+ 1079 011f 0E       		.uleb128 0xe
+ 1080 0120 3A       		.uleb128 0x3a
+ 1081 0121 0B       		.uleb128 0xb
+ 1082 0122 3B       		.uleb128 0x3b
+ 1083 0123 0B       		.uleb128 0xb
+ 1084 0124 49       		.uleb128 0x49
+ 1085 0125 13       		.uleb128 0x13
+ 1086 0126 3F       		.uleb128 0x3f
+ 1087 0127 19       		.uleb128 0x19
+ 1088 0128 02       		.uleb128 0x2
+ 1089 0129 18       		.uleb128 0x18
+ 1090 012a 00       		.byte	0
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 36
 
 
- 1196 00ea 00       		.byte	0
- 1197 00eb 03       		.uleb128 0x3
- 1198 00ec 0E       		.uleb128 0xe
- 1199 00ed 3A       		.uleb128 0x3a
- 1200 00ee 0B       		.uleb128 0xb
- 1201 00ef 3B       		.uleb128 0x3b
- 1202 00f0 0B       		.uleb128 0xb
- 1203 00f1 49       		.uleb128 0x49
- 1204 00f2 13       		.uleb128 0x13
- 1205 00f3 02       		.uleb128 0x2
- 1206 00f4 17       		.uleb128 0x17
- 1207 00f5 00       		.byte	0
- 1208 00f6 00       		.byte	0
- 1209 00f7 0F       		.uleb128 0xf
- 1210 00f8 898201   		.uleb128 0x4109
- 1211 00fb 01       		.byte	0x1
- 1212 00fc 11       		.uleb128 0x11
- 1213 00fd 01       		.uleb128 0x1
- 1214 00fe 31       		.uleb128 0x31
- 1215 00ff 13       		.uleb128 0x13
- 1216 0100 01       		.uleb128 0x1
- 1217 0101 13       		.uleb128 0x13
- 1218 0102 00       		.byte	0
- 1219 0103 00       		.byte	0
- 1220 0104 10       		.uleb128 0x10
- 1221 0105 8A8201   		.uleb128 0x410a
- 1222 0108 00       		.byte	0
- 1223 0109 02       		.uleb128 0x2
- 1224 010a 18       		.uleb128 0x18
- 1225 010b 9142     		.uleb128 0x2111
- 1226 010d 18       		.uleb128 0x18
- 1227 010e 00       		.byte	0
- 1228 010f 00       		.byte	0
- 1229 0110 11       		.uleb128 0x11
- 1230 0111 34       		.uleb128 0x34
- 1231 0112 00       		.byte	0
- 1232 0113 03       		.uleb128 0x3
- 1233 0114 0E       		.uleb128 0xe
- 1234 0115 3A       		.uleb128 0x3a
- 1235 0116 0B       		.uleb128 0xb
- 1236 0117 3B       		.uleb128 0x3b
- 1237 0118 0B       		.uleb128 0xb
- 1238 0119 49       		.uleb128 0x49
- 1239 011a 13       		.uleb128 0x13
- 1240 011b 3F       		.uleb128 0x3f
- 1241 011c 19       		.uleb128 0x19
- 1242 011d 02       		.uleb128 0x2
- 1243 011e 18       		.uleb128 0x18
- 1244 011f 00       		.byte	0
- 1245 0120 00       		.byte	0
- 1246 0121 12       		.uleb128 0x12
- 1247 0122 2E       		.uleb128 0x2e
- 1248 0123 00       		.byte	0
- 1249 0124 3F       		.uleb128 0x3f
- 1250 0125 19       		.uleb128 0x19
- 1251 0126 03       		.uleb128 0x3
- 1252 0127 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 39
+ 1091 012b 00       		.byte	0
+ 1092 012c 00       		.byte	0
+ 1093              		.section	.debug_loc,"",%progbits
+ 1094              	.Ldebug_loc0:
+ 1095              	.LLST0:
+ 1096 0000 0A000000 		.4byte	.LVL4
+ 1097 0004 0E000000 		.4byte	.LVL5
+ 1098 0008 0100     		.2byte	0x1
+ 1099 000a 53       		.byte	0x53
+ 1100 000b 00000000 		.4byte	0
+ 1101 000f 00000000 		.4byte	0
+ 1102              		.section	.debug_aranges,"",%progbits
+ 1103 0000 8C000000 		.4byte	0x8c
+ 1104 0004 0200     		.2byte	0x2
+ 1105 0006 00000000 		.4byte	.Ldebug_info0
+ 1106 000a 04       		.byte	0x4
+ 1107 000b 00       		.byte	0
+ 1108 000c 0000     		.2byte	0
+ 1109 000e 0000     		.2byte	0
+ 1110 0010 00000000 		.4byte	.LFB2
+ 1111 0014 10000000 		.4byte	.LFE2-.LFB2
+ 1112 0018 00000000 		.4byte	.LFB3
+ 1113 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1114 0020 00000000 		.4byte	.LFB4
+ 1115 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1116 0028 00000000 		.4byte	.LFB5
+ 1117 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1118 0030 00000000 		.4byte	.LFB6
+ 1119 0034 0C000000 		.4byte	.LFE6-.LFB6
+ 1120 0038 00000000 		.4byte	.LFB7
+ 1121 003c 0C000000 		.4byte	.LFE7-.LFB7
+ 1122 0040 00000000 		.4byte	.LFB8
+ 1123 0044 0C000000 		.4byte	.LFE8-.LFB8
+ 1124 0048 00000000 		.4byte	.LFB1
+ 1125 004c 48000000 		.4byte	.LFE1-.LFB1
+ 1126 0050 00000000 		.4byte	.LFB0
+ 1127 0054 1C000000 		.4byte	.LFE0-.LFB0
+ 1128 0058 00000000 		.4byte	.LFB9
+ 1129 005c 0C000000 		.4byte	.LFE9-.LFB9
+ 1130 0060 00000000 		.4byte	.LFB10
+ 1131 0064 0C000000 		.4byte	.LFE10-.LFB10
+ 1132 0068 00000000 		.4byte	.LFB11
+ 1133 006c 0C000000 		.4byte	.LFE11-.LFB11
+ 1134 0070 00000000 		.4byte	.LFB12
+ 1135 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1136 0078 00000000 		.4byte	.LFB13
+ 1137 007c 0C000000 		.4byte	.LFE13-.LFB13
+ 1138 0080 00000000 		.4byte	.LFB14
+ 1139 0084 0C000000 		.4byte	.LFE14-.LFB14
+ 1140 0088 00000000 		.4byte	0
+ 1141 008c 00000000 		.4byte	0
+ 1142              		.section	.debug_ranges,"",%progbits
+ 1143              	.Ldebug_ranges0:
+ 1144 0000 00000000 		.4byte	.LFB2
+ 1145 0004 10000000 		.4byte	.LFE2
+ 1146 0008 00000000 		.4byte	.LFB3
+ 1147 000c 10000000 		.4byte	.LFE3
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 37
 
 
- 1253 0128 3A       		.uleb128 0x3a
- 1254 0129 0B       		.uleb128 0xb
- 1255 012a 3B       		.uleb128 0x3b
- 1256 012b 0B       		.uleb128 0xb
- 1257 012c 27       		.uleb128 0x27
- 1258 012d 19       		.uleb128 0x19
- 1259 012e 49       		.uleb128 0x49
- 1260 012f 13       		.uleb128 0x13
- 1261 0130 3C       		.uleb128 0x3c
- 1262 0131 19       		.uleb128 0x19
- 1263 0132 00       		.byte	0
- 1264 0133 00       		.byte	0
- 1265 0134 13       		.uleb128 0x13
- 1266 0135 2E       		.uleb128 0x2e
- 1267 0136 01       		.byte	0x1
- 1268 0137 3F       		.uleb128 0x3f
- 1269 0138 19       		.uleb128 0x19
- 1270 0139 03       		.uleb128 0x3
- 1271 013a 0E       		.uleb128 0xe
- 1272 013b 3A       		.uleb128 0x3a
- 1273 013c 0B       		.uleb128 0xb
- 1274 013d 3B       		.uleb128 0x3b
- 1275 013e 0B       		.uleb128 0xb
- 1276 013f 27       		.uleb128 0x27
- 1277 0140 19       		.uleb128 0x19
- 1278 0141 3C       		.uleb128 0x3c
- 1279 0142 19       		.uleb128 0x19
- 1280 0143 00       		.byte	0
- 1281 0144 00       		.byte	0
- 1282 0145 14       		.uleb128 0x14
- 1283 0146 05       		.uleb128 0x5
- 1284 0147 00       		.byte	0
- 1285 0148 49       		.uleb128 0x49
- 1286 0149 13       		.uleb128 0x13
- 1287 014a 00       		.byte	0
- 1288 014b 00       		.byte	0
- 1289 014c 00       		.byte	0
- 1290              		.section	.debug_loc,"",%progbits
- 1291              	.Ldebug_loc0:
- 1292              	.LLST0:
- 1293 0000 0A000000 		.4byte	.LVL9
- 1294 0004 0E000000 		.4byte	.LVL10
- 1295 0008 0100     		.2byte	0x1
- 1296 000a 53       		.byte	0x53
- 1297 000b 00000000 		.4byte	0
- 1298 000f 00000000 		.4byte	0
- 1299              	.LLST1:
- 1300 0013 3C000000 		.4byte	.LVL16
- 1301 0017 49000000 		.4byte	.LVL17-1
- 1302 001b 0100     		.2byte	0x1
- 1303 001d 50       		.byte	0x50
- 1304 001e 00000000 		.4byte	0
- 1305 0022 00000000 		.4byte	0
- 1306              		.section	.debug_aranges,"",%progbits
- 1307 0000 A4000000 		.4byte	0xa4
- 1308 0004 0200     		.2byte	0x2
- 1309 0006 00000000 		.4byte	.Ldebug_info0
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 40
+ 1148 0010 00000000 		.4byte	.LFB4
+ 1149 0014 0C000000 		.4byte	.LFE4
+ 1150 0018 00000000 		.4byte	.LFB5
+ 1151 001c 14000000 		.4byte	.LFE5
+ 1152 0020 00000000 		.4byte	.LFB6
+ 1153 0024 0C000000 		.4byte	.LFE6
+ 1154 0028 00000000 		.4byte	.LFB7
+ 1155 002c 0C000000 		.4byte	.LFE7
+ 1156 0030 00000000 		.4byte	.LFB8
+ 1157 0034 0C000000 		.4byte	.LFE8
+ 1158 0038 00000000 		.4byte	.LFB1
+ 1159 003c 48000000 		.4byte	.LFE1
+ 1160 0040 00000000 		.4byte	.LFB0
+ 1161 0044 1C000000 		.4byte	.LFE0
+ 1162 0048 00000000 		.4byte	.LFB9
+ 1163 004c 0C000000 		.4byte	.LFE9
+ 1164 0050 00000000 		.4byte	.LFB10
+ 1165 0054 0C000000 		.4byte	.LFE10
+ 1166 0058 00000000 		.4byte	.LFB11
+ 1167 005c 0C000000 		.4byte	.LFE11
+ 1168 0060 00000000 		.4byte	.LFB12
+ 1169 0064 0C000000 		.4byte	.LFE12
+ 1170 0068 00000000 		.4byte	.LFB13
+ 1171 006c 0C000000 		.4byte	.LFE13
+ 1172 0070 00000000 		.4byte	.LFB14
+ 1173 0074 0C000000 		.4byte	.LFE14
+ 1174 0078 00000000 		.4byte	0
+ 1175 007c 00000000 		.4byte	0
+ 1176              		.section	.debug_line,"",%progbits
+ 1177              	.Ldebug_line0:
+ 1178 0000 5F010000 		.section	.debug_str,"MS",%progbits,1
+ 1178      02004400 
+ 1178      00000201 
+ 1178      FB0E0D00 
+ 1178      01010101 
+ 1179              	.LASF15:
+ 1180 0000 72656731 		.ascii	"reg16\000"
+ 1180      3600
+ 1181              	.LASF41:
+ 1182 0006 6677325F 		.ascii	"fw2_PWM_initVar\000"
+ 1182      50574D5F 
+ 1182      696E6974 
+ 1182      56617200 
+ 1183              	.LASF39:
+ 1184 0016 433A5C55 		.ascii	"C:\\Users\\Laptop\\Desktop\\Berkeley_Spring2017\\ME"
+ 1184      73657273 
+ 1184      5C4C6170 
+ 1184      746F705C 
+ 1184      4465736B 
+ 1185 0044 20313335 		.ascii	" 135\\Project\\github\\CubeControl\\BalancingCube.c"
+ 1185      5C50726F 
+ 1185      6A656374 
+ 1185      5C676974 
+ 1185      6875625C 
+ 1186 0073 7964736E 		.ascii	"ydsn\000"
+ 1186      00
+ 1187              	.LASF22:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 38
 
 
- 1310 000a 04       		.byte	0x4
- 1311 000b 00       		.byte	0
- 1312 000c 0000     		.2byte	0
- 1313 000e 0000     		.2byte	0
- 1314 0010 00000000 		.4byte	.LFB2
- 1315 0014 10000000 		.4byte	.LFE2-.LFB2
- 1316 0018 00000000 		.4byte	.LFB3
- 1317 001c 10000000 		.4byte	.LFE3-.LFB3
- 1318 0020 00000000 		.4byte	.LFB4
- 1319 0024 0C000000 		.4byte	.LFE4-.LFB4
- 1320 0028 00000000 		.4byte	.LFB5
- 1321 002c 14000000 		.4byte	.LFE5-.LFB5
- 1322 0030 00000000 		.4byte	.LFB7
- 1323 0034 0C000000 		.4byte	.LFE7-.LFB7
- 1324 0038 00000000 		.4byte	.LFB8
- 1325 003c 0C000000 		.4byte	.LFE8-.LFB8
- 1326 0040 00000000 		.4byte	.LFB9
- 1327 0044 0C000000 		.4byte	.LFE9-.LFB9
- 1328 0048 00000000 		.4byte	.LFB10
- 1329 004c 0C000000 		.4byte	.LFE10-.LFB10
- 1330 0050 00000000 		.4byte	.LFB11
- 1331 0054 0C000000 		.4byte	.LFE11-.LFB11
- 1332 0058 00000000 		.4byte	.LFB12
- 1333 005c 0C000000 		.4byte	.LFE12-.LFB12
- 1334 0060 00000000 		.4byte	.LFB13
- 1335 0064 0C000000 		.4byte	.LFE13-.LFB13
- 1336 0068 00000000 		.4byte	.LFB14
- 1337 006c 0C000000 		.4byte	.LFE14-.LFB14
- 1338 0070 00000000 		.4byte	.LFB6
- 1339 0074 14000000 		.4byte	.LFE6-.LFB6
- 1340 0078 00000000 		.4byte	.LFB1
- 1341 007c 58000000 		.4byte	.LFE1-.LFB1
- 1342 0080 00000000 		.4byte	.LFB0
- 1343 0084 1C000000 		.4byte	.LFE0-.LFB0
- 1344 0088 00000000 		.4byte	.LFB15
- 1345 008c 0C000000 		.4byte	.LFE15-.LFB15
- 1346 0090 00000000 		.4byte	.LFB16
- 1347 0094 0C000000 		.4byte	.LFE16-.LFB16
- 1348 0098 00000000 		.4byte	.LFB17
- 1349 009c 0C000000 		.4byte	.LFE17-.LFB17
- 1350 00a0 00000000 		.4byte	0
- 1351 00a4 00000000 		.4byte	0
- 1352              		.section	.debug_ranges,"",%progbits
- 1353              	.Ldebug_ranges0:
- 1354 0000 00000000 		.4byte	.LFB2
- 1355 0004 10000000 		.4byte	.LFE2
- 1356 0008 00000000 		.4byte	.LFB3
- 1357 000c 10000000 		.4byte	.LFE3
- 1358 0010 00000000 		.4byte	.LFB4
- 1359 0014 0C000000 		.4byte	.LFE4
- 1360 0018 00000000 		.4byte	.LFB5
- 1361 001c 14000000 		.4byte	.LFE5
- 1362 0020 00000000 		.4byte	.LFB7
- 1363 0024 0C000000 		.4byte	.LFE7
- 1364 0028 00000000 		.4byte	.LFB8
- 1365 002c 0C000000 		.4byte	.LFE8
- 1366 0030 00000000 		.4byte	.LFB9
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 41
+ 1188 0078 70657269 		.ascii	"period\000"
+ 1188      6F6400
+ 1189              	.LASF3:
+ 1190 007f 73686F72 		.ascii	"short unsigned int\000"
+ 1190      7420756E 
+ 1190      7369676E 
+ 1190      65642069 
+ 1190      6E7400
+ 1191              	.LASF11:
+ 1192 0092 666C6F61 		.ascii	"float\000"
+ 1192      7400
+ 1193              	.LASF21:
+ 1194 0098 636F756E 		.ascii	"counter\000"
+ 1194      74657200 
+ 1195              	.LASF1:
+ 1196 00a0 756E7369 		.ascii	"unsigned char\000"
+ 1196      676E6564 
+ 1196      20636861 
+ 1196      7200
+ 1197              	.LASF14:
+ 1198 00ae 72656738 		.ascii	"reg8\000"
+ 1198      00
+ 1199              	.LASF5:
+ 1200 00b3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1200      20756E73 
+ 1200      69676E65 
+ 1200      6420696E 
+ 1200      7400
+ 1201              	.LASF9:
+ 1202 00c5 75696E74 		.ascii	"uint8\000"
+ 1202      3800
+ 1203              	.LASF31:
+ 1204 00cb 636F6E74 		.ascii	"control\000"
+ 1204      726F6C00 
+ 1205              	.LASF33:
+ 1206 00d3 6677325F 		.ascii	"fw2_PWM_ReadCapture\000"
+ 1206      50574D5F 
+ 1206      52656164 
+ 1206      43617074 
+ 1206      75726500 
+ 1207              	.LASF18:
+ 1208 00e7 6677325F 		.ascii	"fw2_PWM_Stop\000"
+ 1208      50574D5F 
+ 1208      53746F70 
+ 1208      00
+ 1209              	.LASF12:
+ 1210 00f4 646F7562 		.ascii	"double\000"
+ 1210      6C6500
+ 1211              	.LASF40:
+ 1212 00fb 6677325F 		.ascii	"fw2_PWM_ReadControlRegister\000"
+ 1212      50574D5F 
+ 1212      52656164 
+ 1212      436F6E74 
+ 1212      726F6C52 
+ 1213              	.LASF30:
+ 1214 0117 6677325F 		.ascii	"fw2_PWM_WriteControlRegister\000"
+ 1214      50574D5F 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 39
 
 
- 1367 0034 0C000000 		.4byte	.LFE9
- 1368 0038 00000000 		.4byte	.LFB10
- 1369 003c 0C000000 		.4byte	.LFE10
- 1370 0040 00000000 		.4byte	.LFB11
- 1371 0044 0C000000 		.4byte	.LFE11
- 1372 0048 00000000 		.4byte	.LFB12
- 1373 004c 0C000000 		.4byte	.LFE12
- 1374 0050 00000000 		.4byte	.LFB13
- 1375 0054 0C000000 		.4byte	.LFE13
- 1376 0058 00000000 		.4byte	.LFB14
- 1377 005c 0C000000 		.4byte	.LFE14
- 1378 0060 00000000 		.4byte	.LFB6
- 1379 0064 14000000 		.4byte	.LFE6
- 1380 0068 00000000 		.4byte	.LFB1
- 1381 006c 58000000 		.4byte	.LFE1
- 1382 0070 00000000 		.4byte	.LFB0
- 1383 0074 1C000000 		.4byte	.LFE0
- 1384 0078 00000000 		.4byte	.LFB15
- 1385 007c 0C000000 		.4byte	.LFE15
- 1386 0080 00000000 		.4byte	.LFB16
- 1387 0084 0C000000 		.4byte	.LFE16
- 1388 0088 00000000 		.4byte	.LFB17
- 1389 008c 0C000000 		.4byte	.LFE17
- 1390 0090 00000000 		.4byte	0
- 1391 0094 00000000 		.4byte	0
- 1392              		.section	.debug_line,"",%progbits
- 1393              	.Ldebug_line0:
- 1394 0000 A7010000 		.section	.debug_str,"MS",%progbits,1
- 1394      02004F00 
- 1394      00000201 
- 1394      FB0E0D00 
- 1394      01010101 
- 1395              	.LASF39:
- 1396 0000 6677325F 		.ascii	"fw2_PWM_ReadPeriod\000"
- 1396      50574D5F 
- 1396      52656164 
- 1396      50657269 
- 1396      6F6400
- 1397              	.LASF44:
- 1398 0013 6677325F 		.ascii	"fw2_PWM_initVar\000"
- 1398      50574D5F 
- 1398      696E6974 
- 1398      56617200 
- 1399              	.LASF42:
- 1400 0023 433A5C55 		.ascii	"C:\\Users\\Laptop\\Desktop\\Berkeley_Spring2017\\ME"
- 1400      73657273 
- 1400      5C4C6170 
- 1400      746F705C 
- 1400      4465736B 
- 1401 0051 20313335 		.ascii	" 135\\Project\\github\\CubeControl\\BalancingCube.c"
- 1401      5C50726F 
- 1401      6A656374 
- 1401      5C676974 
- 1401      6875625C 
- 1402 0080 7964736E 		.ascii	"ydsn\000"
- 1402      00
- 1403              	.LASF20:
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 42
+ 1214      57726974 
+ 1214      65436F6E 
+ 1214      74726F6C 
+ 1215              	.LASF10:
+ 1216 0134 75696E74 		.ascii	"uint16\000"
+ 1216      313600
+ 1217              	.LASF37:
+ 1218 013b 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1218      4320342E 
+ 1218      392E3320 
+ 1218      32303135 
+ 1218      30333033 
+ 1219 016e 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1219      20726576 
+ 1219      6973696F 
+ 1219      6E203232 
+ 1219      31323230 
+ 1220 01a1 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1220      66756E63 
+ 1220      74696F6E 
+ 1220      2D736563 
+ 1220      74696F6E 
+ 1221              	.LASF8:
+ 1222 01c9 756E7369 		.ascii	"unsigned int\000"
+ 1222      676E6564 
+ 1222      20696E74 
+ 1222      00
+ 1223              	.LASF7:
+ 1224 01d6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1224      206C6F6E 
+ 1224      6720756E 
+ 1224      7369676E 
+ 1224      65642069 
+ 1225              	.LASF23:
+ 1226 01ed 6677325F 		.ascii	"fw2_PWM_WriteCompare1\000"
+ 1226      50574D5F 
+ 1226      57726974 
+ 1226      65436F6D 
+ 1226      70617265 
+ 1227              	.LASF25:
+ 1228 0203 6677325F 		.ascii	"fw2_PWM_WriteCompare2\000"
+ 1228      50574D5F 
+ 1228      57726974 
+ 1228      65436F6D 
+ 1228      70617265 
+ 1229              	.LASF29:
+ 1230 0219 72657375 		.ascii	"result\000"
+ 1230      6C7400
+ 1231              	.LASF26:
+ 1232 0220 6677325F 		.ascii	"fw2_PWM_Init\000"
+ 1232      50574D5F 
+ 1232      496E6974 
+ 1232      00
+ 1233              	.LASF28:
+ 1234 022d 6374726C 		.ascii	"ctrl\000"
+ 1234      00
+ 1235              	.LASF16:
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 40
 
 
- 1404 0085 70657269 		.ascii	"period\000"
- 1404      6F6400
- 1405              	.LASF3:
- 1406 008c 73686F72 		.ascii	"short unsigned int\000"
- 1406      7420756E 
- 1406      7369676E 
- 1406      65642069 
- 1406      6E7400
- 1407              	.LASF8:
- 1408 009f 756E7369 		.ascii	"unsigned int\000"
- 1408      676E6564 
- 1408      20696E74 
- 1408      00
- 1409              	.LASF9:
- 1410 00ac 666C6F61 		.ascii	"float\000"
- 1410      7400
- 1411              	.LASF31:
- 1412 00b2 6677325F 		.ascii	"fw2_PWM_ClearFIFO\000"
- 1412      50574D5F 
- 1412      436C6561 
- 1412      72464946 
- 1412      4F00
- 1413              	.LASF7:
- 1414 00c4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1414      206C6F6E 
- 1414      6720756E 
- 1414      7369676E 
- 1414      65642069 
- 1415              	.LASF1:
- 1416 00db 756E7369 		.ascii	"unsigned char\000"
- 1416      676E6564 
- 1416      20636861 
- 1416      7200
- 1417              	.LASF13:
- 1418 00e9 72656738 		.ascii	"reg8\000"
- 1418      00
- 1419              	.LASF5:
- 1420 00ee 6C6F6E67 		.ascii	"long unsigned int\000"
- 1420      20756E73 
- 1420      69676E65 
- 1420      6420696E 
- 1420      7400
- 1421              	.LASF12:
- 1422 0100 75696E74 		.ascii	"uint8\000"
- 1422      3800
- 1423              	.LASF29:
- 1424 0106 636F6E74 		.ascii	"control\000"
- 1424      726F6C00 
- 1425              	.LASF30:
- 1426 010e 6677325F 		.ascii	"fw2_PWM_ReadCapture\000"
- 1426      50574D5F 
- 1426      52656164 
- 1426      43617074 
- 1426      75726500 
- 1427              	.LASF16:
- 1428 0122 6677325F 		.ascii	"fw2_PWM_Stop\000"
- 1428      50574D5F 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 43
+ 1236 0232 73697A65 		.ascii	"sizetype\000"
+ 1236      74797065 
+ 1236      00
+ 1237              	.LASF36:
+ 1238 023b 6677325F 		.ascii	"fw2_PWM_ReadPeriod\000"
+ 1238      50574D5F 
+ 1238      52656164 
+ 1238      50657269 
+ 1238      6F6400
+ 1239              	.LASF6:
+ 1240 024e 6C6F6E67 		.ascii	"long long int\000"
+ 1240      206C6F6E 
+ 1240      6720696E 
+ 1240      7400
+ 1241              	.LASF13:
+ 1242 025c 63686172 		.ascii	"char\000"
+ 1242      00
+ 1243              	.LASF32:
+ 1244 0261 6677325F 		.ascii	"fw2_PWM_ReadCounter\000"
+ 1244      50574D5F 
+ 1244      52656164 
+ 1244      436F756E 
+ 1244      74657200 
+ 1245              	.LASF2:
+ 1246 0275 73686F72 		.ascii	"short int\000"
+ 1246      7420696E 
+ 1246      7400
+ 1247              	.LASF27:
+ 1248 027f 6677325F 		.ascii	"fw2_PWM_Start\000"
+ 1248      50574D5F 
+ 1248      53746172 
+ 1248      7400
+ 1249              	.LASF38:
+ 1250 028d 47656E65 		.ascii	"Generated_Source\\PSoC5\\fw2_PWM.c\000"
+ 1250      72617465 
+ 1250      645F536F 
+ 1250      75726365 
+ 1250      5C50536F 
+ 1251              	.LASF4:
+ 1252 02ae 6C6F6E67 		.ascii	"long int\000"
+ 1252      20696E74 
+ 1252      00
+ 1253              	.LASF19:
+ 1254 02b7 6677325F 		.ascii	"fw2_PWM_WriteCounter\000"
+ 1254      50574D5F 
+ 1254      57726974 
+ 1254      65436F75 
+ 1254      6E746572 
+ 1255              	.LASF20:
+ 1256 02cc 6677325F 		.ascii	"fw2_PWM_WritePeriod\000"
+ 1256      50574D5F 
+ 1256      57726974 
+ 1256      65506572 
+ 1256      696F6400 
+ 1257              	.LASF0:
+ 1258 02e0 7369676E 		.ascii	"signed char\000"
+ 1258      65642063 
+ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccSFhMOb.s 			page 41
 
 
- 1428      53746F70 
- 1428      00
- 1429              	.LASF19:
- 1430 012f 636F756E 		.ascii	"counter\000"
- 1430      74657200 
- 1431              	.LASF10:
- 1432 0137 646F7562 		.ascii	"double\000"
- 1432      6C6500
- 1433              	.LASF43:
- 1434 013e 6677325F 		.ascii	"fw2_PWM_ReadControlRegister\000"
- 1434      50574D5F 
- 1434      52656164 
- 1434      436F6E74 
- 1434      726F6C52 
- 1435              	.LASF28:
- 1436 015a 6677325F 		.ascii	"fw2_PWM_WriteControlRegister\000"
- 1436      50574D5F 
- 1436      57726974 
- 1436      65436F6E 
- 1436      74726F6C 
- 1437              	.LASF40:
- 1438 0177 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1438      4320342E 
- 1438      392E3320 
- 1438      32303135 
- 1438      30333033 
- 1439 01aa 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1439      20726576 
- 1439      6973696F 
- 1439      6E203232 
- 1439      31323230 
- 1440 01dd 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1440      66756E63 
- 1440      74696F6E 
- 1440      2D736563 
- 1440      74696F6E 
- 1441              	.LASF45:
- 1442 0205 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 1442      74657243 
- 1442      72697469 
- 1442      63616C53 
- 1442      65637469 
- 1443              	.LASF27:
- 1444 021c 6677325F 		.ascii	"fw2_PWM_ReadStatusRegister\000"
- 1444      50574D5F 
- 1444      52656164 
- 1444      53746174 
- 1444      75735265 
- 1445              	.LASF46:
- 1446 0237 43794578 		.ascii	"CyExitCriticalSection\000"
- 1446      69744372 
- 1446      69746963 
- 1446      616C5365 
- 1446      6374696F 
- 1447              	.LASF21:
- 1448 024d 6677325F 		.ascii	"fw2_PWM_WriteCompare1\000"
- 1448      50574D5F 
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 44
-
-
- 1448      57726974 
- 1448      65436F6D 
- 1448      70617265 
- 1449              	.LASF23:
- 1450 0263 6677325F 		.ascii	"fw2_PWM_WriteCompare2\000"
- 1450      50574D5F 
- 1450      57726974 
- 1450      65436F6D 
- 1450      70617265 
- 1451              	.LASF33:
- 1452 0279 72657375 		.ascii	"result\000"
- 1452      6C7400
- 1453              	.LASF32:
- 1454 0280 6677325F 		.ascii	"fw2_PWM_Init\000"
- 1454      50574D5F 
- 1454      496E6974 
- 1454      00
- 1455              	.LASF34:
- 1456 028d 6374726C 		.ascii	"ctrl\000"
- 1456      00
- 1457              	.LASF14:
- 1458 0292 73697A65 		.ascii	"sizetype\000"
- 1458      74797065 
- 1458      00
- 1459              	.LASF24:
- 1460 029b 6677325F 		.ascii	"fw2_PWM_SetInterruptMode\000"
- 1460      50574D5F 
- 1460      53657449 
- 1460      6E746572 
- 1460      72757074 
- 1461              	.LASF6:
- 1462 02b4 6C6F6E67 		.ascii	"long long int\000"
- 1462      206C6F6E 
- 1462      6720696E 
- 1462      7400
- 1463              	.LASF25:
- 1464 02c2 696E7465 		.ascii	"interruptMode\000"
- 1464      72727570 
- 1464      744D6F64 
- 1464      6500
- 1465              	.LASF26:
- 1466 02d0 6677325F 		.ascii	"fw2_PWM_ReadCounter\000"
- 1466      50574D5F 
- 1466      52656164 
- 1466      436F756E 
- 1466      74657200 
- 1467              	.LASF2:
- 1468 02e4 73686F72 		.ascii	"short int\000"
- 1468      7420696E 
- 1468      7400
- 1469              	.LASF36:
- 1470 02ee 6677325F 		.ascii	"fw2_PWM_Start\000"
- 1470      50574D5F 
- 1470      53746172 
- 1470      7400
- 1471              	.LASF41:
- 1472 02fc 47656E65 		.ascii	"Generated_Source\\PSoC5\\fw2_PWM.c\000"
-ARM GAS  C:\Users\Laptop\AppData\Local\Temp\ccKUDAEb.s 			page 45
-
-
- 1472      72617465 
- 1472      645F536F 
- 1472      75726365 
- 1472      5C50536F 
- 1473              	.LASF4:
- 1474 031d 6C6F6E67 		.ascii	"long int\000"
- 1474      20696E74 
- 1474      00
- 1475              	.LASF11:
- 1476 0326 63686172 		.ascii	"char\000"
- 1476      00
- 1477              	.LASF17:
- 1478 032b 6677325F 		.ascii	"fw2_PWM_WriteCounter\000"
- 1478      50574D5F 
- 1478      57726974 
- 1478      65436F75 
- 1478      6E746572 
- 1479              	.LASF18:
- 1480 0340 6677325F 		.ascii	"fw2_PWM_WritePeriod\000"
- 1480      50574D5F 
- 1480      57726974 
- 1480      65506572 
- 1480      696F6400 
- 1481              	.LASF0:
- 1482 0354 7369676E 		.ascii	"signed char\000"
- 1482      65642063 
- 1482      68617200 
- 1483              	.LASF22:
- 1484 0360 636F6D70 		.ascii	"compare\000"
- 1484      61726500 
- 1485              	.LASF15:
- 1486 0368 6677325F 		.ascii	"fw2_PWM_Enable\000"
- 1486      50574D5F 
- 1486      456E6162 
- 1486      6C6500
- 1487              	.LASF37:
- 1488 0377 6677325F 		.ascii	"fw2_PWM_ReadCompare1\000"
- 1488      50574D5F 
- 1488      52656164 
- 1488      436F6D70 
- 1488      61726531 
- 1489              	.LASF38:
- 1490 038c 6677325F 		.ascii	"fw2_PWM_ReadCompare2\000"
- 1490      50574D5F 
- 1490      52656164 
- 1490      436F6D70 
- 1490      61726532 
- 1491              	.LASF35:
- 1492 03a1 6677325F 		.ascii	"fw2_PWM_interruptState\000"
- 1492      50574D5F 
- 1492      696E7465 
- 1492      72727570 
- 1492      74537461 
- 1493              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1258      68617200 
+ 1259              	.LASF24:
+ 1260 02ec 636F6D70 		.ascii	"compare\000"
+ 1260      61726500 
+ 1261              	.LASF17:
+ 1262 02f4 6677325F 		.ascii	"fw2_PWM_Enable\000"
+ 1262      50574D5F 
+ 1262      456E6162 
+ 1262      6C6500
+ 1263              	.LASF34:
+ 1264 0303 6677325F 		.ascii	"fw2_PWM_ReadCompare1\000"
+ 1264      50574D5F 
+ 1264      52656164 
+ 1264      436F6D70 
+ 1264      61726531 
+ 1265              	.LASF35:
+ 1266 0318 6677325F 		.ascii	"fw2_PWM_ReadCompare2\000"
+ 1266      50574D5F 
+ 1266      52656164 
+ 1266      436F6D70 
+ 1266      61726532 
+ 1267              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

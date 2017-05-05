@@ -18,21 +18,19 @@ int16_t Divider[8] = {0, 625, 312, 156, 104, 52, 26, 13};
 char *Baudrate[8] = {"NO device", "9600", "19200", "38400", "57600", "115200", "230400", "460800"};
 char *AT_Command[8] = {"ERROR", "AT+BAUD4", "AT+BAUD5", "AT+BAUD6", "AT+BAUD7", "AT+BAUD8", "AT+BAUD9", "AT+BAUDA"};
 
-char *at = "AT";
+char *at = "AT\0";
 char *ok = "OK";
 
 uint8_t
 config_blue (uint8_t baudChoice, uint16_t timeout)
 {
-    uint8_t i = 0;
-    uint16_t ts = 0;
     const uint8_t buff_len = 8;
     char buff[buff_len];
     
 	UART_PutString (at);
     
-	ts = 0;
-	while (!UART_GetRxBufferSize () & (ts < timeout))
+	uint16_t ts = 0;
+	if (!UART_GetRxBufferSize () & (ts < timeout))
     {
         ts++;
         CyDelay (1);
@@ -40,12 +38,12 @@ config_blue (uint8_t baudChoice, uint16_t timeout)
     
 	ReadRxData (buff, buff_len, 50);
     
-	if (!strncmp (buff, ok, 2))
+	if (strncmp (buff, ok, 2))
 	{   
 		UART_PutString (AT_Command[baudChoice]);
 		CyDelay (timeout);
 		ReadRxData (buff, buff_len, 50);
-		if (!strncmp (buff, ok, 2)) 
+		if (strncmp (buff, ok, 2)) 
             return baudChoice;
 	}
     
@@ -81,6 +79,16 @@ ReadRxData (char* buff, uint8_t buff_len, uint8_t timeout)
 	buff[rxCount] = '\0';
     
     return 0;
+}
+
+void
+WriteTxData (char *buff, uint8_t buff_len)
+{
+    int i;
+    for (i = 0; i < buff_len; i++)
+    {
+        UART_PutChar (buff[i]);
+    }
 }
 
 /* [] END OF FILE */

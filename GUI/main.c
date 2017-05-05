@@ -94,7 +94,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   PBLUECONFIG blue;
   blue = (PBLUECONFIG) GlobalAlloc (GPTR, sizeof (BLUECONFIG));
   memcpy(blue->BD_NAME, "DEFAULT\0", MAX_NAME_LEN);
-  memcpy(blue->BD_ADDR, "B8:27:EB:A1:D8:3F\0", BLUE_ADDR_LEN);
+  memcpy(blue->BD_ADDR, "C8:FD:19:3E:BE:47\0", BLUE_ADDR_LEN);
   blue->FULL = TRUE;
   bluetooth_configs[cur_device] = blue;
   cur_device++;
@@ -347,11 +347,9 @@ bluetooth_connect (HWND hwnd, PBLUECONFIG blue)
     return FALSE;
   }
 
-  int addrLen = sizeof (SOCKADDR_BTH);
-  ZeroMemory (&blue_conn, addrLen);
-
   ULONG ulRetCode, CXN_SUCCESS = 0;
-  ulRetCode = WSAStringToAddress ((LPSTR) &blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_conn.btAddr, &addrLen);
+  int addrLen = sizeof (blue_conn);
+  ulRetCode = WSAStringToAddress ((LPSTR) &blue->BD_ADDR, AF_BTH, NULL, (LPSOCKADDR) &blue_conn, &addrLen);
   if (CXN_SUCCESS != ulRetCode)
   {
     MessageBox (hwnd, "Unable to convert address of Bluetooth!", "Error", MB_OK);
@@ -360,7 +358,7 @@ bluetooth_connect (HWND hwnd, PBLUECONFIG blue)
   }
   blue_conn.addressFamily = AF_BTH;
   blue_conn.serviceClassId = RFCOMM_PROTOCOL_UUID;
-  blue_conn.port = 0x00;
+  blue_conn.port = 0;
 
   blue_sock = socket (AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
   if (blue_sock == INVALID_SOCKET)
@@ -370,8 +368,9 @@ bluetooth_connect (HWND hwnd, PBLUECONFIG blue)
     return FALSE;
   }
 
-  if (connect (blue_sock, (struct sockaddr*) &blue_conn, addrLen) == SOCKET_ERROR)
+  if (connect (blue_sock, (struct sockaddr*) &blue_conn, sizeof(SOCKADDR_BTH)) == SOCKET_ERROR)
   {
+    printf ("%d\n", WSAGetLastError ());
     MessageBox (hwnd, "Unable to connect Bluetooth socket!", "Error", MB_OK);
     closesocket (blue_sock);
     blue_sock = INVALID_SOCKET;

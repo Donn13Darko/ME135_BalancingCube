@@ -15,5 +15,6 @@
 
 uint8_t config_blue (uint8_t baudChoice, uint16_t timeout);
 uint8_t ReadRxData (char* buff, uint8_t buff_len, uint8_t timeout);
+void WriteTxData (char* buff, uint8_t buff_len);
 
 /* [] END OF FILE */

@@ -51,13 +51,13 @@ uint8 errorStatus = (0u);
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
-int16_t dx, dy, dz;
+int16_t tx, ty, tz;
 
 uint16_t PWM_PERIOD = 4800;
 uint16_t PWM_ZERO = 0;
 
 uint16_t m_pwmx, m_pwmy, m_pwmz;
-uint16_t MOTOR_FULL_REVERSE = 125;    
+uint16_t MOTOR_FULL_REVERSE = 125;
 uint16_t MOTOR_STOP = 290;
 uint16_t MOTOR_FULL_FORWARD = 415;
 
@@ -104,9 +104,9 @@ int main(void)
     
     /* Set desired state to current state. */
     //MPU6050_getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-    dx = gx;
-    dy = gy;
-    dz = gz;
+    tx = gx;
+    ty = gy;
+    tz = gz;
    
     /* Setup UART (hardware) interrupt. */
     blueRX_ISR_StartEx (blueRX_ISR);
@@ -238,22 +238,51 @@ CY_ISR (accelUP_ISR)
 
 CY_ISR (motion_handler)
 {
+    int16_t val = MOTOR_STOP;
+    
     /* Handle motion cases. */
     if (CyIntGetState (x_motion_ISR))
     {
         /* React to x motion. */
+        if (tx < gx)
+        {
+            val = MOTOR_STOP + ((MOTOR_FULL_FORWARD - MOTOR_STOP) * (tx / gx) + 10);
+        } else if (tx > gx)
+        {
+            val = MOTOR_STOP - ((MOTOR_STOP - MOTOR_FULL_REVERSE) * (1 - (tx / gx)) + 10);
+        }
+            
+        fw1_PWM_WriteCompare1 (val);
         
         /* Clear x interrupt. */
         CyIntClearPending (x_motion_ISR);
     } else if (CyIntGetState (y_motion_ISR))
     {
         /* React to y motion. */
+        if (ty < gy)
+        {
+            val = MOTOR_STOP + ((MOTOR_FULL_FORWARD - MOTOR_STOP) * (ty / gy) + 10);
+        } else if (ty > gy)
+        {
+            val = MOTOR_STOP - ((MOTOR_STOP - MOTOR_FULL_REVERSE) * (1 - (ty / gy)) + 10);
+        }
+            
+        fw2_PWM_WriteCompare1 (val);
         
         /* Clear y interrupt. */
         CyIntClearPending (y_motion_ISR);
     } else if (CyIntGetState (z_motion_ISR))
     {
         /* React to z motion. */
+        if (tz < gz)
+        {
+            val = MOTOR_STOP + ((MOTOR_FULL_FORWARD - MOTOR_STOP) * (tz / gz) + 10);
+        } else if (tz > gz)
+        {
+            val = MOTOR_STOP - ((MOTOR_STOP - MOTOR_FULL_REVERSE) * (1 - (tz / gz)) + 10);
+        }
+            
+        fw3_PWM_WriteCompare1 (val);
         
         /* Clear z interrupt. */
         CyIntClearPending (z_motion_ISR);
